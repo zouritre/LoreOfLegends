@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
-		E93B365D28FC4748003BB0A3 /* ChampionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365428FC4748003BB0A3 /* ChampionListViewModel.swift */; };
-		E93B365E28FC4748003BB0A3 /* ChampionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365728FC4748003BB0A3 /* ChampionList.swift */; };
-		E93B365F28FC4748003BB0A3 /* ChampionListApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365828FC4748003BB0A3 /* ChampionListApiMock.swift */; };
-		E93B366028FC4748003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
-		E93B366128FC4748003BB0A3 /* ChampionListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* ChampionListError.swift */; };
-		E93B366228FC4748003BB0A3 /* ChampionListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */; };
-		E93B366328FC4748003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
+		E93B366728FC4BEE003BB0A3 /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E93B366428FC4B9B003BB0A3 /* championFull.json */; };
+		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
+		E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* ChampionListError.swift */; };
+		E93B366A28FC4C00003BB0A3 /* ChampionListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */; };
+		E93B366B28FC4C00003BB0A3 /* ChampionListApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365828FC4748003BB0A3 /* ChampionListApiMock.swift */; };
+		E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365728FC4748003BB0A3 /* ChampionList.swift */; };
+		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
+		E93B366E28FC4C15003BB0A3 /* ChampionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365428FC4748003BB0A3 /* ChampionListViewModel.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
 		E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FD28FC247400F63D70 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		E93B365A28FC4748003BB0A3 /* ChampionListError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListError.swift; sourceTree = "<group>"; };
 		E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListApi.swift; sourceTree = "<group>"; };
 		E93B365C28FC4748003BB0A3 /* Champion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
+		E93B366428FC4B9B003BB0A3 /* championFull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = championFull.json; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			path = ChampionList;
 			sourceTree = "<group>";
 		};
+		E93B366628FC4BA1003BB0A3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E93B366428FC4B9B003BB0A3 /* championFull.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E990E9ED28FC247300F63D70 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
+				E93B366628FC4BA1003BB0A3 /* Resources */,
 				E93B365528FC4748003BB0A3 /* Model */,
 				E93B365328FC4748003BB0A3 /* ViewModel */,
 				E990EA0D28FC258000F63D70 /* Supporting_files */,
@@ -259,6 +270,7 @@
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
+				E93B366728FC4BEE003BB0A3 /* championFull.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,14 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E93B366328FC4748003BB0A3 /* Champion.swift in Sources */,
-				E93B366028FC4748003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,
-				E93B366128FC4748003BB0A3 /* ChampionListError.swift in Sources */,
 				E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */,
-				E93B365D28FC4748003BB0A3 /* ChampionListViewModel.swift in Sources */,
-				E93B365E28FC4748003BB0A3 /* ChampionList.swift in Sources */,
-				E93B365F28FC4748003BB0A3 /* ChampionListApiMock.swift in Sources */,
-				E93B366228FC4748003BB0A3 /* ChampionListApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,9 +289,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */,
+				E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */,
+				E93B366A28FC4C00003BB0A3 /* ChampionListApi.swift in Sources */,
 				E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
+				E93B366B28FC4C00003BB0A3 /* ChampionListApiMock.swift in Sources */,
+				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
 				E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */,
+				E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,
+				E93B366E28FC4C15003BB0A3 /* ChampionListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

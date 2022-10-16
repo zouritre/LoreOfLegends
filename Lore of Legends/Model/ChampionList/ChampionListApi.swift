@@ -41,6 +41,7 @@ extension ChampionListApi: ChampionListDelegate {
             }
         }
         
+        print(champs)
         ChampionList().sendChampionsList(champions: champs)
     }
 }
