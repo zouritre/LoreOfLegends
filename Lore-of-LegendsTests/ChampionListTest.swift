@@ -47,5 +47,4 @@ final class ChampionListTest: XCTestCase {
         
         XCTAssertEqual(champions.count, 0)
     }
-    
 }

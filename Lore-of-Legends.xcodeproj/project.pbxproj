@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
-		E93B366728FC4BEE003BB0A3 /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E93B366428FC4B9B003BB0A3 /* championFull.json */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
 		E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* ChampionListError.swift */; };
 		E93B366A28FC4C00003BB0A3 /* ChampionListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */; };
@@ -16,6 +15,7 @@
 		E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365728FC4748003BB0A3 /* ChampionList.swift */; };
 		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
 		E93B366E28FC4C15003BB0A3 /* ChampionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365428FC4748003BB0A3 /* ChampionListViewModel.swift */; };
+		E93B366F28FC4D38003BB0A3 /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E93B367128FC4D38003BB0A3 /* championFull.json */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
 		E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FD28FC247400F63D70 /* ViewController.swift */; };
@@ -44,7 +44,9 @@
 		E93B365A28FC4748003BB0A3 /* ChampionListError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListError.swift; sourceTree = "<group>"; };
 		E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListApi.swift; sourceTree = "<group>"; };
 		E93B365C28FC4748003BB0A3 /* Champion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
-		E93B366428FC4B9B003BB0A3 /* championFull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = championFull.json; sourceTree = "<group>"; };
+		E93B367028FC4D38003BB0A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/championFull.json; sourceTree = "<group>"; };
+		E93B367228FC4D3F003BB0A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/championFull.json; sourceTree = "<group>"; };
+		E93B367328FC4D60003BB0A3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = fr; path = fr.lproj/championFull.json; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,7 +116,7 @@
 		E93B366628FC4BA1003BB0A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E93B366428FC4B9B003BB0A3 /* championFull.json */,
+				E93B367128FC4D38003BB0A3 /* championFull.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -243,6 +245,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = E990E9ED28FC247300F63D70;
 			productRefGroup = E990E9F728FC247300F63D70 /* Products */;
@@ -270,7 +273,7 @@
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
-				E93B366728FC4BEE003BB0A3 /* championFull.json in Resources */,
+				E93B366F28FC4D38003BB0A3 /* championFull.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +316,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E93B367128FC4D38003BB0A3 /* championFull.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E93B367028FC4D38003BB0A3 /* Base */,
+				E93B367228FC4D3F003BB0A3 /* en */,
+				E93B367328FC4D60003BB0A3 /* fr */,
+			);
+			name = championFull.json;
+			sourceTree = "<group>";
+		};
 		E990E9FF28FC247400F63D70 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -387,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -447,6 +461,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
