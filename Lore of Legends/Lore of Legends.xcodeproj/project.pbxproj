@@ -56,15 +56,39 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
-				E990E9F928FC247400F63D70 /* AppDelegate.swift */,
-				E990E9FB28FC247400F63D70 /* SceneDelegate.swift */,
-				E990E9FD28FC247400F63D70 /* ViewController.swift */,
-				E990E9FF28FC247400F63D70 /* Main.storyboard */,
-				E990EA0228FC247500F63D70 /* Assets.xcassets */,
-				E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */,
-				E990EA0728FC247500F63D70 /* Info.plist */,
+				E990EA0D28FC258000F63D70 /* Supporting_files */,
+				E990EA0E28FC260000F63D70 /* Controller */,
+				E990EA0F28FC261500F63D70 /* Storyboard */,
 			);
 			path = "Lore of Legends";
+			sourceTree = "<group>";
+		};
+		E990EA0D28FC258000F63D70 /* Supporting_files */ = {
+			isa = PBXGroup;
+			children = (
+				E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */,
+				E990E9F928FC247400F63D70 /* AppDelegate.swift */,
+				E990E9FB28FC247400F63D70 /* SceneDelegate.swift */,
+				E990EA0228FC247500F63D70 /* Assets.xcassets */,
+				E990EA0728FC247500F63D70 /* Info.plist */,
+			);
+			path = Supporting_files;
+			sourceTree = "<group>";
+		};
+		E990EA0E28FC260000F63D70 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E990E9FD28FC247400F63D70 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E990EA0F28FC261500F63D70 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				E990E9FF28FC247400F63D70 /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +313,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32VPA6HJ38;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Lore of Legends/Info.plist";
+				INFOPLIST_FILE = "Lore of Legends/Supporting_files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +341,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32VPA6HJ38;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Lore of Legends/Info.plist";
+				INFOPLIST_FILE = "Lore of Legends/Supporting_files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
