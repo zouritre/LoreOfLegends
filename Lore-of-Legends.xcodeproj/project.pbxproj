@@ -175,7 +175,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E990E9F128FC247300F63D70 /* Build configuration list for PBXProject "Lore of Legends" */;
+			buildConfigurationList = E990E9F128FC247300F63D70 /* Build configuration list for PBXProject "Lore-of-Legends" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -477,7 +477,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E990E9F128FC247300F63D70 /* Build configuration list for PBXProject "Lore of Legends" */ = {
+		E990E9F128FC247300F63D70 /* Build configuration list for PBXProject "Lore-of-Legends" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E990EA0828FC247500F63D70 /* Debug */,
