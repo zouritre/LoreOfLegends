@@ -24,13 +24,12 @@ class ChampionListViewModel {
         }
     }
     
-    var api: ChampionListDelegate
     var delegate: ChampionListViewModelDelegate?
     var championListModel = ChampionList()
 
     init(api: ChampionListDelegate = ChampionListApi()) {
         self.champions = []
-        self.api = api
+        championListModel.delegate = api
         
         let championListListenerName = Notification.Name("championsList")
         
@@ -53,7 +52,6 @@ class ChampionListViewModel {
     }
     
     func getChampions() {
-        championListModel.delegate = api
         championListModel.delegate?.getChampions()
     }
 }

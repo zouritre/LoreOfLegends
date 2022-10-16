@@ -16,6 +16,7 @@
 		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
 		E93B366F28FC4D38003BB0A3 /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E93B367128FC4D38003BB0A3 /* championFull.json */; };
 		E93B367728FC5208003BB0A3 /* ChampionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B367428FC51DA003BB0A3 /* ChampionListViewModel.swift */; };
+		E9472D5528FCAD8F002E7F96 /* champions in Resources */ = {isa = PBXBuildFile; fileRef = E9472D5428FCAD8F002E7F96 /* champions */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
 		E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FD28FC247400F63D70 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		E93B367228FC4D3F003BB0A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/championFull.json; sourceTree = "<group>"; };
 		E93B367328FC4D60003BB0A3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = fr; path = fr.lproj/championFull.json; sourceTree = "<group>"; };
 		E93B367428FC51DA003BB0A3 /* ChampionListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListViewModel.swift; sourceTree = "<group>"; };
+		E9472D5428FCAD8F002E7F96 /* champions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = champions; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		E93B366628FC4BA1003BB0A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9472D5428FCAD8F002E7F96 /* champions */,
 				E93B367128FC4D38003BB0A3 /* championFull.json */,
 			);
 			path = Resources;
@@ -141,8 +144,8 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
-				E93B367628FC51F1003BB0A3 /* ViewModel */,
 				E93B366628FC4BA1003BB0A3 /* Resources */,
+				E93B367628FC51F1003BB0A3 /* ViewModel */,
 				E93B365528FC4748003BB0A3 /* Model */,
 				E990EA0D28FC258000F63D70 /* Supporting_files */,
 				E990EA0E28FC260000F63D70 /* Controller */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
+				E9472D5528FCAD8F002E7F96 /* champions in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
 				E93B366F28FC4D38003BB0A3 /* championFull.json in Resources */,
