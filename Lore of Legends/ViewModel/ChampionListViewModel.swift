@@ -44,11 +44,21 @@ class ChampionListViewModel {
         
         if let champions = sender["list"] as? [Champion] {
             self.champions = champions
-        } else {
-            championsDataError = ChampionListError.NotificationDataBadType
-            return
+        }
+        else {
+            self.champions = nil
         }
         
+        if let error = sender["error"] as? Error {
+            self.championsDataError = error
+        }
+        else {
+            self.championsDataError = nil
+        }
+        
+        if  (sender["list"] as? [Champion]) == nil && (sender["error"] as? Error) == nil {
+            championsDataError = ChampionListError.NotificationNoData
+        }
     }
     
     func getChampions() {

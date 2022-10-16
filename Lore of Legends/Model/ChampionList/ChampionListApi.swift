@@ -11,14 +11,14 @@ extension ChampionListApi: ChampionListDelegate {
     func getChampions() {
         
         guard let championsData else {
-            print("failed Data")
-            
+            ChampionList().sendChampionsList(champions: nil, error: ChampionListError.BundleReadFail)
+
             return
         }
         
         guard let response = try? JSONDecoder().decode(ChampionFullJsonDecodable.self, from: championsData) else {
-            print("failed decoding")
-            
+            ChampionList().sendChampionsList(champions: nil, error: ChampionListError.DecodingFail)
+
             return
         }
         
@@ -41,7 +41,7 @@ extension ChampionListApi: ChampionListDelegate {
             }
         }
         
-        ChampionList().sendChampionsList(champions: champs)
+        ChampionList().sendChampionsList(champions: champs, error: nil)
     }
 }
 

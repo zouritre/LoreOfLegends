@@ -24,13 +24,8 @@ final class ChampionListTest: XCTestCase {
         
         championListVM.getChampions()
         
-        guard let champions = championListVM.champions else {
-            XCTAssertTrue(false)
-            
-            return
-        }
-        
-        XCTAssertGreaterThan(champions.count, 0)
+        XCTAssertNotNil(championListVM.champions)
+        XCTAssertNil(championListVM.championsDataError)
     }
     
     func testChampionListArrayShouldBeEmpty() throws {
@@ -39,12 +34,8 @@ final class ChampionListTest: XCTestCase {
         
         championListVM.getChampions()
         
-        guard let champions = championListVM.champions else {
-            XCTAssertTrue(false)
-            
-            return
-        }
         
-        XCTAssertEqual(champions.count, 0)
+        XCTAssertNil(championListVM.champions)
+        XCTAssertNotNil(championListVM.championsDataError)
     }
 }

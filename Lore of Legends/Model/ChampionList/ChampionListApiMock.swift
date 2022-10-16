@@ -9,19 +9,20 @@ import Foundation
 
 extension ChampionListApiMock: ChampionListDelegate {
     func getChampions() {
-        ChampionList().sendChampionsList(champions: champions)
+        guard let champions else {
+            ChampionList().sendChampionsList(champions: nil, error: ChampionListError.DecodingFail)
+
+            return
+        }
+        
+        ChampionList().sendChampionsList(champions: champions, error: nil)
     }
 }
 
 class ChampionListApiMock {
-    let champions:  [Champion]
+    let champions:  [Champion]?
     
     init(champions: [Champion]?) {
-        if let champions {
-            self.champions = champions
-        }
-        else {
-            self.champions = []
-        }
+        self.champions = champions
     }
 }

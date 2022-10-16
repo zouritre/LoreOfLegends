@@ -14,9 +14,19 @@ protocol ChampionListDelegate {
 class ChampionList {
     var delegate: ChampionListDelegate?
     
-    func sendChampionsList(champions: [Champion]) {
+    func sendChampionsList(champions: [Champion]?, error: Error?) {
         let notifName = Notification.Name("championsList")
-        let notif = Notification(name: notifName, userInfo: ["list": champions])
+        
+        if let champions {
+            createNotification(name: notifName, userInfo: ["list": champions])
+        }
+        if let error {
+            createNotification(name: notifName, userInfo: ["error": error])
+        }
+    }
+    
+    private func createNotification(name: Notification.Name, userInfo: [String:Any]) {
+        let notif = Notification(name: name, userInfo: userInfo)
         
         NotificationCenter.default.post(notif)
     }
