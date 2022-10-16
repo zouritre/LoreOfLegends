@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E93B364A28FC3590003BB0A3 /* Lore_of_LegendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B364928FC3590003BB0A3 /* Lore_of_LegendsTests.swift */; };
+		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
+		E93B365D28FC4748003BB0A3 /* ChampionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365428FC4748003BB0A3 /* ChampionListViewModel.swift */; };
+		E93B365E28FC4748003BB0A3 /* ChampionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365728FC4748003BB0A3 /* ChampionList.swift */; };
+		E93B365F28FC4748003BB0A3 /* ChampionListApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365828FC4748003BB0A3 /* ChampionListApiMock.swift */; };
+		E93B366028FC4748003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
+		E93B366128FC4748003BB0A3 /* ChampionListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* ChampionListError.swift */; };
+		E93B366228FC4748003BB0A3 /* ChampionListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */; };
+		E93B366328FC4748003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
 		E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FD28FC247400F63D70 /* ViewController.swift */; };
@@ -28,7 +35,14 @@
 
 /* Begin PBXFileReference section */
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E93B364928FC3590003BB0A3 /* Lore_of_LegendsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore_of_LegendsTests.swift; sourceTree = "<group>"; };
+		E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListTest.swift; sourceTree = "<group>"; };
+		E93B365428FC4748003BB0A3 /* ChampionListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListViewModel.swift; sourceTree = "<group>"; };
+		E93B365728FC4748003BB0A3 /* ChampionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionList.swift; sourceTree = "<group>"; };
+		E93B365828FC4748003BB0A3 /* ChampionListApiMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListApiMock.swift; sourceTree = "<group>"; };
+		E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionFullJsonDecodable.swift; sourceTree = "<group>"; };
+		E93B365A28FC4748003BB0A3 /* ChampionListError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListError.swift; sourceTree = "<group>"; };
+		E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListApi.swift; sourceTree = "<group>"; };
+		E93B365C28FC4748003BB0A3 /* Champion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,9 +74,39 @@
 		E93B364828FC3590003BB0A3 /* Lore-of-LegendsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E93B364928FC3590003BB0A3 /* Lore_of_LegendsTests.swift */,
+				E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */,
 			);
 			path = "Lore-of-LegendsTests";
+			sourceTree = "<group>";
+		};
+		E93B365328FC4748003BB0A3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E93B365428FC4748003BB0A3 /* ChampionListViewModel.swift */,
+			);
+			name = ViewModel;
+			path = ../../../LoreOL/LoreOL/LoreOL/ViewModel;
+			sourceTree = "<group>";
+		};
+		E93B365528FC4748003BB0A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E93B365628FC4748003BB0A3 /* ChampionList */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E93B365628FC4748003BB0A3 /* ChampionList */ = {
+			isa = PBXGroup;
+			children = (
+				E93B365728FC4748003BB0A3 /* ChampionList.swift */,
+				E93B365828FC4748003BB0A3 /* ChampionListApiMock.swift */,
+				E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */,
+				E93B365A28FC4748003BB0A3 /* ChampionListError.swift */,
+				E93B365B28FC4748003BB0A3 /* ChampionListApi.swift */,
+				E93B365C28FC4748003BB0A3 /* Champion.swift */,
+			);
+			path = ChampionList;
 			sourceTree = "<group>";
 		};
 		E990E9ED28FC247300F63D70 = {
@@ -86,6 +130,8 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
+				E93B365528FC4748003BB0A3 /* Model */,
+				E93B365328FC4748003BB0A3 /* ViewModel */,
 				E990EA0D28FC258000F63D70 /* Supporting_files */,
 				E990EA0E28FC260000F63D70 /* Controller */,
 				E990EA0F28FC261500F63D70 /* Storyboard */,
@@ -171,6 +217,7 @@
 				TargetAttributes = {
 					E93B364628FC3590003BB0A3 = {
 						CreatedOnToolsVersion = 14.0.1;
+						LastSwiftMigration = 1400;
 						TestTargetID = E990E9F528FC247300F63D70;
 					};
 					E990E9F528FC247300F63D70 = {
@@ -222,7 +269,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E93B364A28FC3590003BB0A3 /* Lore_of_LegendsTests.swift in Sources */,
+				E93B366328FC4748003BB0A3 /* Champion.swift in Sources */,
+				E93B366028FC4748003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,
+				E93B366128FC4748003BB0A3 /* ChampionListError.swift in Sources */,
+				E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */,
+				E93B365D28FC4748003BB0A3 /* ChampionListViewModel.swift in Sources */,
+				E93B365E28FC4748003BB0A3 /* ChampionList.swift in Sources */,
+				E93B365F28FC4748003BB0A3 /* ChampionListApiMock.swift in Sources */,
+				E93B366228FC4748003BB0A3 /* ChampionListApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,15 +324,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32VPA6HJ38;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bertranddalleau.Lore-of-LegendsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lore-of-Legends.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lore-of-Legends";
@@ -289,11 +350,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32VPA6HJ38;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bertranddalleau.Lore-of-LegendsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
