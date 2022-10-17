@@ -3373,6 +3373,7 @@
 		E947479128FCB11B002E7F96 /* Chogath.png in Resources */ = {isa = PBXBuildFile; fileRef = E9473A7428FCB11A002E7F96 /* Chogath.png */; settings = {ASSET_TAGS = ("champion-icon", ); }; };
 		E947479228FCB11B002E7F96 /* Neeko.png in Resources */ = {isa = PBXBuildFile; fileRef = E9473A7528FCB11A002E7F96 /* Neeko.png */; settings = {ASSET_TAGS = ("champion-icon", ); }; };
 		E947479328FCB11B002E7F96 /* Taliyah.png in Resources */ = {isa = PBXBuildFile; fileRef = E9473A7628FCB11A002E7F96 /* Taliyah.png */; settings = {ASSET_TAGS = ("champion-icon", ); }; };
+		E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9554FCA28FD80BF00A5E071 /* Localizable.strings */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
 		E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FD28FC247400F63D70 /* ViewController.swift */; };
@@ -6761,6 +6762,8 @@
 		E9473A7428FCB11A002E7F96 /* Chogath.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chogath.png; sourceTree = "<group>"; };
 		E9473A7528FCB11A002E7F96 /* Neeko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Neeko.png; sourceTree = "<group>"; };
 		E9473A7628FCB11A002E7F96 /* Taliyah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Taliyah.png; sourceTree = "<group>"; };
+		E9554FC928FD80BF00A5E071 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9554FCB28FD80C500A5E071 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -10223,6 +10226,14 @@
 			path = champion;
 			sourceTree = "<group>";
 		};
+		E9554FC528FD784700A5E071 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				E9554FCA28FD80BF00A5E071 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		E990E9ED28FC247300F63D70 = {
 			isa = PBXGroup;
 			children = (
@@ -10244,6 +10255,7 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
+				E9554FC528FD784700A5E071 /* Localization */,
 				E93B366628FC4BA1003BB0A3 /* Resources */,
 				E93B367628FC51F1003BB0A3 /* ViewModel */,
 				E93B365528FC4748003BB0A3 /* Model */,
@@ -11434,6 +11446,7 @@
 				E947426828FCB11B002E7F96 /* Zoe_9.jpg in Resources */,
 				E9473C2628FCB11A002E7F96 /* Nidalee_1.jpg in Resources */,
 				E9473A8428FCB11A002E7F96 /* Sejuani_7.jpg in Resources */,
+				E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */,
 				E947432828FCB11B002E7F96 /* Ezreal_2.jpg in Resources */,
 				E94744A328FCB11B002E7F96 /* Vi_29.jpg in Resources */,
 				E947477428FCB11B002E7F96 /* Viktor.png in Resources */,
@@ -13788,6 +13801,15 @@
 				E93B367328FC4D60003BB0A3 /* fr */,
 			);
 			name = championFull.json;
+			sourceTree = "<group>";
+		};
+		E9554FCA28FD80BF00A5E071 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9554FC928FD80BF00A5E071 /* en */,
+				E9554FCB28FD80C500A5E071 /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		E990E9FF28FC247400F63D70 /* Main.storyboard */ = {
