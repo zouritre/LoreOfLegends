@@ -16,15 +16,33 @@ extension UIViewController {
     }
 }
 
+extension HomeScreenViewController: ChampionListViewModelDelegate {
+    func championList(champions: [Champion]?, error: Error?) {
+        if let champions {
+            self.champions = champions
+            
+            championIcons.reloadData()
+        }
+        
+        if let error {
+            alert(message: error.localizedDescription)
+        }
+    }
+}
+
 class HomeScreenViewController: UIViewController {
     
     var dataSource: UICollectionViewDiffableDataSource<Int, UUID>?
+    var championListVM = ChampionListViewModel()
+    var champions = [Champion]()
     
     @IBOutlet weak var championIcons: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        championListVM.delegate = self
+        
         dataSource = UICollectionViewDiffableDataSource<Int, UUID>(collectionView: championIcons) {
             (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> UICollectionViewCell? in
             // Configure and return cell.
