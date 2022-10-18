@@ -40,7 +40,7 @@ class ChampionListViewModel {
     var championsDataSubscriber: Any?
 
     private init() {
-        let championListListenerName = Notification.Name("championsList")
+        let championListListenerName = Notification.Name("championsData")
         
         self.championsDataPublisher = NotificationCenter.default.publisher(for: championListListenerName)
     }

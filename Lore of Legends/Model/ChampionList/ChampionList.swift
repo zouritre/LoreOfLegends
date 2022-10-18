@@ -15,7 +15,7 @@ class ChampionList {
     var delegate: ChampionListDelegate?
     
     func sendChampionsList(champions: [Champion]?, error: Error?) {
-        let notifName = Notification.Name("championsList")
+        let notifName = Notification.Name("championsData")
         
         if let champions {
             createNotification(name: notifName, userInfo: ["list": champions])
