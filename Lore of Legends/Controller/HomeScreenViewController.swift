@@ -46,12 +46,30 @@ class HomeScreenViewController: UIViewController {
     
     var championListVM = ChampionListViewModel()
     var champions = [Champion]()
+    var championsDataListSubscriber: Any?
+    var championsDataErrorSubscriber: Any?
     
     @IBOutlet weak var championIcons: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] championList in
+            guard let self else { return }
+            guard let championList else { return }
+            
+            self.champions = championList
+            
+            self.championIcons.reloadData()
+        })
+        
+        championsDataErrorSubscriber = championListVM.$championsDataError.sink(receiveValue: { [weak self] dataError in
+            guard let self else { return }
+            guard let dataError else { return }
+            
+            self.alert(message: dataError.localizedDescription)
+        })
+        
         championListVM.delegate = self
         championListVM.getChampions()
     }
