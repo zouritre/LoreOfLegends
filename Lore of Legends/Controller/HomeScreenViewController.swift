@@ -30,9 +30,20 @@ extension HomeScreenViewController: ChampionListViewModelDelegate {
     }
 }
 
+extension HomeScreenViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return champions.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "championIcon", for: indexPath)
+
+        return cell
+    }
+}
+
 class HomeScreenViewController: UIViewController {
     
-    var championIconsDatasource: UICollectionViewDiffableDataSource<Int, UUID>?
     var championListVM = ChampionListViewModel()
     var champions = [Champion]()
     
@@ -43,14 +54,6 @@ class HomeScreenViewController: UIViewController {
 
         championListVM.delegate = self
         
-        championIconsDatasource = UICollectionViewDiffableDataSource<Int, UUID>(collectionView: championIcons) {
-            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> UICollectionViewCell? in
-            // Configure and return cell.
-            
-            
-            return UICollectionViewCell()
-        }
-        // Do any additional setup after loading the view.
     }
     
 

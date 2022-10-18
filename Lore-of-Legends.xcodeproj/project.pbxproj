@@ -10255,6 +10255,7 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
+				E9A0C5D828FEE1EF00E468ED /* View */,
 				E9554FC528FD784700A5E071 /* Localization */,
 				E93B366628FC4BA1003BB0A3 /* Resources */,
 				E93B367628FC51F1003BB0A3 /* ViewModel */,
@@ -10292,6 +10293,13 @@
 				E990E9FF28FC247400F63D70 /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		E9A0C5D828FEE1EF00E468ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -57,9 +57,25 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DbA-IP-Jsq">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Champ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKy-8c-ZdN">
+                                                    <rect key="frame" x="36.666666666666671" y="53.666666666666657" width="54.666666666666671" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HKy-8c-ZdN" firstAttribute="centerY" secondItem="DbA-IP-Jsq" secondAttribute="centerY" id="GAm-xn-zgS"/>
+                                                <constraint firstItem="HKy-8c-ZdN" firstAttribute="centerX" secondItem="DbA-IP-Jsq" secondAttribute="centerX" id="S83-3O-0AZ"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="GbQ-vh-kHe"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="HTE-XX-hJk"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
