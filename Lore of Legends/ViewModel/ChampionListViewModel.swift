@@ -14,13 +14,23 @@ protocol ChampionListViewModelDelegate {
 class ChampionListViewModel {
     var champions: [Champion]? {
         willSet {
-            delegate?.championList(champions: newValue, error: nil)
+            guard let newValue else { return }
+            
+            let notifName = Notification.Name("championList")
+            let notif = Notification(name: notifName, userInfo: ["list":newValue])
+            
+            NotificationCenter.default.post(notif)
         }
     }
     
     var championsDataError: Error? {
         willSet {
-            delegate?.championList(champions: nil, error: newValue)
+            guard let newValue else { return }
+            
+            let notifName = Notification.Name("championListError")
+            let notif = Notification(name: notifName, userInfo: ["error":newValue])
+            
+            NotificationCenter.default.post(notif)
         }
     }
     
