@@ -38,7 +38,7 @@ class ChampionListViewModel {
     
     @objc func listenChampionsList(_ sender: Notification) {
         guard let sender = sender.userInfo else {
-            championsDataError = ChampionListError.NotificationDataIsEmpty
+            championsDataError = ChampionListError.NotificationNoData
             return
         }
         
@@ -54,10 +54,6 @@ class ChampionListViewModel {
         }
         else {
             self.championsDataError = nil
-        }
-        
-        if  (sender["list"] as? [Champion]) == nil && (sender["error"] as? Error) == nil {
-            championsDataError = ChampionListError.NotificationNoData
         }
     }
     
