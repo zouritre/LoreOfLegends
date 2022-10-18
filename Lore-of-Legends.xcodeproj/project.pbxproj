@@ -3376,7 +3376,6 @@
 		E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9554FCA28FD80BF00A5E071 /* Localizable.strings */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
-		E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FD28FC247400F63D70 /* ViewController.swift */; };
 		E990EA0128FC247400F63D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990E9FF28FC247400F63D70 /* Main.storyboard */; };
 		E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0228FC247500F63D70 /* Assets.xcassets */; };
 		E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */; };
@@ -6767,7 +6766,6 @@
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E990E9FD28FC247400F63D70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E990EA0028FC247400F63D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E990EA0228FC247500F63D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E990EA0528FC247500F63D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -10281,7 +10279,6 @@
 		E990EA0E28FC260000F63D70 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E990E9FD28FC247400F63D70 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -13772,7 +13769,6 @@
 				E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */,
 				E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListApi.swift in Sources */,
-				E990E9FE28FC247400F63D70 /* ViewController.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
 				E93B366B28FC4C00003BB0A3 /* ChampionListApiMock.swift in Sources */,
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
