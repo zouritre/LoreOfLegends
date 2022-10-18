@@ -53,7 +53,7 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
 
         championListVM.delegate = self
-        
+        championListVM.getChampions()
     }
     
 
