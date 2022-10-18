@@ -75,6 +75,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Lore of Legends" id="ZVU-3N-y0e"/>
+                    <connections>
+                        <outlet property="championIcons" destination="wsy-tj-Ccx" id="UsP-hr-i0Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

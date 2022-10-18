@@ -17,10 +17,21 @@ extension UIViewController {
 }
 
 class HomeScreenViewController: UIViewController {
-
+    
+    var dataSource: UICollectionViewDiffableDataSource<Int, UUID>?
+    
+    @IBOutlet weak var championIcons: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dataSource = UICollectionViewDiffableDataSource<Int, UUID>(collectionView: championIcons) {
+            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> UICollectionViewCell? in
+            // Configure and return cell.
+            
+            
+            return UICollectionViewCell()
+        }
         // Do any additional setup after loading the view.
     }
     
