@@ -32,7 +32,7 @@ extension HomeScreenViewController: ChampionListViewModelDelegate {
 
 class HomeScreenViewController: UIViewController {
     
-    var dataSource: UICollectionViewDiffableDataSource<Int, UUID>?
+    var championIconsDatasource: UICollectionViewDiffableDataSource<Int, UUID>?
     var championListVM = ChampionListViewModel()
     var champions = [Champion]()
     
@@ -43,7 +43,7 @@ class HomeScreenViewController: UIViewController {
 
         championListVM.delegate = self
         
-        dataSource = UICollectionViewDiffableDataSource<Int, UUID>(collectionView: championIcons) {
+        championIconsDatasource = UICollectionViewDiffableDataSource<Int, UUID>(collectionView: championIcons) {
             (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> UICollectionViewCell? in
             // Configure and return cell.
             
