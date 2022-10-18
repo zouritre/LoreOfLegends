@@ -26,17 +26,25 @@ class ChampionListViewModel {
     
     var delegate: ChampionListViewModelDelegate?
     var championListModel = ChampionList()
+    var championsDataPublisher: NotificationCenter.Publisher
+    var championsDataSubscriber: Any?
 
-    init(api: ChampionListDelegate = ChampionListApi()) {
-        self.champions = []
-        championListModel.delegate = api
-        
+    private init() {
         let championListListenerName = Notification.Name("championsList")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(listenChampionsList(_:)), name: championListListenerName, object: nil)
+        self.championsDataPublisher = NotificationCenter.default.publisher(for: championListListenerName)
     }
     
-    @objc func listenChampionsList(_ sender: Notification) {
+    convenience init(api: ChampionListDelegate = ChampionListApi()) {
+        self.init()
+        self.champions = []
+        self.championListModel.delegate = api
+        self.championsDataSubscriber = championsDataPublisher.sink(receiveValue: { notification in
+            self.processChampionsData(notification)
+        })
+    }
+    
+    private func processChampionsData(_ sender: Notification) {
         guard let sender = sender.userInfo else {
             championsDataError = ChampionListError.NotificationNoData
             return
