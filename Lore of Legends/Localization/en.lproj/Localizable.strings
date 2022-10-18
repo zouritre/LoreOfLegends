@@ -6,7 +6,6 @@
   
 */
 
-"ChampionListError.NotificationDataIsEmpty" = "Fail to retrieve champions data";
 "ChampionListError.NotificationNoData" = "No data received";
 "ChampionListError.BundleReadFail" = "Failed to read champions configuration files";
 "ChampionListError.DecodingFail" = "Failed to decode champion data";
