@@ -7,6 +7,15 @@
 
 import UIKit
 
+extension UIViewController {
+    func alert(message: String) {
+        let alert = UIAlertController(title: NSLocalizedString("alert.error", comment: "Error title"), message: message, preferredStyle: .alert)
+        alert.addAction(.init(title: "Ok", style: .default))
+        
+        self.present(alert, animated: true)
+    }
+}
+
 class HomeScreenViewController: UIViewController {
 
     override func viewDidLoad() {
