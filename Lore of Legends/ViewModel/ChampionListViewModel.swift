@@ -7,16 +7,11 @@
 
 import Foundation
 
-protocol ChampionListViewModelDelegate {
-    func championList(champions: [Champion]?, error: Error?)
-}
-
 class ChampionListViewModel {
     
     @Published var champions: [Champion]?
     @Published var championsDataError: Error?
     
-    var delegate: ChampionListViewModelDelegate?
     var championListModel = ChampionList()
     var championsDataPublisher: NotificationCenter.Publisher
     var championsDataSubscriber: Any?

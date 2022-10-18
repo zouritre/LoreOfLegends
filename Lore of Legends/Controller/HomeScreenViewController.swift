@@ -16,20 +16,6 @@ extension UIViewController {
     }
 }
 
-extension HomeScreenViewController: ChampionListViewModelDelegate {
-    func championList(champions: [Champion]?, error: Error?) {
-        if let champions {
-            self.champions = champions
-            
-            championIcons.reloadData()
-        }
-        
-        if let error {
-            alert(message: error.localizedDescription)
-        }
-    }
-}
-
 extension HomeScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return champions.count
@@ -70,7 +56,6 @@ class HomeScreenViewController: UIViewController {
             self.alert(message: dataError.localizedDescription)
         })
         
-        championListVM.delegate = self
         championListVM.getChampions()
     }
     
