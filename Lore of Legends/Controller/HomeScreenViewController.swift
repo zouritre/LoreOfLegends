@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 extension UIViewController {
     func alert(message: String) {
@@ -32,8 +33,8 @@ class HomeScreenViewController: UIViewController {
     
     var championListVM = ChampionListViewModel()
     var champions = [Champion]()
-    var championsDataListSubscriber: Any?
-    var championsDataErrorSubscriber: Any?
+    var championsDataListSubscriber: AnyCancellable?
+    var championsDataErrorSubscriber: AnyCancellable?
     
     @IBOutlet weak var championIcons: UICollectionView!
     
