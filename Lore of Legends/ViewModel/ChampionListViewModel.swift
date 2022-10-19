@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class ChampionListViewModel {
     
@@ -14,7 +15,7 @@ class ChampionListViewModel {
     
     var championListModel = ChampionList()
     var championsDataPublisher: NotificationCenter.Publisher
-    var championsDataSubscriber: Any?
+    var championsDataSubscriber: AnyCancellable?
 
     private init() {
         let championListListenerName = Notification.Name("championsData")
