@@ -19,7 +19,7 @@ extension UIViewController {
 
 extension HomeScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return champions.count
+        return self.championListVM.champions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -43,9 +43,6 @@ class HomeScreenViewController: UIViewController {
         
         championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] championList in
             guard let self else { return }
-            guard let championList else { return }
-            
-            self.champions = championList
             
             self.championIcons.reloadData()
         })

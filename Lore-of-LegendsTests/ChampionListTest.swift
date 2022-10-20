@@ -12,6 +12,7 @@ final class ChampionListTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDownWithError() throws {
@@ -24,7 +25,7 @@ final class ChampionListTest: XCTestCase {
         
         championListVM.getChampions()
         
-        XCTAssertNotNil(championListVM.champions)
+        XCTAssertGreaterThan(championListVM.champions.count, 0)
         XCTAssertNil(championListVM.championsDataError)
     }
     
@@ -35,7 +36,7 @@ final class ChampionListTest: XCTestCase {
         championListVM.getChampions()
         
         
-        XCTAssertNil(championListVM.champions)
+        XCTAssertEqual(championListVM.champions.count, 0)
         XCTAssertNotNil(championListVM.championsDataError)
     }
 }

@@ -8,14 +8,14 @@
 import Foundation
 
 extension ChampionListApiMock: ChampionListDelegate {
-    func getChampions() {
+    func getChampions(_ caller: ChampionList) {
         guard let champions else {
-            ChampionList().sendChampionsList(champions: nil, error: ChampionListError.DecodingFail)
+            caller.sendChampionsData(result: .failure(ChampionListError.DecodingFail))
 
             return
         }
-        
-        ChampionList().sendChampionsList(champions: champions, error: nil)
+
+        caller.sendChampionsData(result: .success(champions))
     }
 }
 

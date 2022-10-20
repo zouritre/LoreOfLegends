@@ -6,28 +6,23 @@
 //
 
 import Foundation
+import Combine
 
 protocol ChampionListDelegate {
-    func getChampions()
+    func getChampions(_ caller: ChampionList)
 }
 
 class ChampionList {
     var delegate: ChampionListDelegate?
+    var championsDataPublisher = PassthroughSubject<[Champion], Error>()
     
-    func sendChampionsList(champions: [Champion]?, error: Error?) {
-        let notifName = Notification.Name("championsData")
-        
-        if let champions {
-            createNotification(name: notifName, userInfo: ["list": champions])
+    func sendChampionsData(result: Result<[Champion], Error>) {
+        switch result {
+        case .success(let data):
+            championsDataPublisher.send(data)
+            championsDataPublisher.send(completion: .finished)
+        case .failure(let failure):
+            championsDataPublisher.send(completion: .failure(failure))
         }
-        if let error {
-            createNotification(name: notifName, userInfo: ["error": error])
-        }
-    }
-    
-    private func createNotification(name: Notification.Name, userInfo: [String:Any]) {
-        let notif = Notification(name: name, userInfo: userInfo)
-        
-        NotificationCenter.default.post(notif)
     }
 }
