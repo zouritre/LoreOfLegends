@@ -8,17 +8,17 @@
 import Foundation
 
 extension ChampionListApi: ChampionListDelegate {
-    func getChampions() {
+    func getChampions(_ caller: ChampionList) {
         
         guard let championsData else {
-            print("failed Data")
-            
+            caller.sendChampionsData(result: .failure(ChampionListError.BundleReadFail))
+
             return
         }
         
         guard let response = try? JSONDecoder().decode(ChampionFullJsonDecodable.self, from: championsData) else {
-            print("failed decoding")
-            
+            caller.sendChampionsData(result: .failure(ChampionListError.DecodingFail))
+
             return
         }
         
@@ -41,7 +41,7 @@ extension ChampionListApi: ChampionListDelegate {
             }
         }
         
-        ChampionList().sendChampionsList(champions: champs)
+        caller.sendChampionsData(result: .success(champs))
     }
 }
 

@@ -6,54 +6,38 @@
 //
 
 import Foundation
-
-protocol ChampionListViewModelDelegate {
-    func championList(champions: [Champion]?, error: Error?)
-}
+import Combine
 
 class ChampionListViewModel {
-    var champions: [Champion]? {
-        willSet {
-            delegate?.championList(champions: newValue, error: nil)
-        }
-    }
     
-    var championsDataError: Error? {
-        willSet {
-            delegate?.championList(champions: nil, error: newValue)
-        }
-    }
+    @Published var champions: [Champion]
+    @Published var championsDataError: Error?
     
-    var api: ChampionListDelegate
-    var delegate: ChampionListViewModelDelegate?
-    var championListModel = ChampionList()
+    var championListModel: ChampionList
+    var championsDataSubscriber: AnyCancellable?
+    var asub: AnyCancellable?
 
-    init(api: ChampionListDelegate = ChampionListApi()) {
+    private init() {
         self.champions = []
-        self.api = api
-        
-        let championListListenerName = Notification.Name("championsList")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(listenChampionsList(_:)), name: championListListenerName, object: nil)
+        self.championListModel = ChampionList()
     }
     
-    @objc func listenChampionsList(_ sender: Notification) {
-        guard let sender = sender.userInfo else {
-            championsDataError = ChampionListError.NotificationDataIsEmpty
-            return
-        }
-        
-        if let champions = sender["list"] as? [Champion] {
+    convenience init(api: ChampionListDelegate = ChampionListApi()) {
+        self.init()
+        self.championListModel.delegate = api
+        self.championsDataSubscriber = championListModel.championsDataPublisher.sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                return
+            case .failure(let error):
+                self.championsDataError = error
+            }
+        }, receiveValue: { champions in
             self.champions = champions
-        } else {
-            championsDataError = ChampionListError.NotificationDataBadType
-            return
-        }
-        
+        })
     }
     
     func getChampions() {
-        championListModel.delegate = api
-        championListModel.delegate?.getChampions()
+        championListModel.delegate?.getChampions(championListModel)
     }
 }

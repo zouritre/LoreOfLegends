@@ -12,6 +12,7 @@ final class ChampionListTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDownWithError() throws {
@@ -24,13 +25,8 @@ final class ChampionListTest: XCTestCase {
         
         championListVM.getChampions()
         
-        guard let champions = championListVM.champions else {
-            XCTAssertTrue(false)
-            
-            return
-        }
-        
-        XCTAssertGreaterThan(champions.count, 0)
+        XCTAssertGreaterThan(championListVM.champions.count, 0)
+        XCTAssertNil(championListVM.championsDataError)
     }
     
     func testChampionListArrayShouldBeEmpty() throws {
@@ -39,12 +35,8 @@ final class ChampionListTest: XCTestCase {
         
         championListVM.getChampions()
         
-        guard let champions = championListVM.champions else {
-            XCTAssertTrue(false)
-            
-            return
-        }
         
-        XCTAssertEqual(champions.count, 0)
+        XCTAssertEqual(championListVM.champions.count, 0)
+        XCTAssertNotNil(championListVM.championsDataError)
     }
 }

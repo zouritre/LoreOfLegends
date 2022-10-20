@@ -8,20 +8,21 @@
 import Foundation
 
 extension ChampionListApiMock: ChampionListDelegate {
-    func getChampions() {
-        ChampionList().sendChampionsList(champions: champions)
+    func getChampions(_ caller: ChampionList) {
+        guard let champions else {
+            caller.sendChampionsData(result: .failure(ChampionListError.DecodingFail))
+
+            return
+        }
+
+        caller.sendChampionsData(result: .success(champions))
     }
 }
 
 class ChampionListApiMock {
-    let champions:  [Champion]
+    let champions:  [Champion]?
     
     init(champions: [Champion]?) {
-        if let champions {
-            self.champions = champions
-        }
-        else {
-            self.champions = []
-        }
+        self.champions = champions
     }
 }
