@@ -3380,6 +3380,8 @@
 		E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0228FC247500F63D70 /* Assets.xcassets */; };
 		E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */; };
 		E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */; };
+		E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DC37362902EA8B008384FC /* ChampionIconCell.swift */; };
+		E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DC37372902EA8C008384FC /* ChampionIconCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -6772,6 +6774,8 @@
 		E990EA0528FC247500F63D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E990EA0728FC247500F63D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		E9DC37362902EA8B008384FC /* ChampionIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionIconCell.swift; sourceTree = "<group>"; };
+		E9DC37372902EA8C008384FC /* ChampionIconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionIconCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -10298,6 +10302,8 @@
 		E9A0C5D828FEE1EF00E468ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9DC37362902EA8B008384FC /* ChampionIconCell.swift */,
+				E9DC37372902EA8C008384FC /* ChampionIconCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -12744,6 +12750,7 @@
 				E94742BA28FCB11B002E7F96 /* Malphite_4.jpg in Resources */,
 				E947414428FCB11B002E7F96 /* Caitlyn_4.jpg in Resources */,
 				E947442D28FCB11B002E7F96 /* Karma_19.jpg in Resources */,
+				E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */,
 				E9473C5928FCB11A002E7F96 /* Vayne_32.jpg in Resources */,
 				E9473EEB28FCB11A002E7F96 /* Vi_4.jpg in Resources */,
 				E9473BD828FCB11A002E7F96 /* Talon_3.jpg in Resources */,
@@ -13783,6 +13790,7 @@
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
 				E93B366B28FC4C00003BB0A3 /* ChampionListApiMock.swift in Sources */,
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
+				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,
 				E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */,
 				E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,
 				E93B367728FC5208003BB0A3 /* ChampionListViewModel.swift in Sources */,

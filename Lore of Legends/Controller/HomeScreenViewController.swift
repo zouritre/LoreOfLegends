@@ -23,12 +23,21 @@ extension HomeScreenViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "championIcon", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon", for: indexPath) as? ChampionIconCell
 
+        guard let cell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.champName.text = championListVM.champions[indexPath.row].name
+        
         return cell
     }
 }
 
+extension HomeScreenViewController: UICollectionViewDelegate {
+    
+}
 class HomeScreenViewController: UIViewController {
     
     var championListVM = ChampionListViewModel()
@@ -41,6 +50,20 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionView()
+        
+        setupViewModelSubscribers()
+        
+        championListVM.getChampions()
+    }
+    
+    private func setupCollectionView() {
+        let nib = UINib(nibName: "ChampionIconCell", bundle: .main)
+        
+        self.championIcons.register(nib, forCellWithReuseIdentifier: "champion-icon")
+    }
+    
+    private func setupViewModelSubscribers() {
         championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] championList in
             guard let self else { return }
             
@@ -53,8 +76,6 @@ class HomeScreenViewController: UIViewController {
             
             self.alert(message: dataError.localizedDescription)
         })
-        
-        championListVM.getChampions()
     }
     
 

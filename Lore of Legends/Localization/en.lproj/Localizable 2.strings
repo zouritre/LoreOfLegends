@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Lore-of-Legends
+
+  Created by Bertrand Dalleau on 17/10/2022.
+  
+*/
+
+"ChampionListError.NotificationNoData" = "No data received";
+"ChampionListError.BundleReadFail" = "Failed to read champions configuration files";
+"ChampionListError.DecodingFail" = "Failed to decode champion data";
