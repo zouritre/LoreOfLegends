@@ -29,8 +29,8 @@ extension HomeScreenViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.champName.text = championListVM.champions[indexPath.row].name
-        
+        let iconName = championListVM.champions[indexPath.row].name
+        cell.champIcon.image = UIImage(named: iconName, in: Bundle(path: "../Resources/champions/champion"), with: nil)
         return cell
     }
 }

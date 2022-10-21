@@ -8,8 +8,8 @@
 import UIKit
 
 class ChampionIconCell: UICollectionViewCell {
-
-    @IBOutlet weak var champName: UILabel!
+    
+    @IBOutlet weak var champIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
