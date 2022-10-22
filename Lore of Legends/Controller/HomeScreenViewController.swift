@@ -8,6 +8,22 @@
 import UIKit
 import Combine
 
+extension UIImageView {
+    func loadFrom(URLAddress: String) {
+        guard let url = URL(string: URLAddress) else {
+            return
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            if let imageData = try? Data(contentsOf: url) {
+                if let loadedImage = UIImage(data: imageData) {
+                        self?.image = loadedImage
+                }
+            }
+        }
+    }
+}
+
 extension UIViewController {
     func alert(message: String) {
         let alert = UIAlertController(title: NSLocalizedString("alert.error", comment: "Error title"), message: message, preferredStyle: .alert)
@@ -29,8 +45,8 @@ extension HomeScreenViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let iconName = championListVM.champions[indexPath.row].name
-        cell.champIcon.image = UIImage(named: iconName, in: Bundle(path: "../Resources/champions/champion"), with: nil)
+        cell.champIcon.loadFrom(URLAddress: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Thresh_17.jpg")
+        
         return cell
     }
 }

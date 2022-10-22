@@ -14,15 +14,20 @@ protocol ChampionListDelegate {
 
 class ChampionList {
     var delegate: ChampionListDelegate?
-    var championsDataPublisher = PassthroughSubject<[Champion], Error>()
+    private var championsDataSubject = PassthroughSubject<[Champion], Error>()
+    var championsDataPublisher: AnyPublisher<[Champion], Error>
+    
+    init() {
+        championsDataPublisher = championsDataSubject.eraseToAnyPublisher()
+    }
     
     func sendChampionsData(result: Result<[Champion], Error>) {
         switch result {
         case .success(let data):
-            championsDataPublisher.send(data)
-            championsDataPublisher.send(completion: .finished)
+            championsDataSubject.send(data)
+            championsDataSubject.send(completion: .finished)
         case .failure(let failure):
-            championsDataPublisher.send(completion: .failure(failure))
+            championsDataSubject.send(completion: .failure(failure))
         }
     }
 }
