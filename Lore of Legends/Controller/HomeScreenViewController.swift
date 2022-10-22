@@ -57,7 +57,6 @@ extension HomeScreenViewController: UICollectionViewDelegate {
 class HomeScreenViewController: UIViewController {
     
     var championListVM = ChampionListViewModel()
-    var champions = [Champion]()
     var championsDataListSubscriber: AnyCancellable?
     var championsDataErrorSubscriber: AnyCancellable?
     

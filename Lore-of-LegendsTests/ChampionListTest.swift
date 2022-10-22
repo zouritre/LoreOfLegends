@@ -39,4 +39,13 @@ final class ChampionListTest: XCTestCase {
         XCTAssertEqual(championListVM.champions.count, 0)
         XCTAssertNotNil(championListVM.championsDataError)
     }
+    
+    func testChampionIconsShouldBeReturnedAsDataArray() {
+        let api = ChampionListApiMock()
+        let viewModel = ChampionListViewModel(api: api)
+        
+        viewModel.getChampionIcons()
+        
+        XCTAssertNotNil(viewModel.championIcons[0])
+    }
 }

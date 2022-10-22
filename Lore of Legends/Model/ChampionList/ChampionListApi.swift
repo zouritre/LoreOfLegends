@@ -8,6 +8,10 @@
 import Foundation
 
 extension ChampionListApi: ChampionListDelegate {
+    func getIcons(_ caller: ChampionList, for champions: [Champion]) {
+        
+    }
+    
     func getChampions(_ caller: ChampionList) {
         
         guard let championsData else {
