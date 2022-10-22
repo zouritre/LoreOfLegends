@@ -27,13 +27,13 @@ extension ChampionListApi: ChampionListDelegate {
         for (_,championName) in response.keys {
             for (key, champInfo) in response.data {
                 if key == championName {
-                    var skins = [(num: Int, name: String)]()
+                    var skins = [ChampionSkin]()
                     
                     for skin in champInfo.skins {
-                        skins.append((skin.num, skin.name))
+                        skins.append(ChampionSkin(fileName: "\(championName)_\(skin.num)", title: skin.name))
                     }
                     
-                    champs.append(Champion(name: championName, title: champInfo.title, skinIds: skins, lore: champInfo.lore))
+                    champs.append(Champion(name: championName, title: champInfo.title, skins: skins, lore: champInfo.lore))
                     
                     break
                 }
@@ -58,4 +58,5 @@ class ChampionListApi {
         }
         else { return nil }
     }
+    
 }

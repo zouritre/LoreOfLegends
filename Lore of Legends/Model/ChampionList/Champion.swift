@@ -10,6 +10,6 @@ import Foundation
 struct Champion {
     var name: String
     var title: String
-    var skinIds: [(num: Int, name: String)]
+    var skins: [ChampionSkin]
     var lore: String
 }

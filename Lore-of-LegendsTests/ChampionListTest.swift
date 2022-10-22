@@ -20,7 +20,7 @@ final class ChampionListTest: XCTestCase {
     }
 
     func testChampionListArrayShouldContainAllChampions() throws {
-        let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", skinIds: [(0, "")], lore: "")])
+        let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", skins: [.init(fileName: "", title: "")], lore: "")])
         let championListVM = ChampionListViewModel(api: mockApi)
         
         championListVM.getChampions()
