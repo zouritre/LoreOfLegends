@@ -29,15 +29,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        if championListVM.champions.count > 0 {
-            if let icon = championListVM.champions[indexPath.row].icon {
-                cell.champIcon.image = UIImage(data: icon)
-            }
-            else {
-                cell.champIcon.image = UIImage(data: Data())
-                print("icon is nil")
-            }
-        }
+        cell.champIcon.image = UIImage(data: championListVM.champions[indexPath.row].icon)
         
         return cell
     }
@@ -46,6 +38,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
 extension HomeScreenViewController: UICollectionViewDelegate {
     
 }
+
 class HomeScreenViewController: UIViewController {
     
     var championListVM = ChampionListViewModel()
@@ -74,7 +67,10 @@ class HomeScreenViewController: UIViewController {
     private func setupViewModelSubscribers() {
         championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] champions in
             guard let self else { return }
-            self.championIconsCollection.reloadData()
+            
+            DispatchQueue.main.async {
+                self.championIconsCollection.reloadData()
+            }
         })
         
         championsDataErrorSubscriber = championListVM.$championsDataError.sink(receiveValue: { [weak self] dataError in

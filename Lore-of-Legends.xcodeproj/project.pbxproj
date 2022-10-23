@@ -17,7 +17,6 @@
 		E93B367728FC5208003BB0A3 /* ChampionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B367428FC51DA003BB0A3 /* ChampionListViewModel.swift */; };
 		E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9554FCA28FD80BF00A5E071 /* Localizable.strings */; };
 		E97BD3DA29052F1200F63EFB /* ChampionAssetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BD3D929052F1200F63EFB /* ChampionAssetType.swift */; };
-		E97BD3DC2905419300F63EFB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BD3DB2905419300F63EFB /* NetworkService.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
 		E990EA0128FC247400F63D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990E9FF28FC247400F63D70 /* Main.storyboard */; };
@@ -53,7 +52,6 @@
 		E9554FC928FD80BF00A5E071 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9554FCB28FD80C500A5E071 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E97BD3D929052F1200F63EFB /* ChampionAssetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionAssetType.swift; sourceTree = "<group>"; };
-		E97BD3DB2905419300F63EFB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990E9FB28FC247400F63D70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				E93B365628FC4748003BB0A3 /* ChampionList */,
-				E97BD3DB2905419300F63EFB /* NetworkService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,7 +328,6 @@
 				E97BD3DA29052F1200F63EFB /* ChampionAssetType.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListApi.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
-				E97BD3DC2905419300F63EFB /* NetworkService.swift in Sources */,
 				E93B366B28FC4C00003BB0A3 /* ChampionListApiMock.swift in Sources */,
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
 				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,

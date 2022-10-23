@@ -41,13 +41,11 @@ extension ChampionListApi: ChampionListDelegate {
         }
         
         setIcon(caller, for: champions)
-        
-        caller.championsDataSubject.send(champions)
-        caller.championsDataSubject.send(completion: .finished)
     }
 }
 
 class ChampionListApi {
+    var onGoingTask = [Int]()
     var champions = [Champion]()
     /// Data object created from a JSON containing data for every champions
     private var championsData: Data? {
@@ -63,29 +61,53 @@ class ChampionListApi {
     }
     
     private func setIcon(_ caller: ChampionList, for champions: [Champion]) {
-        for (index, champion) in champions.enumerated() {
+        onGoingTask = []
+        
+        for (index, _) in champions.enumerated() {
+            onGoingTask.append(1)
             
-            let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.name)_0.jpg")
-            
-            guard let url else { return }
+            Task {
+                do {
+                    print("\n\n\n\n\n\n\n Task ongoing: \(self.onGoingTask.count)")
+                    async let data = try downloadImage(championIndex: index)
+                    
+                    print("Data: \(try await data)")
 
-            NetworkService.shared.getDataOnly(for: url) { data, error in
-                guard let data, error == nil else {
-                    print("nil data for \(champion.name)")
-                    return }
-                
-                print("data: \(data)")
-                self.champions[index].setIcon(with: data)
-                
-                if index == champions.count-1 {
-                    print(champions)
-                    caller.championsDataSubject.send(champions)
-                    caller.championsDataSubject.send(completion: .finished)
+                    self.champions[index].setIcon(with: try await data)
+                    
+                    self.taskDidFinish(caller)
+                }
+                catch {
+                    print("\n\n\n\n\n\n\n ERROR")
+                    self.taskDidFinish(caller)
+                    return
                 }
             }
         }
     }
     
+    private func downloadImage(championIndex: Int) async throws -> Data {
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(self.champions[championIndex].name)_0.jpg")
+        
+        guard let url else { throw ChampionListError.badUrl }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        return data
+    }
+    
+    private func taskDidFinish(_ caller: ChampionList) {
+        if self.onGoingTask.count > 0 {
+            self.onGoingTask.removeLast()
+            print("Task removed. Remaining: \(onGoingTask.count)")
+            
+            if onGoingTask.count == 0 {
+                print("\n\n\n\n\n\n FIN. Task count: \(self.onGoingTask.count)")
+                caller.championsDataSubject.send(champions)
+                caller.championsDataSubject.send(completion: .finished)
+            }
+        }
+    }
 //    private func setDataForImage(type: ChampionAssetType, for champions: inout [Champion]) {
 //        var imageSubdirectory: String
 //

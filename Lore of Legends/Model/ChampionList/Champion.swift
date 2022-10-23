@@ -10,7 +10,7 @@ import Foundation
 struct Champion {
     var name: String
     var title: String
-    var icon: Data?
+    var icon: Data = Data()
     var skins: [ChampionAsset]
     var lore: String
     

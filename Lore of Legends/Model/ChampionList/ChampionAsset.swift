@@ -10,8 +10,8 @@ import Foundation
 struct ChampionAsset {
     var fileName: String
     var title: String
-    var splash: Data?
-    var centered: Data?
+    var splash: Data = Data()
+    var centered: Data = Data()
     
     mutating func setSplash(with data: Data) {
         self.splash = data
