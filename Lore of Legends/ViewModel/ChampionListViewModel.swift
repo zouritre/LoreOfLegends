@@ -24,7 +24,7 @@ class ChampionListViewModel {
     convenience init(api: ChampionListDelegate = ChampionListApi()) {
         self.init()
         self.championListModel.delegate = api
-        self.championsDataSubscriber = championListModel.championsDataPublisher.sink(receiveCompletion: { completion in
+        self.championsDataSubscriber = championListModel.championsDataSubject.sink(receiveCompletion: { completion in
             switch completion {
             case .finished:
                 return
