@@ -40,9 +40,8 @@ extension ChampionListApi: ChampionListDelegate {
             }
         }
         
-        setIcon(for: champions)
+        setIcon(caller, for: champions)
         
-        print(champions)
         caller.championsDataSubject.send(champions)
         caller.championsDataSubject.send(completion: .finished)
     }
@@ -63,17 +62,26 @@ class ChampionListApi {
         else { return nil }
     }
     
-    private func setIcon(for champions: [Champion]) {
+    private func setIcon(_ caller: ChampionList, for champions: [Champion]) {
         for (index, champion) in champions.enumerated() {
             
             let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.name)_0.jpg")
             
             guard let url else { return }
 
-            URLSession(configuration: .ephemeral).dataTask(with: url) { data, _, error in
-                guard let data, error == nil else { return }
+            NetworkService.shared.getDataOnly(for: url) { data, error in
+                guard let data, error == nil else {
+                    print("nil data for \(champion.name)")
+                    return }
                 
+                print("data: \(data)")
                 self.champions[index].setIcon(with: data)
+                
+                if index == champions.count-1 {
+                    print(champions)
+                    caller.championsDataSubject.send(champions)
+                    caller.championsDataSubject.send(completion: .finished)
+                }
             }
         }
     }

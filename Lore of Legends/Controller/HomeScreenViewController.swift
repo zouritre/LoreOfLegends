@@ -29,6 +29,16 @@ extension HomeScreenViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        if championListVM.champions.count > 0 {
+            if let icon = championListVM.champions[indexPath.row].icon {
+                cell.champIcon.image = UIImage(data: icon)
+            }
+            else {
+                cell.champIcon.image = UIImage(data: Data())
+                print("icon is nil")
+            }
+        }
+        
         return cell
     }
 }
