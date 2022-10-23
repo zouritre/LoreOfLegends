@@ -12,16 +12,13 @@ class ChampionListViewModel {
     
     @Published var champions: [Champion]
     @Published var championsDataError: Error?
-    @Published var championIcons: [ChampionAsset]
     
     var championListModel: ChampionList
     var championsDataSubscriber: AnyCancellable?
-    var championIconsSubscriber: AnyCancellable?
 
     private init() {
         self.champions = []
         self.championListModel = ChampionList()
-        self.championIcons = []
     }
     
     convenience init(api: ChampionListDelegate = ChampionListApi()) {
@@ -37,10 +34,6 @@ class ChampionListViewModel {
         }, receiveValue: { champions in
             self.champions = champions
         })
-        self.championIconsSubscriber = championListModel.championIconsPublisher.sink { assets in
-            print("received \(assets.count) data")
-            self.championIcons = assets
-        }
     }
     
     func getChampions() {
