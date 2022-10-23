@@ -10,12 +10,12 @@ import Foundation
 extension ChampionListApiMock: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
         guard let champions else {
-            caller.sendChampionsData(result: .failure(ChampionListError.DecodingFail))
+            caller.championsDataSubject.send(completion: .failure(ChampionListError.DecodingFail))
 
             return
         }
 
-        caller.sendChampionsData(result: .success(champions))
+        caller.championsDataSubject.send(champions)
     }
 }
 

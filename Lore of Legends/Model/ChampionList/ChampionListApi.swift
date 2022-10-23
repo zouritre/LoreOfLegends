@@ -42,6 +42,7 @@ extension ChampionListApi: ChampionListDelegate {
         
         setIcon(for: champions)
         
+        print(champions)
         caller.championsDataSubject.send(champions)
         caller.championsDataSubject.send(completion: .finished)
     }
