@@ -6,12 +6,9 @@
 //
 
 import Foundation
+import Combine
 
 extension ChampionListApi: ChampionListDelegate {
-    func getIcons(_ caller: ChampionList, for champions: [Champion]) {
-        
-    }
-    
     func getChampions(_ caller: ChampionList) {
         
         guard let championsData else {
@@ -26,18 +23,16 @@ extension ChampionListApi: ChampionListDelegate {
             return
         }
         
-        var champs = [Champion]()
-        
         for (_,championName) in response.keys {
             for (key, champInfo) in response.data {
                 if key == championName {
-                    var skins = [ChampionSkin]()
+                    var skins = [ChampionAsset]()
                     
                     for skin in champInfo.skins {
-                        skins.append(ChampionSkin(fileName: "\(championName)_\(skin.num)", title: skin.name))
+                        skins.append(ChampionAsset(fileName: "\(championName)_\(skin.num)", title: skin.name))
                     }
                     
-                    champs.append(Champion(name: championName, title: champInfo.title, skins: skins, lore: champInfo.lore))
+                    champions.append(Champion(name: championName, title: champInfo.title, skins: skins, lore: champInfo.lore))
                     
                     break
                 }
@@ -45,11 +40,14 @@ extension ChampionListApi: ChampionListDelegate {
             }
         }
         
-        caller.sendChampionsData(result: .success(champs))
+        setIcon(for: champions)
+        
+        caller.sendChampionsData(result: .success(champions))
     }
 }
 
 class ChampionListApi {
+    var champions = [Champion]()
     /// Data object created from a JSON containing data for every champions
     private var championsData: Data? {
         let bundle = Bundle(for: Self.self)
@@ -63,4 +61,52 @@ class ChampionListApi {
         else { return nil }
     }
     
+    private func setIcon(for champions: [Champion]) {
+        for (index, champion) in champions.enumerated() {
+            
+            let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.name)_0.jpg")
+            
+            guard let url else { return }
+
+            URLSession(configuration: .ephemeral).dataTask(with: url) { data, _, error in
+                guard let data, error == nil else { return }
+                
+                self.champions[index].setIcon(with: data)
+            }
+        }
+    }
+    
+//    private func setDataForImage(type: ChampionAssetType, for champions: inout [Champion]) {
+//        var imageSubdirectory: String
+//
+//        switch type {
+//        case .icon:
+//            imageSubdirectory = "tiles"
+//        case .splash:
+//            imageSubdirectory = "splash"
+//        case .centered:
+//            imageSubdirectory = "centered"
+//        }
+//
+//        for (index, champion) in champions.enumerated() {
+//
+//            let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/\(imageSubdirectory)/\(champion.name)_0.jpg")
+//
+//            guard let url else { return }
+//
+//            URLSession(configuration: .ephemeral).dataTask(with: url) { data, response, error in
+//                guard let data, error == nil else { return }
+//
+//                switch type {
+//                case .icon:
+//                    champions[index].setIcon(with: data)
+//                case .splash:
+//                    champions[index]
+//                case .centered:
+//                    <#code#>
+//                }
+//
+//            }
+//        }
+//    }
 }

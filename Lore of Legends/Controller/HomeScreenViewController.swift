@@ -8,22 +8,6 @@
 import UIKit
 import Combine
 
-extension UIImageView {
-    func loadFrom(URLAddress: String) {
-        guard let url = URL(string: URLAddress) else {
-            return
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            if let imageData = try? Data(contentsOf: url) {
-                if let loadedImage = UIImage(data: imageData) {
-                        self?.image = loadedImage
-                }
-            }
-        }
-    }
-}
-
 extension UIViewController {
     func alert(message: String) {
         let alert = UIAlertController(title: NSLocalizedString("alert.error", comment: "Error title"), message: message, preferredStyle: .alert)
@@ -45,8 +29,6 @@ extension HomeScreenViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.champIcon.loadFrom(URLAddress: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Thresh_17.jpg")
-        
         return cell
     }
 }
@@ -59,8 +41,9 @@ class HomeScreenViewController: UIViewController {
     var championListVM = ChampionListViewModel()
     var championsDataListSubscriber: AnyCancellable?
     var championsDataErrorSubscriber: AnyCancellable?
+    var championsDataIconSubscriber: AnyCancellable?
     
-    @IBOutlet weak var championIcons: UICollectionView!
+    @IBOutlet weak var championIconsCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,14 +58,13 @@ class HomeScreenViewController: UIViewController {
     private func setupCollectionView() {
         let nib = UINib(nibName: "ChampionIconCell", bundle: .main)
         
-        self.championIcons.register(nib, forCellWithReuseIdentifier: "champion-icon")
+        self.championIconsCollection.register(nib, forCellWithReuseIdentifier: "champion-icon")
     }
     
     private func setupViewModelSubscribers() {
-        championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] championList in
+        championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] champions in
             guard let self else { return }
-            
-            self.championIcons.reloadData()
+            self.championIconsCollection.reloadData()
         })
         
         championsDataErrorSubscriber = championListVM.$championsDataError.sink(receiveValue: { [weak self] dataError in

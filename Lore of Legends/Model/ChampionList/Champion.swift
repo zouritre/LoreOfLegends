@@ -10,6 +10,11 @@ import Foundation
 struct Champion {
     var name: String
     var title: String
-    var skins: [ChampionSkin]
+    var icon: Data?
+    var skins: [ChampionAsset]
     var lore: String
+    
+    mutating func setIcon(with data: Data) {
+        self.icon = data
+    }
 }

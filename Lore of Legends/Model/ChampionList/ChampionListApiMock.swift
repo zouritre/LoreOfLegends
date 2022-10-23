@@ -8,10 +8,6 @@
 import Foundation
 
 extension ChampionListApiMock: ChampionListDelegate {
-    func getIcons(_ caller: ChampionList, for champions: [Champion]) {
-        caller.sendIcons(data: .success([Data()]))
-    }
-    
     func getChampions(_ caller: ChampionList) {
         guard let champions else {
             caller.sendChampionsData(result: .failure(ChampionListError.DecodingFail))

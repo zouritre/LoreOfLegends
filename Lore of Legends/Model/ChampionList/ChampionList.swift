@@ -10,16 +10,14 @@ import Combine
 
 protocol ChampionListDelegate {
     func getChampions(_ caller: ChampionList)
-    
-    func getIcons(_ caller: ChampionList, for champions: [Champion])
 }
 
 class ChampionList {
     var delegate: ChampionListDelegate?
     private var championsDataSubject = PassthroughSubject<[Champion], Error>()
-    private var championIconsSubject = PassthroughSubject<[Data], Error>()
+    private var championIconsSubject = PassthroughSubject<[ChampionAsset], Never>()
     var championsDataPublisher: AnyPublisher<[Champion], Error>
-    var championIconsPublisher: AnyPublisher<[Data], Error>
+    var championIconsPublisher: AnyPublisher<[ChampionAsset], Never>
     
     init() {
         championsDataPublisher = championsDataSubject.eraseToAnyPublisher()
@@ -36,13 +34,4 @@ class ChampionList {
         }
     }
     
-    func sendIcons(data: Result<[Data], Error>) {
-        switch data {
-        case .success(let data):
-            championIconsSubject.send(data)
-            championIconsSubject.send(completion: .finished)
-        case .failure(let error):
-            championIconsSubject.send(completion: .failure(error))
-        }
-    }
 }

@@ -12,12 +12,11 @@ class ChampionListViewModel {
     
     @Published var champions: [Champion]
     @Published var championsDataError: Error?
-    @Published var championIcons: [Data]
+    @Published var championIcons: [ChampionAsset]
     
     var championListModel: ChampionList
     var championsDataSubscriber: AnyCancellable?
     var championIconsSubscriber: AnyCancellable?
-    var asub: AnyCancellable?
 
     private init() {
         self.champions = []
@@ -38,23 +37,13 @@ class ChampionListViewModel {
         }, receiveValue: { champions in
             self.champions = champions
         })
-        self.championIconsSubscriber = championListModel.championIconsPublisher.sink(receiveCompletion: { completion in
-            switch completion {
-            case .finished:
-                return
-            case .failure(let error):
-                self.championsDataError = error
-            }
-        }, receiveValue: { data in
-            self.championIcons = data
-        })
+        self.championIconsSubscriber = championListModel.championIconsPublisher.sink { assets in
+            print("received \(assets.count) data")
+            self.championIcons = assets
+        }
     }
     
     func getChampions() {
         championListModel.delegate?.getChampions(championListModel)
-    }
-    
-    func getChampionIcons() {
-        championListModel.delegate?.getIcons(championListModel, for: champions)
     }
 }

@@ -10,8 +10,6 @@ import Foundation
 extension ChampionListError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .NotificationNoData:
-            return NSLocalizedString("ChampionListError.NotificationNoData", comment: "Notification userInfo is empty")
         case .BundleReadFail:
             return NSLocalizedString("ChampionListError.BundleReadFail", comment: "Json bundle for champions data couldn't be located")
         case .DecodingFail:
@@ -21,7 +19,5 @@ extension ChampionListError: LocalizedError {
 }
 
 enum ChampionListError: Error {
-    case NotificationNoData
     case BundleReadFail
-    case DecodingFail
-}
+    case DecodingFail}

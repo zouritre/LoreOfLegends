@@ -1,0 +1,23 @@
+//
+//  ChampionAsset.swift
+//  Lore-of-Legends
+//
+//  Created by Bertrand Dalleau on 23/10/2022.
+//
+
+import Foundation
+
+struct ChampionAsset {
+    var fileName: String
+    var title: String
+    var splash: Data?
+    var centered: Data?
+    
+    mutating func setSplash(with data: Data) {
+        self.splash = data
+    }
+    
+    mutating func setCenteredImage(with data: Data) {
+        self.centered = data
+    }
+}
