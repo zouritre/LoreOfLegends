@@ -30,6 +30,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
         }
         
         cell.champIcon.image = UIImage(data: championListVM.champions[indexPath.row].icon)
+        cell.champName.text = championListVM.champions[indexPath.row].name
         
         return cell
     }
