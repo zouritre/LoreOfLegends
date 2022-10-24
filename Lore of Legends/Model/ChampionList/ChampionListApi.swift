@@ -67,8 +67,9 @@ class ChampionListApi {
             onGoingTask.append(1)
             
             Task {
+                let index = index
+                
                 do {
-                    print("\n\n\n\n\n\n\n Task ongoing: \(self.onGoingTask.count)")
                     async let data = try downloadImage(championIndex: index)
                     
                     print("Data: \(try await data)")
@@ -76,10 +77,13 @@ class ChampionListApi {
                     self.champions[index].setIcon(with: try await data)
                     
                     self.taskDidFinish(caller)
+                    print("Task \(index) finished")
                 }
                 catch {
                     print("\n\n\n\n\n\n\n ERROR")
                     self.taskDidFinish(caller)
+                    
+                    print("Task \(index) finished with error")
                     return
                 }
             }
@@ -91,15 +95,20 @@ class ChampionListApi {
         
         guard let url else { throw ChampionListError.badUrl }
         
-        let (data, _) = try await URLSession.shared.data(from: url)
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            return data
+        }
+        catch {
+            throw error
+        }
         
-        return data
     }
     
     private func taskDidFinish(_ caller: ChampionList) {
         if self.onGoingTask.count > 0 {
             self.onGoingTask.removeLast()
-            print("Task removed. Remaining: \(onGoingTask.count)")
             
             if onGoingTask.count == 0 {
                 print("\n\n\n\n\n\n FIN. Task count: \(self.onGoingTask.count)")
