@@ -10,6 +10,7 @@ import UIKit
 class ChampionIconCell: UICollectionViewCell {
     
     @IBOutlet weak var champIcon: UIImageView!
+    @IBOutlet weak var champName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

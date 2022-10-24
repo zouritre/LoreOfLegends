@@ -42,6 +42,7 @@
             <size key="customSize" width="277" height="239"/>
             <connections>
                 <outlet property="champIcon" destination="jgF-KW-CAN" id="ufF-CW-xwF"/>
+                <outlet property="champName" destination="bq0-Ql-kAj" id="uQ3-94-Tto"/>
             </connections>
             <point key="canvasLocation" x="275.38461538461536" y="-0.35545023696682465"/>
         </collectionViewCell>
