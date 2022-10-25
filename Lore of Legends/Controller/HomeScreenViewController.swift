@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 extension UIViewController {
+    /// Display an alert with a custom message
+    /// - Parameter message: Text to display in the alert
     func alert(message: String) {
         let alert = UIAlertController(title: NSLocalizedString("alert.error", comment: "Error title"), message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default))
@@ -23,10 +25,12 @@ extension HomeScreenViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Return an empty cell if champion list is empty
         if championListVM.champions.isEmpty {
             return UICollectionViewCell()
         }
         else {
+            // Else dequeue a custom cell and returns it
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon", for: indexPath) as? ChampionIconCell
 
             guard let cell else { return UICollectionViewCell() }
@@ -45,12 +49,15 @@ extension HomeScreenViewController: UICollectionViewDelegate {
 
 extension HomeScreenViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Set the collectionview datasource to display the full champion list if no search entry
         if searchText.isEmpty {
             championListVM.champions = originalChampionList
         }
         else {
+            // Else filter the champion list against the given search text
             var foundPerfectMatch = false
 
+            // Set the collectionview datasource array to contain a single champion matching the exact search text
             for champion in originalChampionList {
                 if champion.name == searchText {
                     self.championListVM.champions = [champion]
@@ -60,10 +67,13 @@ extension HomeScreenViewController: UISearchBarDelegate {
                 }
             }
 
+            // Exit the statement if a champion name matched the exact search text
             if foundPerfectMatch { return }
 
+            // Create a copy or the original champion list
             var originalListCopy = originalChampionList
             
+            // Filter the copy against the search text
             for searchCharacter in searchText {
                 originalListCopy = originalListCopy.filter {
                     $0.name.contains { nameCharacter in
@@ -72,19 +82,27 @@ extension HomeScreenViewController: UISearchBarDelegate {
                 }
             }
             
+            // Set the filetered champion list as the collectionview datasource array
             self.championListVM.champions = originalListCopy
         }
     }
 }
 
 class HomeScreenViewController: UIViewController {
+    /// Original list of champions received the first time it's successfully fetched from API. Only set once per app execution.
     var originalChampionList: [Champion] = []
+    /// View model
     var championListVM = ChampionListViewModel()
+    /// Subscriber for the viewmodel champion list property
     var championsDataListSubscriber: AnyCancellable?
+    /// Subscriber for the viewmodel champion list error property
     var championsDataErrorSubscriber: AnyCancellable?
+    /// Publisher for the original champion list. Publish  a single value then complete.
     var originalChampListPublisher = PassthroughSubject<[Champion], Never>()
+    /// Subscriber for thz original champion list. Receive a single value then cancel activity.
     var originalChampListSubscriber: AnyCancellable?
     
+    /// Main collectionview of the UI
     @IBOutlet weak var championIconsCollection: UICollectionView!
     
     override func viewDidLoad() {
@@ -92,18 +110,20 @@ class HomeScreenViewController: UIViewController {
         
         setupCollectionView()
         
-        setupViewModelSubscribers()
+        setupSubscribers()
         
         championListVM.getChampions()
     }
     
+    /// Register a Nib to the collection view
     private func setupCollectionView() {
         let nib = UINib(nibName: "ChampionIconCell", bundle: .main)
         
         self.championIconsCollection.register(nib, forCellWithReuseIdentifier: "champion-icon")
     }
     
-    private func setupViewModelSubscribers() {
+    /// Implement the subscribers
+    private func setupSubscribers() {
         championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] champions in
             guard let self else { return }
             if champions.count > 0 {
@@ -126,6 +146,7 @@ class HomeScreenViewController: UIViewController {
         originalChampListSubscriber = originalChampListPublisher.sink(receiveCompletion: { completion in
             switch completion {
             case .finished:
+                self.originalChampListSubscriber?.cancel()
                 return
             case .failure(_):
                 return
