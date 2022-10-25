@@ -19,6 +19,7 @@ extension ChampionListApiMock: ChampionListDelegate {
     }
 }
 
+/// API that mocks request for receiving the full champion list and theiricons
 class ChampionListApiMock {
     let champions:  [Champion]?
     
