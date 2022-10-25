@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-/// Object that manages the lit of every champion
+/// Object that manages the list of every champion
 class ChampionListViewModel {
     
     /// A list of champion
