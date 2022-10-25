@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */; };
 		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
 		E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* ChampionListError.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailViewController.swift; sourceTree = "<group>"; };
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListTest.swift; sourceTree = "<group>"; };
 		E93B365728FC4748003BB0A3 /* ChampionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionList.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */,
+				E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				E97BD3DA29052F1200F63EFB /* ChampionAssetType.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListApi.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
+				E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */,
 				E93B366B28FC4C00003BB0A3 /* ChampionListApiMock.swift in Sources */,
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
 				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,

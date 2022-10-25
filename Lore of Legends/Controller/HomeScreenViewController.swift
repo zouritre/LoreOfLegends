@@ -35,8 +35,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
 
             guard let cell else { return UICollectionViewCell() }
             
-            cell.champIcon.image = UIImage(data: championListVM.champions[indexPath.row].icon)
-            cell.champName.text = championListVM.champions[indexPath.row].name
+            cell.champion = championListVM.champions[indexPath.row]
             
             return cell
         }
@@ -44,7 +43,17 @@ extension HomeScreenViewController: UICollectionViewDataSource {
 }
 
 extension HomeScreenViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt: IndexPath) {
+        let cell = collectionView.cellForItem(at: didSelectItemAt) as? ChampionIconCell
+        
+        guard let cell else { return }
+        
+        // Store the selected champion
+        selectedChampion = cell.champion
+        
+        // Go to the champion detail screen
+        performSegue(withIdentifier: "goToDetail", sender: nil)
+    }
 }
 
 extension HomeScreenViewController: UISearchBarDelegate {
@@ -89,6 +98,7 @@ extension HomeScreenViewController: UISearchBarDelegate {
 }
 
 class HomeScreenViewController: UIViewController {
+    var selectedChampion: Champion?
     /// Original list of champions received the first time it's successfully fetched from API. Only set once per app execution.
     var originalChampionList: [Champion] = []
     /// View model
@@ -156,15 +166,14 @@ class HomeScreenViewController: UIViewController {
         })
     }
     
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? ChampionDetailViewController {
+            // Send the selected champion to the next view controller
+            vc.champion = selectedChampion
+        }
     }
-    */
 
 }

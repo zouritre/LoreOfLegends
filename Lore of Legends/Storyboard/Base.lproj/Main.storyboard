@@ -81,11 +81,28 @@
                     <navigationItem key="navigationItem" title="Lore of Legends" id="ZVU-3N-y0e"/>
                     <connections>
                         <outlet property="championIconsCollection" destination="wsy-tj-Ccx" id="UsP-hr-i0Q"/>
+                        <segue destination="TMw-cn-At7" kind="show" identifier="goToDetail" id="GT9-1A-2Uz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="34" y="4"/>
+        </scene>
+        <!--Champion Detail View Controller-->
+        <scene sceneID="Owx-k8-ng6">
+            <objects>
+                <viewController id="TMw-cn-At7" customClass="ChampionDetailViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9KZ-C5-0wW">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2Pl-CW-Wxa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="he3-Vr-ojD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zg2-RU-0xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003" y="4"/>
         </scene>
     </scenes>
     <resources>
