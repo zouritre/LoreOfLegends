@@ -23,16 +23,23 @@ extension HomeScreenViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon", for: indexPath) as? ChampionIconCell
+        if championListVM.champions.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon-notFound", for: indexPath) as? ChampionIconCell
 
-        guard let cell else {
-            return UICollectionViewCell()
+            guard let cell else { return UICollectionViewCell() }
+            
+            return cell
         }
-        
-        cell.champIcon.image = UIImage(data: championListVM.champions[indexPath.row].icon)
-        cell.champName.text = championListVM.champions[indexPath.row].name
-        
-        return cell
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon", for: indexPath) as? ChampionIconCell
+
+            guard let cell else { return UICollectionViewCell() }
+            
+            cell.champIcon.image = UIImage(data: championListVM.champions[indexPath.row].icon)
+            cell.champName.text = championListVM.champions[indexPath.row].name
+            
+            return cell
+        }
     }
 }
 
@@ -40,12 +47,43 @@ extension HomeScreenViewController: UICollectionViewDelegate {
     
 }
 
+extension HomeScreenViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            championListVM.champions = originalChampionList
+        }
+        else {
+            var foundPerfectMatch = false
+
+            for champion in originalChampionList {
+                if champion.name == searchText {
+                    self.championListVM.champions = [champion]
+                    foundPerfectMatch = true
+
+                    break
+                }
+            }
+
+            if foundPerfectMatch { return }
+
+            for searchCharacter in searchText {
+                self.championListVM.champions = self.championListVM.champions.filter {
+                    $0.name.contains { nameCharacter in
+                        searchCharacter.lowercased() == nameCharacter.lowercased()
+                    }
+                }
+            }
+        }
+    }
+}
+
 class HomeScreenViewController: UIViewController {
-    
+    var originalChampionList: [Champion] = []
     var championListVM = ChampionListViewModel()
     var championsDataListSubscriber: AnyCancellable?
     var championsDataErrorSubscriber: AnyCancellable?
-    var championsDataIconSubscriber: AnyCancellable?
+    var originalChampListPublisher = PassthroughSubject<[Champion], Never>()
+    var originalChampListSubscriber: AnyCancellable?
     
     @IBOutlet weak var championIconsCollection: UICollectionView!
     
@@ -68,6 +106,10 @@ class HomeScreenViewController: UIViewController {
     private func setupViewModelSubscribers() {
         championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] champions in
             guard let self else { return }
+            if champions.count > 0 {
+                self.originalChampListPublisher.send(champions)
+                self.originalChampListPublisher.send(completion: .finished)
+            }
             
             DispatchQueue.main.async {
                 self.championIconsCollection.reloadData()
@@ -79,6 +121,17 @@ class HomeScreenViewController: UIViewController {
             guard let dataError else { return }
             
             self.alert(message: dataError.localizedDescription)
+        })
+        
+        originalChampListSubscriber = originalChampListPublisher.sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                return
+            case .failure(_):
+                return
+            }
+        }, receiveValue: { champions in
+                self.originalChampionList = champions
         })
     }
     
