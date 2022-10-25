@@ -24,11 +24,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if championListVM.champions.isEmpty {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon-notFound", for: indexPath) as? ChampionIconCell
-
-            guard let cell else { return UICollectionViewCell() }
-            
-            return cell
+            return UICollectionViewCell()
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon", for: indexPath) as? ChampionIconCell
@@ -66,13 +62,17 @@ extension HomeScreenViewController: UISearchBarDelegate {
 
             if foundPerfectMatch { return }
 
+            var originalListCopy = originalChampionList
+            
             for searchCharacter in searchText {
-                self.championListVM.champions = self.championListVM.champions.filter {
+                originalListCopy = originalListCopy.filter {
                     $0.name.contains { nameCharacter in
                         searchCharacter.lowercased() == nameCharacter.lowercased()
                     }
                 }
             }
+            
+            self.championListVM.champions = originalListCopy
         }
     }
 }
