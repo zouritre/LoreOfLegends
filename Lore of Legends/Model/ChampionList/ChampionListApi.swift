@@ -129,6 +129,8 @@ class ChampionListApi {
                 print("\n\n\n\n\n\n FIN. Task count: \(self.onGoingTask.count)")
                 caller.championsDataSubject.send(champions)
                 caller.championsDataSubject.send(completion: .finished)
+                
+                champions = []
             }
         }
     }
