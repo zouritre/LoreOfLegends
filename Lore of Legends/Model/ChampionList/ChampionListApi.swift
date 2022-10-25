@@ -23,6 +23,7 @@ extension ChampionListApi: ChampionListDelegate {
             return
         }
         
+        // Create Champion object and set it's core properties
         for (_,championName) in response.keys {
             for (key, champInfo) in response.data {
                 if key == championName {
@@ -45,7 +46,9 @@ extension ChampionListApi: ChampionListDelegate {
 }
 
 class ChampionListApi {
+    /// Record every async task actually running
     var onGoingTask = [Int]()
+    /// List of every champion in League
     var champions = [Champion]()
     /// Data object created from a JSON containing data for every champions
     private var championsData: Data? {
@@ -60,9 +63,14 @@ class ChampionListApi {
         else { return nil }
     }
     
+    /// Aynchronously set every champion icon to their corresponding Champion object
+    /// - Parameters:
+    ///   - caller: Class responsible for sending the API data back to the view-model
+    ///   - champions: An array containing every champion data
     private func setIcon(_ caller: ChampionList, for champions: [Champion]) {
         onGoingTask = []
         
+        // Create a an async Task for every champion in the array
         for (index, _) in champions.enumerated() {
             onGoingTask.append(1)
             
@@ -70,10 +78,12 @@ class ChampionListApi {
                 let index = index
                 
                 do {
+                    // Download the icon as a Data object
                     async let data = try downloadImage(championIndex: index)
                     
                     print("Data: \(try await data)")
 
+                    // Set the Data object to the matching Champion object
                     self.champions[index].setIcon(with: try await data)
                     
                     self.taskDidFinish(caller)
@@ -90,6 +100,9 @@ class ChampionListApi {
         }
     }
     
+    /// Download the icon of the champion at the index specified in the champions array
+    /// - Parameter championIndex: Index from wich to retrieve the champion data
+    /// - Returns: Data object corresponding to the image downloaded or an Error
     private func downloadImage(championIndex: Int) async throws -> Data {
         let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(self.champions[championIndex].name)_0.jpg")
         
@@ -106,6 +119,8 @@ class ChampionListApi {
         
     }
     
+    /// Send the champion list to the model publisher
+    /// - Parameter caller: Class responsible for notifying the API data to the view-model
     private func taskDidFinish(_ caller: ChampionList) {
         if self.onGoingTask.count > 0 {
             self.onGoingTask.removeLast()
