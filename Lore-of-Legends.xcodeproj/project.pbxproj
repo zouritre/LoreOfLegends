@@ -24,7 +24,6 @@
 		E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0228FC247500F63D70 /* Assets.xcassets */; };
 		E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */; };
 		E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */; };
-		E9ABFC242904312A00554008 /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E9ABFC262904312A00554008 /* championFull.json */; };
 		E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DC37362902EA8B008384FC /* ChampionIconCell.swift */; };
 		E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DC37372902EA8C008384FC /* ChampionIconCell.xib */; };
 		E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF04412904B37500DE07A4 /* ChampionAsset.swift */; };
@@ -62,9 +61,6 @@
 		E990EA0528FC247500F63D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E990EA0728FC247500F63D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
-		E9ABFC252904312A00554008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/championFull.json; sourceTree = "<group>"; };
-		E9ABFC272904313200554008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/championFull.json; sourceTree = "<group>"; };
-		E9ABFC282904313800554008 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = fr; path = fr.lproj/championFull.json; sourceTree = "<group>"; };
 		E9DC37362902EA8B008384FC /* ChampionIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionIconCell.swift; sourceTree = "<group>"; };
 		E9DC37372902EA8C008384FC /* ChampionIconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionIconCell.xib; sourceTree = "<group>"; };
 		E9FF04412904B37500DE07A4 /* ChampionAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionAsset.swift; sourceTree = "<group>"; };
@@ -130,10 +126,16 @@
 		E9554FC528FD784700A5E071 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				E9ABFC262904312A00554008 /* championFull.json */,
 				E9554FCA28FD80BF00A5E071 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		E981EB402909A2F0002980DC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		E990E9ED28FC247300F63D70 = {
@@ -171,6 +173,7 @@
 		E990EA0D28FC258000F63D70 /* Supporting_files */ = {
 			isa = PBXGroup;
 			children = (
+				E981EB402909A2F0002980DC /* CoreData */,
 				E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */,
 				E990E9F928FC247400F63D70 /* AppDelegate.swift */,
 				E990E9FB28FC247400F63D70 /* SceneDelegate.swift */,
@@ -302,7 +305,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
-				E9ABFC242904312A00554008 /* championFull.json in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
 				E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */,
@@ -376,16 +378,6 @@
 				E990EA0528FC247500F63D70 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		E9ABFC262904312A00554008 /* championFull.json */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9ABFC252904312A00554008 /* Base */,
-				E9ABFC272904313200554008 /* en */,
-				E9ABFC282904313800554008 /* fr */,
-			);
-			name = championFull.json;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

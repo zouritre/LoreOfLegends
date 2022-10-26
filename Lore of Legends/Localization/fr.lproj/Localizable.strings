@@ -6,5 +6,4 @@
   
 */
 
-"ChampionListError.BundleReadFail" = "Impossible de lire le fichier de configuration des champions";
 "ChampionListError.DecodingFail" = "Le décodage des données a échoué";

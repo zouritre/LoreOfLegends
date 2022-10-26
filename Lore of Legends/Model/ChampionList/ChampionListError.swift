@@ -10,8 +10,6 @@ import Foundation
 extension ChampionListError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .BundleReadFail:
-            return NSLocalizedString("ChampionListError.BundleReadFail", comment: "Json bundle for champions data couldn't be located")
         case .DecodingFail:
             return NSLocalizedString("ChampionListError.DecodingFail", comment: "Json decoding failed on champion json data")
         case .badUrl:
@@ -23,7 +21,6 @@ extension ChampionListError: LocalizedError {
 }
 
 enum ChampionListError: Error {
-    case BundleReadFail
     case DecodingFail
     case badUrl
     case GetJsonFailed
