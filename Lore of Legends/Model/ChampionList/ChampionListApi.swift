@@ -10,27 +10,27 @@ import Combine
 
 extension ChampionListApi: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
-        if isAssetSavedLocally == false {
-                Task {
-                    do {
-                        let json = try await retrieveChampionFullDataJson()
-                        let decodable = try decodeChampionDataJson(from: json)
-                        self.champions = createChampionsObjects(from: decodable)
-                        
-                        setIcon(caller)
-                        
-                        try saveChampionsLocally()
-                        
-                    }
-                    catch {
-                        // Force downloading assets again on next app start
-                        isAssetSavedLocally = false
-                        caller.championsDataSubject.send(completion: .failure(error))
-                    }
-                }
-        }
         if isAssetSavedLocally {
             
+        }
+        else {
+            Task {
+                do {
+                    let json = try await retrieveChampionFullDataJson()
+                    let decodable = try decodeChampionDataJson(from: json)
+                    self.champions = createChampionsObjects(from: decodable)
+                    
+                    setIcon(caller)
+                    
+                    try saveChampionsLocally()
+                    
+                }
+                catch {
+                    // Force downloading assets again on next app start
+                    isAssetSavedLocally = false
+                    caller.championsDataSubject.send(completion: .failure(error))
+                }
+            }
         }
         
     }
