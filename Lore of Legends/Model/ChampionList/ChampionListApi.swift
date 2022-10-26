@@ -17,7 +17,8 @@ extension ChampionListApi: ChampionListDelegate {
                         let decodable = try decodeChampionDataJson(from: json)
                         self.champions = createChampionsObjects(from: decodable)
                         
-                        setIcon(caller, for: self.champions)
+                        setIcon(caller)
+                        
                         try saveChampionsLocally()
                         
                     }
@@ -54,7 +55,7 @@ class ChampionListApi {
     /// - Parameters:
     ///   - caller: Class responsible for sending the API data back to the view-model
     ///   - champions: An array containing every champion data
-    private func setIcon(_ caller: ChampionList, for champions: [Champion]) {
+    private func setIcon(_ caller: ChampionList) {
         onGoingTask = champions.count
         
         for (index, _) in champions.enumerated() {
