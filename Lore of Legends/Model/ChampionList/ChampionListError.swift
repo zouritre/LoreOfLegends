@@ -16,6 +16,8 @@ extension ChampionListError: LocalizedError {
             return NSLocalizedString("ChampionListError.DecodingFail", comment: "Json decoding failed on champion json data")
         case .badUrl:
             return ""
+        case .GetJsonFailed:
+            return ""
         }
     }
 }
@@ -24,4 +26,5 @@ enum ChampionListError: Error {
     case BundleReadFail
     case DecodingFail
     case badUrl
+    case GetJsonFailed
 }

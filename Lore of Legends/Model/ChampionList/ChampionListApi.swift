@@ -134,6 +134,22 @@ class ChampionListApi {
             }
         }
     }
+    
+    private func retrieveChampionFullDataJson() async throws -> Data {
+//        Locale.current.identifier
+        let urlString = "https://ddragon.leagueoflegends.com/cdn/12.19.1/data/en_US/championFull.json"
+        
+        guard let url = URL(string: urlString) else { throw ChampionListError.GetJsonFailed}
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            return data
+        }
+        catch {
+            throw error
+        }
+    }
 //    private func setDataForImage(type: ChampionAssetType, for champions: inout [Champion]) {
 //        var imageSubdirectory: String
 //
