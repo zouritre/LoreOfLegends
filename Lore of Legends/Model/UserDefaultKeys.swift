@@ -8,5 +8,6 @@
 import Foundation
 
 enum UserDefaultKeys: String {
-case isAssetSavedLocally = "isAssetSavedLocally"
+    case isAssetSavedLocally = "isAssetSavedLocally"
+    case userSelectedLanguage = "en"
 }

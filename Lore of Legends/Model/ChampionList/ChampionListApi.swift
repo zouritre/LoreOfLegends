@@ -69,7 +69,7 @@ class ChampionListApi {
                 
                 do {
 //                    try self.saveChampionsLocally()
-//                    
+//
 //                    self.isAssetSavedLocally = true
                     
                     self.caller?.championsDataSubject.send(completion: .finished)
@@ -225,8 +225,8 @@ class ChampionListApi {
     }
     
     private func saveChampionsLocally() throws {
-        let appDelegate = AppDelegate()
-        let context = appDelegate.persistentContainer.viewContext
+//        let appDelegate = AppDelegate()
+//        let context = appDelegate.persistentContainer.viewContext
         
     }
     
