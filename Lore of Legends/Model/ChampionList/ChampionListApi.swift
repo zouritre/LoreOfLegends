@@ -10,7 +10,7 @@ import Combine
 
 extension ChampionListApi: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
-        if didChangeLanguage || isAssetSavedLocally == false {
+        if isAssetSavedLocally == false {
                 Task {
                     do {
                         let json = try await retrieveChampionFullDataJson()
@@ -18,9 +18,12 @@ extension ChampionListApi: ChampionListDelegate {
                         self.champions = createChampionsObjects(from: decodable)
                         
                         setIcon(caller, for: self.champions)
+                        try saveChampionsLocally()
                         
                     }
                     catch {
+                        // Force downloading assets again on next app start
+                        isAssetSavedLocally = false
                         caller.championsDataSubject.send(completion: .failure(error))
                     }
                 }
@@ -40,14 +43,6 @@ class ChampionListApi {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
-        }
-    }
-    private var didChangeLanguage: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: UserDefaultKeys.didChangeLanguage.rawValue)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.didChangeLanguage.rawValue)
         }
     }
     /// Record every async task actually running
@@ -208,6 +203,10 @@ class ChampionListApi {
         }
         
         return champions
+    }
+    
+    private func saveChampionsLocally() throws {
+        
     }
     
     //    private func setDataForImage(type: ChampionAssetType, for champions: inout [Champion]) {
