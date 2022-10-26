@@ -36,18 +36,18 @@ class ChampionListApi {
     /// A bool indicating if the downloaded champions assets is already saved on the device locale storage
     private var isAssetSavedLocally: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "isAssetSavedLocally")
+            UserDefaults.standard.bool(forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "isAssetSavedLocally")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         }
     }
     private var didChangeLanguage: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "didChangeLanguage")
+            UserDefaults.standard.bool(forKey: UserDefaultKeys.didChangeLanguage.rawValue)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "didChangeLanguage")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.didChangeLanguage.rawValue)
         }
     }
     /// Record every async task actually running
