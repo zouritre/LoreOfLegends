@@ -16,11 +16,13 @@ extension ChampionListApi: ChampionListDelegate {
         else {
             Task {
                 do {
-                    let json = try await retrieveChampionFullDataJson()
+                    let lastestPatchVersion = try await UpdateService.getLastPatchVersion()
+                    let url = try getUrlForChampionsData(for: lastestPatchVersion)
+                    let json = try await retrieveChampionFullDataJson(url: url)
                     let decodable = try decodeChampionDataJson(from: json)
                     self.champions = createChampionsObjects(from: decodable)
                     
-                    setIcon(caller)
+                    setChampionsIcon(caller)
                     
                     try saveChampionsLocally()
                     
@@ -55,7 +57,7 @@ class ChampionListApi {
     /// - Parameters:
     ///   - caller: Class responsible for sending the API data back to the view-model
     ///   - champions: An array containing every champion data
-    private func setIcon(_ caller: ChampionList) {
+    private func setChampionsIcon(_ caller: ChampionList) {
         onGoingTask = champions.count
         
         for (index, _) in champions.enumerated() {
@@ -107,9 +109,8 @@ class ChampionListApi {
         }
     }
     
-    private func retrieveChampionFullDataJson() async throws -> Data {
+    private func retrieveChampionFullDataJson(url: URL) async throws -> Data {
         do {
-            let url = try getUrlByLocale()
             let (data, _) = try await URLSession.shared.data(from: url)
             
             return data
@@ -119,7 +120,7 @@ class ChampionListApi {
         }
     }
     
-    private func getUrlByLocale() throws -> URL {
+    private func getUrlForChampionsData(for patchVersion: String) throws -> URL {
         var localeIdentifier = String()
         
         switch Locale.current.languageCode {
@@ -163,7 +164,7 @@ class ChampionListApi {
             localeIdentifier = "en_US"
         }
         
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/12.19.1/data/\(localeIdentifier)/championFull.json")
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(localeIdentifier)/championFull.json")
         
         guard let url else {
             throw ChampionListError.GetJsonFailed
@@ -207,6 +208,8 @@ class ChampionListApi {
     }
     
     private func saveChampionsLocally() throws {
+        let appDelegate = AppDelegate()
+        let context = appDelegate.persistentContainer.viewContext
         
     }
     

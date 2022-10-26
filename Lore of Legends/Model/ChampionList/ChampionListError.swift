@@ -13,9 +13,9 @@ extension ChampionListError: LocalizedError {
         case .DecodingFail:
             return NSLocalizedString("ChampionListError.DecodingFail", comment: "Json decoding failed on champion json data")
         case .badUrl:
-            return ""
+            return "Champ list bad url"
         case .GetJsonFailed:
-            return ""
+            return "Champ list failed json"
         }
     }
 }
