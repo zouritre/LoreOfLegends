@@ -10,6 +10,8 @@ import Combine
 
 extension ChampionListApi: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
+        self.caller = caller
+        
         if isAssetSavedLocally {
             
         }
@@ -20,12 +22,12 @@ extension ChampionListApi: ChampionListDelegate {
                     let url = try getUrlForChampionsData(for: lastestPatchVersion)
                     let json = try await retrieveChampionFullDataJson(url: url)
                     let decodable = try decodeChampionDataJson(from: json)
+                    
                     self.champions = createChampionsObjects(from: decodable)
                     
-                    setChampionsIcon(caller)
+                    onGoingTaskPublisher = self.champions.count
                     
-                    try saveChampionsLocally()
-                    
+                    setChampionsIcon()
                 }
                 catch {
                     // Force downloading assets again on next app start
@@ -39,6 +41,11 @@ extension ChampionListApi: ChampionListDelegate {
 }
 
 class ChampionListApi {
+    // MARK: Vars
+    /// Record every async task actually running
+    @Published var onGoingTaskPublisher = 1
+    
+    private var caller: ChampionList?
     /// A bool indicating if the downloaded champions assets is already saved on the device locale storage
     private var isAssetSavedLocally: Bool {
         get {
@@ -48,18 +55,44 @@ class ChampionListApi {
             UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         }
     }
-    /// Record every async task actually running
-    private var onGoingTask = Int()
+    private var taskSubscriber: AnyCancellable?
     /// List of every champion in League
     private var champions = [Champion]()
+    
+    // MARK: Init
+    
+    init() {
+        taskSubscriber = $onGoingTaskPublisher.sink(receiveValue: { taskCount in
+            print("Task remaining: \(taskCount)")
+            if taskCount == 0 {
+                self.caller?.championsDataSubject.send(self.champions)
+                
+                do {
+//                    try self.saveChampionsLocally()
+//                    
+//                    self.isAssetSavedLocally = true
+                    
+                    self.caller?.championsDataSubject.send(completion: .finished)
+                }
+                catch {
+                    self.isAssetSavedLocally = false
+                    
+                    self.caller?.championsDataSubject.send(completion: .failure(error))
+                }
+                
+                self.champions = []
+            }
+        })
+    }
+    
+    
+    // MARK: Methods
     
     /// Aynchronously set every champion icon to their corresponding Champion object
     /// - Parameters:
     ///   - caller: Class responsible for sending the API data back to the view-model
     ///   - champions: An array containing every champion data
-    private func setChampionsIcon(_ caller: ChampionList) {
-        onGoingTask = champions.count
-        
+    private func setChampionsIcon() {
         for (index, _) in champions.enumerated() {
             // Create a an async Task for every champion in the array
             Task {
@@ -69,8 +102,7 @@ class ChampionListApi {
                 // Set the Data object to the matching Champion object
                 try await self.champions[index].setIcon(with: data)
                 
-                self.taskDidFinish(caller)
-                print("Task \(index) finished")
+                onGoingTaskPublisher -= 1
             }
         }
     }
@@ -92,21 +124,6 @@ class ChampionListApi {
             throw error
         }
         
-    }
-    
-    /// Send the champion list to the model publisher
-    /// - Parameter caller: Class responsible for notifying the API data to the view-model
-    private func taskDidFinish(_ caller: ChampionList) {
-        if self.onGoingTask > 0 {
-            self.onGoingTask -= 1
-            
-            if onGoingTask == 0 {
-                caller.championsDataSubject.send(self.champions)
-                caller.championsDataSubject.send(completion: .finished)
-                
-                champions = []
-            }
-        }
     }
     
     private func retrieveChampionFullDataJson(url: URL) async throws -> Data {
