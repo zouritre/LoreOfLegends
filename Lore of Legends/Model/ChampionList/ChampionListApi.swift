@@ -139,8 +139,16 @@ class ChampionListApi {
     
     private func getUrlForChampionsData(for patchVersion: String) throws -> URL {
         var localeIdentifier = String()
+        let userSelectedLanguage = UserDefaults.standard.string(forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
         
-        switch Locale.current.languageCode {
+        if let userSelectedLanguage {
+            localeIdentifier = userSelectedLanguage
+        }
+        else if let deviceLanguage = Locale.current.languageCode {
+            localeIdentifier = deviceLanguage
+        }
+        
+        switch localeIdentifier {
         case "cs":
             localeIdentifier = "cs_CZ"
         case "de":
@@ -175,9 +183,7 @@ class ChampionListApi {
             localeIdentifier = "vn_VN"
         case "zh":
             localeIdentifier = "zh_CN"
-        case .none:
-            localeIdentifier = "en_US"
-        case .some(_):
+        default:
             localeIdentifier = "en_US"
         }
         
