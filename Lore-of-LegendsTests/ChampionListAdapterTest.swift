@@ -24,7 +24,7 @@ final class ChampionListAdapterTest: XCTestCase {
     }
     
     func testShouldReturnLastestPatchVersion() async throws {
-        _ = try await adapter?.delegate?.getLastestPatchVersion()
+        _ = try await adapter?.delegate.getLastestPatchVersion()
     }
     
 //    func testApiShouldReturnAllLocalizationSupported() async throws {
@@ -60,7 +60,7 @@ final class ChampionListAdapterTest: XCTestCase {
     }
     
     func testShouldReturnChampionsDataAsDataObject() async throws {
-        _ = try await adapter?.delegate?.retrieveChampionFullDataJson(url: URL(string: "https://www.google.com/")!)
+        _ = try await adapter?.delegate.retrieveChampionFullDataJson(url: URL(string: "https://www.google.com/")!)
     }
     
     func testShouldDecodeGivenData() throws {
@@ -97,6 +97,6 @@ final class ChampionListAdapterTest: XCTestCase {
     }
     
     func testShouldDownloadIconForGivenChampion() async throws {
-        _ = try await adapter?.delegate?.downloadImage(for: Champion(name: "", title: "", skins: [], lore: ""))
+        _ = try await adapter?.delegate.downloadImage(for: Champion(name: "", title: "", skins: [], lore: ""))
     }
 }

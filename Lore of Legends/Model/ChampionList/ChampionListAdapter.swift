@@ -18,16 +18,16 @@ extension ChampionListAdapter: ChampionListDelegate {
         else {
             Task {
                 do {
-                    let lastestPatchVersion = try await UpdateService.getLastPatchVersion()
-                    let url = try getUrlForChampionsData(for: lastestPatchVersion)
-                    let json = try await retrieveChampionFullDataJson(url: url)
+                    let lastestPatchVersion = try await delegate.getLastestPatchVersion()
+                    let language = getLanguageForChampionsData()
+                    let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
+                    let json = try await delegate.retrieveChampionFullDataJson(url: url)
                     let decodable = try decodeChampionDataJson(from: json)
+                    let champions = createChampionsObjects(from: decodable)
                     
-                    self.champions = createChampionsObjects(from: decodable)
+                    self.championsCount = champions.count
                     
-                    onGoingTaskPublisher = self.champions.count
-                    
-                    setChampionsIcon()
+                    setIcons(for: champions)
                 }
                 catch {
                     // Force downloading assets again on next app start
@@ -51,12 +51,15 @@ protocol ChampionListAdapterDelegate {
 }
 
 class ChampionListAdapter {
-    var delegate: ChampionListAdapterDelegate?
     // MARK: Vars
     /// Record every async task actually running
     @Published var onGoingTaskPublisher = 1
+    @Published var champions = [Champion]()
     
+    var delegate: ChampionListAdapterDelegate
+    private var championsSubscriber: AnyCancellable?
     private var caller: ChampionList?
+    private var championsCount: Int?
     /// A bool indicating if the downloaded champions assets is already saved on the device locale storage
     private var isAssetSavedLocally: Bool {
         get {
@@ -68,32 +71,41 @@ class ChampionListAdapter {
     }
     private var taskSubscriber: AnyCancellable?
     /// List of every champion in League
-    @Published var champions = [Champion]()
     
     // MARK: Init
     
-    init() {
-        taskSubscriber = $onGoingTaskPublisher.sink(receiveValue: { taskCount in
-            print("Task remaining: \(taskCount)")
-            if taskCount == 0 {
-                self.caller?.championsDataSubject.send(self.champions)
-                
-                do {
-//                    try self.saveChampionsLocally()
-//
-//                    self.isAssetSavedLocally = true
-                    
-                    self.caller?.championsDataSubject.send(completion: .finished)
-                }
-                catch {
-                    self.isAssetSavedLocally = false
-                    
-                    self.caller?.championsDataSubject.send(completion: .failure(error))
-                }
-                
-                self.champions = []
+    init(delegate: ChampionListAdapterDelegate = RiotCdnApi()) {
+        self.delegate = delegate
+        
+        championsSubscriber = $champions.sink(receiveValue: { champions in
+            guard let championsCount = self.championsCount else { return }
+            
+            if champions.count == championsCount {
+                self.caller?.championsDataSubject.send(champions)
             }
+            
         })
+//        taskSubscriber = $onGoingTaskPublisher.sink(receiveValue: { taskCount in
+//            print("Task remaining: \(taskCount)")
+//            if taskCount == 0 {
+//                self.caller?.championsDataSubject.send(self.champions)
+//
+//                do {
+////                    try self.saveChampionsLocally()
+////
+////                    self.isAssetSavedLocally = true
+//
+//                    self.caller?.championsDataSubject.send(completion: .finished)
+//                }
+//                catch {
+//                    self.isAssetSavedLocally = false
+//
+//                    self.caller?.championsDataSubject.send(completion: .failure(error))
+//                }
+//
+//                self.champions = []
+//            }
+//        })
     }
     
     
@@ -131,24 +143,6 @@ class ChampionListAdapter {
             }
         }
     }
-    /// Aynchronously set every champion icon to their corresponding Champion object
-    /// - Parameters:
-    ///   - caller: Class responsible for sending the API data back to the view-model
-    ///   - champions: An array containing every champion data
-    func setChampionsIcon() {
-        for (index, _) in champions.enumerated() {
-            // Create a an async Task for every champion in the array
-            Task {
-                // Download the icon as a Data object
-                async let data = try downloadImage(championIndex: index)
-                
-                // Set the Data object to the matching Champion object
-                try await self.champions[index].setIcon(with: data)
-                
-                onGoingTaskPublisher -= 1
-            }
-        }
-    }
     
     func setIcons(for champions: [Champion]) {
         for champion in champions {
@@ -156,9 +150,9 @@ class ChampionListAdapter {
             Task {
                 do {
                     // Download the icon as a Data object
-                    let data = try await delegate?.downloadImage(for: champion)
+                    let data = try await delegate.downloadImage(for: champion)
                     var champ = champion
-                    champ.setIcon(with: data!)
+                    champ.setIcon(with: data)
                     self.champions.append(champ)
                 }
                 catch {
@@ -169,94 +163,6 @@ class ChampionListAdapter {
                 
             }
         }
-    }
-    /// Download the icon of the champion at the index specified in the champions array
-    /// - Parameter championIndex: Index from wich to retrieve the champion data
-    /// - Returns: Data object corresponding to the image downloaded or an Error
-    private func downloadImage(championIndex: Int) async throws -> Data {
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(self.champions[championIndex].name)_0.jpg")
-        
-        guard let url else { throw ChampionListError.badUrl }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            return data
-        }
-        catch {
-            throw error
-        }
-        
-    }
-    
-    private func retrieveChampionFullDataJson(url: URL) async throws -> Data {
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            return data
-        }
-        catch {
-            throw error
-        }
-    }
-    
-    private func getUrlForChampionsData(for patchVersion: String) throws -> URL {
-        var localeIdentifier = String()
-        let userSelectedLanguage = UserDefaults.standard.string(forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
-        
-        if let userSelectedLanguage {
-            localeIdentifier = userSelectedLanguage
-        }
-        else if let deviceLanguage = Locale.current.languageCode {
-            localeIdentifier = deviceLanguage
-        }
-        
-        switch localeIdentifier {
-        case "cs":
-            localeIdentifier = "cs_CZ"
-        case "de":
-            localeIdentifier = "de_DE"
-        case "el":
-            localeIdentifier = "el_GR"
-        case "en":
-            localeIdentifier = "en_US"
-        case "fr":
-            localeIdentifier = "fr_FR"
-        case "hu":
-            localeIdentifier = "hu_HU"
-        case "it":
-            localeIdentifier = "it_IT"
-        case "ja":
-            localeIdentifier = "ja_JP"
-        case "ko":
-            localeIdentifier = "ko_KR"
-        case "pl":
-            localeIdentifier = "pl_PL"
-        case "pt":
-            localeIdentifier = "pt_BR"
-        case "ro":
-            localeIdentifier = "ro_RO"
-        case "ru":
-            localeIdentifier = "ru_RU"
-        case "th":
-            localeIdentifier = "th_TH"
-        case "tr":
-            localeIdentifier = "tr_TR"
-        case "vn":
-            localeIdentifier = "vn_VN"
-        case "zh":
-            localeIdentifier = "zh_CN"
-        default:
-            localeIdentifier = "en_US"
-        }
-        
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(localeIdentifier)/championFull.json")
-        
-        guard let url else {
-            throw ChampionListError.GetJsonFailed
-        }
-        
-        return url
     }
     
     func getChampionsDataUrl(patchVersion: String, localization: String) throws -> URL {

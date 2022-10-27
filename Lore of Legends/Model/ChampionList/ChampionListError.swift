@@ -16,6 +16,8 @@ extension ChampionListError: LocalizedError {
             return "Champ list bad url"
         case .GetJsonFailed:
             return "Champ list failed json"
+        case .noDataForLanguage:
+            return "No data for language"
         }
     }
 }
@@ -24,4 +26,5 @@ enum ChampionListError: Error {
     case DecodingFail
     case badUrl
     case GetJsonFailed
+    case noDataForLanguage
 }
