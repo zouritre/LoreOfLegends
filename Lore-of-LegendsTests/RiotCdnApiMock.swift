@@ -9,6 +9,10 @@ import Foundation
 @testable import Lore_of_Legends
 
 extension RiotCdnApiMock: ChampionListAdapterDelegate {
+    func downloadImage(for champion: Lore_of_Legends.Champion) async throws -> Data {
+        return Data()
+    }
+    
     func retrieveChampionFullDataJson(url: URL) async throws -> Data {
         return Data()
     }

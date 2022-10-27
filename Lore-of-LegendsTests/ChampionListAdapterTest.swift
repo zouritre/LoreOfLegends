@@ -24,9 +24,7 @@ final class ChampionListAdapterTest: XCTestCase {
     }
     
     func testShouldReturnLastestPatchVersion() async throws {
-        let patchVersion = try await adapter?.delegate?.getLastestPatchVersion()
-        
-        XCTAssertNotNil(patchVersion)
+        _ = try await adapter?.delegate?.getLastestPatchVersion()
     }
     
 //    func testApiShouldReturnAllLocalizationSupported() async throws {
@@ -62,9 +60,7 @@ final class ChampionListAdapterTest: XCTestCase {
     }
     
     func testShouldReturnChampionsDataAsDataObject() async throws {
-        let data = try await adapter?.delegate?.retrieveChampionFullDataJson(url: URL(string: "https://www.google.com/")!)
-        
-        XCTAssertNotNil(data)
+        _ = try await adapter?.delegate?.retrieveChampionFullDataJson(url: URL(string: "https://www.google.com/")!)
     }
     
     func testShouldDecodeGivenData() throws {
@@ -80,5 +76,27 @@ final class ChampionListAdapterTest: XCTestCase {
     
     func testShouldFailDecodingGivenData() throws {
         XCTAssertThrowsError(try adapter?.decodeChampionDataJson(from: Data()))
+    }
+    
+    func testShouldReturnChampionsArrayFromDecodable() {
+        let decodable = ChampionFullJsonDecodable(data: [:], keys: [:])
+        let champions = adapter?.createChampionsObjects(from: decodable)
+        
+        XCTAssertEqual(champions?.count, 0)
+    }
+    
+    func testShouldSetIconsForEveryChampions() async {
+        let expectation = expectation(description: "Wait for concurrent tasks to finish")
+        _ = adapter?.$champions.sink(receiveValue: { _ in
+            expectation.fulfill()
+        })
+        
+        adapter?.setIcons(for: [Champion(name: "", title: "", skins: [], lore: "")])
+        
+        await waitForExpectations(timeout: 1)
+    }
+    
+    func testShouldDownloadIconForGivenChampion() async throws {
+        _ = try await adapter?.delegate?.downloadImage(for: Champion(name: "", title: "", skins: [], lore: ""))
     }
 }

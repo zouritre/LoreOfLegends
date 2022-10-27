@@ -46,6 +46,8 @@ protocol ChampionListAdapterDelegate {
     func getSupportedLanguages() async throws -> [String]
     
     func retrieveChampionFullDataJson(url: URL) async throws -> Data
+    
+    func downloadImage(for champion: Champion) async throws -> Data
 }
 
 class ChampionListAdapter {
@@ -66,7 +68,7 @@ class ChampionListAdapter {
     }
     private var taskSubscriber: AnyCancellable?
     /// List of every champion in League
-    private var champions = [Champion]()
+    @Published var champions = [Champion]()
     
     // MARK: Init
     
@@ -133,7 +135,7 @@ class ChampionListAdapter {
     /// - Parameters:
     ///   - caller: Class responsible for sending the API data back to the view-model
     ///   - champions: An array containing every champion data
-    private func setChampionsIcon() {
+    func setChampionsIcon() {
         for (index, _) in champions.enumerated() {
             // Create a an async Task for every champion in the array
             Task {
@@ -148,6 +150,26 @@ class ChampionListAdapter {
         }
     }
     
+    func setIcons(for champions: [Champion]) {
+        for champion in champions {
+            // Create a an async Task for every champion in the array
+            Task {
+                do {
+                    // Download the icon as a Data object
+                    let data = try await delegate?.downloadImage(for: champion)
+                    var champ = champion
+                    champ.setIcon(with: data!)
+                    self.champions.append(champ)
+                }
+                catch {
+                    var champ = champion
+                    champ.setIcon(with: Data())
+                    self.champions.append(champ)
+                }
+                
+            }
+        }
+    }
     /// Download the icon of the champion at the index specified in the champions array
     /// - Parameter championIndex: Index from wich to retrieve the champion data
     /// - Returns: Data object corresponding to the image downloaded or an Error
@@ -258,7 +280,7 @@ class ChampionListAdapter {
         }
     }
     
-    private func createChampionsObjects(from decodable: ChampionFullJsonDecodable) -> [Champion] {
+    func createChampionsObjects(from decodable: ChampionFullJsonDecodable) -> [Champion] {
         var champions = [Champion]()
         
         for (_,championName) in decodable.keys {
