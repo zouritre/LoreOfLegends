@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-extension ChampionListApi: ChampionListDelegate {
+extension ChampionListAdapter: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
         self.caller = caller
         
@@ -40,7 +40,16 @@ extension ChampionListApi: ChampionListDelegate {
     }
 }
 
-class ChampionListApi {
+protocol ChampionListAdapterDelegate {
+    func getLastestPatchVersion() async throws -> String
+    
+    func getSupportedLanguages() async throws -> [String]
+    
+    func retrieveChampionFullDataJson(url: URL) async throws -> Data
+}
+
+class ChampionListAdapter {
+    var delegate: ChampionListAdapterDelegate?
     // MARK: Vars
     /// Record every async task actually running
     @Published var onGoingTaskPublisher = 1
@@ -88,6 +97,38 @@ class ChampionListApi {
     
     // MARK: Methods
     
+    func getLanguageForChampionsData() -> Locale {
+        let selectedLanguage = UserDefaults.standard.string(forKey: "Lore Language")
+        
+        if let selectedLanguage {
+            return Locale(identifier: selectedLanguage)
+        }
+        else {
+            var language = String()
+            
+            if #available(iOS 16, *) {
+                let localeLanguage = Locale.current.language.languageCode?.identifier
+                
+                guard let localeLanguage else { return Locale(identifier: "en_US")}
+                
+                language = localeLanguage
+            } else {
+                // Fallback on earlier versions
+                let localeLanguage = Locale.current.languageCode
+                
+                guard let localeLanguage else { return Locale(identifier: "en_US")}
+                
+                language = localeLanguage
+            }
+            
+            switch language {
+            case "fr":
+                return Locale(identifier: "fr_FR")
+            default:
+                return Locale(identifier: "en_US")
+            }
+        }
+    }
     /// Aynchronously set every champion icon to their corresponding Champion object
     /// - Parameters:
     ///   - caller: Class responsible for sending the API data back to the view-model
@@ -196,7 +237,17 @@ class ChampionListApi {
         return url
     }
     
-    private func decodeChampionDataJson(from data: Data) throws -> ChampionFullJsonDecodable {
+    func getChampionsDataUrl(patchVersion: String, localization: String) throws -> URL {
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(localization)/championFull.json")
+        
+        guard let url else {
+            throw ChampionListError.badUrl
+        }
+        
+        return url
+    }
+    
+    func decodeChampionDataJson(from data: Data) throws -> ChampionFullJsonDecodable {
         do {
             let decodable = try JSONDecoder().decode(ChampionFullJsonDecodable.self, from: data)
             

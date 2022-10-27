@@ -26,7 +26,7 @@ class ChampionListViewModel {
         self.championListModel = ChampionList()
     }
     
-    convenience init(api: ChampionListDelegate = ChampionListApi()) {
+    convenience init(api: ChampionListDelegate = ChampionListAdapter()) {
         self.init()
         // Inject the given API
         self.championListModel.delegate = api
