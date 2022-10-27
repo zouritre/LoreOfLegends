@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import Lore_of_Legends
 
 extension ChampionListApiMock: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
