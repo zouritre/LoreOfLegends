@@ -105,6 +105,7 @@
 		E93B365528FC4748003BB0A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E983BA78290BF1050008983B /* Entities */,
 				E93B365628FC4748003BB0A3 /* ChampionList */,
 				E981EB412909C3A1002980DC /* UserDefaultKeys.swift */,
 			);
@@ -117,7 +118,6 @@
 				E93B365728FC4748003BB0A3 /* ChampionList.swift */,
 				E9BEA3F5290B1EE400FE723D /* Misc */,
 				E9BEA3F4290B1EC600FE723D /* Adapters */,
-				E9BEA3F3290B1E9400FE723D /* Champion */,
 			);
 			path = ChampionList;
 			sourceTree = "<group>";
@@ -143,6 +143,14 @@
 			children = (
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E983BA78290BF1050008983B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E9BEA3F3290B1E9400FE723D /* Champion */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		E990E9ED28FC247300F63D70 = {

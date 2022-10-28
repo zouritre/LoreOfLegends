@@ -13,9 +13,15 @@ struct ChampionFullJsonDecodable: Decodable {
 }
 
 struct ChampionSpecificDecodable: Decodable {
-    var lore: String
+    var name: String
     var title: String
+    var image: ChampionImageNameDecodable
+    var lore: String
     var skins: [ChampionSkinDecodable]
+}
+
+struct ChampionImageNameDecodable: Decodable {
+    var full: String
 }
 
 struct ChampionSkinDecodable: Decodable {

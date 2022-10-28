@@ -28,7 +28,7 @@ extension RiotCdnApi: ChampionListAdapterDelegate {
     }
     
     func downloadImage(for champion: Champion) async throws -> Data {
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.name)_0.jpg")
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.imageName)_0.jpg")
         
         guard let url else { throw ChampionListError.badUrl }
         

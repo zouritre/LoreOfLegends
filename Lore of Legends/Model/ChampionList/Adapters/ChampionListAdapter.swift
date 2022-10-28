@@ -192,13 +192,17 @@ class ChampionListAdapter {
         for (_,championName) in decodable.keys {
             for (key, champInfo) in decodable.data {
                 if key == championName {
+                    var imageName = champInfo.image.full
                     var skins = [ChampionAsset]()
                     
+                    // Remove file extension
+                    imageName.removeLast(4)
+                    
                     for skin in champInfo.skins {
-                        skins.append(ChampionAsset(fileName: "\(championName)_\(skin.num)", title: skin.name))
+                        skins.append(ChampionAsset(fileName: "\(imageName)_\(skin.num)", title: skin.name))
                     }
                     
-                    champions.append(Champion(name: championName, title: champInfo.title, skins: skins, lore: champInfo.lore))
+                    champions.append(Champion(name: champInfo.name, title: champInfo.title, imageName: imageName, skins: skins, lore: champInfo.lore))
                     
                     break
                 }
