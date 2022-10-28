@@ -20,7 +20,7 @@ final class ChampionListTest: XCTestCase {
     }
 
     func testChampionListArrayShouldContainAllChampions() throws {
-        let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", skins: [ChampionAsset(fileName: "", title: "")], lore: "")])
+        let mockApi = ChampionListAdapterMock(champion: Champion(name: "", title: "", imageName: "", skins: [ChampionAsset(fileName: "", title: "")], lore: ""))
         let championListVM = ChampionListViewModel(api: mockApi)
         
         championListVM.getChampions()
@@ -30,7 +30,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testChampionListArrayShouldBeEmpty() throws {
-        let mockApi = ChampionListApiMock(champions: nil)
+        let mockApi = ChampionListAdapterMock(champion: nil)
         let championListVM = ChampionListViewModel(api: mockApi)
         
         championListVM.getChampions()
@@ -41,11 +41,20 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testChampionIconImageShouldBeReturned() {
-        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let api = ChampionListAdapterMock(champion: Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: ""))
         let viewModel = ChampionListViewModel(api: api)
         
         viewModel.getChampions()
         
         XCTAssertNotNil(viewModel.champions[0].icon)
+    }
+    
+    func testShouldReturnChampionsCount() async {
+        let mockApi = ChampionListAdapterMock()
+        let viewModel = ChampionListViewModel(api: mockApi)
+        
+        await viewModel.getChampionsCount()
+        
+        XCTAssertEqual(viewModel.championsCount, 1)
     }
 }

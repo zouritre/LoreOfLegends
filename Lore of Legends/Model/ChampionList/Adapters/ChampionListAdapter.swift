@@ -9,30 +9,28 @@ import Foundation
 import Combine
 
 extension ChampionListAdapter: ChampionListDelegate {
-    func getChampions(_ caller: ChampionList) {
-        self.caller = caller
+    func getChampionsCount() async throws -> Int {
+        let decodable = try await getChampionsData()
         
+        return decodable.keys.count
+    }
+    
+    func getChampions(_ caller: ChampionList) {
         if isAssetSavedLocally {
             
         }
         else {
             Task {
                 do {
-                    let lastestPatchVersion = try await delegate.getLastestPatchVersion()
-                    let language = getLanguageForChampionsData()
-                    let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
-                    let json = try await delegate.retrieveChampionFullDataJson(url: url)
-                    let decodable = try decodeChampionDataJson(from: json)
+                    let decodable = try await getChampionsData()
                     let champions = createChampionsObjects(from: decodable)
                     
-                    self.championsCount = champions.count
-                    
-                    setIcons(for: champions)
+                    setIcons(caller: caller, for: champions)
                 }
                 catch {
                     // Force downloading assets again on next app start
                     isAssetSavedLocally = false
-                    caller.championsDataSubject.send(completion: .failure(error))
+                    caller.championDataSubject.send(completion: .failure(error))
                 }
             }
         }
@@ -52,14 +50,8 @@ protocol ChampionListAdapterDelegate {
 
 class ChampionListAdapter {
     // MARK: Vars
-    /// Record every async task actually running
-    @Published var onGoingTaskPublisher = 1
-    @Published var champions = [Champion]()
     
     var delegate: ChampionListAdapterDelegate
-    private var championsSubscriber: AnyCancellable?
-    private var caller: ChampionList?
-    private var championsCount: Int?
     /// A bool indicating if the downloaded champions assets is already saved on the device locale storage
     private var isAssetSavedLocally: Bool {
         get {
@@ -69,47 +61,26 @@ class ChampionListAdapter {
             UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         }
     }
-    private var taskSubscriber: AnyCancellable?
-    /// List of every champion in League
+    
     
     // MARK: Init
     
     init(delegate: ChampionListAdapterDelegate = RiotCdnApi()) {
         self.delegate = delegate
-        
-        championsSubscriber = $champions.sink(receiveValue: { champions in
-            guard let championsCount = self.championsCount else { return }
-            
-            if champions.count == championsCount {
-                self.caller?.championsDataSubject.send(champions)
-            }
-            
-        })
-//        taskSubscriber = $onGoingTaskPublisher.sink(receiveValue: { taskCount in
-//            print("Task remaining: \(taskCount)")
-//            if taskCount == 0 {
-//                self.caller?.championsDataSubject.send(self.champions)
-//
-//                do {
-////                    try self.saveChampionsLocally()
-////
-////                    self.isAssetSavedLocally = true
-//
-//                    self.caller?.championsDataSubject.send(completion: .finished)
-//                }
-//                catch {
-//                    self.isAssetSavedLocally = false
-//
-//                    self.caller?.championsDataSubject.send(completion: .failure(error))
-//                }
-//
-//                self.champions = []
-//            }
-//        })
     }
     
     
     // MARK: Methods
+    
+    private func getChampionsData() async throws -> ChampionFullJsonDecodable {
+        let lastestPatchVersion = try await delegate.getLastestPatchVersion()
+        let language = getLanguageForChampionsData()
+        let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
+        let json = try await delegate.retrieveChampionFullDataJson(url: url)
+        let decodable = try decodeChampionDataJson(from: json)
+        
+        return decodable
+    }
     
     func getLanguageForChampionsData() -> Locale {
         let selectedLanguage = UserDefaults.standard.string(forKey: "Lore Language")
@@ -144,7 +115,7 @@ class ChampionListAdapter {
         }
     }
     
-    func setIcons(for champions: [Champion]) {
+    func setIcons(caller: ChampionList,for champions: [Champion]) {
         for champion in champions {
             // Create a an async Task for every champion in the array
             Task {
@@ -153,14 +124,11 @@ class ChampionListAdapter {
                     let data = try await delegate.downloadImage(for: champion)
                     var champ = champion
                     champ.setIcon(with: data)
-                    self.champions.append(champ)
+                    caller.championDataSubject.send(champ)
                 }
                 catch {
-                    var champ = champion
-                    champ.setIcon(with: Data())
-                    self.champions.append(champ)
+                    caller.championDataSubject.send(champion)
                 }
-                
             }
         }
     }
@@ -202,7 +170,9 @@ class ChampionListAdapter {
                         skins.append(ChampionAsset(fileName: "\(imageName)_\(skin.num)", title: skin.name))
                     }
                     
-                    champions.append(Champion(name: champInfo.name, title: champInfo.title, imageName: imageName, skins: skins, lore: champInfo.lore))
+                    let champion = Champion(name: champInfo.name, title: champInfo.title, imageName: imageName, skins: skins, lore: champInfo.lore)
+                    
+                    champions.append(champion)
                     
                     break
                 }
@@ -214,8 +184,8 @@ class ChampionListAdapter {
     }
     
     private func saveChampionsLocally() throws {
-//        let appDelegate = AppDelegate()
-//        let context = appDelegate.persistentContainer.viewContext
+        //        let appDelegate = AppDelegate()
+        //        let context = appDelegate.persistentContainer.viewContext
         
     }
     
