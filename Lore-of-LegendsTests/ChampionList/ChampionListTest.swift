@@ -20,7 +20,7 @@ final class ChampionListTest: XCTestCase {
     }
 
     func testChampionListArrayShouldContainAllChampions() throws {
-        let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", skins: [ChampionAsset(fileName: "", title: "")], lore: "")])
+        let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", skins: [ChampionAsset(fileName: "", title: "")], lore: "")])
         let championListVM = ChampionListViewModel(api: mockApi)
         
         championListVM.getChampions()
@@ -41,7 +41,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testChampionIconImageShouldBeReturned() {
-        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", icon: Data(), skins: .init(), lore: "")])
+        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
         let viewModel = ChampionListViewModel(api: api)
         
         viewModel.getChampions()

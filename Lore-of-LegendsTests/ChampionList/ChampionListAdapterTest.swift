@@ -91,12 +91,12 @@ final class ChampionListAdapterTest: XCTestCase {
             expectation.fulfill()
         })
         
-        adapter?.setIcons(for: [Champion(name: "", title: "", skins: [], lore: "")])
+        adapter?.setIcons(for: [Champion(name: "", title: "", imageName: "", skins: [], lore: "")])
         
         await waitForExpectations(timeout: 1)
     }
     
     func testShouldDownloadIconForGivenChampion() async throws {
-        _ = try await adapter?.delegate.downloadImage(for: Champion(name: "", title: "", skins: [], lore: ""))
+        _ = try await adapter?.delegate.downloadImage(for: Champion(name: "", title: "", imageName: "", skins: [], lore: ""))
     }
 }
