@@ -15,6 +15,14 @@ class ChampionsLoadingViewController: UIViewController {
     var totalChampionsCountSub: AnyCancellable?
     var downloadedChampionsCountSub: AnyCancellable?
     var totalChampionsCount = Int()
+    var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        formatter.locale = Locale.current
+        formatter.maximumFractionDigits = 2
+        
+        return formatter
+    }
     
     @IBOutlet weak var downloadProgressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
@@ -44,8 +52,23 @@ class ChampionsLoadingViewController: UIViewController {
         
         downloadedChampionsCountSub = championListVm?.$downloadedChampionsCount.sink(receiveValue: { downloadedCounter in
             if self.totalChampionsCount > 0 {
+                let total = Float(self.totalChampionsCount)
+                let current = Float(downloadedCounter)
+                let progress = current/total
+                let progressToString = self.numberFormatter.string(from: progress as NSNumber)
+                
+                guard let progressToString else {
+                    print("failed")
+                    return
+                }
+                
                 DispatchQueue.main.async {
-                    self.downloadProgressBar.progress = Float((downloadedCounter*100)/self.totalChampionsCount)
+                    if let progress = self.numberFormatter.number(from: progressToString) {
+                        print("progress: \(progress)")
+                        self.downloadProgressBar.progress = Float(truncating: progress)
+                    }
+                    else { print("double failed") }
+                    
                     self.progressLabel.text = "\(downloadedCounter) / \(self.totalChampionsCount)"
                 }
             }
