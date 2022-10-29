@@ -60,16 +60,14 @@ class ChampionsLoadingViewController: UIViewController {
                 let progressToString = self.numberFormatter.string(from: progress as NSNumber)
                 
                 guard let progressToString else {
-                    print("failed")
                     return
                 }
                 
                 DispatchQueue.main.async {
                     if let progress = self.numberFormatter.number(from: progressToString) {
-                        print("progress: \(progress)")
                         self.downloadProgressBar.progress = Float(truncating: progress)
                     }
-                    else { print("double failed") }
+                    else { return }
                     
                     self.progressLabel.text = "\(downloadedCounter) / \(self.totalChampionsCount)"
                 }
