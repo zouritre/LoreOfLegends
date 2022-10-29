@@ -75,9 +75,10 @@ class ChampionsLoadingViewController: UIViewController {
                 }
             }
         })
+        
         isDownloadingSub = championListVm?.$isDownloading.sink(receiveValue: { isDownloading in
             DispatchQueue.main.async {
-                self.isDownloadingLabel.text = isDownloading ? "Downloading" : "Fetching"
+                self.isDownloadingLabel.text = isDownloading ? NSLocalizedString("ChampionsLoadingViewController.isDownloading", comment: "A download is running") : NSLocalizedString("ChampionsLoadingViewController.isFetching", comment: "Fetching champions locally")
             }
         })
     }

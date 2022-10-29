@@ -7,3 +7,5 @@
 */
 
 "ChampionListError.DecodingFail" = "Le décodage des données a échoué";
+"ChampionsLoadingViewController.isDownloading" = "Téléchargement des champions...";
+"ChampionsLoadingViewController.isFetching" = "Récupération des champions...";
