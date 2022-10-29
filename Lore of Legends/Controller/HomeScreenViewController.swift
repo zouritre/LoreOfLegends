@@ -124,7 +124,7 @@ class HomeScreenViewController: UIViewController {
         
         setupSubscribers()
         
-        championListVM.getChampions()
+        performSegue(withIdentifier: "championsLoading", sender: nil)
     }
     
     /// Register a Nib to the collection view
@@ -175,6 +175,10 @@ class HomeScreenViewController: UIViewController {
         if let vc = segue.destination as? ChampionDetailViewController {
             // Send the selected champion to the next view controller
             vc.champion = selectedChampion
+        }
+        else if let vc = segue.destination as? ChampionsLoadingViewController {
+            // Send the selected champion to the next view controller
+            vc.championListVm = championListVM
         }
     }
 

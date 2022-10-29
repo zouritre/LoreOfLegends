@@ -82,6 +82,7 @@
                     <connections>
                         <outlet property="championIconsCollection" destination="wsy-tj-Ccx" id="UsP-hr-i0Q"/>
                         <segue destination="TMw-cn-At7" kind="show" identifier="goToDetail" id="GT9-1A-2Uz"/>
+                        <segue destination="dqK-UU-DDr" kind="presentation" identifier="championsLoading" modalPresentationStyle="fullScreen" id="iCG-Pc-XKV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,6 +104,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zg2-RU-0xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1003" y="4"/>
+        </scene>
+        <!--Champions Loading View Controller-->
+        <scene sceneID="DH4-hH-7oo">
+            <objects>
+                <viewController id="dqK-UU-DDr" customClass="ChampionsLoadingViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KJG-PZ-4OG">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PQ7-KQ-jJ5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1RH-Ab-u6F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="755"/>
         </scene>
     </scenes>
     <resources>
