@@ -66,4 +66,15 @@ final class ChampionListTest: XCTestCase {
         
         XCTAssertEqual(viewModel.downloadedChampionsCount, 1)
     }
+    
+    func testShouldReturnTrueIfDownloadIsRunning() {
+        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let viewModel = ChampionListViewModel(api: api)
+        
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
+
+        viewModel.getChampions()
+        
+        XCTAssertTrue(viewModel.isDownloading)
+    }
 }

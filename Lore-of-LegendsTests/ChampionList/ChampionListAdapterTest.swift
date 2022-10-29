@@ -85,17 +85,6 @@ final class ChampionListAdapterTest: XCTestCase {
         XCTAssertEqual(champions?.count, 0)
     }
     
-    func testShouldSetIconsForEveryChampions() async {
-        let expectation = expectation(description: "Wait for concurrent tasks to finish")
-        _ = adapter?.$champions.sink(receiveValue: { _ in
-            expectation.fulfill()
-        })
-        
-        adapter?.setIcons(for: [Champion(name: "", title: "", imageName: "", skins: [], lore: "")])
-        
-        await waitForExpectations(timeout: 1)
-    }
-    
     func testShouldDownloadIconForGivenChampion() async throws {
         _ = try await adapter?.delegate.downloadImage(for: Champion(name: "", title: "", imageName: "", skins: [], lore: ""))
     }

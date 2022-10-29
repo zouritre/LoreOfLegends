@@ -18,12 +18,14 @@ class ChampionListViewModel {
     
     @Published var totalChampionsCount = Int()
     @Published var downloadedChampionsCount = Int()
+    @Published var isDownloading = false
     /// Class responsible for processing and sending the data received by the view-model
     var championListModel: ChampionList
     /// Subscriber that receive data from the model
     var championsDataSubscriber: AnyCancellable?
     var championsCountSubscriber: AnyCancellable?
     var downloadedChapionsCounterSub: AnyCancellable?
+    var isDownloadingSub: AnyCancellable?
 
     private init() {
         self.champions = []
@@ -50,6 +52,9 @@ class ChampionListViewModel {
         })
         self.downloadedChapionsCounterSub = championListModel.downloadedChampionCounterPub.sink(receiveValue: { counter in
             self.downloadedChampionsCount = counter
+        })
+        self.isDownloadingSub = championListModel.isDownloadingPub.sink(receiveValue: { isDownloading in
+            self.isDownloading = isDownloading
         })
     }
     

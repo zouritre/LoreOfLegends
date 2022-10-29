@@ -13,9 +13,10 @@ extension ChampionListAdapter: ChampionListDelegate {
         self.caller = caller
         
         if isAssetSavedLocally {
-            
+            caller.isDownloadingPub.send(false)
         }
         else {
+            caller.isDownloadingPub.send(true)
             Task {
                 do {
                     let decodable = try await getDecodableForChampionsData()

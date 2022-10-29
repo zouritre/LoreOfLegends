@@ -18,6 +18,7 @@ extension ChampionListApiMock: ChampionListDelegate {
         caller.totalChampionsCountPublisher.send(1)
         caller.championsDataSubject.send(champions)
         caller.downloadedChampionCounterPub.send(1)
+        caller.isDownloadingPub.send(true)
     }
 }
 

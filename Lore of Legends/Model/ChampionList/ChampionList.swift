@@ -23,4 +23,5 @@ class ChampionList {
     var championsDataSubject = PassthroughSubject<[Champion], Error>()
     var totalChampionsCountPublisher = PassthroughSubject<Int, Never>()
     var downloadedChampionCounterPub = PassthroughSubject<Int, Never>()
+    var isDownloadingPub = PassthroughSubject<Bool, Never>()
 }
