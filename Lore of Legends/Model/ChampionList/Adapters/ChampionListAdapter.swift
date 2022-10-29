@@ -51,8 +51,7 @@ protocol ChampionListAdapterDelegate {
 
 class ChampionListAdapter {
     // MARK: Vars
-    /// Record every async task actually running
-    @Published var onGoingTaskPublisher = 1
+    
     @Published var champions = [Champion]()
     
     var delegate: ChampionListAdapterDelegate
@@ -88,27 +87,6 @@ class ChampionListAdapter {
             }
             
         })
-//        taskSubscriber = $onGoingTaskPublisher.sink(receiveValue: { taskCount in
-//            print("Task remaining: \(taskCount)")
-//            if taskCount == 0 {
-//                self.caller?.championsDataSubject.send(self.champions)
-//
-//                do {
-////                    try self.saveChampionsLocally()
-////
-////                    self.isAssetSavedLocally = true
-//
-//                    self.caller?.championsDataSubject.send(completion: .finished)
-//                }
-//                catch {
-//                    self.isAssetSavedLocally = false
-//
-//                    self.caller?.championsDataSubject.send(completion: .failure(error))
-//                }
-//
-//                self.champions = []
-//            }
-//        })
     }
     
     
