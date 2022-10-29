@@ -9,6 +9,18 @@ import Foundation
 import Combine
 
 extension ChampionListAdapter: ChampionListDelegate {
+    func getChampionsCount(caller: ChampionList) {
+        Task {
+            do {
+                let decodable = try await getDecodableForChampionsData()
+                
+            }
+            catch {
+                
+            }
+        }
+    }
+    
     func getChampions(_ caller: ChampionList) {
         self.caller = caller
         
@@ -110,6 +122,16 @@ class ChampionListAdapter {
     
     
     // MARK: Methods
+    
+    func getDecodableForChampionsData() async throws -> ChampionFullJsonDecodable {
+        let lastestPatchVersion = try await delegate.getLastestPatchVersion()
+        let language = getLanguageForChampionsData()
+        let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
+        let json = try await delegate.retrieveChampionFullDataJson(url: url)
+        let decodable = try decodeChampionDataJson(from: json)
+        
+        return decodable
+    }
     
     func getLanguageForChampionsData() -> Locale {
         let selectedLanguage = UserDefaults.standard.string(forKey: "Lore Language")

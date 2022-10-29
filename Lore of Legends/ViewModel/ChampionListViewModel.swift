@@ -16,10 +16,12 @@ class ChampionListViewModel {
     /// An error thrown when fetching the list of champion from the API
     @Published var championsDataError: Error?
     
+    var championsCount = Int()
     /// Class responsible for processing and sending the data received by the view-model
     var championListModel: ChampionList
     /// Subscriber that receive data from the model
     var championsDataSubscriber: AnyCancellable?
+    var championsCountSubscriber: AnyCancellable?
 
     private init() {
         self.champions = []
@@ -41,10 +43,17 @@ class ChampionListViewModel {
         }, receiveValue: { champions in
             self.champions = champions
         })
+        self.championsCountSubscriber = championListModel.championsCountPublisher.sink(receiveValue: { count in
+            self.championsCount = count
+        })
     }
     
     /// Request the full champion list from the API
     func getChampions() {
         championListModel.delegate?.getChampions(championListModel)
+    }
+    
+    func getChampionsCount() {
+        championListModel.delegate?.getChampionsCount(caller: championListModel)
     }
 }

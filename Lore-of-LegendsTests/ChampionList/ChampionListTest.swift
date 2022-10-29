@@ -9,16 +9,16 @@
 import XCTest
 
 final class ChampionListTest: XCTestCase {
-
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testChampionListArrayShouldContainAllChampions() throws {
         let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", skins: [ChampionAsset(fileName: "", title: "")], lore: "")])
         let championListVM = ChampionListViewModel(api: mockApi)
@@ -47,5 +47,14 @@ final class ChampionListTest: XCTestCase {
         viewModel.getChampions()
         
         XCTAssertNotNil(viewModel.champions[0].icon)
+    }
+    
+    func testShouldReturnAvailableChampionsCount() {
+        let api = ChampionListApiMock()
+        let viewModel = ChampionListViewModel(api: api)
+        
+        viewModel.getChampionsCount()
+        
+        XCTAssertEqual(viewModel.championsCount, 1)
     }
 }
