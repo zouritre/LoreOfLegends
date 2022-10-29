@@ -18,7 +18,6 @@ class ChampionsLoadingViewController: UIViewController {
     
     @IBOutlet weak var downloadProgressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +35,6 @@ class ChampionsLoadingViewController: UIViewController {
         })
         totalChampionsCountSub = championListVm?.$totalChampionsCount.sink(receiveValue: { count in
             DispatchQueue.main.async {
-                self.activityIndicator.isHidden = true
                 self.downloadProgressBar.isHidden = false
                 self.totalChampionsCount = count
                 self.progressLabel.text = "0 / \(count)"
