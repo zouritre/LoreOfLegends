@@ -14,6 +14,7 @@ class ChampionsLoadingViewController: UIViewController {
     var championsDataSub: AnyCancellable?
     var totalChampionsCountSub: AnyCancellable?
     var downloadedChampionsCountSub: AnyCancellable?
+    var isDownloadingSub: AnyCancellable?
     var totalChampionsCount = Int()
     var numberFormatter: NumberFormatter {
         let formatter = NumberFormatter()
@@ -24,6 +25,7 @@ class ChampionsLoadingViewController: UIViewController {
         return formatter
     }
     
+    @IBOutlet weak var isDownloadingLabel: UILabel!
     @IBOutlet weak var downloadProgressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     
@@ -71,6 +73,11 @@ class ChampionsLoadingViewController: UIViewController {
                     
                     self.progressLabel.text = "\(downloadedCounter) / \(self.totalChampionsCount)"
                 }
+            }
+        })
+        isDownloadingSub = championListVm?.$isDownloading.sink(receiveValue: { isDownloading in
+            DispatchQueue.main.async {
+                self.isDownloadingLabel.text = isDownloading ? "Downloading" : "Fetching"
             }
         })
     }

@@ -113,6 +113,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiL-wj-Eql">
+                                <rect key="frame" x="0.0" y="390" width="390" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-d1-Ol8">
                                 <rect key="frame" x="97.666666666666686" y="420" width="195" height="4"/>
                             </progressView>
@@ -127,14 +133,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qlW-d1-Ol8" firstAttribute="centerX" secondItem="KJG-PZ-4OG" secondAttribute="centerX" id="FIn-aH-Nr3"/>
+                            <constraint firstItem="qlW-d1-Ol8" firstAttribute="top" secondItem="DiL-wj-Eql" secondAttribute="bottom" constant="30" id="HwI-aj-fLP"/>
                             <constraint firstItem="qlW-d1-Ol8" firstAttribute="centerY" secondItem="KJG-PZ-4OG" secondAttribute="centerY" id="MhR-4x-7Pj"/>
                             <constraint firstItem="TDK-ZU-7bU" firstAttribute="centerX" secondItem="KJG-PZ-4OG" secondAttribute="centerX" id="dfG-a9-tNt"/>
+                            <constraint firstItem="PQ7-KQ-jJ5" firstAttribute="trailing" secondItem="DiL-wj-Eql" secondAttribute="trailing" id="irg-br-MFW"/>
                             <constraint firstItem="TDK-ZU-7bU" firstAttribute="top" secondItem="qlW-d1-Ol8" secondAttribute="bottom" constant="30" id="rMn-6t-c3X"/>
                             <constraint firstItem="qlW-d1-Ol8" firstAttribute="width" secondItem="PQ7-KQ-jJ5" secondAttribute="width" multiplier="0.5" id="vg6-bI-c4t"/>
+                            <constraint firstItem="DiL-wj-Eql" firstAttribute="leading" secondItem="PQ7-KQ-jJ5" secondAttribute="leading" id="xjJ-Yg-IOE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="downloadProgressBar" destination="qlW-d1-Ol8" id="0Yt-0b-yaT"/>
+                        <outlet property="isDownloadingLabel" destination="DiL-wj-Eql" id="RgZ-nY-FbL"/>
                         <outlet property="progressLabel" destination="TDK-ZU-7bU" id="kpC-jr-T5s"/>
                     </connections>
                 </viewController>
