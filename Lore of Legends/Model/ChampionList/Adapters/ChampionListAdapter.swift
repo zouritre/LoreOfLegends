@@ -56,7 +56,13 @@ class ChampionListAdapter {
             self.caller?.downloadedChampionCounterPub.send(newValue.count)
             
             if newValue.count == championsCount {
-                self.caller?.championsDataSubject.send(champions)
+                caller?.championsDataSubject.send(champions)
+                do {
+                    try saveChampionsLocally()
+                }
+                catch {
+                    caller?.championsDataSubject.send(completion: .failure(error))
+                }
             }
         }
     }
