@@ -55,6 +55,15 @@ final class ChampionListTest: XCTestCase {
         
         viewModel.getChampionsCount()
         
-        XCTAssertEqual(viewModel.championsCount, 1)
+        XCTAssertEqual(viewModel.totalChampionsCount, 1)
+    }
+    
+    func testShouldReturnChampionsDownloadProgress() {
+        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let viewModel = ChampionListViewModel(api: api)
+        
+        viewModel.getChampions()
+        
+        XCTAssertEqual(viewModel.downloadedChampionsCount, 1)
     }
 }

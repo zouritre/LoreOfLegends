@@ -21,6 +21,7 @@ extension ChampionListApiMock: ChampionListDelegate {
         }
 
         caller.championsDataSubject.send(champions)
+        caller.downloadedChampionCounterPub.send(1)
     }
 }
 

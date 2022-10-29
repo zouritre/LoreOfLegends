@@ -99,4 +99,5 @@ final class ChampionListAdapterTest: XCTestCase {
     func testShouldDownloadIconForGivenChampion() async throws {
         _ = try await adapter?.delegate.downloadImage(for: Champion(name: "", title: "", imageName: "", skins: [], lore: ""))
     }
+
 }

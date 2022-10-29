@@ -16,12 +16,14 @@ class ChampionListViewModel {
     /// An error thrown when fetching the list of champion from the API
     @Published var championsDataError: Error?
     
-    var championsCount = Int()
+    var totalChampionsCount = Int()
+    var downloadedChampionsCount = Int()
     /// Class responsible for processing and sending the data received by the view-model
     var championListModel: ChampionList
     /// Subscriber that receive data from the model
     var championsDataSubscriber: AnyCancellable?
     var championsCountSubscriber: AnyCancellable?
+    var downloadedChapionsCounterSub: AnyCancellable?
 
     private init() {
         self.champions = []
@@ -44,7 +46,10 @@ class ChampionListViewModel {
             self.champions = champions
         })
         self.championsCountSubscriber = championListModel.championsCountPublisher.sink(receiveValue: { count in
-            self.championsCount = count
+            self.totalChampionsCount = count
+        })
+        self.downloadedChapionsCounterSub = championListModel.downloadedChampionCounterPub.sink(receiveValue: { counter in
+            self.downloadedChampionsCount = counter
         })
     }
     

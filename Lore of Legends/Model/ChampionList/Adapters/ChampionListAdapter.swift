@@ -32,6 +32,9 @@ extension ChampionListAdapter: ChampionListDelegate {
             Task {
                 do {
                     let decodable = try await getDecodableForChampionsData()
+                    
+                    caller.championsCountPublisher.send(decodable.keys.count)
+                    
                     let champions = createChampionsObjects(from: decodable)
                     
                     self.championsCount = champions.count
@@ -173,6 +176,7 @@ class ChampionListAdapter {
                     var champ = champion
                     champ.setIcon(with: data)
                     self.champions.append(champ)
+                    
                 }
                 catch {
                     var champ = champion
