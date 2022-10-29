@@ -14,9 +14,10 @@ extension ChampionListAdapter: ChampionListDelegate {
             do {
                 let decodable = try await getDecodableForChampionsData()
                 
+                caller.championsCountPublisher.send(decodable.keys.count)
             }
             catch {
-                
+                caller.championsDataSubject.send(completion: .failure(error))
             }
         }
     }
@@ -30,11 +31,7 @@ extension ChampionListAdapter: ChampionListDelegate {
         else {
             Task {
                 do {
-                    let lastestPatchVersion = try await delegate.getLastestPatchVersion()
-                    let language = getLanguageForChampionsData()
-                    let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
-                    let json = try await delegate.retrieveChampionFullDataJson(url: url)
-                    let decodable = try decodeChampionDataJson(from: json)
+                    let decodable = try await getDecodableForChampionsData()
                     let champions = createChampionsObjects(from: decodable)
                     
                     self.championsCount = champions.count
