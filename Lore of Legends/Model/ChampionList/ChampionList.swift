@@ -13,18 +13,12 @@ protocol ChampionListDelegate {
     /// Request the champion list and set their icons
     /// - Parameter caller: Model responsible for sending the API data to the view-model
     func getChampions(_ caller: ChampionList)
-    
-    func getChampionsCount() async throws -> Int
 }
 
 /// Model class that manages request for the champion list API
 class ChampionList {
     /// Delegate that manage the API request
-    var delegate: ChampionListDelegate
+    var delegate: ChampionListDelegate?
     /// Publisher that send the API data back to the view-model subscribers
-    var championDataSubject = PassthroughSubject<Champion, Error>()
-    
-    init(api: ChampionListDelegate = ChampionListAdapter()) {
-        delegate = api
-    }
+    var championsDataSubject = PassthroughSubject<[Champion], Error>()
 }

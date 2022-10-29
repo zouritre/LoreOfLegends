@@ -111,6 +111,8 @@ class HomeScreenViewController: UIViewController {
     var championsDataErrorSubscriber: AnyCancellable?
     /// Publisher for the original champion list. Publish  a single value then complete.
     var originalChampListPublisher = PassthroughSubject<[Champion], Never>()
+    /// Subscriber for thz original champion list. Receive a single value then cancel activity.
+    var originalChampListSubscriber: AnyCancellable?
     
     /// Main collectionview of the UI
     @IBOutlet weak var championIconsCollection: UICollectionView!
@@ -122,11 +124,7 @@ class HomeScreenViewController: UIViewController {
         
         setupSubscribers()
         
-        Task {
-            await championListVM.getChampionsCount()
-            
-            championListVM.getChampions()
-        }
+        championListVM.getChampions()
     }
     
     /// Register a Nib to the collection view
@@ -140,12 +138,9 @@ class HomeScreenViewController: UIViewController {
     private func setupSubscribers() {
         championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] champions in
             guard let self else { return }
-            if champions.count == self.championListVM.championsCount {
-                self.originalChampionList = champions
-                
-                DispatchQueue.main.async {
-                    self.championIconsCollection.reloadData()
-                }
+            if champions.count > 0 {
+                self.originalChampListPublisher.send(champions)
+                self.originalChampListPublisher.send(completion: .finished)
             }
             
             DispatchQueue.main.async {
@@ -158,6 +153,18 @@ class HomeScreenViewController: UIViewController {
             guard let dataError else { return }
             
             self.alert(message: dataError.localizedDescription)
+        })
+        
+        originalChampListSubscriber = originalChampListPublisher.sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                self.originalChampListSubscriber?.cancel()
+                return
+            case .failure(_):
+                return
+            }
+        }, receiveValue: { champions in
+                self.originalChampionList = champions
         })
     }
     
