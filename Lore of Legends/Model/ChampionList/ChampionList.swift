@@ -21,6 +21,6 @@ class ChampionList {
     var delegate: ChampionListDelegate?
     /// Publisher that send the API data back to the view-model subscribers
     var championsDataSubject = PassthroughSubject<[Champion], Error>()
-    var championsCountPublisher = PassthroughSubject<Int, Never>()
+    var totalChampionsCountPublisher = PassthroughSubject<Int, Never>()
     var downloadedChampionCounterPub = PassthroughSubject<Int, Never>()
 }

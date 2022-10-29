@@ -12,8 +12,13 @@ class ChampionsLoadingViewController: UIViewController {
 
     var championListVm: ChampionListViewModel?
     var championsDataSub: AnyCancellable?
-    var totalChampionsCount: AnyCancellable?
+    var totalChampionsCountSub: AnyCancellable?
     var downloadedChampionsCountSub: AnyCancellable?
+    var totalChampionsCount = Int()
+    
+    @IBOutlet weak var downloadProgressBar: UIProgressView!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +30,27 @@ class ChampionsLoadingViewController: UIViewController {
         championsDataSub = championListVm?.$champions.sink(receiveValue: { champions in
             if champions.count > 0 {
                 DispatchQueue.main.async {
-                    self.dismiss(animated: false)
+                    self.dismiss(animated: true)
                 }
             }
         })
-        totalChampionsCount = championListVm?.$totalChampionsCount.sink(receiveValue: { count in
+        totalChampionsCountSub = championListVm?.$totalChampionsCount.sink(receiveValue: { count in
+            DispatchQueue.main.async {
+                self.activityIndicator.isHidden = true
+                self.downloadProgressBar.isHidden = false
+                self.totalChampionsCount = count
+                self.progressLabel.text = "0 / \(count)"
+            }
             
         })
         
         downloadedChampionsCountSub = championListVm?.$downloadedChampionsCount.sink(receiveValue: { downloadedCounter in
-            
+            if self.totalChampionsCount > 0 {
+                DispatchQueue.main.async {
+                    self.downloadProgressBar.progress = Float((downloadedCounter*100)/self.totalChampionsCount)
+                    self.progressLabel.text = "\(downloadedCounter) / \(self.totalChampionsCount)"
+                }
+            }
         })
     }
     

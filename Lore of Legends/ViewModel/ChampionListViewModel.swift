@@ -45,7 +45,7 @@ class ChampionListViewModel {
         }, receiveValue: { champions in
             self.champions = champions
         })
-        self.championsCountSubscriber = championListModel.championsCountPublisher.sink(receiveValue: { count in
+        self.championsCountSubscriber = championListModel.totalChampionsCountPublisher.sink(receiveValue: { count in
             self.totalChampionsCount = count
         })
         self.downloadedChapionsCounterSub = championListModel.downloadedChampionCounterPub.sink(receiveValue: { counter in

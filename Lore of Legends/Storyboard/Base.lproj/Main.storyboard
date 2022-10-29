@@ -112,9 +112,40 @@
                     <view key="view" contentMode="scaleToFill" id="KJG-PZ-4OG">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Vev-s7-gSC">
+                                <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vev-s7-gSC" secondAttribute="height" multiplier="1:1" id="rkN-5C-oiH"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-d1-Ol8">
+                                <rect key="frame" x="97.666666666666686" y="420" width="195" height="4"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProgressLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDK-ZU-7bU">
+                                <rect key="frame" x="140.66666666666666" y="454" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="PQ7-KQ-jJ5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vev-s7-gSC" firstAttribute="centerX" secondItem="KJG-PZ-4OG" secondAttribute="centerX" id="2NY-ic-pTS"/>
+                            <constraint firstItem="qlW-d1-Ol8" firstAttribute="centerX" secondItem="KJG-PZ-4OG" secondAttribute="centerX" id="FIn-aH-Nr3"/>
+                            <constraint firstItem="qlW-d1-Ol8" firstAttribute="centerY" secondItem="KJG-PZ-4OG" secondAttribute="centerY" id="MhR-4x-7Pj"/>
+                            <constraint firstItem="TDK-ZU-7bU" firstAttribute="centerX" secondItem="KJG-PZ-4OG" secondAttribute="centerX" id="dfG-a9-tNt"/>
+                            <constraint firstItem="Vev-s7-gSC" firstAttribute="centerY" secondItem="KJG-PZ-4OG" secondAttribute="centerY" id="gQz-zS-Rqj"/>
+                            <constraint firstItem="TDK-ZU-7bU" firstAttribute="top" secondItem="qlW-d1-Ol8" secondAttribute="bottom" constant="30" id="rMn-6t-c3X"/>
+                            <constraint firstItem="qlW-d1-Ol8" firstAttribute="width" secondItem="PQ7-KQ-jJ5" secondAttribute="width" multiplier="0.5" id="vg6-bI-c4t"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Vev-s7-gSC" id="bmE-zk-sjw"/>
+                        <outlet property="downloadProgressBar" destination="qlW-d1-Ol8" id="0Yt-0b-yaT"/>
+                        <outlet property="progressLabel" destination="TDK-ZU-7bU" id="kpC-jr-T5s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RH-Ab-u6F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

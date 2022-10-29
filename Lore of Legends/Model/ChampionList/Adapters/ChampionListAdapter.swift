@@ -20,11 +20,9 @@ extension ChampionListAdapter: ChampionListDelegate {
                 do {
                     let decodable = try await getDecodableForChampionsData()
                     
-                    caller.championsCountPublisher.send(decodable.keys.count)
+                    self.championsCount = decodable.keys.count
                     
                     let champions = createChampionsObjects(from: decodable)
-                    
-                    self.championsCount = champions.count
                     
                     setIcons(for: champions)
                 }
@@ -52,12 +50,24 @@ protocol ChampionListAdapterDelegate {
 class ChampionListAdapter {
     // MARK: Vars
     
-    @Published var champions = [Champion]()
+    var champions = [Champion]() {
+        willSet {
+            self.caller?.downloadedChampionCounterPub.send(newValue.count)
+            
+            if newValue.count == championsCount {
+                self.caller?.championsDataSubject.send(champions)
+            }
+        }
+    }
     
     var delegate: ChampionListAdapterDelegate
     private var championsSubscriber: AnyCancellable?
     private var caller: ChampionList?
-    private var championsCount: Int?
+    private var championsCount = Int() {
+        willSet {
+            caller?.totalChampionsCountPublisher.send(newValue)
+        }
+    }
     /// A bool indicating if the downloaded champions assets is already saved on the device locale storage
     private var isAssetSavedLocally: Bool {
         get {
@@ -67,26 +77,11 @@ class ChampionListAdapter {
             UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         }
     }
-    private var taskSubscriber: AnyCancellable?
-    /// List of every champion in League
     
     // MARK: Init
     
     init(delegate: ChampionListAdapterDelegate = RiotCdnApi()) {
         self.delegate = delegate
-        
-        championsSubscriber = $champions.sink(receiveValue: { champions in
-            guard let championsCount = self.championsCount else { return }
-            
-            if champions.count == championsCount {
-                self.caller?.downloadedChampionCounterPub.send(championsCount)
-                self.caller?.championsDataSubject.send(champions)
-            }
-            else {
-                self.caller?.downloadedChampionCounterPub.send(championsCount)
-            }
-            
-        })
     }
     
     
@@ -206,8 +201,8 @@ class ChampionListAdapter {
     }
     
     private func saveChampionsLocally() throws {
-//        let appDelegate = AppDelegate()
-//        let context = appDelegate.persistentContainer.viewContext
+        //        let appDelegate = AppDelegate()
+        //        let context = appDelegate.persistentContainer.viewContext
         
     }
     
