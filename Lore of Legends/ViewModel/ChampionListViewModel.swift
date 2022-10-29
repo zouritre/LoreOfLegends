@@ -57,8 +57,4 @@ class ChampionListViewModel {
     func getChampions() {
         championListModel.delegate?.getChampions(championListModel)
     }
-    
-    func getChampionsCount() {
-        championListModel.delegate?.getChampionsCount(caller: championListModel)
-    }
 }

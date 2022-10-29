@@ -50,10 +50,10 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testShouldReturnAvailableChampionsCount() {
-        let api = ChampionListApiMock()
+        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
         let viewModel = ChampionListViewModel(api: api)
         
-        viewModel.getChampionsCount()
+        viewModel.getChampions()
         
         XCTAssertEqual(viewModel.totalChampionsCount, 1)
     }

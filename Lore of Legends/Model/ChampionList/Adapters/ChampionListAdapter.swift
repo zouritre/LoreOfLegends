@@ -93,7 +93,11 @@ class ChampionListAdapter {
             guard let championsCount = self.championsCount else { return }
             
             if champions.count == championsCount {
+                self.caller?.downloadedChampionCounterPub.send(championsCount)
                 self.caller?.championsDataSubject.send(champions)
+            }
+            else {
+                self.caller?.downloadedChampionCounterPub.send(championsCount)
             }
             
         })

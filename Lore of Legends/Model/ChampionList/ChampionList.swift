@@ -13,8 +13,6 @@ protocol ChampionListDelegate {
     /// Request the champion list and set their icons
     /// - Parameter caller: Model responsible for sending the API data to the view-model
     func getChampions(_ caller: ChampionList)
-    
-    func getChampionsCount(caller: ChampionList)
 }
 
 /// Model class that manages request for the champion list API

@@ -9,17 +9,13 @@ import Foundation
 @testable import Lore_of_Legends
 
 extension ChampionListApiMock: ChampionListDelegate {
-    func getChampionsCount(caller: Lore_of_Legends.ChampionList) {
-        caller.championsCountPublisher.send(1)
-    }
-    
     func getChampions(_ caller: ChampionList) {
         guard let champions else {
             caller.championsDataSubject.send(completion: .failure(ChampionListError.DecodingFail))
 
             return
         }
-
+        caller.championsCountPublisher.send(1)
         caller.championsDataSubject.send(champions)
         caller.downloadedChampionCounterPub.send(1)
     }
