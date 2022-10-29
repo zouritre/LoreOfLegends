@@ -12,6 +12,8 @@ class ChampionsLoadingViewController: UIViewController {
 
     var championListVm: ChampionListViewModel?
     var championsDataSub: AnyCancellable?
+    var totalChampionsCount: AnyCancellable?
+    var downloadedChampionsCountSub: AnyCancellable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,13 @@ class ChampionsLoadingViewController: UIViewController {
                     self.dismiss(animated: false)
                 }
             }
+        })
+        totalChampionsCount = championListVm?.$totalChampionsCount.sink(receiveValue: { count in
+            
+        })
+        
+        downloadedChampionsCountSub = championListVm?.$downloadedChampionsCount.sink(receiveValue: { downloadedCounter in
+            
         })
     }
     
