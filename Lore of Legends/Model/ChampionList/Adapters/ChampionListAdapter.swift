@@ -9,19 +9,6 @@ import Foundation
 import Combine
 
 extension ChampionListAdapter: ChampionListDelegate {
-    func getChampionsCount(caller: ChampionList) {
-        Task {
-            do {
-                let decodable = try await getDecodableForChampionsData()
-                
-                caller.championsCountPublisher.send(decodable.keys.count)
-            }
-            catch {
-                caller.championsDataSubject.send(completion: .failure(error))
-            }
-        }
-    }
-    
     func getChampions(_ caller: ChampionList) {
         self.caller = caller
         
