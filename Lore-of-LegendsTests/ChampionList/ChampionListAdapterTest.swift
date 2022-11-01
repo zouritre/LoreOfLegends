@@ -107,4 +107,10 @@ final class ChampionListAdapterTest: XCTestCase {
         
         sub?.cancel()
     }
+    
+    func testShouldSaveChampionsInCoreData() {
+        let champions = [Champion(name: "", title: "", imageName: "", skins: [], lore: "")]
+        
+        XCTAssertNoThrow(try adapter?.saveChampionsLocally(champions: champions))
+    }
 }

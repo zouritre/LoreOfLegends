@@ -207,7 +207,7 @@ class ChampionListAdapter {
         return champions
     }
     
-    private func saveChampionsLocally(champions: [Champion]) throws {
+    func saveChampionsLocally(champions: [Champion]) throws {
         //        let appDelegate = AppDelegate()
         //        let context = appDelegate.persistentContainer.viewContext
         

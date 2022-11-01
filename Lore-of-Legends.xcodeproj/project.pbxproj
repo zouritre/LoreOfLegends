@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9179F16291177AB00E178F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9179F15291177AB00E178F8 /* Persistence.swift */; };
 		E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */; };
 		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E9179F15291177AB00E178F8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailViewController.swift; sourceTree = "<group>"; };
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListTest.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		E981EB402909A2F0002980DC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				E9179F15291177AB00E178F8 /* Persistence.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 			files = (
 				E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */,
 				E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */,
+				E9179F16291177AB00E178F8 /* Persistence.swift in Sources */,
 				E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */,
 				E97BD3DA29052F1200F63EFB /* ChampionAssetType.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListAdapter.swift in Sources */,
