@@ -118,11 +118,23 @@ final class ChampionListAdapterTest: XCTestCase {
     func testShouldFetchChampiondDataFromCoreData() throws {
         let context = PersistenceController.tempStorage.container.viewContext
         let champions = [Champion(name: "Test", title: "", imageName: "", skins: [], lore: "")]
-        
+
         try adapter?.saveChampionsLocally(champions: champions, context: context)
-        
+
         let fetchedChampions = try adapter?.fetchChampions(context: context)
-        
+
         XCTAssertEqual(fetchedChampions?.count, 1)
+    }
+    
+    func testShouldRemoveAllChampionsDataSaved() throws {
+        let context = PersistenceController.tempStorage.container.viewContext
+        let champions = [Champion(name: "Test", title: "", imageName: "", skins: [], lore: "")]
+
+        try adapter?.saveChampionsLocally(champions: champions, context: context)
+        try adapter?.removeChampionsDataFromStorage(context: context)
+
+        let fetchedChampions = try adapter?.fetchChampions(context: context)
+
+        XCTAssertEqual(fetchedChampions?.count, 0)
     }
 }

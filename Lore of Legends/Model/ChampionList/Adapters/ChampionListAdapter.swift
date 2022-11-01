@@ -273,6 +273,19 @@ class ChampionListAdapter {
         }
     }
     
+    func removeChampionsDataFromStorage(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws {
+        let storedData = try context.fetch(.init(entityName: "ChampionData"))
+        
+        guard let storedData = storedData as? [ChampionData] else {
+            throw ChampionListError.CastingFailed
+        }
+        
+        for entry in storedData {
+            context.delete(entry)
+        }
+        
+        try context.save()
+    }
     //    private func setDataForImage(type: ChampionAssetType, for champions: inout [Champion]) {
     //        var imageSubdirectory: String
     //
