@@ -16,7 +16,19 @@ extension ChampionListAdapter: ChampionListDelegate {
         if isAssetSavedLocally {
             caller.isDownloadingPub.send(false)
             
-            
+            do {
+                let champions = try fetchChampions()
+                
+                print("Champions count: ", champions.count)
+                caller.totalChampionsCountPublisher.send(champions.count)
+                caller.downloadedChampionCounterPub.send(champions.count)
+                caller.championsDataSubject.send(champions)
+            }
+            catch {
+                // Force downloading assets again on next app start
+                isAssetSavedLocally = false
+                caller.championsDataSubject.send(completion: .failure(error))
+            }
         }
         else {
             caller.isDownloadingPub.send(true)
@@ -231,7 +243,7 @@ class ChampionListAdapter {
         }
     }
     
-    func fetchChampions(context: NSManagedObjectContext) throws -> [Champion] {
+    func fetchChampions(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws -> [Champion] {
         do {
             let championsEncoded = try context.fetch(.init(entityName: "ChampionData"))
             
