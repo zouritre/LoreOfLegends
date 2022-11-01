@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 @testable import Lore_of_Legends
 
 final class ChampionListAdapterTest: XCTestCase {
@@ -89,4 +90,21 @@ final class ChampionListAdapterTest: XCTestCase {
         _ = try await adapter?.delegate.downloadImage(for: Champion(name: "", title: "", imageName: "", skins: [], lore: ""))
     }
 
+    func testShouldSetIconForGivenChampions() async {
+        let champions = [Champion(name: "", title: "", imageName: "", skins: [], lore: "")]
+        let model = ChampionList()
+        let expectation = expectation(description: "Wait for champions data")
+        let sub: AnyCancellable?
+        sub = model.championsDataSubject.sink(receiveCompletion: { _ in }, receiveValue: { _ in
+            expectation.fulfill()
+        })
+        
+        adapter?.caller = model
+        adapter?.championsCount = 1
+        adapter?.setIcons(for: champions)
+        
+        await waitForExpectations(timeout: 1)
+        
+        sub?.cancel()
+    }
 }

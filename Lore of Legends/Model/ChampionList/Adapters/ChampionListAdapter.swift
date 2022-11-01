@@ -69,8 +69,8 @@ class ChampionListAdapter {
     
     var delegate: ChampionListAdapterDelegate
     private var championsSubscriber: AnyCancellable?
-    private var caller: ChampionList?
-    private var championsCount = Int() {
+    var caller: ChampionList?
+    var championsCount = Int() {
         willSet {
             caller?.totalChampionsCountPublisher.send(newValue)
         }
