@@ -34,6 +34,9 @@ extension ChampionListAdapter: ChampionListDelegate {
             caller.isDownloadingPub.send(true)
             Task {
                 do {
+                    // Remove already stored champions data to avoid duplicating
+                    try removeChampionsDataFromStorage()
+                    
                     let decodable = try await getDecodableForChampionsData()
                     
                     self.championsCount = decodable.keys.count
