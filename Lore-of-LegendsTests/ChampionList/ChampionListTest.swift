@@ -20,7 +20,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testChampionListArrayShouldContainAllChampions() throws {
-        let mockApi = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", skins: [ChampionAsset(fileName: "", title: "")], lore: "")])
+        let mockApi = ChampionListAdapterMock(champions: [Champion(name: "", title: "", imageName: "", skins: [ChampionAsset(fileName: "", title: "")], lore: "")])
         let championListVM = ChampionListViewModel(api: mockApi)
         
         championListVM.getChampions()
@@ -30,7 +30,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testChampionListArrayShouldBeEmpty() throws {
-        let mockApi = ChampionListApiMock(champions: nil)
+        let mockApi = ChampionListAdapterMock(champions: nil)
         let championListVM = ChampionListViewModel(api: mockApi)
         
         championListVM.getChampions()
@@ -41,7 +41,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testChampionIconImageShouldBeReturned() {
-        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let api = ChampionListAdapterMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
         let viewModel = ChampionListViewModel(api: api)
         
         viewModel.getChampions()
@@ -50,7 +50,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testShouldReturnAvailableChampionsCount() {
-        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let api = ChampionListAdapterMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
         let viewModel = ChampionListViewModel(api: api)
         
         viewModel.getChampions()
@@ -59,7 +59,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testShouldReturnChampionsDownloadProgress() {
-        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let api = ChampionListAdapterMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
         let viewModel = ChampionListViewModel(api: api)
         
         viewModel.getChampions()
@@ -68,7 +68,7 @@ final class ChampionListTest: XCTestCase {
     }
     
     func testShouldReturnTrueIfDownloadIsRunning() {
-        let api = ChampionListApiMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
+        let api = ChampionListAdapterMock(champions: [Champion(name: "", title: "", imageName: "", icon: Data(), skins: .init(), lore: "")])
         let viewModel = ChampionListViewModel(api: api)
         
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)

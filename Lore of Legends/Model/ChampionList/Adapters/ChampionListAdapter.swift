@@ -58,7 +58,7 @@ class ChampionListAdapter {
             if newValue.count == championsCount {
                 caller?.championsDataSubject.send(champions)
                 do {
-                    try saveChampionsLocally()
+                    try saveChampionsLocally(champions: newValue)
                 }
                 catch {
                     caller?.championsDataSubject.send(completion: .failure(error))
@@ -207,7 +207,7 @@ class ChampionListAdapter {
         return champions
     }
     
-    private func saveChampionsLocally() throws {
+    private func saveChampionsLocally(champions: [Champion]) throws {
         //        let appDelegate = AppDelegate()
         //        let context = appDelegate.persistentContainer.viewContext
         

@@ -8,7 +8,7 @@
 import Foundation
 @testable import Lore_of_Legends
 
-extension ChampionListApiMock: ChampionListDelegate {
+extension ChampionListAdapterMock: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
         guard let champions else {
             caller.championsDataSubject.send(completion: .failure(ChampionListError.DecodingFail))
@@ -23,7 +23,7 @@ extension ChampionListApiMock: ChampionListDelegate {
 }
 
 /// API that mocks request for receiving the full champion list and theiricons
-class ChampionListApiMock {
+class ChampionListAdapterMock {
     let champions:  [Champion]?
     
     init(champions: [Champion]? = nil) {
