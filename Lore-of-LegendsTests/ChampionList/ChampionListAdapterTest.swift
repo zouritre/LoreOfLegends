@@ -109,8 +109,9 @@ final class ChampionListAdapterTest: XCTestCase {
     }
     
     func testShouldSaveChampionsInCoreData() {
-        let champions = [Champion(name: "", title: "", imageName: "", skins: [], lore: "")]
+        let champions = [Champion(name: "Test", title: "", imageName: "", skins: [], lore: "")]
+        let context = PersistenceController.tempStorage.container.viewContext
         
-        XCTAssertNoThrow(try adapter?.saveChampionsLocally(champions: champions))
+        XCTAssertNoThrow(try adapter?.saveChampionsLocally(champions: champions, context: context))
     }
 }

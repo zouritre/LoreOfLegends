@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChampionAsset {
+struct ChampionAsset: Codable {
     var fileName: String
     var title: String
     var splash: Data = Data()

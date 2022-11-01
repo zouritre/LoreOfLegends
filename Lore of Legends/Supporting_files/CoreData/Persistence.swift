@@ -12,7 +12,7 @@ struct PersistenceController {
 
     static var tempStorage: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-//        let viewContext = result.container.viewContext
+        let viewContext = result.container.viewContext
 //        for _ in 0..<10 {
 //            let newItem = Item(context: viewContext)
 //            newItem.timestamp = Date()
@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "coredataTemp")
+        container = NSPersistentContainer(name: "MainDataStore")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

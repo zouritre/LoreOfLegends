@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import CoreData
 
 extension ChampionListAdapter: ChampionListDelegate {
     func getChampions(_ caller: ChampionList) {
@@ -207,10 +208,21 @@ class ChampionListAdapter {
         return champions
     }
     
-    func saveChampionsLocally(champions: [Champion]) throws {
-        //        let appDelegate = AppDelegate()
-        //        let context = appDelegate.persistentContainer.viewContext
-        
+    func saveChampionsLocally(champions: [Champion], context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws {
+        for champion in champions {
+            do {
+                let encodedData = try JSONEncoder().encode(champion)
+                let stringifiedData = String(data: encodedData, encoding: .utf8)
+                let championEncoded = ChampionData(context: context)
+                
+                championEncoded.encodedData = stringifiedData
+                
+                try context.save()
+            }
+            catch {
+                throw error
+            }
+        }
     }
     
     //    private func setDataForImage(type: ChampionAssetType, for champions: inout [Champion]) {

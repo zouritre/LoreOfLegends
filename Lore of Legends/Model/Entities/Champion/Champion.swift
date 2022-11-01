@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Champion {
+struct Champion: Codable {
     var name: String
     var title: String
     var imageName: String
