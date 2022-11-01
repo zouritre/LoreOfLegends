@@ -15,6 +15,8 @@ extension ChampionListAdapter: ChampionListDelegate {
         
         if isAssetSavedLocally {
             caller.isDownloadingPub.send(false)
+            
+            
         }
         else {
             caller.isDownloadingPub.send(true)
@@ -60,9 +62,13 @@ class ChampionListAdapter {
                 caller?.championsDataSubject.send(champions)
                 do {
                     try saveChampionsLocally(champions: newValue)
+                    
+                    isAssetSavedLocally = true
                 }
                 catch {
                     caller?.championsDataSubject.send(completion: .failure(error))
+                    
+                    isAssetSavedLocally = false
                 }
             }
         }
@@ -222,6 +228,36 @@ class ChampionListAdapter {
             catch {
                 throw error
             }
+        }
+    }
+    
+    func fetchChampions(context: NSManagedObjectContext) throws -> [Champion] {
+        do {
+            let championsEncoded = try context.fetch(.init(entityName: "ChampionData"))
+            
+            guard let championsEncoded = championsEncoded as? [ChampionData] else {
+                print("Bad casting")
+                throw ChampionListError.CastingFailed
+            }
+            
+            var champions = [Champion]()
+            
+            for champion in championsEncoded {
+                guard let stringifiedData = champion.encodedData else {
+                    throw ChampionListError.NoDataFetchedForRow
+                }
+                
+                let data = Data(stringifiedData.utf8)
+                
+                let decodedChampion = try JSONDecoder().decode(Champion.self, from: data)
+                
+                champions.append(decodedChampion)
+            }
+            
+            return champions
+        }
+        catch {
+            throw error
         }
     }
     

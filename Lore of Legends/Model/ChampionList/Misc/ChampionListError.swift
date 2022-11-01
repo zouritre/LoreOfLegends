@@ -18,6 +18,10 @@ extension ChampionListError: LocalizedError {
             return "Champ list failed json"
         case .noDataForLanguage:
             return "No data for language"
+        case .CastingFailed:
+            return "Casting failed"
+        case .NoDataFetchedForRow:
+            return "Couldn't retrieve saved data for a champion"
         }
     }
 }
@@ -27,4 +31,6 @@ enum ChampionListError: Error {
     case badUrl
     case GetJsonFailed
     case noDataForLanguage
+    case CastingFailed
+    case NoDataFetchedForRow
 }
