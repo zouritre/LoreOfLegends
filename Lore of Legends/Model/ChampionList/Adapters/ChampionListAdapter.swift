@@ -215,7 +215,7 @@ class ChampionListAdapter {
                     imageName.removeLast(4)
                     
                     for skin in champInfo.skins {
-                        skins.append(ChampionAsset(fileName: "\(imageName)_\(skin.num)", title: skin.name))
+                        skins.append(ChampionAsset(fileName: "\(imageName)_\(skin.num).jpg", title: skin.name))
                     }
                     
                     champions.append(Champion(name: champInfo.name, title: champInfo.title, imageName: imageName, skins: skins, lore: champInfo.lore))

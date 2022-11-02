@@ -22,7 +22,7 @@ final class ChampionDetailAdapterTest: XCTestCase {
         let adapter = ChampionDetailAdapter(delegate: RiotCdnApiMock())
         let champion = Champion(name: "", title: "", imageName: "", skins: [], lore: "")
         
-        let championWithSkins = try await adapter.delegate?.setIcon(for: champion)
+        let championWithSkins = try await adapter.delegate?.setSkins(for: champion)
         
         XCTAssertNotNil(championWithSkins?.skins[0].splash)
     }

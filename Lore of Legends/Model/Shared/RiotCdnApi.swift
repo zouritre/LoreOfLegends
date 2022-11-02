@@ -44,11 +44,40 @@ extension RiotCdnApi: ChampionListAdapterDelegate {
 }
 
 extension RiotCdnApi: ChampionDetailAdapterDelegate {
-    func setIcon(for champion: Champion) async throws -> Champion {
-        throw ChampionListError.CastingFailed
+    func setSkins(for champion: Champion) async throws -> Champion {
+        var champ = champion
+        
+        for (index, skin) in champion.skins.enumerated() {
+            let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(skin.fileName)")
+            let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(skin.fileName)")
+            
+            guard let splashUrl else { throw ChampionListError.badUrl }
+            guard let centeredUrl else { throw ChampionListError.badUrl }
+
+            do {
+                var skin = skin
+                
+                let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
+                
+                skin.setSplash(with: splashData)
+                
+                let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
+                
+                skin.setCenteredImage(with: centeredData)
+                champ.skins.remove(at: index)
+                champ.skins.append(skin)
+            }
+            catch {
+                throw error
+            }
+        }
+        
+        return champ
     }
 }
 
 class RiotCdnApi {
-    
+    private func makeRequest(to: URL) {
+        
+    }
 }

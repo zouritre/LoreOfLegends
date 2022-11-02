@@ -8,13 +8,13 @@
 import Foundation
 
 protocol ChampionDetailAdapterDelegate {
-    func setIcon(for champion: Champion) async throws -> Champion
+    func setSkins(for champion: Champion) async throws -> Champion
 }
 
 extension ChampionDetailAdapter: ChampionDetailDelegate {
     func setSkinImages(caller: ChampionDetail, champion: Champion) {
         Task {
-            let champion = try? await delegate?.setIcon(for: champion)
+            let champion = try? await delegate?.setSkins(for: champion)
             
             guard let champion else { return }
             
