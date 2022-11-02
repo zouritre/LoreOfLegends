@@ -13,7 +13,13 @@ protocol ChampionDetailAdapterDelegate {
 
 extension ChampionDetailAdapter: ChampionDetailDelegate {
     func setSkinImages(caller: ChampionDetail, champion: Champion) {
-        
+        Task {
+            let champion = try? await delegate?.setIcon(for: champion)
+            
+            guard let champion else { return }
+            
+            caller.championDataPublisher.send(champion)
+        }
     }
 }
 
