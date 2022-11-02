@@ -10,8 +10,8 @@ import Foundation
 struct ChampionAsset: Codable {
     var fileName: String
     var title: String
-    var splash: Data = Data()
-    var centered: Data = Data()
+    var splash: Data?
+    var centered: Data?
     
     mutating func setSplash(with data: Data) {
         self.splash = data

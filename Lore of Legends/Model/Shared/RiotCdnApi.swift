@@ -43,6 +43,12 @@ extension RiotCdnApi: ChampionListAdapterDelegate {
     }
 }
 
+extension RiotCdnApi: ChampionDetailAdapterDelegate {
+    func setIcon(for champion: Champion) async throws -> Champion {
+        throw ChampionListError.CastingFailed
+    }
+}
+
 class RiotCdnApi {
     
 }

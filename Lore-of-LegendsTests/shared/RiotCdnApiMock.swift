@@ -26,6 +26,16 @@ extension RiotCdnApiMock: ChampionListAdapterDelegate {
     }
 }
 
+extension RiotCdnApiMock: ChampionDetailAdapterDelegate {
+    func setIcon(for champion: Lore_of_Legends.Champion) async throws -> Lore_of_Legends.Champion {
+        let asset = ChampionAsset(fileName: "", title: "", splash: Data())
+        var champion = champion
+        champion.skins.append(asset)
+        
+        return champion
+    }
+}
+
 class RiotCdnApiMock {
     
 }
