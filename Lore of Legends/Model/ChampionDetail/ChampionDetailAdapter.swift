@@ -13,8 +13,9 @@ protocol ChampionDetailAdapterDelegate {
 
 extension ChampionDetailAdapter: ChampionDetailDelegate {
     func setSkinImages(caller: ChampionDetail, champion: Champion) {
+        print("here")
         Task {
-            let champion = try? await delegate?.setSkins(for: champion)
+            let champion = try? await delegate.setSkins(for: champion)
             
             guard let champion else { return }
             
@@ -24,9 +25,9 @@ extension ChampionDetailAdapter: ChampionDetailDelegate {
 }
 
 class ChampionDetailAdapter {
-    var delegate: ChampionDetailAdapterDelegate?
+    var delegate: ChampionDetailAdapterDelegate
     
-    init(delegate: ChampionDetailAdapterDelegate? = RiotCdnApi()) {
+    init(delegate: ChampionDetailAdapterDelegate = RiotCdnApi()) {
         self.delegate = delegate
     }
 }

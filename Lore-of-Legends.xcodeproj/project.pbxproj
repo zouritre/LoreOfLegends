@@ -39,7 +39,6 @@
 		E9CD8C52290AF6440042C46B /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E9CD8C51290AF6440042C46B /* championFull.json */; };
 		E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DC37362902EA8B008384FC /* ChampionIconCell.swift */; };
 		E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DC37372902EA8C008384FC /* ChampionIconCell.xib */; };
-		E9F9188D2912D89A00B09251 /* ChampionDetailAdapterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9188C2912D89A00B09251 /* ChampionDetailAdapterTest.swift */; };
 		E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF04412904B37500DE07A4 /* ChampionAsset.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +89,6 @@
 		E9CD8C51290AF6440042C46B /* championFull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = championFull.json; sourceTree = "<group>"; };
 		E9DC37362902EA8B008384FC /* ChampionIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionIconCell.swift; sourceTree = "<group>"; };
 		E9DC37372902EA8C008384FC /* ChampionIconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionIconCell.xib; sourceTree = "<group>"; };
-		E9F9188C2912D89A00B09251 /* ChampionDetailAdapterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailAdapterTest.swift; sourceTree = "<group>"; };
 		E9FF04412904B37500DE07A4 /* ChampionAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionAsset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,7 +300,6 @@
 			children = (
 				E92B6F4829129948001CC206 /* ChampionDetailTest.swift */,
 				E92B6F512912B6EC001CC206 /* ChampionDetailAdapterMock.swift */,
-				E9F9188C2912D89A00B09251 /* ChampionDetailAdapterTest.swift */,
 			);
 			path = ChampionDetail;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 				E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */,
 				E92B6F532912B6F2001CC206 /* ChampionDetailAdapterMock.swift in Sources */,
 				E9BEA3F2290B1DBB00FE723D /* ChampionListAdapterMock.swift in Sources */,
-				E9F9188D2912D89A00B09251 /* ChampionDetailAdapterTest.swift in Sources */,
 				E92B6F4929129948001CC206 /* ChampionDetailTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,10 @@ protocol ChampionDetailDelegate {
 }
 
 class ChampionDetail {
-    var delegate: ChampionDetailDelegate?
+    var delegate: ChampionDetailDelegate
     var championDataPublisher = PassthroughSubject<Champion, Never>()
+    
+    init(adapter: ChampionDetailDelegate = ChampionDetailAdapter()) {
+        self.delegate = adapter
+    }
 }

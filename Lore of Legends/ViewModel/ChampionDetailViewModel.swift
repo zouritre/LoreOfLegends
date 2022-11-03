@@ -11,22 +11,23 @@ import Combine
 class ChampionDetailViewModel {
     @Published var champion: Champion?
     
-    let model = ChampionDetail()
+    var model: ChampionDetail
     var championDataSub: AnyCancellable?
     
     init() {
-        
+        self.model = ChampionDetail()
     }
     
-    convenience init(api: ChampionDetailDelegate = ChampionDetailAdapter()) {
+    convenience init(model: ChampionDetail) {
         self.init()
-        self.model.delegate = api
+        self.model = model
         self.championDataSub = model.championDataPublisher.sink(receiveValue: { champion in
+            print("Champ arrived: ", champion)
             self.champion = champion
         })
     }
     
     func setSkinsForChampion(champion: Champion) {
-        model.delegate?.setSkinImages(caller: model, champion: champion)
+        model.delegate.setSkinImages(caller: model, champion: champion)
     }
 }

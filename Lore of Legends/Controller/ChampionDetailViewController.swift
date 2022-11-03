@@ -6,14 +6,32 @@
 //
 
 import UIKit
+import Combine
 
 class ChampionDetailViewController: UIViewController {
 
     var champion: Champion?
+    let viewmodel = ChampionDetailViewModel()
+    var championDataSub: AnyCancellable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Selected champion: ", champion?.name)
         // Do any additional setup after loading the view.
+        guard let champion else {
+            alert(message: "Couldn't retrieve champion data")
+            
+            return
+        }
+        
+        championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
+            if let champ {
+                print("Received champion: ", champ)
+            }
+        })
+        
+        viewmodel.setSkinsForChampion(champion: champion)
     }
     
 
