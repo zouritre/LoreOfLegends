@@ -68,4 +68,13 @@ final class ChampionDetailTest: XCTestCase {
         
         XCTAssertNotNil(vm?.champion?.skins[0].splash)
     }
+    
+    func testShouldReturnGivenChampionCenteredImage() async {
+        
+        vm?.setSkinsForChampion(champion: champion)
+        
+        await waitForExpectations(timeout: 1)
+        
+        XCTAssertNotNil(vm?.champion?.skins[0].centered)
+    }
 }
