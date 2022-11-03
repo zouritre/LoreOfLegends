@@ -44,40 +44,55 @@ extension RiotCdnApi: ChampionListAdapterDelegate {
 }
 
 extension RiotCdnApi: ChampionDetailAdapterDelegate {
-    func setSkins(for champion: Champion) async throws -> Champion {
-        var champ = champion
+    func setSkins(caller: ChampionDetailAdapter, for champion: Champion) {
+        self.selectedChampion = champion
+        self.caller = caller
+        skinsCount = champion.skins.count
         
-        for (index, skin) in champion.skins.enumerated() {
+        for skin in champion.skins {
             let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(skin.fileName)")
             let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(skin.fileName)")
             
-            guard let splashUrl else {
-                throw ChampionListError.badUrl }
-            guard let centeredUrl else {
-                throw ChampionListError.badUrl }
-
-            do {
+            Task {
+                var splash: Data?
+                var centered: Data?
+                
+                if let splashUrl {
+                    do {
+                        let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
+                        splash = splashData
+                    }
+                    catch {
+                    }
+                }
+                if let centeredUrl {
+                    let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
+                    centered = centeredData
+                }
+                
                 var asset = skin
                 
-                let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
-                
-                asset.setSplash(with: splashData)
-                
-                let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
-                
-                asset.setCenteredImage(with: centeredData)
-                champ.skins.remove(at: index)
-                champ.skins.append(asset)
-            }
-            catch {
-                print(error)
-                throw error
+                asset.setSplash(with: splash)
+                asset.setCenteredImage(with: centered)
+                skins.append(asset)
             }
         }
-        
-        return champ
     }
 }
 
 class RiotCdnApi {
+    var caller: ChampionDetailAdapter?
+    var selectedChampion: Champion?
+    var skins = [ChampionAsset]() {
+        didSet {
+            if skins.count == skinsCount {
+                selectedChampion?.skins = skins
+                
+                guard let selectedChampion else { return }
+                
+                caller?.caller?.championDataPublisher.send(selectedChampion)
+            }
+        }
+    }
+    var skinsCount = 0
 }

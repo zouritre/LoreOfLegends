@@ -13,11 +13,11 @@ struct ChampionAsset: Codable {
     var splash: Data?
     var centered: Data?
     
-    mutating func setSplash(with data: Data) {
+    mutating func setSplash(with data: Data?) {
         self.splash = data
     }
     
-    mutating func setCenteredImage(with data: Data) {
+    mutating func setCenteredImage(with data: Data?) {
         self.centered = data
     }
 }

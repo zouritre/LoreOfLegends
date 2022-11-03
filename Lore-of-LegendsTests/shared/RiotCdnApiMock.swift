@@ -27,12 +27,12 @@ extension RiotCdnApiMock: ChampionListAdapterDelegate {
 }
 
 extension RiotCdnApiMock: ChampionDetailAdapterDelegate {
-    func setSkins(for champion: Lore_of_Legends.Champion) async -> Lore_of_Legends.Champion {
+    func setSkins(caller: Lore_of_Legends.ChampionDetailAdapter ,for champion: Lore_of_Legends.Champion) {
         let asset = ChampionAsset(fileName: "", title: "", splash: Data(), centered: Data())
         var champ = champion
         champ.skins.append(asset)
         
-        return champ
+        caller.caller?.championDataPublisher.send(champ)
     }
 }
 
