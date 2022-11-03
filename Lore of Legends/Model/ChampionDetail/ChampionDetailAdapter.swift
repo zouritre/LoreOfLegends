@@ -13,13 +13,15 @@ protocol ChampionDetailAdapterDelegate {
 
 extension ChampionDetailAdapter: ChampionDetailDelegate {
     func setSkinImages(caller: ChampionDetail, champion: Champion) {
-        print("here")
         Task {
-            let champion = try? await delegate.setSkins(for: champion)
+            var champ = champion
             
-            guard let champion else { return }
-            
-            caller.championDataPublisher.send(champion)
+            do {
+                champ = try await delegate.setSkins(for: champion)
+            }
+            catch {
+            }
+            caller.championDataPublisher.send(champ)
         }
     }
 }

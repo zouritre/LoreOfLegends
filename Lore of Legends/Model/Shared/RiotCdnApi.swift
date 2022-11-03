@@ -51,23 +51,26 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
             let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(skin.fileName)")
             let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(skin.fileName)")
             
-            guard let splashUrl else { throw ChampionListError.badUrl }
-            guard let centeredUrl else { throw ChampionListError.badUrl }
+            guard let splashUrl else {
+                throw ChampionListError.badUrl }
+            guard let centeredUrl else {
+                throw ChampionListError.badUrl }
 
             do {
-                var skin = skin
+                var asset = skin
                 
                 let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
                 
-                skin.setSplash(with: splashData)
+                asset.setSplash(with: splashData)
                 
                 let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
                 
-                skin.setCenteredImage(with: centeredData)
+                asset.setCenteredImage(with: centeredData)
                 champ.skins.remove(at: index)
-                champ.skins.append(skin)
+                champ.skins.append(asset)
             }
             catch {
+                print(error)
                 throw error
             }
         }
@@ -77,7 +80,4 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 class RiotCdnApi {
-    private func makeRequest(to: URL) {
-        
-    }
 }

@@ -29,14 +29,11 @@ final class ChampionDetailTest: XCTestCase {
         
         guard let adapter else { return }
         
-        model = ChampionDetail(adapter: adapter)
-        
-        guard let model else { return }
-        
-        vm = ChampionDetailViewModel(model: model)
+        vm = ChampionDetailViewModel()
         
         guard let vm else { return }
         
+        vm.model.delegate = adapter
         expectation = expectation(description: "Wait for champion data")
         
         guard let expectation else { return }
