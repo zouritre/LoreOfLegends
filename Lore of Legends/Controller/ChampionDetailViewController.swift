@@ -27,7 +27,7 @@ class ChampionDetailViewController: UIViewController {
         
         championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
-                print("Received champion: ", champ)
+                self.champion = champ
             }
         })
         

@@ -96,8 +96,36 @@
                     <view key="view" contentMode="scaleToFill" id="9KZ-C5-0wW">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maY-5H-xRD" userLabel="SkinImage">
+                                <rect key="frame" x="0.0" y="91" width="390" height="287.66666666666669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-sh-gPj" userLabel="SkinName">
+                                <rect key="frame" x="0.0" y="378.66666666666669" width="390" height="72"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwb-jo-6rd" userLabel="Lore">
+                                <rect key="frame" x="0.0" y="450.66666666666674" width="390" height="359.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2Pl-CW-Wxa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2Pl-CW-Wxa" firstAttribute="trailing" secondItem="Uwb-jo-6rd" secondAttribute="trailing" id="0Ze-YJ-8zv"/>
+                            <constraint firstItem="2Pl-CW-Wxa" firstAttribute="trailing" secondItem="COZ-sh-gPj" secondAttribute="trailing" id="1i0-Lr-ZHo"/>
+                            <constraint firstItem="COZ-sh-gPj" firstAttribute="top" secondItem="maY-5H-xRD" secondAttribute="bottom" id="2sP-lC-Y0z"/>
+                            <constraint firstItem="Uwb-jo-6rd" firstAttribute="leading" secondItem="2Pl-CW-Wxa" secondAttribute="leading" id="CYf-dr-ueA"/>
+                            <constraint firstItem="Uwb-jo-6rd" firstAttribute="top" secondItem="COZ-sh-gPj" secondAttribute="bottom" id="FKv-pg-lmZ"/>
+                            <constraint firstItem="maY-5H-xRD" firstAttribute="top" secondItem="2Pl-CW-Wxa" secondAttribute="top" id="L5L-Qv-cra"/>
+                            <constraint firstItem="maY-5H-xRD" firstAttribute="height" secondItem="2Pl-CW-Wxa" secondAttribute="height" multiplier="0.4" id="Ubd-eA-bRL"/>
+                            <constraint firstItem="COZ-sh-gPj" firstAttribute="height" secondItem="2Pl-CW-Wxa" secondAttribute="height" multiplier="0.1" id="XYU-FR-KM7"/>
+                            <constraint firstItem="2Pl-CW-Wxa" firstAttribute="bottom" secondItem="Uwb-jo-6rd" secondAttribute="bottom" id="bGM-c1-5x4"/>
+                            <constraint firstItem="COZ-sh-gPj" firstAttribute="leading" secondItem="2Pl-CW-Wxa" secondAttribute="leading" id="cjp-tL-U25"/>
+                            <constraint firstItem="maY-5H-xRD" firstAttribute="leading" secondItem="2Pl-CW-Wxa" secondAttribute="leading" id="qYP-6U-Mgr"/>
+                            <constraint firstItem="2Pl-CW-Wxa" firstAttribute="trailing" secondItem="maY-5H-xRD" secondAttribute="trailing" id="xek-Cq-U1h"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="he3-Vr-ojD"/>
                 </viewController>
