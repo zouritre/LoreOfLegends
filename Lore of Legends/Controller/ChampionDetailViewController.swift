@@ -8,6 +8,36 @@
 import UIKit
 import Combine
 
+extension ChampionDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let champion else { return 0 }
+        
+        return champion.skins.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let champion {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-centered-image", for: indexPath) as! ChampionDetailCell
+            let centeredImageData = champion.skins[indexPath.row].centered
+            
+            var centeredImage: UIImage? = nil
+            
+            if let centeredImageData {
+                centeredImage = UIImage(data: centeredImageData)
+            }
+            else {
+                centeredImage = UIImage(data: Data())
+            }
+            
+            cell.championCenteredImage.image = centeredImage
+            
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
+}
+
 class ChampionDetailViewController: UIViewController {
 
     var champion: Champion?
@@ -38,6 +68,10 @@ class ChampionDetailViewController: UIViewController {
         championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
                 self.champion = champ
+                
+                DispatchQueue.main.async {
+                    self.centeredImageCollection.reloadData()
+                }
             }
         })
         
@@ -47,7 +81,7 @@ class ChampionDetailViewController: UIViewController {
     func setupCollection() {
         let nib = UINib(nibName: "ChampionDetailCell", bundle: .main)
         
-        centeredImageCollection.register(nib, forCellWithReuseIdentifier: "championCenteredImage")
+        centeredImageCollection.register(nib, forCellWithReuseIdentifier: "champion-centered-image")
     }
     
 

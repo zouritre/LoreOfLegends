@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="championCenteredImage" id="gTV-IL-0wX" customClass="ChampionDetailCell" customModule="Lore_of_Legends" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="champion-centered-image" id="gTV-IL-0wX" customClass="ChampionDetailCell" customModule="Lore_of_Legends" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -33,7 +33,7 @@
             </constraints>
             <size key="customSize" width="102" height="95"/>
             <connections>
-                <outlet property="championCenteredmage" destination="9l6-sN-B7p" id="MYn-Xy-vvn"/>
+                <outlet property="championCenteredImage" destination="9l6-sN-B7p" id="hoJ-ay-s3t"/>
             </connections>
             <point key="canvasLocation" x="30.769230769230766" y="4.62085308056872"/>
         </collectionViewCell>

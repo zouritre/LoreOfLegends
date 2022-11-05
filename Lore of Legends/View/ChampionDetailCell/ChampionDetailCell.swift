@@ -9,7 +9,7 @@ import UIKit
 
 class ChampionDetailCell: UICollectionViewCell {
 
-    @IBOutlet weak var championCenteredmage: UIImageView!
+    @IBOutlet weak var championCenteredImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
