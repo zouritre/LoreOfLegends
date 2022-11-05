@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908683229167E5C00297FD7 /* ChampionDetailCell.swift */; };
+		E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E908683329167E5C00297FD7 /* ChampionDetailCell.xib */; };
 		E9179F16291177AB00E178F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9179F15291177AB00E178F8 /* Persistence.swift */; };
 		E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9179F1729117BF900E178F8 /* MainDataStore.xcdatamodeld */; };
 		E92B6F4929129948001CC206 /* ChampionDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4829129948001CC206 /* ChampionDetailTest.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E908683229167E5C00297FD7 /* ChampionDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailCell.swift; sourceTree = "<group>"; };
+		E908683329167E5C00297FD7 /* ChampionDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionDetailCell.xib; sourceTree = "<group>"; };
 		E9179F15291177AB00E178F8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9179F1829117BF900E178F8 /* MainDataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92B6F4829129948001CC206 /* ChampionDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailTest.swift; sourceTree = "<group>"; };
@@ -110,6 +114,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E908683129167E1B00297FD7 /* ChampionIconCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9DC37362902EA8B008384FC /* ChampionIconCell.swift */,
+				E9DC37372902EA8C008384FC /* ChampionIconCell.xib */,
+			);
+			path = ChampionIconCell;
+			sourceTree = "<group>";
+		};
+		E908683629167E6200297FD7 /* ChampionDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				E908683229167E5C00297FD7 /* ChampionDetailCell.swift */,
+				E908683329167E5C00297FD7 /* ChampionDetailCell.xib */,
+			);
+			path = ChampionDetailCell;
+			sourceTree = "<group>";
+		};
 		E92B6F502912B6D9001CC206 /* ChampionDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,12 +228,12 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
-				E9A0C5D828FEE1EF00E468ED /* View */,
 				E9554FC528FD784700A5E071 /* Localization */,
 				E93B367628FC51F1003BB0A3 /* ViewModel */,
 				E93B365528FC4748003BB0A3 /* Model */,
 				E990EA0D28FC258000F63D70 /* Supporting_files */,
 				E990EA0E28FC260000F63D70 /* Controller */,
+				E9A0C5D828FEE1EF00E468ED /* View */,
 				E990EA0F28FC261500F63D70 /* Storyboard */,
 			);
 			path = "Lore of Legends";
@@ -251,8 +273,8 @@
 		E9A0C5D828FEE1EF00E468ED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E9DC37362902EA8B008384FC /* ChampionIconCell.swift */,
-				E9DC37372902EA8C008384FC /* ChampionIconCell.xib */,
+				E908683129167E1B00297FD7 /* ChampionIconCell */,
+				E908683629167E6200297FD7 /* ChampionDetailCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,6 +441,7 @@
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
+				E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */,
 				E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */,
 				E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */,
 			);
@@ -465,6 +488,7 @@
 				E92B6F4B29129A53001CC206 /* ChampionDetailViewModel.swift in Sources */,
 				E9B5A58E290D83DD00F0A61A /* ChampionsLoadingViewController.swift in Sources */,
 				E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */,
+				E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,16 +14,26 @@ class ChampionDetailViewController: UIViewController {
     let viewmodel = ChampionDetailViewModel()
     var championDataSub: AnyCancellable?
     
+    @IBOutlet weak var championNameLabel: UILabel!
+    @IBOutlet weak var centeredImageCollection: UICollectionView!
+    @IBOutlet weak var loreTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Selected champion: ", champion?.name)
-        // Do any additional setup after loading the view.
         guard let champion else {
             alert(message: "Couldn't retrieve champion data")
             
             return
         }
+        
+        setupCollection()
+        
+        loreTextView.text = champion.lore
+        championNameLabel.text = "\(champion.name), \(champion.title)"
+        
+        print("Selected champion: ", champion.name)
+        // Do any additional setup after loading the view.
         
         championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
@@ -32,6 +42,12 @@ class ChampionDetailViewController: UIViewController {
         })
         
         viewmodel.setSkinsForChampion(champion: champion)
+    }
+    
+    func setupCollection() {
+        let nib = UINib(nibName: "ChampionDetailCell", bundle: .main)
+        
+        centeredImageCollection.register(nib, forCellWithReuseIdentifier: "championCenteredImage")
     }
     
 
