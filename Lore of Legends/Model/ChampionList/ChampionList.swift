@@ -21,7 +21,10 @@ class ChampionList {
     var delegate: ChampionListDelegate?
     /// Publisher that send the API data back to the view-model subscribers
     var championsDataSubject = PassthroughSubject<[Champion], Error>()
+    /// Publisher used to send the number of champions retrieved from Riot CDN
     var totalChampionsCountPublisher = PassthroughSubject<Int, Never>()
+    /// Publisher used to send the download progress for the champions
     var downloadedChampionCounterPub = PassthroughSubject<Int, Never>()
+    /// Publisher used to send a bool indicating either a download is in progress or not
     var isDownloadingPub = PassthroughSubject<Bool, Never>()
 }
