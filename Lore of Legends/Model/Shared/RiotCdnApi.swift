@@ -8,14 +8,21 @@
 import Foundation
 
 extension RiotCdnApi: ChampionListAdapterDelegate {
+    /// Get the lastest patch version for League
+    /// - Returns: A string idicating the lastest patch versions
     func getLastestPatchVersion() async throws -> String {
         return "12.20.1"
     }
     
+    /// Return languages supported for the champions data
+    /// - Returns: An array of languages
     func getSupportedLanguages() async throws -> [String] {
         return [""]
     }
     
+    /// Retrieve ChampionFull.json file from Riot CDN
+    /// - Parameter url: URL of the json file
+    /// - Returns: Data object representing the json file
     func retrieveChampionFullDataJson(url: URL) async throws -> Data {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -27,6 +34,9 @@ extension RiotCdnApi: ChampionListAdapterDelegate {
         }
     }
     
+    /// Download the icon image of the given champion
+    /// - Parameter champion: Champion for wich to retrieve data asynchronously
+    /// - Returns: Data object representing the champion icon
     func downloadImage(for champion: Champion) async throws -> Data {
         let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.imageName)_0.jpg")
         
@@ -47,33 +57,34 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
     func setSkins(caller: ChampionDetailAdapter, for champion: Champion) {
         self.selectedChampion = champion
         self.caller = caller
-        skinsCount = champion.skins.count
+        self.skinsCount = champion.skins.count
         
         for skin in champion.skins {
             let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(skin.fileName)")
             let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(skin.fileName)")
             
             Task {
+                // A splash image as data object for the selected champion
                 var splash: Data?
+                // A centered image as data object for the selected champion
                 var centered: Data?
                 
                 if let splashUrl {
-                    do {
-                        let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
-                        splash = splashData
-                    }
-                    catch {
-                    }
+                    let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
+                    splash = splashData
                 }
                 if let centeredUrl {
                     let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
                     centered = centeredData
                 }
                 
+                // A ChampionAsset object for the selected champion skin currently being processed
                 var asset = skin
                 
                 asset.setSplash(with: splash)
                 asset.setCenteredImage(with: centered)
+                
+                // Store the skin in memory while async tasks finishes
                 skins.append(asset)
             }
         }
