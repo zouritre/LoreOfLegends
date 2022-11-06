@@ -16,10 +16,6 @@ protocol ChampionDetailAdapterDelegate {
 }
 
 extension ChampionDetailAdapter: ChampionDetailDelegate {
-    /// Retrieve and set skins images for the given champion
-    /// - Parameters:
-    ///   - caller: The class calling this method
-    ///   - champion: Champion object for wich to retrieve skins images
     func setSkinImages(caller: ChampionDetail, champion: Champion) {
         self.caller = caller
         delegate.setSkins(caller: self, for: champion)
