@@ -17,18 +17,24 @@ extension ChampionDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let champion {
+            // Dequeue the custom nib
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-centered-image", for: indexPath) as! ChampionDetailCell
+            // Get the champion skin at the specified index of his skins property
             let centeredImageData = champion.skins[indexPath.row].centered
             
+            // Initialise an optional image
             var centeredImage: UIImage? = nil
             
             if let centeredImageData {
+                // Create an image from the data object
                 centeredImage = UIImage(data: centeredImageData)
             }
             else {
+                // Create an image with an empty data object
                 centeredImage = UIImage(data: Data())
             }
             
+            // Set the image for the imageView inside the custim cell
             cell.championCenteredImage.image = centeredImage
             
             return cell
@@ -39,9 +45,12 @@ extension ChampionDetailViewController: UICollectionViewDataSource {
 }
 
 class ChampionDetailViewController: UIViewController {
-
+    
+    /// Champion selected by the user in HomeScreenViewController
     var champion: Champion?
+    /// View model instance to use for fetching the useler selected champion skins images
     let viewmodel = ChampionDetailViewModel()
+    /// Subscriber that notify the selected champion datas
     var championDataSub: AnyCancellable?
     
     @IBOutlet weak var championNameLabel: UILabel!
@@ -58,13 +67,21 @@ class ChampionDetailViewController: UIViewController {
         }
         
         setupCollection()
+        setupSubscribers()
+        setupUiTexts(for: champion)
         
+        viewmodel.setSkinsForChampion(champion: champion)
+    }
+    
+    /// Set the text value of the different outlets of the UI
+    /// - Parameter champion: Champion from wich to extract data for the text values
+    private func setupUiTexts(for champion: Champion) {
         loreTextView.text = champion.lore
         championNameLabel.text = "\(champion.name), \(champion.title)"
-        
-        print("Selected champion: ", champion.name)
-        // Do any additional setup after loading the view.
-        
+    }
+    
+    /// Implement the subscribers
+    private func setupSubscribers() {
         championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
                 self.champion = champ
@@ -74,11 +91,10 @@ class ChampionDetailViewController: UIViewController {
                 }
             }
         })
-        
-        viewmodel.setSkinsForChampion(champion: champion)
     }
     
-    func setupCollection() {
+    /// Register a custom nib object to the collection view
+    private func setupCollection() {
         let nib = UINib(nibName: "ChampionDetailCell", bundle: .main)
         
         centeredImageCollection.register(nib, forCellWithReuseIdentifier: "champion-centered-image")
