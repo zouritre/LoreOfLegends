@@ -81,18 +81,27 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 class RiotCdnApi {
+    /// The adapter class that called a method of this class
     var caller: ChampionDetailAdapter?
+    /// Champion to be processed with custom datas
     var selectedChampion: Champion?
+    /// Skins of the selected champion
     var skins = [ChampionAsset]() {
         didSet {
             if skins.count == skinsCount {
+                // Sort skins by name in ascending order
+                skins.sort(by: { return $0.fileName < $1.fileName })
+                
+                // Set sorted skins array to selected champion skins array
                 selectedChampion?.skins = skins
                 
                 guard let selectedChampion else { return }
                 
+                // Notify viewmodel of the selected champion after being processed
                 caller?.caller?.championDataPublisher.send(selectedChampion)
             }
         }
     }
+    /// Number of skins for the selected champion
     var skinsCount = 0
 }
