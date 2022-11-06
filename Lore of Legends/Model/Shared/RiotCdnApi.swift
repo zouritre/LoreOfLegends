@@ -8,21 +8,14 @@
 import Foundation
 
 extension RiotCdnApi: ChampionListAdapterDelegate {
-    /// Get the lastest patch version for League
-    /// - Returns: A string idicating the lastest patch versions
     func getLastestPatchVersion() async throws -> String {
         return "12.20.1"
     }
     
-    /// Return languages supported for the champions data
-    /// - Returns: An array of languages
     func getSupportedLanguages() async throws -> [String] {
         return [""]
     }
     
-    /// Retrieve ChampionFull.json file from Riot CDN
-    /// - Parameter url: URL of the json file
-    /// - Returns: Data object representing the json file
     func retrieveChampionFullDataJson(url: URL) async throws -> Data {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -34,9 +27,6 @@ extension RiotCdnApi: ChampionListAdapterDelegate {
         }
     }
     
-    /// Download the icon image of the given champion
-    /// - Parameter champion: Champion for wich to retrieve data asynchronously
-    /// - Returns: Data object representing the champion icon
     func downloadImage(for champion: Champion) async throws -> Data {
         let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.imageName)_0.jpg")
         
