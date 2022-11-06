@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Represent the ChampionFull.json file retrieved from Riot CDN
 struct ChampionFullJsonDecodable: Decodable {
     var data: [String:ChampionSpecificDecodable]
     var keys: [String:String]
