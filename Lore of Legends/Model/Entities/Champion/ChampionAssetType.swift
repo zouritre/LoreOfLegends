@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The different asset types for a champion image
 enum ChampionAssetType {
     case splash
     case centered
