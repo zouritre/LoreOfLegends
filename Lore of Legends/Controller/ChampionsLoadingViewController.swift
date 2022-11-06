@@ -9,13 +9,20 @@ import UIKit
 import Combine
 
 class ChampionsLoadingViewController: UIViewController {
-
-    var championListVm: ChampionListViewModel?
+    
+    /// View model instance
+    weak var championListVm: ChampionListViewModel?
+    /// Subscriber for champions data
     var championsDataSub: AnyCancellable?
+    /// Subscriber for total number of champions in League
     var totalChampionsCountSub: AnyCancellable?
+    /// Subsriber for the number of champions currently downloaded or fetched from Core Data
     var downloadedChampionsCountSub: AnyCancellable?
+    /// Subscriber that notify wether a download is in progress or not
     var isDownloadingSub: AnyCancellable?
+    /// Total number of champions being fetched or downloaded
     var totalChampionsCount = Int()
+    /// Number formatter that allows float number with max of 2 digits decimals
     var numberFormatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.allowsFloats = true
@@ -35,6 +42,7 @@ class ChampionsLoadingViewController: UIViewController {
         championListVm?.getChampions()
     }
     
+    /// Implement the subscribers
     private func setupSubscribers() {
         championsDataSub = championListVm?.$champions.sink(receiveValue: { champions in
             if champions.count > 0 {
