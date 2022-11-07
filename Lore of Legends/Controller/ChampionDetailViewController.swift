@@ -52,6 +52,10 @@ class ChampionDetailViewController: UIViewController {
     let viewmodel = ChampionDetailViewModel()
     /// Subscriber that notify the selected champion datas
     var championDataSub: AnyCancellable?
+    var leftSwipe = UISwipeGestureRecognizer()
+    var rightSwipe = UISwipeGestureRecognizer()
+    var leftSwipeSubscriber: AnyCancellable?
+    var rightSwipeSubscriber: AnyCancellable?
     
     @IBOutlet weak var championNameLabel: UILabel!
     @IBOutlet weak var centeredImageCollection: UICollectionView!
@@ -66,6 +70,7 @@ class ChampionDetailViewController: UIViewController {
             return
         }
         
+        setupGestures()
         setupCollection()
         setupSubscribers()
         setupUiTexts(for: champion)
@@ -91,6 +96,36 @@ class ChampionDetailViewController: UIViewController {
                 }
             }
         })
+        
+        leftSwipeSubscriber = leftSwipe.publisher(for: \.state).sink { [unowned self] state in
+            if state == .ended {
+                let visibleItemIndexPath = centeredImageCollection.indexPathsForVisibleItems[0]
+                let nextItem = IndexPath(item: visibleItemIndexPath.item+1, section: 0)
+                let nextItemNotZeroBased = nextItem.item+1
+                
+                guard let champion else { return }
+                
+                if nextItemNotZeroBased <= champion.skins.count {
+                    centeredImageCollection.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
+                }
+            }
+        }
+        
+        rightSwipeSubscriber = rightSwipe.publisher(for: \.state).sink { [unowned self] state in
+            if state == .ended {
+                let visibleItemIndexPath = centeredImageCollection.indexPathsForVisibleItems[0]
+                let nextItem = IndexPath(item: visibleItemIndexPath.item-1, section: 0)
+                
+                if nextItem.item >= 0 {
+                    centeredImageCollection.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
+                }
+            }
+        }
+    }
+    
+    private func setupGestures() {
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
     }
     
     /// Register a custom nib object to the collection view
@@ -98,17 +133,19 @@ class ChampionDetailViewController: UIViewController {
         let nib = UINib(nibName: "ChampionDetailCell", bundle: .main)
         
         centeredImageCollection.register(nib, forCellWithReuseIdentifier: "champion-centered-image")
+        centeredImageCollection.addGestureRecognizer(leftSwipe)
+        centeredImageCollection.addGestureRecognizer(rightSwipe)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
