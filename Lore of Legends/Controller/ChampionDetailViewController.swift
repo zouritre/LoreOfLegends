@@ -52,9 +52,13 @@ class ChampionDetailViewController: UIViewController {
     let viewmodel = ChampionDetailViewModel()
     /// Subscriber that notify the selected champion datas
     var championDataSub: AnyCancellable?
+    /// Swipe for collection view
     var leftSwipe = UISwipeGestureRecognizer()
+    /// Swipe for collection view
     var rightSwipe = UISwipeGestureRecognizer()
+    /// Subscriber for left swipe events
     var leftSwipeSubscriber: AnyCancellable?
+    /// Subscriber for right swipe events
     var rightSwipeSubscriber: AnyCancellable?
     
     @IBOutlet weak var championNameLabel: UILabel!
@@ -99,13 +103,17 @@ class ChampionDetailViewController: UIViewController {
         
         leftSwipeSubscriber = leftSwipe.publisher(for: \.state).sink { [unowned self] state in
             if state == .ended {
+                // Get currently displayed item index path
                 let visibleItemIndexPath = centeredImageCollection.indexPathsForVisibleItems[0]
+                // Estimate index path for next item in collection
                 let nextItem = IndexPath(item: visibleItemIndexPath.item+1, section: 0)
+                // Convert nextItem to equivalent for a normal integer
                 let nextItemNotZeroBased = nextItem.item+1
                 
                 guard let champion else { return }
                 
                 if nextItemNotZeroBased <= champion.skins.count {
+                    // Scroll the collectionview to the next item
                     centeredImageCollection.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
                 }
             }
@@ -113,16 +121,20 @@ class ChampionDetailViewController: UIViewController {
         
         rightSwipeSubscriber = rightSwipe.publisher(for: \.state).sink { [unowned self] state in
             if state == .ended {
+                // Get currently displayed item index path
                 let visibleItemIndexPath = centeredImageCollection.indexPathsForVisibleItems[0]
+                // Estimate index path for next item in collection
                 let nextItem = IndexPath(item: visibleItemIndexPath.item-1, section: 0)
                 
                 if nextItem.item >= 0 {
+                    // Scroll the collectionview to the next item
                     centeredImageCollection.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
                 }
             }
         }
     }
     
+    /// Set the direction for swipes
     private func setupGestures() {
         leftSwipe.direction = .left
         rightSwipe.direction = .right
