@@ -90,28 +90,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maY-5H-xRD" userLabel="SkinImage">
                                 <rect key="frame" x="0.0" y="91" width="390" height="287.66666666666669"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ubz-RM-hXS">
-                                        <rect key="frame" x="8" y="8" width="374" height="271.66666666666669"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4fT-V4-erU">
-                                            <size key="itemSize" width="374" height="271"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-Dj-NUd">
+                                        <rect key="frame" x="8" y="8" width="374" height="272"/>
                                         <connections>
-                                            <outlet property="dataSource" destination="TMw-cn-At7" id="fbM-nb-neJ"/>
-                                            <outlet property="delegate" destination="TMw-cn-At7" id="hKu-pd-eny"/>
+                                            <segue destination="ZBM-JM-ilW" kind="embed" id="fYw-kO-VOP"/>
                                         </connections>
-                                    </collectionView>
+                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="ubz-RM-hXS" secondAttribute="bottom" id="4jh-Q0-b4z"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="ubz-RM-hXS" secondAttribute="trailing" id="Fdl-Bd-Bij"/>
-                                    <constraint firstItem="ubz-RM-hXS" firstAttribute="top" secondItem="maY-5H-xRD" secondAttribute="topMargin" id="MZy-RI-KS8"/>
-                                    <constraint firstItem="ubz-RM-hXS" firstAttribute="leading" secondItem="maY-5H-xRD" secondAttribute="leadingMargin" id="YxD-fa-d0v"/>
+                                    <constraint firstItem="oDe-Dj-NUd" firstAttribute="top" secondItem="maY-5H-xRD" secondAttribute="topMargin" id="FpP-uY-tUj"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="oDe-Dj-NUd" secondAttribute="bottom" id="JQX-gc-ce3"/>
+                                    <constraint firstItem="oDe-Dj-NUd" firstAttribute="leading" secondItem="maY-5H-xRD" secondAttribute="leadingMargin" id="w9m-t3-P9H"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="oDe-Dj-NUd" secondAttribute="trailing" id="wN6-1B-OcH"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-sh-gPj" userLabel="SkinName">
@@ -170,7 +161,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="he3-Vr-ojD"/>
                     <connections>
-                        <outlet property="centeredImageCollection" destination="ubz-RM-hXS" id="96i-D5-jrK"/>
                         <outlet property="championNameLabel" destination="MOb-sx-FOv" id="Zcr-zB-kXd"/>
                         <outlet property="loreTextView" destination="S59-oW-BlV" id="xf0-Oa-eEq"/>
                     </connections>
@@ -225,6 +215,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RH-Ab-u6F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="34" y="755"/>
+        </scene>
+        <!--Centered Skins Page View Controller-->
+        <scene sceneID="DJs-iO-cpf">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZBM-JM-ilW" customClass="CenteredSkinsPageViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                    <size key="freeformSize" width="500" height="500"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tGa-yn-bxx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2071" y="4"/>
         </scene>
     </scenes>
     <resources>
