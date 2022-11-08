@@ -32,6 +32,7 @@
 		E990EA0128FC247400F63D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990E9FF28FC247400F63D70 /* Main.storyboard */; };
 		E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0228FC247500F63D70 /* Assets.xcassets */; };
 		E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */; };
+		E9937349291A964700FE2DD7 /* CenteredSkinsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */; };
 		E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */; };
 		E9B5A58E290D83DD00F0A61A /* ChampionsLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */; };
 		E9BEA3F1290B123300FE723D /* RiotCdnApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA3F0290B123300FE723D /* RiotCdnApi.swift */; };
@@ -85,6 +86,7 @@
 		E990EA0228FC247500F63D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E990EA0528FC247500F63D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E990EA0728FC247500F63D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredSkinsPageViewController.swift; sourceTree = "<group>"; };
 		E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionsLoadingViewController.swift; sourceTree = "<group>"; };
 		E9BEA3F0290B123300FE723D /* RiotCdnApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotCdnApi.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */,
 				E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */,
 				E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */,
+				E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */,
+				E9937349291A964700FE2DD7 /* CenteredSkinsPageViewController.swift in Sources */,
 				E92B6F4F29129B73001CC206 /* ChampionDetailAdapter.swift in Sources */,
 				E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */,
 				E9179F16291177AB00E178F8 /* Persistence.swift in Sources */,
