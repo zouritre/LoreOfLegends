@@ -91,9 +91,9 @@
                                 <rect key="frame" x="0.0" y="91" width="390" height="287.66666666666669"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-Dj-NUd">
-                                        <rect key="frame" x="8" y="8" width="374" height="272"/>
+                                        <rect key="frame" x="8" y="8" width="374" height="271.66666666666669"/>
                                         <connections>
-                                            <segue destination="ZBM-JM-ilW" kind="embed" id="fYw-kO-VOP"/>
+                                            <segue destination="ZBM-JM-ilW" kind="embed" identifier="centeredSkinPageVC" id="fYw-kO-VOP"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -163,6 +163,7 @@
                     <connections>
                         <outlet property="championNameLabel" destination="MOb-sx-FOv" id="Zcr-zB-kXd"/>
                         <outlet property="loreTextView" destination="S59-oW-BlV" id="xf0-Oa-eEq"/>
+                        <outlet property="skinsContainerView" destination="oDe-Dj-NUd" id="Zha-up-iia"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zg2-RU-0xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

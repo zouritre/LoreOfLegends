@@ -8,39 +8,13 @@
 import UIKit
 import Combine
 
-extension ChampionDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let champion else { return 0 }
-        
-        return champion.skins.count
+extension ChampionDetailViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        pageViewController
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let champion {
-            // Dequeue the custom nib
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-centered-image", for: indexPath) as! ChampionDetailCell
-            // Get the champion skin at the specified index of his skins property
-            let centeredImageData = champion.skins[indexPath.row].centered
-            
-            // Initialise an optional image
-            var centeredImage: UIImage? = nil
-            
-            if let centeredImageData {
-                // Create an image from the data object
-                centeredImage = UIImage(data: centeredImageData)
-            }
-            else {
-                // Create an image with an empty data object
-                centeredImage = UIImage(data: Data())
-            }
-            
-            // Set the image for the imageView inside the custim cell
-            cell.championCenteredImage.image = centeredImage
-            
-            return cell
-        }
-        
-        return UICollectionViewCell()
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        pageViewController
     }
 }
 
@@ -52,17 +26,11 @@ class ChampionDetailViewController: UIViewController {
     let viewmodel = ChampionDetailViewModel()
     /// Subscriber that notify the selected champion datas
     var championDataSub: AnyCancellable?
-    /// Swipe for collection view
-    var leftSwipe = UISwipeGestureRecognizer()
-    /// Swipe for collection view
-    var rightSwipe = UISwipeGestureRecognizer()
-    /// Subscriber for left swipe events
-    var leftSwipeSubscriber: AnyCancellable?
-    /// Subscriber for right swipe events
-    var rightSwipeSubscriber: AnyCancellable?
+    /// ViewController that manages paginating for skins ViewController
+    weak var skinsPageViewController: CenteredSkinsPageViewController?
     
     @IBOutlet weak var championNameLabel: UILabel!
-    @IBOutlet weak var centeredImageCollection: UICollectionView!
+    @IBOutlet weak var skinsContainerView: UIView!
     @IBOutlet weak var loreTextView: UITextView!
     
     override func viewDidLoad() {
@@ -74,8 +42,6 @@ class ChampionDetailViewController: UIViewController {
             return
         }
         
-        setupGestures()
-        setupCollection()
         setupSubscribers()
         setupUiTexts(for: champion)
         
@@ -91,73 +57,19 @@ class ChampionDetailViewController: UIViewController {
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
+        championDataSub = viewmodel.$champion.sink(receiveValue: { [unowned self] champ in
             if let champ {
                 self.champion = champ
-                
-                DispatchQueue.main.async {
-                    self.centeredImageCollection.reloadData()
-                }
             }
         })
-        
-        leftSwipeSubscriber = leftSwipe.publisher(for: \.state).sink { [unowned self] state in
-            if state == .ended {
-                // Get currently displayed item index path
-                let visibleItemIndexPath = centeredImageCollection.indexPathsForVisibleItems[0]
-                // Estimate index path for next item in collection
-                let nextItem = IndexPath(item: visibleItemIndexPath.item+1, section: 0)
-                // Convert nextItem to equivalent for a normal integer
-                let nextItemNotZeroBased = nextItem.item+1
-                
-                guard let champion else { return }
-                
-                if nextItemNotZeroBased <= champion.skins.count {
-                    // Scroll the collectionview to the next item
-                    centeredImageCollection.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
-                }
-            }
-        }
-        
-        rightSwipeSubscriber = rightSwipe.publisher(for: \.state).sink { [unowned self] state in
-            if state == .ended {
-                // Get currently displayed item index path
-                let visibleItemIndexPath = centeredImageCollection.indexPathsForVisibleItems[0]
-                // Estimate index path for next item in collection
-                let nextItem = IndexPath(item: visibleItemIndexPath.item-1, section: 0)
-                
-                if nextItem.item >= 0 {
-                    // Scroll the collectionview to the next item
-                    centeredImageCollection.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
-                }
-            }
-        }
     }
     
-    /// Set the direction for swipes
-    private func setupGestures() {
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-    }
-    
-    /// Register a custom nib object to the collection view
-    private func setupCollection() {
-        let nib = UINib(nibName: "ChampionDetailCell", bundle: .main)
-        
-        centeredImageCollection.register(nib, forCellWithReuseIdentifier: "champion-centered-image")
-        centeredImageCollection.addGestureRecognizer(leftSwipe)
-        centeredImageCollection.addGestureRecognizer(rightSwipe)
-    }
-    
-    
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+         if segue.identifier == "centeredSkinPageVC" {
+             skinsPageViewController = segue.destination as? CenteredSkinsPageViewController
+         }
      }
-     */
-    
 }
