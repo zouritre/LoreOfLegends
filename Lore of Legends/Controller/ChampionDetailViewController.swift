@@ -12,7 +12,14 @@ extension ChampionDetailViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished {
             if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
-                championNameLabel.text = currentVc.skinName
+                if currentVc.skinIndex == 0 {
+                    if let champion {
+                        championNameLabel.text = "\(champion.name), \(champion.title)"
+                    }
+                }
+                else {
+                    championNameLabel.text = currentVc.skinName
+                }
             }
         }
     }
