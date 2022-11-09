@@ -77,6 +77,7 @@ class ChampionDetailViewController: UIViewController {
     weak var skinsPageViewController: CenteredSkinsPageViewController?
     var pageViewControllers = [SkinViewController]()
     
+    @IBOutlet weak var skinsLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var championNameLabel: UILabel!
     @IBOutlet weak var skinsContainerView: UIView!
     @IBOutlet weak var loreTextView: UITextView!
@@ -111,6 +112,9 @@ class ChampionDetailViewController: UIViewController {
         championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
                 DispatchQueue.main.async { [unowned self] in
+                    // Hide the indicator
+                    skinsLoadingIndicator.stopAnimating()
+                    
                     for (index, skin) in champ.skins.enumerated() {
                         let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
                         

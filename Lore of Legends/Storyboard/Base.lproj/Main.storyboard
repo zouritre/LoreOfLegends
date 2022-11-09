@@ -90,6 +90,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maY-5H-xRD" userLabel="SkinImage">
                                 <rect key="frame" x="0.0" y="91" width="390" height="287.66666666666669"/>
                                 <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Xgs-3g-FuH">
+                                        <rect key="frame" x="176.66666666666666" y="125.33333333333334" width="37" height="37"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-Dj-NUd">
                                         <rect key="frame" x="8" y="8" width="374" height="271.66666666666669"/>
                                         <connections>
@@ -99,8 +103,10 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="Xgs-3g-FuH" firstAttribute="centerY" secondItem="maY-5H-xRD" secondAttribute="centerY" id="4Hu-pr-860"/>
                                     <constraint firstItem="oDe-Dj-NUd" firstAttribute="top" secondItem="maY-5H-xRD" secondAttribute="topMargin" id="FpP-uY-tUj"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="oDe-Dj-NUd" secondAttribute="bottom" id="JQX-gc-ce3"/>
+                                    <constraint firstItem="Xgs-3g-FuH" firstAttribute="centerX" secondItem="maY-5H-xRD" secondAttribute="centerX" id="idU-qd-SrA"/>
                                     <constraint firstItem="oDe-Dj-NUd" firstAttribute="leading" secondItem="maY-5H-xRD" secondAttribute="leadingMargin" id="w9m-t3-P9H"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="oDe-Dj-NUd" secondAttribute="trailing" id="wN6-1B-OcH"/>
                                 </constraints>
@@ -164,6 +170,7 @@
                         <outlet property="championNameLabel" destination="MOb-sx-FOv" id="Zcr-zB-kXd"/>
                         <outlet property="loreTextView" destination="S59-oW-BlV" id="xf0-Oa-eEq"/>
                         <outlet property="skinsContainerView" destination="oDe-Dj-NUd" id="Zha-up-iia"/>
+                        <outlet property="skinsLoadingIndicator" destination="Xgs-3g-FuH" id="fBU-If-bDi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zg2-RU-0xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
