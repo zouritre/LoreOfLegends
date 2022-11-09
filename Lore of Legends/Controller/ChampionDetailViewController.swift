@@ -23,6 +23,20 @@ extension ChampionDetailViewController: UIPageViewControllerDelegate {
             }
         }
     }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return pageViewControllers.count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
+            if let itemNumber = currentVc.skinIndex {
+             return itemNumber
+            }
+        }
+        
+        return 0
+    }
 }
 
 extension ChampionDetailViewController: UIPageViewControllerDataSource {
