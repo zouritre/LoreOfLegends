@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908683229167E5C00297FD7 /* ChampionDetailCell.swift */; };
 		E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E908683329167E5C00297FD7 /* ChampionDetailCell.xib */; };
+		E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E9505291B12030022C7F5 /* SkinViewController.swift */; };
+		E90E9508291B12030022C7F5 /* SkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90E9506291B12030022C7F5 /* SkinViewController.xib */; };
 		E9179F16291177AB00E178F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9179F15291177AB00E178F8 /* Persistence.swift */; };
 		E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9179F1729117BF900E178F8 /* MainDataStore.xcdatamodeld */; };
 		E92B6F4929129948001CC206 /* ChampionDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4829129948001CC206 /* ChampionDetailTest.swift */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		E908683229167E5C00297FD7 /* ChampionDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailCell.swift; sourceTree = "<group>"; };
 		E908683329167E5C00297FD7 /* ChampionDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionDetailCell.xib; sourceTree = "<group>"; };
+		E90E9505291B12030022C7F5 /* SkinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinViewController.swift; sourceTree = "<group>"; };
+		E90E9506291B12030022C7F5 /* SkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkinViewController.xib; sourceTree = "<group>"; };
 		E9179F15291177AB00E178F8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9179F1829117BF900E178F8 /* MainDataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92B6F4829129948001CC206 /* ChampionDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailTest.swift; sourceTree = "<group>"; };
@@ -132,6 +136,15 @@
 				E908683329167E5C00297FD7 /* ChampionDetailCell.xib */,
 			);
 			path = ChampionDetailCell;
+			sourceTree = "<group>";
+		};
+		E90E9509291B120E0022C7F5 /* SkinViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E90E9505291B12030022C7F5 /* SkinViewController.swift */,
+				E90E9506291B12030022C7F5 /* SkinViewController.xib */,
+			);
+			path = SkinViewController;
 			sourceTree = "<group>";
 		};
 		E92B6F502912B6D9001CC206 /* ChampionDetail */ = {
@@ -261,6 +274,7 @@
 				E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */,
 				E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */,
 				E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */,
+				E90E9509291B120E0022C7F5 /* SkinViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -441,6 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90E9508291B12030022C7F5 /* SkinViewController.xib in Resources */,
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
@@ -485,6 +500,7 @@
 				E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */,
 				E9BEA3F1290B123300FE723D /* RiotCdnApi.swift in Sources */,
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
+				E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */,
 				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,
 				E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */,
 				E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,

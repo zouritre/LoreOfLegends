@@ -10,11 +10,27 @@ import Combine
 
 extension ChampionDetailViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        pageViewController
+        if currentlyDisplayedSkinIndex > 0 {
+            let vc = pageViewControllers[currentlyDisplayedSkinIndex-1]
+            
+            currentlyDisplayedSkinIndex -= 1
+            
+            return vc
+        }
+        
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        pageViewController
+        if currentlyDisplayedSkinIndex < pageViewControllers.count  {
+            let vc = pageViewControllers[currentlyDisplayedSkinIndex]
+            
+            currentlyDisplayedSkinIndex += 1
+            
+            return vc
+        }
+        
+        return nil
     }
 }
 
@@ -28,6 +44,8 @@ class ChampionDetailViewController: UIViewController {
     var championDataSub: AnyCancellable?
     /// ViewController that manages paginating for skins ViewController
     weak var skinsPageViewController: CenteredSkinsPageViewController?
+    var pageViewControllers = [SkinViewController]()
+    var currentlyDisplayedSkinIndex = 0
     
     @IBOutlet weak var championNameLabel: UILabel!
     @IBOutlet weak var skinsContainerView: UIView!
@@ -41,6 +59,8 @@ class ChampionDetailViewController: UIViewController {
             
             return
         }
+        
+        skinsPageViewController?.dataSource = self
         
         setupSubscribers()
         setupUiTexts(for: champion)
@@ -57,9 +77,21 @@ class ChampionDetailViewController: UIViewController {
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        championDataSub = viewmodel.$champion.sink(receiveValue: { [unowned self] champ in
+        championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
-                self.champion = champ
+                DispatchQueue.main.async { [unowned self] in
+                    for skin in champ.skins {
+                        let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
+                        
+                        vc.skinImageData = skin.centered
+                        pageViewControllers.append(vc)
+                    }
+                    
+                    let vc1 = SkinViewController(nibName: "SkinViewController", bundle: nil)
+                    vc1.skinImageData = champ.skins[0].centered
+                    
+                    self.skinsPageViewController?.setViewControllers([vc1], direction: .forward, animated: true)
+                }
             }
         })
     }

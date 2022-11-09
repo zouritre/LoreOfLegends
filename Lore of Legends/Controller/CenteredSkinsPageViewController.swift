@@ -9,6 +9,8 @@ import UIKit
 
 class CenteredSkinsPageViewController: UIPageViewController {
 
+    @IBOutlet weak var name: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
