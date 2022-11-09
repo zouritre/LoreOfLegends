@@ -129,6 +129,10 @@ class HomeScreenViewController: UIViewController {
         championListVM.getChampions()
     }
     
+    @IBAction func settingsButon(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showSettings", sender: nil)
+    }
+    
     /// Register a Nib to the collection view
     private func setupCollectionView() {
         let nib = UINib(nibName: "ChampionIconCell", bundle: .main)

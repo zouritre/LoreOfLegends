@@ -18,6 +18,7 @@
 		E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4C29129AD2001CC206 /* ChampionDetail.swift */; };
 		E92B6F4F29129B73001CC206 /* ChampionDetailAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4E29129B73001CC206 /* ChampionDetailAdapter.swift */; };
 		E92B6F532912B6F2001CC206 /* ChampionDetailAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F512912B6EC001CC206 /* ChampionDetailAdapterMock.swift */; };
+		E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E9E5291C55A30003B643 /* SettingsViewController.swift */; };
 		E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */; };
 		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
@@ -69,6 +70,7 @@
 		E92B6F4C29129AD2001CC206 /* ChampionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetail.swift; sourceTree = "<group>"; };
 		E92B6F4E29129B73001CC206 /* ChampionDetailAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailAdapter.swift; sourceTree = "<group>"; };
 		E92B6F512912B6EC001CC206 /* ChampionDetailAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailAdapterMock.swift; sourceTree = "<group>"; };
+		E930E9E5291C55A30003B643 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailViewController.swift; sourceTree = "<group>"; };
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListTest.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */,
 				E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */,
 				E90E9509291B120E0022C7F5 /* SkinViewController */,
+				E930E9E5291C55A30003B643 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */,
 				E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */,
 				E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */,
+				E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */,
 				E97BD3DA29052F1200F63EFB /* ChampionAssetType.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListAdapter.swift in Sources */,
 				E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */,

@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EIe-sm-qVE">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Bew-VB-O1r"/>
                     </connections>
@@ -25,6 +28,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeW-EF-PzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-849" y="4"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="twK-u6-Qdu">
+            <objects>
+                <viewController id="QhI-kb-aed" customClass="SettingsViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ve1-2z-Zs2">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language for lores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzi-mF-YZr">
+                                <rect key="frame" x="0.0" y="141" width="390" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK5-FQ-tgK">
+                                <rect key="frame" x="0.0" y="192" width="390" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="QhI-kb-aed" id="dVD-6q-SNS"/>
+                                    <outlet property="delegate" destination="QhI-kb-aed" id="bKd-6b-GL7"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vjG-wV-CqE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Bzi-mF-YZr" firstAttribute="leading" secondItem="vjG-wV-CqE" secondAttribute="leading" id="1bI-MN-QEw"/>
+                            <constraint firstItem="vjG-wV-CqE" firstAttribute="trailing" secondItem="Bzi-mF-YZr" secondAttribute="trailing" id="JrA-k1-9IE"/>
+                            <constraint firstItem="vjG-wV-CqE" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JK5-FQ-tgK" secondAttribute="bottom" id="OwN-qe-24L"/>
+                            <constraint firstItem="JK5-FQ-tgK" firstAttribute="top" secondItem="Bzi-mF-YZr" secondAttribute="bottom" constant="30" id="TgA-vb-67h"/>
+                            <constraint firstItem="JK5-FQ-tgK" firstAttribute="leading" secondItem="vjG-wV-CqE" secondAttribute="leading" id="cRj-Jc-1wr"/>
+                            <constraint firstItem="Bzi-mF-YZr" firstAttribute="top" secondItem="vjG-wV-CqE" secondAttribute="top" constant="50" id="rfi-p0-ufm"/>
+                            <constraint firstItem="JK5-FQ-tgK" firstAttribute="trailing" secondItem="vjG-wV-CqE" secondAttribute="trailing" id="tjT-RQ-kCz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RFQ-nq-dRX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pLD-TD-kHU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="-749"/>
         </scene>
         <!--Lore of Legends-->
         <scene sceneID="tne-QT-ifu">
@@ -62,6 +105,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hC8-3t-mHJ"/>
                                     <barButtonItem id="Uq4-Q4-HZs">
                                         <imageReference key="image" image="gear" catalog="system" symbolScale="large" renderingMode="original"/>
+                                        <connections>
+                                            <action selector="settingsButon:" destination="BYZ-38-t0r" id="gNo-LJ-9R3"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -87,6 +133,7 @@
                         <outlet property="championIconsCollection" destination="wsy-tj-Ccx" id="UsP-hr-i0Q"/>
                         <segue destination="TMw-cn-At7" kind="show" identifier="goToDetail" id="GT9-1A-2Uz"/>
                         <segue destination="dqK-UU-DDr" kind="presentation" identifier="championsLoading" modalPresentationStyle="fullScreen" id="iCG-Pc-XKV"/>
+                        <segue destination="QhI-kb-aed" kind="show" identifier="showSettings" id="nRE-xJ-OVJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
