@@ -42,16 +42,19 @@ class ChampionsLoadingViewController: UIViewController {
     private func setupSubscribers() {
         totalChampionsCountSub = championListVm?.$totalChampionsCount.sink(receiveValue: { count in
             DispatchQueue.main.async { [unowned self] in
-                progressLabel.text = "0 / \(count)"
+                progressLabel.text = "0 / \(count ?? 0)"
             }
             
         })
         
         downloadedChampionsCountSub = championListVm?.$downloadedChampionsCount.sink(receiveValue: { downloadedCounter in
             DispatchQueue.main.async { [unowned self] in
-                progressLabel.text = "\(downloadedCounter) / \(championListVm?.totalChampionsCount ?? 0)"
+                progressLabel.text = "\(downloadedCounter ?? 0) / \(championListVm?.totalChampionsCount ?? 0)"
                 
                 downloadProgressBar.progress = downloadProgress()
+                
+                guard championListVm?.totalChampionsCount != nil,
+                      downloadedCounter != nil else { return }
                 
                 if downloadedCounter == championListVm?.totalChampionsCount {
                     print("Dissmissed")
