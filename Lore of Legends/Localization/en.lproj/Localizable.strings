@@ -6,6 +6,6 @@
   
 */
 
-"ChampionListError.NotificationNoData" = "No data received";
-"ChampionListError.BundleReadFail" = "Failed to read champions configuration files";
 "ChampionListError.DecodingFail" = "Failed to decode champion data";
+"ChampionsLoadingViewController.isDownloading" = "Downloading champions...";
+"ChampionsLoadingViewController.isFetching" = "Fetching champions...";
