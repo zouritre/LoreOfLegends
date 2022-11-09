@@ -9,6 +9,7 @@ import UIKit
 
 class SkinViewController: UIViewController {
     var skinImageData: Data?
+    var skinIndex: Int?
     
     @IBOutlet weak var skinImageView: UIImageView!
     

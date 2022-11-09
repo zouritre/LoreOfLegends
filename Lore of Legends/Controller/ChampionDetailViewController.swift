@@ -10,24 +10,24 @@ import Combine
 
 extension ChampionDetailViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if currentlyDisplayedSkinIndex > 0 {
-            let vc = pageViewControllers[currentlyDisplayedSkinIndex-1]
+        if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
+            guard let currentSkinIndex = currentVc.skinIndex else { return nil }
             
-            currentlyDisplayedSkinIndex -= 1
-            
-            return vc
+            if currentSkinIndex > 0 {
+                return pageViewControllers[currentSkinIndex-1]
+            }
         }
         
         return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if currentlyDisplayedSkinIndex < pageViewControllers.count  {
-            let vc = pageViewControllers[currentlyDisplayedSkinIndex]
+        if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
+            guard let currentSkinIndex = currentVc.skinIndex else { return nil }
             
-            currentlyDisplayedSkinIndex += 1
-            
-            return vc
+            if currentSkinIndex < pageViewControllers.count-1 {
+                return pageViewControllers[currentSkinIndex+1]
+            }
         }
         
         return nil
@@ -45,7 +45,6 @@ class ChampionDetailViewController: UIViewController {
     /// ViewController that manages paginating for skins ViewController
     weak var skinsPageViewController: CenteredSkinsPageViewController?
     var pageViewControllers = [SkinViewController]()
-    var currentlyDisplayedSkinIndex = 0
     
     @IBOutlet weak var championNameLabel: UILabel!
     @IBOutlet weak var skinsContainerView: UIView!
@@ -80,17 +79,21 @@ class ChampionDetailViewController: UIViewController {
         championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
             if let champ {
                 DispatchQueue.main.async { [unowned self] in
-                    for skin in champ.skins {
+                    for (index, skin) in champ.skins.enumerated() {
+                        print(index)
                         let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
                         
                         vc.skinImageData = skin.centered
+                        vc.skinIndex = index
+                        
                         pageViewControllers.append(vc)
                     }
                     
-                    let vc1 = SkinViewController(nibName: "SkinViewController", bundle: nil)
-                    vc1.skinImageData = champ.skins[0].centered
+                    guard let firstSkin = pageViewControllers.first else {
+                        return
+                    }
                     
-                    self.skinsPageViewController?.setViewControllers([vc1], direction: .forward, animated: true)
+                    self.skinsPageViewController?.setViewControllers([firstSkin], direction: .forward, animated: true)
                 }
             }
         })
@@ -101,6 +104,7 @@ class ChampionDetailViewController: UIViewController {
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "centeredSkinPageVC" {
+             // Retrieve CenteredSkinsPageViewController instance
              skinsPageViewController = segue.destination as? CenteredSkinsPageViewController
          }
      }
