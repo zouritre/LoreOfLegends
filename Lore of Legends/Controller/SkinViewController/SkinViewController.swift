@@ -10,6 +10,7 @@ import UIKit
 class SkinViewController: UIViewController {
     var skinImageData: Data?
     var skinIndex: Int?
+    var skinName: String?
     
     @IBOutlet weak var skinImageView: UIImageView!
     

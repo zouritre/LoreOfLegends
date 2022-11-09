@@ -8,6 +8,16 @@
 import UIKit
 import Combine
 
+extension ChampionDetailViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if finished {
+            if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
+                championNameLabel.text = currentVc.skinName
+            }
+        }
+    }
+}
+
 extension ChampionDetailViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
@@ -60,6 +70,7 @@ class ChampionDetailViewController: UIViewController {
         }
         
         skinsPageViewController?.dataSource = self
+        skinsPageViewController?.delegate = self
         
         setupSubscribers()
         setupUiTexts(for: champion)
@@ -80,11 +91,11 @@ class ChampionDetailViewController: UIViewController {
             if let champ {
                 DispatchQueue.main.async { [unowned self] in
                     for (index, skin) in champ.skins.enumerated() {
-                        print(index)
                         let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
                         
                         vc.skinImageData = skin.centered
                         vc.skinIndex = index
+                        vc.skinName = skin.title
                         
                         pageViewControllers.append(vc)
                     }
@@ -99,13 +110,13 @@ class ChampionDetailViewController: UIViewController {
         })
     }
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "centeredSkinPageVC" {
-             // Retrieve CenteredSkinsPageViewController instance
-             skinsPageViewController = segue.destination as? CenteredSkinsPageViewController
-         }
-     }
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "centeredSkinPageVC" {
+            // Retrieve CenteredSkinsPageViewController instance
+            skinsPageViewController = segue.destination as? CenteredSkinsPageViewController
+        }
+    }
 }
