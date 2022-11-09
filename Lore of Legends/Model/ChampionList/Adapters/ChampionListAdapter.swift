@@ -21,10 +21,6 @@ extension ChampionListAdapter: ChampionListDelegate {
                 // Retrieve all champions from Riot CDN
                 let champions = try fetchChampions()
                 
-                // Notify the number of champions retrieved form the API
-                caller.totalChampionsCountPublisher.send(champions.count)
-                // Notify the number of champions retrieved from local storage
-                caller.downloadedChampionCounterPub.send(champions.count)
                 // Send the array of champions retrieved from local storage
                 caller.championsDataSubject.send(champions)
             }

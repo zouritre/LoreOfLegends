@@ -12,16 +12,10 @@ class ChampionsLoadingViewController: UIViewController {
     
     /// View model instance
     weak var championListVm: ChampionListViewModel?
-    /// Subscriber for champions data
-    var championsDataSub: AnyCancellable?
     /// Subscriber for total number of champions in League
     var totalChampionsCountSub: AnyCancellable?
     /// Subsriber for the number of champions currently downloaded or fetched from Core Data
     var downloadedChampionsCountSub: AnyCancellable?
-    /// Subscriber that notify wether a download is in progress or not
-    var isDownloadingSub: AnyCancellable?
-    /// Total number of champions being fetched or downloaded
-    var totalChampionsCount = Int()
     /// Number formatter that allows float number with max of 2 digits decimals
     var numberFormatter: NumberFormatter {
         let formatter = NumberFormatter()
@@ -38,55 +32,46 @@ class ChampionsLoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        isDownloadingLabel.text = NSLocalizedString("Downloading champions", comment: "Champions download is running")
+        
         setupSubscribers()
-        championListVm?.getChampions()
     }
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        championsDataSub = championListVm?.$champions.sink(receiveValue: { champions in
-            if champions.count > 0 {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true)
-                }
-            }
-        })
         totalChampionsCountSub = championListVm?.$totalChampionsCount.sink(receiveValue: { count in
-            DispatchQueue.main.async {
-                self.downloadProgressBar.isHidden = false
-                self.totalChampionsCount = count
-                self.progressLabel.text = "0 / \(count)"
+            DispatchQueue.main.async { [unowned self] in
+                progressLabel.text = "0 / \(count)"
             }
             
         })
         
         downloadedChampionsCountSub = championListVm?.$downloadedChampionsCount.sink(receiveValue: { downloadedCounter in
-            if self.totalChampionsCount > 0 {
-                let total = Float(self.totalChampionsCount)
-                let current = Float(downloadedCounter)
-                let progress = current/total
-                let progressToString = self.numberFormatter.string(from: progress as NSNumber)
+            DispatchQueue.main.async { [unowned self] in
+                progressLabel.text = "\(downloadedCounter) / \(championListVm?.totalChampionsCount ?? 0)"
                 
-                guard let progressToString else {
-                    return
-                }
+                downloadProgressBar.progress = downloadProgress()
                 
-                DispatchQueue.main.async {
-                    if let progress = self.numberFormatter.number(from: progressToString) {
-                        self.downloadProgressBar.progress = Float(truncating: progress)
-                    }
-                    else { return }
-                    
-                    self.progressLabel.text = "\(downloadedCounter) / \(self.totalChampionsCount)"
+                if downloadedCounter == championListVm?.totalChampionsCount {
+                    print("Dissmissed")
+                    dismiss(animated: true)
                 }
             }
         })
+    }
+    
+    private func downloadProgress() -> Float {
+        guard let downloaded = championListVm?.downloadedChampionsCount,
+              let total = championListVm?.totalChampionsCount
+        else { return 0 }
         
-        isDownloadingSub = championListVm?.$isDownloading.sink(receiveValue: { isDownloading in
-            DispatchQueue.main.async {
-                self.isDownloadingLabel.text = isDownloading ? NSLocalizedString("ChampionsLoadingViewController.isDownloading", comment: "A download is running") : NSLocalizedString("ChampionsLoadingViewController.isFetching", comment: "Fetching champions locally")
-            }
-        })
+        let progress = Float(downloaded)/Float(total)
+        
+        guard let progressToString = numberFormatter.string(from: progress as NSNumber) else { return 0 }
+        guard let progressFormatted = numberFormatter.number(from: progressToString) else { return 0 }
+        
+        return Float(truncating: progressFormatted)
     }
     
 

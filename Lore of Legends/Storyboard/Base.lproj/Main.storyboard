@@ -180,7 +180,7 @@
         <!--Champions Loading View Controller-->
         <scene sceneID="DH4-hH-7oo">
             <objects>
-                <viewController id="dqK-UU-DDr" customClass="ChampionsLoadingViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="dqK-UU-DDr" customClass="ChampionsLoadingViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KJG-PZ-4OG">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

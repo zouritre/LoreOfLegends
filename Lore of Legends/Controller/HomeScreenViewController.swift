@@ -111,8 +111,10 @@ class HomeScreenViewController: UIViewController {
     var championsDataErrorSubscriber: AnyCancellable?
     /// Publisher for the original champion list. Publish  a single value then complete.
     var originalChampListPublisher = PassthroughSubject<[Champion], Never>()
-    /// Subscriber for thz original champion list. Receive a single value then cancel activity.
+    /// Subscriber for the original champion list. Receive a single value then cancel activity.
     var originalChampListSubscriber: AnyCancellable?
+    /// Notify if champions download is pending or not
+    var isDownloadingSubscriber: AnyCancellable?
     
     /// Main collectionview of the UI
     @IBOutlet weak var championIconsCollection: UICollectionView!
@@ -124,7 +126,7 @@ class HomeScreenViewController: UIViewController {
         
         setupSubscribers()
         
-        performSegue(withIdentifier: "championsLoading", sender: nil)
+        championListVM.getChampions()
     }
     
     /// Register a Nib to the collection view
@@ -166,6 +168,12 @@ class HomeScreenViewController: UIViewController {
         }, receiveValue: { champions in
                 self.originalChampionList = champions
         })
+        
+        isDownloadingSubscriber = championListVM.$isDownloading.sink { [unowned self] isDownloading in
+            if isDownloading {
+                performSegue(withIdentifier: "championsLoading", sender: nil)
+            }
+        }
     }
     
     
