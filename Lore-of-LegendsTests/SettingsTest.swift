@@ -37,7 +37,8 @@ final class SettingsTest: XCTestCase {
     }
     
     func testShouldReceiveErrorWhenAsyncTaskFails() async {
-        let adapter = SettingsAdapter(api: nil)
+        let mockApi = RiotCdnApiMock(throwing: true)
+        let adapter = SettingsAdapter(api: mockApi)
         let viewmodel = SettingsViewModel(adapter: adapter)
         let expectation = expectation(description: "Wait for async task to finish")
         let sub = viewmodel.settings.languagesPublisher.sink(receiveCompletion: { _ in
@@ -46,7 +47,7 @@ final class SettingsTest: XCTestCase {
         
         viewmodel.getLanguages()
         
-        await waitForExpectations(timeout: 1)
+        await waitForExpectations(timeout: 0.5)
         
         XCTAssertNotNil(viewmodel.requestError)
         

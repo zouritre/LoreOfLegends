@@ -18,6 +18,10 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
     }
     
     func getSupportedLanguages() async throws -> [Locale] {
+        if throwing {
+            throw SettingsError.badUrl
+        }
+        
         return [Locale(identifier: "")]
     }
     
@@ -37,5 +41,11 @@ extension RiotCdnApiMock: ChampionDetailAdapterDelegate {
 }
 
 class RiotCdnApiMock {
+    var throwing: Bool = false
     
+    init(throwing: Bool? = nil) {
+        if throwing != nil {
+            self.throwing = true
+        }
+    }
 }
