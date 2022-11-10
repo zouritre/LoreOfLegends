@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension RiotCdnApi: ChampionListAdapterDelegate {
+extension RiotCdnApi: RiotCdnApiDelegate {
     func getLastestPatchVersion() async throws -> String {
         return "12.20.1"
     }
@@ -79,6 +79,26 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
             }
         }
     }
+}
+
+protocol RiotCdnApiDelegate: AnyObject {
+    /// Get the lastest patch version for League
+    /// - Returns: A string idicating the lastest patch versions
+    func getLastestPatchVersion() async throws -> String
+    
+    /// Return languages supported for the champions data
+    /// - Returns: An array of languages
+    func getSupportedLanguages() async throws -> [String]
+    
+    /// Retrieve ChampionFull.json file from Riot CDN
+    /// - Parameter url: URL of the json file
+    /// - Returns: Data object representing the json file
+    func retrieveChampionFullDataJson(url: URL) async throws -> Data
+    
+    /// Download the icon image of the given champion
+    /// - Parameter champion: Champion for wich to retrieve data asynchronously
+    /// - Returns: Data object representing the champion icon
+    func downloadImage(for champion: Champion) async throws -> Data
 }
 
 class RiotCdnApi {

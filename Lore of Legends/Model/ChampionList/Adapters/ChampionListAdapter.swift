@@ -62,26 +62,6 @@ extension ChampionListAdapter: ChampionListDelegate {
     }
 }
 
-protocol ChampionListAdapterDelegate {
-    /// Get the lastest patch version for League
-    /// - Returns: A string idicating the lastest patch versions
-    func getLastestPatchVersion() async throws -> String
-    
-    /// Return languages supported for the champions data
-    /// - Returns: An array of languages
-    func getSupportedLanguages() async throws -> [String]
-    
-    /// Retrieve ChampionFull.json file from Riot CDN
-    /// - Parameter url: URL of the json file
-    /// - Returns: Data object representing the json file
-    func retrieveChampionFullDataJson(url: URL) async throws -> Data
-    
-    /// Download the icon image of the given champion
-    /// - Parameter champion: Champion for wich to retrieve data asynchronously
-    /// - Returns: Data object representing the champion icon
-    func downloadImage(for champion: Champion) async throws -> Data
-}
-
 class ChampionListAdapter {
     // MARK: Vars
     
@@ -113,7 +93,7 @@ class ChampionListAdapter {
     }
     
     /// Class responsible for making request to Riot CDN
-    var delegate: ChampionListAdapterDelegate
+    var delegate: RiotCdnApiDelegate
     /// Class instance that call this class methods
     var caller: ChampionList?
     /// Total number of champions in League
@@ -135,7 +115,7 @@ class ChampionListAdapter {
     
     // MARK: Init
     
-    init(delegate: ChampionListAdapterDelegate = RiotCdnApi()) {
+    init(delegate: RiotCdnApiDelegate = RiotCdnApi()) {
         self.delegate = delegate
     }
     

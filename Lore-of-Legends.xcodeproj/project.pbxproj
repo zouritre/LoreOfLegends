@@ -15,6 +15,7 @@
 		E9160E2E291D511A006CF845 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2D291D511A006CF845 /* SettingsViewModel.swift */; };
 		E9160E30291D52C2006CF845 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2F291D52C2006CF845 /* Settings.swift */; };
 		E9160E33291D532C006CF845 /* SettingsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E32291D532C006CF845 /* SettingsAdapter.swift */; };
+		E9160E35291D6845006CF845 /* SettingsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E34291D6845006CF845 /* SettingsError.swift */; };
 		E9179F16291177AB00E178F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9179F15291177AB00E178F8 /* Persistence.swift */; };
 		E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9179F1729117BF900E178F8 /* MainDataStore.xcdatamodeld */; };
 		E92B6F4929129948001CC206 /* ChampionDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4829129948001CC206 /* ChampionDetailTest.swift */; };
@@ -71,6 +72,7 @@
 		E9160E2D291D511A006CF845 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E9160E2F291D52C2006CF845 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E9160E32291D532C006CF845 /* SettingsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdapter.swift; sourceTree = "<group>"; };
+		E9160E34291D6845006CF845 /* SettingsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsError.swift; sourceTree = "<group>"; };
 		E9179F15291177AB00E178F8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9179F1829117BF900E178F8 /* MainDataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92B6F4829129948001CC206 /* ChampionDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailTest.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				E9160E2F291D52C2006CF845 /* Settings.swift */,
 				E9160E32291D532C006CF845 /* SettingsAdapter.swift */,
+				E9160E34291D6845006CF845 /* SettingsError.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
 				E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */,
 				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,
+				E9160E35291D6845006CF845 /* SettingsError.swift in Sources */,
 				E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */,
 				E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,
 				E93B367728FC5208003BB0A3 /* ChampionListViewModel.swift in Sources */,

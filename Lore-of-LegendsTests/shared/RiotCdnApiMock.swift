@@ -8,7 +8,7 @@
 import Foundation
 @testable import Lore_of_Legends
 
-extension RiotCdnApiMock: ChampionListAdapterDelegate {
+extension RiotCdnApiMock: RiotCdnApiDelegate {
     func downloadImage(for champion: Lore_of_Legends.Champion) async throws -> Data {
         return Data()
     }
