@@ -21,6 +21,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         let languagesString = try JSONDecoder().decode([String].self, from: data)
         
+        print(languagesString)
         var locales = [Locale]()
         
         languagesString.forEach { language in

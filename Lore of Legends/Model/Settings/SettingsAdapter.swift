@@ -39,7 +39,7 @@ class SettingsAdapter {
         }
         else {
             // Use the default api
-            self.delegate = api
+            self.delegate = self.api
         }
     }
 }

@@ -20,11 +20,12 @@ extension SettingsViewController: UIPickerViewDataSource {
 }
 
 class SettingsViewController: UIViewController {
+    let vm = SettingsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        vm.getLanguages()
     }
     
 
