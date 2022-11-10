@@ -13,7 +13,21 @@ extension RiotCdnApi: RiotCdnApiDelegate {
     }
     
     func getSupportedLanguages() async throws -> [Locale] {
-        return [Locale(identifier: "")]
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/languages.json")
+        
+        guard let url else { throw SettingsError.badUrl }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        let languagesString = try JSONDecoder().decode([String].self, from: data)
+        
+        var locales = [Locale]()
+        
+        languagesString.forEach { language in
+            locales.append(Locale(identifier: language))
+        }
+        
+        return locales
     }
     
     func retrieveChampionFullDataJson(url: URL) async throws -> Data {

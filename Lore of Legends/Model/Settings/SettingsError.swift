@@ -12,6 +12,8 @@ extension SettingsError: LocalizedError {
         switch self {
         case .NilDelegateForApi:
             return NSLocalizedString("Couldn't communicate with API.", comment: "RiotCdnApi class delegate is nil")
+        case .badUrl:
+            return NSLocalizedString("Couldn't reach API", comment: "Bad URL for request")
         }
     }
 }
@@ -20,4 +22,5 @@ extension SettingsError: LocalizedError {
 /// Informations about errors occuring with Settings functionnality
 enum SettingsError: Error {
     case NilDelegateForApi
+    case badUrl
 }
