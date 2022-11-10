@@ -31,7 +31,7 @@ final class SettingsTest: XCTestCase {
         
         await waitForExpectations(timeout: 1)
         
-        XCTAssertNotNil(viewmodel.languages)
+        XCTAssertNotNil(viewmodel.languages.value)
         
         sub.cancel()
     }

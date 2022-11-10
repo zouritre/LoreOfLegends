@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class SettingsViewModel {
-    @Published var languages: [Locale]? = nil
+    var languages = CurrentValueSubject<[Locale]?, Never>(nil)
     @Published var requestError: Error? = nil
     /// Use-case object
     var settings = Settings()
@@ -38,7 +38,8 @@ class SettingsViewModel {
                 requestError = error
             }
         }, receiveValue: { [unowned self] langs in
-            languages = langs
+            print("received languages")
+            languages.value = langs
         })
     }
     
