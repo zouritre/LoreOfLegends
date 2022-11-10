@@ -64,6 +64,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RFQ-nq-dRX"/>
+                    <connections>
+                        <outlet property="languagePicker" destination="JK5-FQ-tgK" id="8Gh-wh-ntl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLD-TD-kHU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

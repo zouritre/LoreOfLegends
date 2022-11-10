@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 extension SettingsViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -13,22 +14,55 @@ extension SettingsViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        5
+        guard let languages = vm.languages else { return 0 }
+        
+        return languages.count
     }
-    
-    
+}
+
+extension SettingsViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        guard let languages = vm.languages else {
+            print("languages is nil")
+            return "" }
+        
+        return languages[row].identifier
+    }
 }
 
 class SettingsViewController: UIViewController {
     let vm = SettingsViewModel()
+    var languagesSubscriber: AnyCancellable?
+    var languagesErrorSubscriber: AnyCancellable?
+    
+    @IBOutlet weak var languagePicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         vm.getLanguages()
     }
     
-
+    private func setupSubscribers() {
+        languagesSubscriber = vm.$languages.sink { [unowned self] _ in
+            print("received languages")
+            languagePicker.reloadAllComponents()
+        }
+        
+        languagesErrorSubscriber = vm.$requestError.sink { [unowned self] error in
+            print("received error")
+            guard let error else {
+                alert(message: NSLocalizedString("Unknown error", comment: "Error occured but can't be retrieved"))
+                
+                return
+            }
+            
+            alert(message: error.localizedDescription)
+        }
+    }
     /*
     // MARK: - Navigation
 

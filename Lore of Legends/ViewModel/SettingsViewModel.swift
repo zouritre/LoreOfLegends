@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class SettingsViewModel {
-    var languages: [Locale]?
-    var requestError: Error?
+    @Published var languages: [Locale]? = nil
+    @Published var requestError: Error? = nil
     /// Use-case object
     var settings = Settings()
     /// Object that manages Api requests
