@@ -12,7 +12,7 @@ extension UIViewController {
     /// Display an alert with a custom message
     /// - Parameter message: Text to display in the alert
     func alert(message: String) {
-        let alert = UIAlertController(title: NSLocalizedString("alert.error", comment: "Error title"), message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default))
         
         DispatchQueue.main.async {
