@@ -10,6 +10,7 @@ import Combine
 
 class SettingsViewModel {
     var languages: [String]?
+    var requestError: Error?
     /// Use-case object
     var settings = Settings()
     /// Object that manages Api requests
@@ -29,7 +30,14 @@ class SettingsViewModel {
         }
         
         // Set up the subscriber
-        languagesSubscriber = settings.languagesPublisher.sink(receiveCompletion: { _ in }, receiveValue: { [unowned self] langs in
+        languagesSubscriber = settings.languagesPublisher.sink(receiveCompletion: { [unowned self] completion in
+            switch completion {
+            case .finished:
+                return
+            case .failure(let error):
+                requestError = error
+            }
+        }, receiveValue: { [unowned self] langs in
             languages = langs
         })
     }

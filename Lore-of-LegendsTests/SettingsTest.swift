@@ -35,5 +35,22 @@ final class SettingsTest: XCTestCase {
         
         sub.cancel()
     }
+    
+    func testShouldReceiveErrorWhenAsyncTaskFails() async {
+        let adapter = SettingsAdapter(api: nil)
+        let viewmodel = SettingsViewModel(adapter: adapter)
+        let expectation = expectation(description: "Wait for async task to finish")
+        let sub = viewmodel.settings.languagesPublisher.sink(receiveCompletion: { _ in
+            expectation.fulfill()
+        }, receiveValue: { _ in })
+        
+        viewmodel.getLanguages()
+        
+        await waitForExpectations(timeout: 1)
+        
+        XCTAssertNotNil(viewmodel.requestError)
+        
+        sub.cancel()
+    }
 
 }
