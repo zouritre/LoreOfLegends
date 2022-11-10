@@ -46,6 +46,13 @@ class SettingsViewController: UIViewController {
         vm.getLanguages()
     }
     
+    @IBAction func saveButton(_ sender: UIButton) {
+        UserDefaults.standard.setValue(languagePicker.selectedRow(inComponent: 0), forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
+        UserDefaults.standard.setValue(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
+        
+        alert(message: NSLocalizedString("Please restart the app to apply the new language", comment: "User selected a new language for lores display"))
+    }
+    
     private func setupSubscribers() {
         languagesSubscriber = vm.$languages.sink { [unowned self] _ in
             print("received languages")
