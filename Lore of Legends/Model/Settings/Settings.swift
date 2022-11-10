@@ -19,5 +19,5 @@ class Settings {
     /// Object responsible for handling language list requests
     weak var delegate: SettingsDelegate?
     /// Publisher that send result for languages request
-    var languagesPublisher = PassthroughSubject<[String], Error>()
+    var languagesPublisher = PassthroughSubject<[Locale], Error>()
 }

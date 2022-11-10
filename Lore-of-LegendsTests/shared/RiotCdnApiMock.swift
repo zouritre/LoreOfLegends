@@ -17,8 +17,8 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
         return Data()
     }
     
-    func getSupportedLanguages() async throws -> [String] {
-        return ["fr_FR"]
+    func getSupportedLanguages() async throws -> [Locale] {
+        return [Locale(identifier: "")]
     }
     
     func getLastestPatchVersion() async throws -> String {

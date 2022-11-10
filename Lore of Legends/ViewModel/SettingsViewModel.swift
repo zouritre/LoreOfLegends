@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class SettingsViewModel {
-    var languages: [String]?
+    var languages: [Locale]?
     var requestError: Error?
     /// Use-case object
     var settings = Settings()

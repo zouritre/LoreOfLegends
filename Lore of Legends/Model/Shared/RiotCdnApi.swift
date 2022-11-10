@@ -12,8 +12,8 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         return "12.20.1"
     }
     
-    func getSupportedLanguages() async throws -> [String] {
-        return [""]
+    func getSupportedLanguages() async throws -> [Locale] {
+        return [Locale(identifier: "")]
     }
     
     func retrieveChampionFullDataJson(url: URL) async throws -> Data {
@@ -88,7 +88,7 @@ protocol RiotCdnApiDelegate: AnyObject {
     
     /// Return languages supported for the champions data
     /// - Returns: An array of languages
-    func getSupportedLanguages() async throws -> [String]
+    func getSupportedLanguages() async throws -> [Locale]
     
     /// Retrieve ChampionFull.json file from Riot CDN
     /// - Parameter url: URL of the json file
