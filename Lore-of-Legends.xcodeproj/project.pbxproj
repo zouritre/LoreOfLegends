@@ -11,6 +11,11 @@
 		E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E908683329167E5C00297FD7 /* ChampionDetailCell.xib */; };
 		E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E9505291B12030022C7F5 /* SkinViewController.swift */; };
 		E90E9508291B12030022C7F5 /* SkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90E9506291B12030022C7F5 /* SkinViewController.xib */; };
+		E9160E2C291D50A8006CF845 /* SettingsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2B291D50A8006CF845 /* SettingsTest.swift */; };
+		E9160E2E291D511A006CF845 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2D291D511A006CF845 /* SettingsViewModel.swift */; };
+		E9160E30291D52C2006CF845 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2F291D52C2006CF845 /* Settings.swift */; };
+		E9160E33291D532C006CF845 /* SettingsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E32291D532C006CF845 /* SettingsAdapter.swift */; };
+		E9160E35291D6845006CF845 /* SettingsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E34291D6845006CF845 /* SettingsError.swift */; };
 		E9179F16291177AB00E178F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9179F15291177AB00E178F8 /* Persistence.swift */; };
 		E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9179F1729117BF900E178F8 /* MainDataStore.xcdatamodeld */; };
 		E92B6F4929129948001CC206 /* ChampionDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4829129948001CC206 /* ChampionDetailTest.swift */; };
@@ -18,6 +23,7 @@
 		E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4C29129AD2001CC206 /* ChampionDetail.swift */; };
 		E92B6F4F29129B73001CC206 /* ChampionDetailAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4E29129B73001CC206 /* ChampionDetailAdapter.swift */; };
 		E92B6F532912B6F2001CC206 /* ChampionDetailAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F512912B6EC001CC206 /* ChampionDetailAdapterMock.swift */; };
+		E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E9E5291C55A30003B643 /* SettingsViewController.swift */; };
 		E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */; };
 		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
@@ -62,6 +68,11 @@
 		E908683329167E5C00297FD7 /* ChampionDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionDetailCell.xib; sourceTree = "<group>"; };
 		E90E9505291B12030022C7F5 /* SkinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinViewController.swift; sourceTree = "<group>"; };
 		E90E9506291B12030022C7F5 /* SkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkinViewController.xib; sourceTree = "<group>"; };
+		E9160E2B291D50A8006CF845 /* SettingsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTest.swift; sourceTree = "<group>"; };
+		E9160E2D291D511A006CF845 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E9160E2F291D52C2006CF845 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		E9160E32291D532C006CF845 /* SettingsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdapter.swift; sourceTree = "<group>"; };
+		E9160E34291D6845006CF845 /* SettingsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsError.swift; sourceTree = "<group>"; };
 		E9179F15291177AB00E178F8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9179F1829117BF900E178F8 /* MainDataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92B6F4829129948001CC206 /* ChampionDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailTest.swift; sourceTree = "<group>"; };
@@ -69,6 +80,7 @@
 		E92B6F4C29129AD2001CC206 /* ChampionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetail.swift; sourceTree = "<group>"; };
 		E92B6F4E29129B73001CC206 /* ChampionDetailAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailAdapter.swift; sourceTree = "<group>"; };
 		E92B6F512912B6EC001CC206 /* ChampionDetailAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailAdapterMock.swift; sourceTree = "<group>"; };
+		E930E9E5291C55A30003B643 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailViewController.swift; sourceTree = "<group>"; };
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListTest.swift; sourceTree = "<group>"; };
@@ -147,6 +159,16 @@
 			path = SkinViewController;
 			sourceTree = "<group>";
 		};
+		E9160E31291D531B006CF845 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E9160E2F291D52C2006CF845 /* Settings.swift */,
+				E9160E32291D532C006CF845 /* SettingsAdapter.swift */,
+				E9160E34291D6845006CF845 /* SettingsError.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		E92B6F502912B6D9001CC206 /* ChampionDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +184,7 @@
 				E9F9188E2912D8AF00B09251 /* shared */,
 				E9BEA3F6290B1F1800FE723D /* ChampionList */,
 				E9F9188A2912D6FE00B09251 /* ChampionDetail */,
+				E9160E2B291D50A8006CF845 /* SettingsTest.swift */,
 			);
 			path = "Lore-of-LegendsTests";
 			sourceTree = "<group>";
@@ -172,8 +195,8 @@
 				E9F9188B2912D82600B09251 /* Shared */,
 				E983BA78290BF1050008983B /* Entities */,
 				E93B365628FC4748003BB0A3 /* ChampionList */,
-				E981EB412909C3A1002980DC /* UserDefaultKeys.swift */,
 				E92B6F502912B6D9001CC206 /* ChampionDetail */,
+				E9160E31291D531B006CF845 /* Settings */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +216,7 @@
 			children = (
 				E93B367428FC51DA003BB0A3 /* ChampionListViewModel.swift */,
 				E92B6F4A29129A53001CC206 /* ChampionDetailViewModel.swift */,
+				E9160E2D291D511A006CF845 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -217,6 +241,7 @@
 		E983BA78290BF1050008983B /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E981EB412909C3A1002980DC /* UserDefaultKeys.swift */,
 				E9BEA3F3290B1E9400FE723D /* Champion */,
 			);
 			path = Entities;
@@ -275,6 +300,7 @@
 				E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */,
 				E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */,
 				E90E9509291B120E0022C7F5 /* SkinViewController */,
+				E930E9E5291C55A30003B643 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -473,6 +499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9CD8C4E290ACC440042C46B /* ChampionListAdapterTest.swift in Sources */,
+				E9160E2C291D50A8006CF845 /* SettingsTest.swift in Sources */,
 				E9CD8C50290ACCCE0042C46B /* RiotCdnApiMock.swift in Sources */,
 				E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */,
 				E92B6F532912B6F2001CC206 /* ChampionDetailAdapterMock.swift in Sources */,
@@ -493,7 +520,9 @@
 				E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */,
 				E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */,
 				E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */,
+				E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */,
 				E97BD3DA29052F1200F63EFB /* ChampionAssetType.swift in Sources */,
+				E9160E33291D532C006CF845 /* SettingsAdapter.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListAdapter.swift in Sources */,
 				E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
@@ -502,11 +531,14 @@
 				E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */,
 				E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */,
 				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,
+				E9160E35291D6845006CF845 /* SettingsError.swift in Sources */,
 				E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */,
 				E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */,
 				E93B367728FC5208003BB0A3 /* ChampionListViewModel.swift in Sources */,
+				E9160E2E291D511A006CF845 /* SettingsViewModel.swift in Sources */,
 				E92B6F4B29129A53001CC206 /* ChampionDetailViewModel.swift in Sources */,
 				E9B5A58E290D83DD00F0A61A /* ChampionsLoadingViewController.swift in Sources */,
+				E9160E30291D52C2006CF845 /* Settings.swift in Sources */,
 				E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */,
 				E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */,
 			);

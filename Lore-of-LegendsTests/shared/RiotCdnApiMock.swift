@@ -8,7 +8,7 @@
 import Foundation
 @testable import Lore_of_Legends
 
-extension RiotCdnApiMock: ChampionListAdapterDelegate {
+extension RiotCdnApiMock: RiotCdnApiDelegate {
     func downloadImage(for champion: Lore_of_Legends.Champion) async throws -> Data {
         return Data()
     }
@@ -17,8 +17,12 @@ extension RiotCdnApiMock: ChampionListAdapterDelegate {
         return Data()
     }
     
-    func getSupportedLanguages() async throws -> [String] {
-        return ["fr_FR"]
+    func getSupportedLanguages() async throws -> [Locale] {
+        if throwing {
+            throw SettingsError.badUrl
+        }
+        
+        return [Locale(identifier: "")]
     }
     
     func getLastestPatchVersion() async throws -> String {
@@ -37,5 +41,11 @@ extension RiotCdnApiMock: ChampionDetailAdapterDelegate {
 }
 
 class RiotCdnApiMock {
+    var throwing: Bool = false
     
+    init(throwing: Bool? = nil) {
+        if throwing != nil {
+            self.throwing = true
+        }
+    }
 }
