@@ -22,11 +22,15 @@ class HomeScreenViewModel {
          champions = icons
         }
     }
-    func getChampions() {
-        homescreen.getChampions()
+    func getChampionsIcon() {
+        homescreen.getChampionsIcon()
     }
     
     func getChampionsName() {
         homescreen.getChampionsName()
+    }
+    
+    func getChampions() {
+        homescreen.getChampions()
     }
 }

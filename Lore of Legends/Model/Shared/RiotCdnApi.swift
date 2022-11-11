@@ -9,6 +9,10 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    func getChampions() async throws -> [Champion] {
+        [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
+    }
+    
     func getChampionsName() async throws -> [Champion] {
         [Champion(name: "", title: "", imageName: "", skins: [], lore: "")]
     }
@@ -128,6 +132,8 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 protocol RiotCdnApiDelegate: AnyObject {
+    func getChampions() async throws -> [Champion]
+    
     func getChampionsName() async throws -> [Champion]
     
     func getChampionsIcon() async throws -> [Champion]

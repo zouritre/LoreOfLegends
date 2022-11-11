@@ -23,7 +23,7 @@ class HomeScreen {
         }
     }
     
-    func getChampions() {
+    func getChampionsIcon() {
         Task {
             let championsWithIcon = try await riotCdnapi?.getChampionsIcon()
             guard let championsWithIcon else { return }
@@ -39,6 +39,16 @@ class HomeScreen {
             guard let championsWithName else { return }
             
             championsPublisher.send(championsWithName)
+        }
+    }
+    
+    func getChampions() {
+        Task {
+            let champions = try await riotCdnapi?.getChampions()
+            
+            guard let champions else { return }
+            
+            championsPublisher.send(champions)
         }
     }
     

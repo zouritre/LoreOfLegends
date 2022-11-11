@@ -26,7 +26,7 @@ final class HomeScreenTest: XCTestCase {
             expectation.fulfill()
         }
         
-        viewmodel.getChampions()
+        viewmodel.getChampionsIcon()
         
         await waitForExpectations(timeout: 0.5)
         
@@ -53,6 +53,24 @@ final class HomeScreenTest: XCTestCase {
             return
         }
         
+        XCTAssertGreaterThan(name.count, 0)
+        
+        sub.cancel()
+    }
+    
+    func testShouldReturnChampionNameAndIcon() async {
+        let mockApi = RiotCdnApiMock()
+        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
+        let expectation = expectation(description: "Wait for async task")
+        let sub = viewmodel.homescreen.championsPublisher.sink { _ in
+            expectation.fulfill()
+        }
+        
+        viewmodel.getChampions()
+        
+        await waitForExpectations(timeout: 0.5)
+        
+        XCTAssertNotNil(viewmodel.champions?[0].icon)
         XCTAssertGreaterThan(name.count, 0)
         
         sub.cancel()

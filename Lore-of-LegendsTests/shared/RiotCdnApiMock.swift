@@ -10,6 +10,10 @@ import Combine
 @testable import Lore_of_Legends
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
+    func getChampions() async throws -> [Lore_of_Legends.Champion] {
+        [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
+    }
+    
     func getChampionsName() async throws -> [Lore_of_Legends.Champion] {
         [Champion(name: "Aatrox", title: "", imageName: "", skins: [], lore: "")]
     }
