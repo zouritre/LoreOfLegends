@@ -18,46 +18,6 @@ final class HomeScreenTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testShouldReturnEveryChampionsIcon() async {
-        let mockApi = RiotCdnApiMock()
-        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
-        let expectation = expectation(description: "Wait for async task")
-        let sub = viewmodel.homescreen.championsPublisher.sink { _ in
-            expectation.fulfill()
-        }
-        
-        viewmodel.getChampionsIcon()
-        
-        await waitForExpectations(timeout: 0.5)
-        
-        XCTAssertNotNil(viewmodel.champions?[0].icon)
-        
-        sub.cancel()
-    }
-    
-    func testShouldReturnChampionsName() async {
-        let mockApi = RiotCdnApiMock()
-        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
-        let expectation = expectation(description: "Wait for async task")
-        let sub = viewmodel.homescreen.championsPublisher.sink { _ in
-            expectation.fulfill()
-        }
-        
-        viewmodel.getChampionsName()
-        
-        await waitForExpectations(timeout: 0.5)
-        
-        guard let name = viewmodel.champions?[0].name else {
-            XCTAssertTrue(false)
-            
-            return
-        }
-        
-        XCTAssertGreaterThan(name.count, 0)
-        
-        sub.cancel()
-    }
-    
     func testShouldReturnChampionNameAndIcon() async {
         let mockApi = RiotCdnApiMock()
         let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
