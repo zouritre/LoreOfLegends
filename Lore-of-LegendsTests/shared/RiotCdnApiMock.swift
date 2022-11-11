@@ -10,8 +10,8 @@ import Combine
 @testable import Lore_of_Legends
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
-    func getChampionsIcon() async -> [Data] {
-        return [Data()]
+    func getChampionsIcon() async -> [Champion] {
+        return [Champion(name: "", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
     }
     
     func downloadImage(for champion: Lore_of_Legends.Champion) async throws -> Data {

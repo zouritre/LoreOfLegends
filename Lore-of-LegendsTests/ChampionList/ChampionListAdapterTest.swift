@@ -24,9 +24,9 @@ final class ChampionListAdapterTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testShouldReturnLastestPatchVersion() async throws {
-        _ = try await adapter?.delegate.getLastestPatchVersion()
-    }
+//    func testShouldReturnLastestPatchVersion() async throws {
+//        _ = try await adapter?.delegate.getLastestPatchVersion()
+//    }
     
 //    func testApiShouldReturnAllLocalizationSupported() async throws {
 //         let languages = try await adapter?.delegate?.getSupportedLanguages()

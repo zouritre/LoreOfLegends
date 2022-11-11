@@ -33,30 +33,30 @@ extension ChampionListAdapter: ChampionListDelegate {
         }
         else {
             // Notify that a download is in progress
-            caller.isDownloadingPub.send(true)
-            
-            Task {
-                do {
-                    // Remove already stored champions data to avoid duplicating
-                    try removeChampionsDataFromStorage()
-                    
-                    let decodable = try await getDecodableForChampionsData()
-                    
-                    // Store in memory the total number of champions
-                    self.championsCount = decodable.keys.count
-                    
-                    let champions = createChampionsObjects(from: decodable)
-                    
-                    setIcons(for: champions)
-                }
-                catch {
-                    // Force downloading assets again on next app start
-                    isAssetSavedLocally = false
-                    
-                    // Notify the error
-                    caller.championsDataSubject.send(completion: .failure(error))
-                }
-            }
+//            caller.isDownloadingPub.send(true)
+//
+//            Task {
+//                do {
+//                    // Remove already stored champions data to avoid duplicating
+//                    try removeChampionsDataFromStorage()
+//
+//                    let decodable = try await getDecodableForChampionsData()
+//
+//                    // Store in memory the total number of champions
+//                    self.championsCount = decodable.keys.count
+//
+//                    let champions = createChampionsObjects(from: decodable)
+//
+//                    setIcons(for: champions)
+//                }
+//                catch {
+//                    // Force downloading assets again on next app start
+//                    isAssetSavedLocally = false
+//
+//                    // Notify the error
+//                    caller.championsDataSubject.send(completion: .failure(error))
+//                }
+//            }
         }
         
     }
@@ -124,15 +124,15 @@ class ChampionListAdapter {
     
     /// Retrieve ChampionFull.json file from Riot CDNs
     /// - Returns: A decodable object representing the json file retrieve form API
-    func getDecodableForChampionsData() async throws -> ChampionFullJsonDecodable {
-        let lastestPatchVersion = try await delegate.getLastestPatchVersion()
-        let language = getLanguageForChampionsData()
-        let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
-        let json = try await delegate.retrieveChampionFullDataJson(url: url)
-        let decodable = try decodeChampionDataJson(from: json)
-        
-        return decodable
-    }
+//    func getDecodableForChampionsData() async throws -> ChampionFullJsonDecodable {
+//        let lastestPatchVersion = try await delegate.getLastestPatchVersion()
+//        let language = getLanguageForChampionsData()
+//        let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
+//        let json = try await delegate.retrieveChampionFullDataJson(url: url)
+//        let decodable = try decodeChampionDataJson(from: json)
+//
+//        return decodable
+//    }
     
     /// Get the languages to use for champion's lore display
     /// - Returns: A locale for the language to use

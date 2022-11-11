@@ -20,7 +20,7 @@ final class HomeScreenTest: XCTestCase {
 
     func testShouldReturnEveryChampionsIcon() async {
         let mockApi = RiotCdnApiMock()
-        var viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
+        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
         let expectation = expectation(description: "Wait for async task")
         let sub = viewmodel.homescreen.championsIconPublisher.sink { _ in
             expectation.fulfill()
@@ -30,7 +30,7 @@ final class HomeScreenTest: XCTestCase {
         
         await waitForExpectations(timeout: 0.5)
         
-        XCTAssertNotNil(viewmodel.championsIcon)
+        XCTAssertNotNil(viewmodel.champions?[0].icon)
         
         sub.cancel()
     }

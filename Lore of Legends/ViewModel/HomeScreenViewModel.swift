@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class HomeScreenViewModel {
-    var championsIcon: [Data]?
+    var champions: [Champion]?
     private var championsIconSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
@@ -19,7 +19,7 @@ class HomeScreenViewModel {
         }
         
         championsIconSubscriber = homescreen.championsIconPublisher.sink { [unowned self] icons in
-         championsIcon = icons
+         champions = icons
         }
     }
     func getChampionsIcon() {

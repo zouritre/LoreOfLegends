@@ -11,7 +11,7 @@ import Combine
 class HomeScreen {
     private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi()
     private weak var riotCdnapi: RiotCdnApiDelegate?
-    var championsIconPublisher = PassthroughSubject<[Data], Never>()
+    var championsIconPublisher = PassthroughSubject<[Champion], Never>()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
         if let riotCdnapi {
@@ -25,7 +25,7 @@ class HomeScreen {
     
     func getChampionsIcon() {
         Task {
-            let icons = await riotCdnapi?.getChampionsIcon()
+            let icons = try await riotCdnapi?.getChampionsIcon()
             
             guard let icons else { return }
             

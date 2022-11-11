@@ -9,12 +9,34 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
-    func getChampionsIcon() async -> [Data] {
-        return []
-    }
-    
-    func getLastestPatchVersion() async throws -> String {
-        return "12.20.1"
+    func getChampionsIcon() async throws -> [Champion] {
+        let patchVersion = try await getLastestPatchVersion()
+        let locale = getLocalizationForChampionsData()
+        let jsonUrl = try getChampionsFullJsonUrl(for: patchVersion, and: locale)
+        let data = try await getData(at: jsonUrl)
+        let decodable = try decodeChampionFullJson(from: data)
+        
+        let champions = await withTaskGroup(of: Champion.self) { taskGroup in
+            for (_, info) in decodable.data {
+                let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(info.image.full)_0.jpg")
+                taskGroup.addTask { [unowned self]  in
+                    let data = try? await getData(at: url)
+                    let champion = Champion(name: "", title: "", imageName: "", icon: data, skins: [], lore: "")
+//                    await championsList.addChampion(champion: champion)
+                    return champion
+                }
+            }
+            
+            var champions = [Champion]()
+            
+            for await champion in taskGroup {
+                champions.append(champion)
+            }
+            
+            return champions
+        }
+        
+        return champions
     }
     
     func getSupportedLanguages() async throws -> [Locale] {
@@ -102,11 +124,7 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 protocol RiotCdnApiDelegate: AnyObject {
-    func getChampionsIcon() async -> [Data]
-    
-    /// Get the lastest patch version for League
-    /// - Returns: A string idicating the lastest patch versions
-    func getLastestPatchVersion() async throws -> String
+    func getChampionsIcon() async throws -> [Champion]
     
     /// Return languages supported for the champions data
     /// - Returns: An array of languages
@@ -147,4 +165,64 @@ class RiotCdnApi {
     }
     /// Number of skins for the selected champion
     var skinsCount = 0
+    
+    @MainActor
+    private func getData(at url: URL?) async throws -> Data {
+        guard let url else { throw ChampionListError.badUrl }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            return data
+        }
+        catch {
+            throw error
+        }
+    }
+    
+    private func getLocalizationForChampionsData() -> Locale {
+        let deviceLocale = Locale.current
+        
+        switch deviceLocale.identifier {
+        case "fr-FR": return deviceLocale
+        default: return Locale(identifier: "en-US")
+        }
+    }
+    
+    /// Get the URL for the most recent ChampionFull.json file from Riot CDN
+    /// - Parameters:
+    ///   - patchVersion: League patch version
+    ///   - localization: Locale identifier representing the language in wich the data should be returned
+    /// - Returns: An URL to ChampionFull.json file from Riot CDN
+    private func getChampionsFullJsonUrl(for patchVersion: String, and localization: Locale) throws -> URL {
+        let locale = localization.identifier.replacingOccurrences(of: "-", with: "_")
+        print(locale)
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(locale)/championFull.json")
+        
+        guard let url else {
+            throw ChampionListError.badUrl
+        }
+        
+        return url
+    }
+    
+    /// Get the lastest patch version for League
+    /// - Returns: A string idicating the lastest patch versions
+    private func getLastestPatchVersion() async throws -> String {
+        return "12.20.1"
+    }
+    
+    /// Decode a data object to the given decodable format
+    /// - Parameter data: Data to be decoded
+    /// - Returns: Decocable object in wich the data should be decoded
+    private func decodeChampionFullJson(from data: Data) throws -> ChampionFullJsonDecodable {
+        do {
+            let decodable = try JSONDecoder().decode(ChampionFullJsonDecodable.self, from: data)
+            
+            return decodable
+        }
+        catch {
+            throw ChampionListError.DecodingFail
+        }
+    }
 }
