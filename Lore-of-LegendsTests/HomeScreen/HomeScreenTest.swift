@@ -22,9 +22,9 @@ final class HomeScreenTest: XCTestCase {
         let mockApi = RiotCdnApiMock()
         let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
         let expectation = expectation(description: "Wait for async task")
-        let sub = viewmodel.homescreen.championsPublisher.sink { _ in
+        let sub = viewmodel.homescreen.championsPublisher.sink(receiveCompletion: { _ in }, receiveValue: { _ in
             expectation.fulfill()
-        }
+        })
         
         viewmodel.getChampions()
         
@@ -36,4 +36,20 @@ final class HomeScreenTest: XCTestCase {
         sub.cancel()
     }
     
+    func testShouldThrowAnError() async {
+        let mockApi = RiotCdnApiMock(throwing: true)
+        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
+        let expectation = expectation(description: "Wait for async task")
+        let sub = viewmodel.homescreen.championsPublisher.sink(receiveCompletion: { _ in
+            expectation.fulfill()
+        }, receiveValue: { _ in })
+        
+        viewmodel.getChampions()
+        
+        await waitForExpectations(timeout: 0.5)
+        
+        XCTAssertNotNil(viewmodel.error)
+        
+        sub.cancel()
+    }
 }

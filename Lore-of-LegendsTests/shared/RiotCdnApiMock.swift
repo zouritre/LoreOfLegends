@@ -11,12 +11,17 @@ import Combine
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
     func getChampions() async throws -> [Lore_of_Legends.Champion] {
-        [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
+        if throwing {
+            throw MockError()
+        }
+        else {
+            return [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
+        }
     }
     
     func getSupportedLanguages() async throws -> [Locale] {
         if throwing {
-            throw SettingsError.badUrl
+            throw MockError()
         }
         
         return [Locale(identifier: "")]
@@ -42,3 +47,5 @@ class RiotCdnApiMock {
         }
     }
 }
+
+class MockError: Error {}

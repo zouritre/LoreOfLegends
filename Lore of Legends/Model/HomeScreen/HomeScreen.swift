@@ -10,26 +10,24 @@ import Combine
 
 class HomeScreen {
     private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi()
-    private weak var riotCdnapi: RiotCdnApiDelegate?
-    var championsPublisher = PassthroughSubject<[Champion], Never>()
+    var championsPublisher = PassthroughSubject<[Champion], Error>()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
         if let riotCdnapi {
             self.riotCdnApi = riotCdnapi
-            self.riotCdnapi = riotCdnapi
-        }
-        else {
-            self.riotCdnapi = self.riotCdnApi
         }
     }
     
     func getChampions() {
         Task {
-            let champions = try await riotCdnapi?.getChampions()
-            
-            guard let champions else { return }
-            
-            championsPublisher.send(champions)
+            do {
+                let champions = try await riotCdnApi.getChampions()
+                
+                championsPublisher.send(champions)
+            }
+            catch {
+                championsPublisher.send(completion: .failure(error))
+            }
         }
     }
     

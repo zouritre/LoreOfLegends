@@ -10,6 +10,7 @@ import Combine
 
 class HomeScreenViewModel {
     @Published var champions: [Champion]?
+    var error: Error?
     private var championsSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
@@ -18,9 +19,14 @@ class HomeScreenViewModel {
             homescreen = HomeScreen(riotCdnapi: riotCdnapi)
         }
         
-        championsSubscriber = homescreen.championsPublisher.sink { [unowned self] icons in
-         champions = icons
-        }
+        championsSubscriber = homescreen.championsPublisher.sink(receiveCompletion: { [unowned self] completion in
+            switch completion {
+            case .finished: return
+            case .failure(let error): self.error = error
+            }
+        }, receiveValue: { [unowned self] champions in
+            self.champions = champions
+        })
     }
     
     func getChampions() {
