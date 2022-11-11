@@ -10,27 +10,14 @@ import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
     func getChampions() async throws -> [Champion] {
-        [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
-    }
-    
-    func getChampionsName() async throws -> [Champion] {
-        [Champion(name: "", title: "", imageName: "", skins: [], lore: "")]
-    }
-    
-    func getChampionsIcon() async throws -> [Champion] {
-        let patchVersion = try await getLastestPatchVersion()
-        let locale = getLocalizationForChampionsData()
-        let jsonUrl = try getChampionsFullJsonUrl(for: patchVersion, and: locale)
-        let data = try await getData(at: jsonUrl)
-        let decodable = try decodeChampionFullJson(from: data)
+        let decodable = try await getChampionsFullDataDecodable()
         
         let champions = await withTaskGroup(of: Champion.self) { taskGroup in
             for (_, info) in decodable.data {
                 let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(info.image.full)_0.jpg")
                 taskGroup.addTask { [unowned self]  in
                     let data = try? await getData(at: url)
-                    let champion = Champion(name: "", title: "", imageName: "", icon: data, skins: [], lore: "")
-//                    await championsList.addChampion(champion: champion)
+                    let champion = Champion(name: info.name, title: "", imageName: "", icon: data, skins: [], lore: "")
                     return champion
                 }
             }
@@ -64,32 +51,6 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         }
         
         return locales
-    }
-    
-    func retrieveChampionFullDataJson(url: URL) async throws -> Data {
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            return data
-        }
-        catch {
-            throw error
-        }
-    }
-    
-    func downloadImage(for champion: Champion) async throws -> Data {
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(champion.imageName)_0.jpg")
-        
-        guard let url else { throw ChampionListError.badUrl }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            return data
-        }
-        catch {
-            throw error
-        }
     }
 }
 
@@ -132,25 +93,13 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 protocol RiotCdnApiDelegate: AnyObject {
+    /// Retrieve every champions name and icon from Riot CDN
+    /// - Returns: Array of Champion object with properties name and icon setted
     func getChampions() async throws -> [Champion]
-    
-    func getChampionsName() async throws -> [Champion]
-    
-    func getChampionsIcon() async throws -> [Champion]
     
     /// Return languages supported for the champions data
     /// - Returns: An array of languages
     func getSupportedLanguages() async throws -> [Locale]
-    
-    /// Retrieve ChampionFull.json file from Riot CDN
-    /// - Parameter url: URL of the json file
-    /// - Returns: Data object representing the json file
-    func retrieveChampionFullDataJson(url: URL) async throws -> Data
-    
-    /// Download the icon image of the given champion
-    /// - Parameter champion: Champion for wich to retrieve data asynchronously
-    /// - Returns: Data object representing the champion icon
-    func downloadImage(for champion: Champion) async throws -> Data
 }
 
 class RiotCdnApi {
@@ -178,7 +127,16 @@ class RiotCdnApi {
     /// Number of skins for the selected champion
     var skinsCount = 0
     
-    @MainActor
+    private func getChampionsFullDataDecodable() async throws -> ChampionFullJsonDecodable {
+        let patchVersion = try await getLastestPatchVersion()
+        let locale = getLocalizationForChampionsData()
+        let jsonUrl = try getChampionsFullJsonUrl(for: patchVersion, and: locale)
+        let data = try await getData(at: jsonUrl)
+        let decodable = try decodeChampionFullJson(from: data)
+        
+        return decodable
+    }
+    
     private func getData(at url: URL?) async throws -> Data {
         guard let url else { throw ChampionListError.badUrl }
         
