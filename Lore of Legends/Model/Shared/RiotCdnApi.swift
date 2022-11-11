@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    func getChampionsIcon() async -> [Data] {
+        return []
+    }
+    
     func getLastestPatchVersion() async throws -> String {
         return "12.20.1"
     }
@@ -97,6 +102,8 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 protocol RiotCdnApiDelegate: AnyObject {
+    func getChampionsIcon() async -> [Data]
+    
     /// Get the lastest patch version for League
     /// - Returns: A string idicating the lastest patch versions
     func getLastestPatchVersion() async throws -> String
