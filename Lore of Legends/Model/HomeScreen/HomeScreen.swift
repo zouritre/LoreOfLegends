@@ -11,6 +11,7 @@ import Combine
 class HomeScreen {
     private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi()
     var championsPublisher = PassthroughSubject<[Champion], Error>()
+    var totalNumberOfChampionsPublisher = PassthroughSubject<Int, Never>()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
         if let riotCdnapi {
@@ -21,7 +22,7 @@ class HomeScreen {
     func getChampions() {
         Task {
             do {
-                let champions = try await riotCdnApi.getChampions()
+                let champions = try await riotCdnApi.getChampions(caller: self)
                 
                 championsPublisher.send(champions)
             }

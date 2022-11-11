@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
-    func getChampions() async throws -> [Champion] {
+    func getChampions(caller: HomeScreen) async throws -> [Champion] {
         let decodable = try await getChampionsFullDataDecodable()
         
         let champions = await withTaskGroup(of: Champion.self) { taskGroup in
@@ -101,7 +101,7 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 protocol RiotCdnApiDelegate: AnyObject {
     /// Retrieve every champions name and icon from Riot CDN
     /// - Returns: Array of Champion object with properties name and icon setted
-    func getChampions() async throws -> [Champion]
+    func getChampions(caller: HomeScreen) async throws -> [Champion]
     
     /// Return languages supported for the champions data
     /// - Returns: An array of languages

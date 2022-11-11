@@ -11,7 +11,9 @@ import Combine
 class HomeScreenViewModel {
     @Published var champions: [Champion]?
     @Published var error: Error?
+    var totalNumberOfChampions: Int?
     private var championsSubscriber: AnyCancellable?
+    private var totalNumberOfChampionsSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
@@ -26,6 +28,10 @@ class HomeScreenViewModel {
             }
         }, receiveValue: { [unowned self] champions in
             self.champions = champions
+        })
+        
+        totalNumberOfChampionsSubscriber = homescreen.totalNumberOfChampionsPublisher.sink(receiveValue: { [unowned self] total in
+            totalNumberOfChampions = total
         })
     }
     

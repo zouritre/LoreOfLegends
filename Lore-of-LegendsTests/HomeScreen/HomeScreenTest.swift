@@ -59,5 +59,23 @@ final class HomeScreenTest: XCTestCase {
         sub.cancel()
     }
     
-//    func test
+//    func testShouldReturnChampionsIconDownloadProgress() {
+//
+//    }
+    
+    func testShouldReturnTotalNumberOfChampionsInLeague() async {
+        let mockApi = RiotCdnApiMock()
+        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
+        let sub = viewmodel.homescreen.totalNumberOfChampionsPublisher.sink { [unowned self] _ in
+            expectation.fulfill()
+        }
+        
+        viewmodel.getChampions()
+        
+        await waitForExpectations(timeout: 1)
+        
+        XCTAssertEqual(viewmodel.totalNumberOfChampions, 1)
+        
+        sub.cancel()
+    }
 }
