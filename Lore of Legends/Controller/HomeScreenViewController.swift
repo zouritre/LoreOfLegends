@@ -110,9 +110,9 @@ class HomeScreenViewController: UIViewController {
     /// View model
     var homescreenViewmodel = HomeScreenViewModel()
     /// Subscriber for the viewmodel champion list property
-    var homeScreenChampionsSubscriber: AnyCancellable?
+    var championsSubscriber: AnyCancellable?
     /// Subscriber for the viewmodel champion list error property
-    var championsDataErrorSubscriber: AnyCancellable?
+    var errorSubscriber: AnyCancellable?
     /// Publisher for the original champion list. Publish  a single value then complete.
     var originalChampListPublisher = PassthroughSubject<[Champion], Never>()
     /// Subscriber for the original champion list. Receive a single value then cancel activity.
@@ -146,7 +146,7 @@ class HomeScreenViewController: UIViewController {
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        homeScreenChampionsSubscriber = homescreenViewmodel.$champions.sink(receiveValue: { [unowned self] champions in
+        championsSubscriber = homescreenViewmodel.$champions.sink(receiveValue: { [unowned self] champions in
             guard let champions else { return }
             
             if champions.count > 0 {
@@ -159,12 +159,11 @@ class HomeScreenViewController: UIViewController {
             }
         })
         
-//        championsDataErrorSubscriber = homescreenViewmodel.$championsDataError.sink(receiveValue: { [weak self] dataError in
-//            guard let self else { return }
-//            guard let dataError else { return }
-//
-//            self.alert(message: dataError.localizedDescription)
-//        })
+        errorSubscriber = homescreenViewmodel.$error.sink(receiveValue: { [unowned self] dataError in
+            guard let dataError else { return }
+
+            self.alert(message: dataError.localizedDescription)
+        })
         
         originalChampListSubscriber = originalChampListPublisher.sink(receiveCompletion: { completion in
             switch completion {

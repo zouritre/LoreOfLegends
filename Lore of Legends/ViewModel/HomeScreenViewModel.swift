@@ -10,7 +10,7 @@ import Combine
 
 class HomeScreenViewModel {
     @Published var champions: [Champion]?
-    var error: Error?
+    @Published var error: Error?
     private var championsSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
