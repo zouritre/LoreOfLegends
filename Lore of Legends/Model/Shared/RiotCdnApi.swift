@@ -9,6 +9,10 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    func getChampionsName() async throws -> [Champion] {
+        [Champion(name: "", title: "", imageName: "", skins: [], lore: "")]
+    }
+    
     func getChampionsIcon() async throws -> [Champion] {
         let patchVersion = try await getLastestPatchVersion()
         let locale = getLocalizationForChampionsData()
@@ -124,6 +128,8 @@ extension RiotCdnApi: ChampionDetailAdapterDelegate {
 }
 
 protocol RiotCdnApiDelegate: AnyObject {
+    func getChampionsName() async throws -> [Champion]
+    
     func getChampionsIcon() async throws -> [Champion]
     
     /// Return languages supported for the champions data

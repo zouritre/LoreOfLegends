@@ -18,11 +18,15 @@ class HomeScreenViewModel {
             homescreen = HomeScreen(riotCdnapi: riotCdnapi)
         }
         
-        championsIconSubscriber = homescreen.championsIconPublisher.sink { [unowned self] icons in
+        championsIconSubscriber = homescreen.championsPublisher.sink { [unowned self] icons in
          champions = icons
         }
     }
-    func getChampionsIcon() {
-        homescreen.getChampionsIcon()
+    func getChampions() {
+        homescreen.getChampions()
+    }
+    
+    func getChampionsName() {
+        homescreen.getChampionsName()
     }
 }
