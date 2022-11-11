@@ -119,21 +119,6 @@ class ChampionListAdapter {
         self.delegate = delegate
     }
     
-    
-    // MARK: Methods
-    
-    /// Retrieve ChampionFull.json file from Riot CDNs
-    /// - Returns: A decodable object representing the json file retrieve form API
-//    func getDecodableForChampionsData() async throws -> ChampionFullJsonDecodable {
-//        let lastestPatchVersion = try await delegate.getLastestPatchVersion()
-//        let language = getLanguageForChampionsData()
-//        let url = try getChampionsDataUrl(patchVersion: lastestPatchVersion, localization: language.identifier)
-//        let json = try await delegate.retrieveChampionFullDataJson(url: url)
-//        let decodable = try decodeChampionDataJson(from: json)
-//
-//        return decodable
-//    }
-    
     /// Get the languages to use for champion's lore display
     /// - Returns: A locale for the language to use
     func getLanguageForChampionsData() -> Locale {
@@ -175,100 +160,6 @@ class ChampionListAdapter {
                 return Locale(identifier: "en_US")
             }
         }
-    }
-    
-    /// Download icons for provided champions
-    /// - Parameter champions: Array of champions for wich to download their icons
-    func setIcons(for champions: [Champion]) {
-        for champion in champions {
-            // Create a an async Task for every champion in the array
-            Task {
-                do {
-                    let data = try await delegate.downloadImage(for: champion)
-                    // Create a mutable copy of the champion
-                    var champ = champion
-                    
-                    champ.setIcon(with: data)
-                    self.champions.append(champ)
-                    
-                }
-                catch {
-                    // Create a mutable copy of the champion
-                    var champ = champion
-                    
-                    champ.setIcon(with: Data())
-                    self.champions.append(champ)
-                }
-                
-            }
-        }
-    }
-    
-    /// Get the URL for the most recent ChampionFull.json file from Riot CDN
-    /// - Parameters:
-    ///   - patchVersion: League patch version
-    ///   - localization: Locale identifier representing the language in wich the data should be returned
-    /// - Returns: An URL to ChampionFull.json file from Riot CDN
-    func getChampionsDataUrl(patchVersion: String, localization: String) throws -> URL {
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(localization)/championFull.json")
-        
-        guard let url else {
-            throw ChampionListError.badUrl
-        }
-        
-        return url
-    }
-    
-    /// Decode a data object to the given decodable format
-    /// - Parameter data: Data to be decoded
-    /// - Returns: Decocable object in wich the data should be decoded
-    func decodeChampionDataJson(from data: Data) throws -> ChampionFullJsonDecodable {
-        do {
-            let decodable = try JSONDecoder().decode(ChampionFullJsonDecodable.self, from: data)
-            
-            return decodable
-        }
-        catch {
-            throw ChampionListError.DecodingFail
-        }
-    }
-    
-    /// Create an array of Champion objects from the given decodable object
-    /// - Parameter decodable: Decodable object containing data for all champions in League
-    /// - Returns: Array of Champion object with their respective datas
-    func createChampionsObjects(from decodable: ChampionFullJsonDecodable) -> [Champion] {
-        // Initialise an empty array of Champion objects
-        var champions = [Champion]()
-        
-        for (_,championName) in decodable.keys {
-            for (key, champInfo) in decodable.data {
-                if key == championName {
-                    // Retrieve data for this champion
-                    
-                    // Name of the image assets
-                    var imageName = champInfo.image.full
-                    // Initliase en empty an array of ChampionAsset objects
-                    var skins = [ChampionAsset]()
-                    
-                    // Remove file extension
-                    imageName.removeLast(4)
-                    
-                    for skin in champInfo.skins {
-                        // Create a ChampionAsset object and append it to the skins array
-                        skins.append(ChampionAsset(fileName: "\(imageName)_\(skin.num).jpg", title: skin.name))
-                    }
-                    
-                    // Create a Champion object and append to it the skins array
-                    champions.append(Champion(name: champInfo.name, title: champInfo.title, imageName: imageName, skins: skins, lore: champInfo.lore))
-                    
-                    // Break current loop after a Champion object has successfully been created
-                    break
-                }
-                else { continue }
-            }
-        }
-        
-        return champions
     }
     
     /// Save to Core Data every champions retrieved from Riot CDN
