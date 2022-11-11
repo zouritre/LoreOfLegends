@@ -31,8 +31,14 @@ final class HomeScreenTest: XCTestCase {
         
         await waitForExpectations(timeout: 0.5)
         
-        XCTAssertNotNil(viewmodel.champions?[0].icon)
-        XCTAssertGreaterThan(name.count, 0)
+        guard let champions = viewmodel.champions else {
+            XCTAssertTrue(false)
+            
+            return
+        }
+        
+        XCTAssertNotNil(champions[0].icon)
+        XCTAssertGreaterThan(champions[0].name.count, 0)
         
         sub.cancel()
     }
@@ -52,4 +58,6 @@ final class HomeScreenTest: XCTestCase {
         
         sub.cancel()
     }
+    
+//    func test
 }
