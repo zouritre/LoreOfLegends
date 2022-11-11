@@ -28,7 +28,6 @@
 		E92B6F532912B6F2001CC206 /* ChampionDetailAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F512912B6EC001CC206 /* ChampionDetailAdapterMock.swift */; };
 		E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E9E5291C55A30003B643 /* SettingsViewController.swift */; };
 		E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */; };
-		E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
 		E93B366928FC4C00003BB0A3 /* ChampionListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* ChampionListError.swift */; };
 		E93B366A28FC4C00003BB0A3 /* ChampionListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365B28FC4748003BB0A3 /* ChampionListAdapter.swift */; };
@@ -47,8 +46,6 @@
 		E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */; };
 		E9B5A58E290D83DD00F0A61A /* ChampionsLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */; };
 		E9BEA3F1290B123300FE723D /* RiotCdnApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA3F0290B123300FE723D /* RiotCdnApi.swift */; };
-		E9BEA3F2290B1DBB00FE723D /* ChampionListAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365828FC4748003BB0A3 /* ChampionListAdapterMock.swift */; };
-		E9CD8C4E290ACC440042C46B /* ChampionListAdapterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD8C4D290ACC440042C46B /* ChampionListAdapterTest.swift */; };
 		E9CD8C50290ACCCE0042C46B /* RiotCdnApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD8C4F290ACCCE0042C46B /* RiotCdnApiMock.swift */; };
 		E9CD8C52290AF6440042C46B /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E9CD8C51290AF6440042C46B /* championFull.json */; };
 		E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DC37362902EA8B008384FC /* ChampionIconCell.swift */; };
@@ -89,9 +86,7 @@
 		E930E9E5291C55A30003B643 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailViewController.swift; sourceTree = "<group>"; };
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListTest.swift; sourceTree = "<group>"; };
 		E93B365728FC4748003BB0A3 /* ChampionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionList.swift; sourceTree = "<group>"; };
-		E93B365828FC4748003BB0A3 /* ChampionListAdapterMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListAdapterMock.swift; sourceTree = "<group>"; };
 		E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionFullJsonDecodable.swift; sourceTree = "<group>"; };
 		E93B365A28FC4748003BB0A3 /* ChampionListError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListError.swift; sourceTree = "<group>"; };
 		E93B365B28FC4748003BB0A3 /* ChampionListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionListAdapter.swift; sourceTree = "<group>"; };
@@ -112,7 +107,6 @@
 		E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionsLoadingViewController.swift; sourceTree = "<group>"; };
 		E9BEA3F0290B123300FE723D /* RiotCdnApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotCdnApi.swift; sourceTree = "<group>"; };
-		E9CD8C4D290ACC440042C46B /* ChampionListAdapterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionListAdapterTest.swift; sourceTree = "<group>"; };
 		E9CD8C4F290ACCCE0042C46B /* RiotCdnApiMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotCdnApiMock.swift; sourceTree = "<group>"; };
 		E9CD8C51290AF6440042C46B /* championFull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = championFull.json; sourceTree = "<group>"; };
 		E9DC37362902EA8B008384FC /* ChampionIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionIconCell.swift; sourceTree = "<group>"; };
@@ -203,11 +197,11 @@
 		E93B364828FC3590003BB0A3 /* Lore-of-LegendsTests */ = {
 			isa = PBXGroup;
 			children = (
+				E9CD8C51290AF6440042C46B /* championFull.json */,
 				E9F9188E2912D8AF00B09251 /* shared */,
-				E9BEA3F6290B1F1800FE723D /* ChampionList */,
 				E9F9188A2912D6FE00B09251 /* ChampionDetail */,
 				E90FFD5A291DB56C00ED225D /* Settings */,
-				E90FFD5D291DB69A00ED225D /* HomeScreenTest.swift */,
+				E9F8FEA6291EE917004E62B7 /* HomeScreen */,
 			);
 			path = "Lore-of-LegendsTests";
 			sourceTree = "<group>";
@@ -374,15 +368,12 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		E9BEA3F6290B1F1800FE723D /* ChampionList */ = {
+		E9F8FEA6291EE917004E62B7 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E9CD8C51290AF6440042C46B /* championFull.json */,
-				E93B365828FC4748003BB0A3 /* ChampionListAdapterMock.swift */,
-				E93B365028FC46D5003BB0A3 /* ChampionListTest.swift */,
-				E9CD8C4D290ACC440042C46B /* ChampionListAdapterTest.swift */,
+				E90FFD5D291DB69A00ED225D /* HomeScreenTest.swift */,
 			);
-			path = ChampionList;
+			path = HomeScreen;
 			sourceTree = "<group>";
 		};
 		E9F9188A2912D6FE00B09251 /* ChampionDetail */ = {
@@ -524,12 +515,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E90FFD5E291DB69A00ED225D /* HomeScreenTest.swift in Sources */,
-				E9CD8C4E290ACC440042C46B /* ChampionListAdapterTest.swift in Sources */,
 				E9160E2C291D50A8006CF845 /* SettingsTest.swift in Sources */,
 				E9CD8C50290ACCCE0042C46B /* RiotCdnApiMock.swift in Sources */,
-				E93B365128FC46D5003BB0A3 /* ChampionListTest.swift in Sources */,
 				E92B6F532912B6F2001CC206 /* ChampionDetailAdapterMock.swift in Sources */,
-				E9BEA3F2290B1DBB00FE723D /* ChampionListAdapterMock.swift in Sources */,
 				E92B6F4929129948001CC206 /* ChampionDetailTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

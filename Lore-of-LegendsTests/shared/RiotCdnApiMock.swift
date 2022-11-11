@@ -14,32 +14,12 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
         [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
     }
     
-    func getChampionsName() async throws -> [Lore_of_Legends.Champion] {
-        [Champion(name: "Aatrox", title: "", imageName: "", skins: [], lore: "")]
-    }
-    
-    func getChampionsIcon() async -> [Champion] {
-        return [Champion(name: "", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
-    }
-    
-    func downloadImage(for champion: Lore_of_Legends.Champion) async throws -> Data {
-        return Data()
-    }
-    
-    func retrieveChampionFullDataJson(url: URL) async throws -> Data {
-        return Data()
-    }
-    
     func getSupportedLanguages() async throws -> [Locale] {
         if throwing {
             throw SettingsError.badUrl
         }
         
         return [Locale(identifier: "")]
-    }
-    
-    func getLastestPatchVersion() async throws -> String {
-        return "12.20.1"
     }
 }
 

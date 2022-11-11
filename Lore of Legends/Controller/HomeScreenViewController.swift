@@ -23,12 +23,16 @@ extension UIViewController {
 
 extension HomeScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.championListVM.champions.count
+        guard let count = homescreenViewmodel.champions?.count else { return 0 }
+        
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Return an empty cell if champion list is empty
-        if championListVM.champions.isEmpty {
+        guard let champions = homescreenViewmodel.champions else { return UICollectionViewCell() }
+        
+        if champions.isEmpty {
             return UICollectionViewCell()
         }
         else {
@@ -37,7 +41,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
 
             guard let cell else { return UICollectionViewCell() }
             
-            cell.champion = championListVM.champions[indexPath.row]
+            cell.champion = champions[indexPath.row]
             
             return cell
         }
@@ -62,7 +66,7 @@ extension HomeScreenViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Set the collectionview datasource to display the full champion list if no search entry
         if searchText.isEmpty {
-            championListVM.champions = originalChampionList
+            homescreenViewmodel.champions = originalChampionList
         }
         else {
             // Else filter the champion list against the given search text
@@ -71,7 +75,7 @@ extension HomeScreenViewController: UISearchBarDelegate {
             // Set the collectionview datasource array to contain a single champion matching the exact search text
             for champion in originalChampionList {
                 if champion.name == searchText {
-                    self.championListVM.champions = [champion]
+                    self.homescreenViewmodel.champions = [champion]
                     foundPerfectMatch = true
 
                     break
@@ -94,7 +98,7 @@ extension HomeScreenViewController: UISearchBarDelegate {
             }
             
             // Set the filetered champion list as the collectionview datasource array
-            self.championListVM.champions = originalListCopy
+            self.homescreenViewmodel.champions = originalListCopy
         }
     }
 }
@@ -104,9 +108,9 @@ class HomeScreenViewController: UIViewController {
     /// Original list of champions received the first time it's successfully fetched from API. Only set once per app execution.
     var originalChampionList: [Champion] = []
     /// View model
-    var championListVM = ChampionListViewModel()
+    var homescreenViewmodel = HomeScreenViewModel()
     /// Subscriber for the viewmodel champion list property
-    var championsDataListSubscriber: AnyCancellable?
+    var homeScreenChampionsSubscriber: AnyCancellable?
     /// Subscriber for the viewmodel champion list error property
     var championsDataErrorSubscriber: AnyCancellable?
     /// Publisher for the original champion list. Publish  a single value then complete.
@@ -126,7 +130,7 @@ class HomeScreenViewController: UIViewController {
         
         setupSubscribers()
         
-        championListVM.getChampions()
+        homescreenViewmodel.getChampions()
     }
     
     @IBAction func settingsButon(_ sender: UIBarButtonItem) {
@@ -142,8 +146,9 @@ class HomeScreenViewController: UIViewController {
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        championsDataListSubscriber = championListVM.$champions.sink(receiveValue: { [weak self] champions in
-            guard let self else { return }
+        homeScreenChampionsSubscriber = homescreenViewmodel.$champions.sink(receiveValue: { [unowned self] champions in
+            guard let champions else { return }
+            
             if champions.count > 0 {
                 self.originalChampListPublisher.send(champions)
                 self.originalChampListPublisher.send(completion: .finished)
@@ -154,12 +159,12 @@ class HomeScreenViewController: UIViewController {
             }
         })
         
-        championsDataErrorSubscriber = championListVM.$championsDataError.sink(receiveValue: { [weak self] dataError in
-            guard let self else { return }
-            guard let dataError else { return }
-            
-            self.alert(message: dataError.localizedDescription)
-        })
+//        championsDataErrorSubscriber = homescreenViewmodel.$championsDataError.sink(receiveValue: { [weak self] dataError in
+//            guard let self else { return }
+//            guard let dataError else { return }
+//
+//            self.alert(message: dataError.localizedDescription)
+//        })
         
         originalChampListSubscriber = originalChampListPublisher.sink(receiveCompletion: { completion in
             switch completion {
@@ -173,11 +178,11 @@ class HomeScreenViewController: UIViewController {
                 self.originalChampionList = champions
         })
         
-        isDownloadingSubscriber = championListVM.$isDownloading.sink { [unowned self] isDownloading in
-            if isDownloading {
-                performSegue(withIdentifier: "championsLoading", sender: nil)
-            }
-        }
+//        isDownloadingSubscriber = homescreenViewmodel.$isDownloading.sink { [unowned self] isDownloading in
+//            if isDownloading {
+//                performSegue(withIdentifier: "championsLoading", sender: nil)
+//            }
+//        }
     }
     
     
@@ -190,7 +195,7 @@ class HomeScreenViewController: UIViewController {
         }
         else if let vc = segue.destination as? ChampionsLoadingViewController {
             // Send the selected champion to the next view controller
-            vc.championListVm = championListVM
+//            vc.championListVm = homescreenViewmodel
         }
     }
 

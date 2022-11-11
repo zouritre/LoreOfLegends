@@ -14,10 +14,16 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         let champions = await withTaskGroup(of: Champion.self) { taskGroup in
             for (_, info) in decodable.data {
-                let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(info.image.full)_0.jpg")
+                var imageName = info.image.full
+                
+                //Remove file extension
+                imageName.removeLast(4)
+                
+                let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(imageName)_0.jpg")
                 taskGroup.addTask { [unowned self]  in
                     let data = try? await getData(at: url)
                     let champion = Champion(name: info.name, title: "", imageName: "", icon: data, skins: [], lore: "")
+                    
                     return champion
                 }
             }

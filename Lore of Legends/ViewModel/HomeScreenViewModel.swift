@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class HomeScreenViewModel {
-    var champions: [Champion]?
-    private var championsIconSubscriber: AnyCancellable?
+    @Published var champions: [Champion]?
+    private var championsSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
@@ -18,7 +18,7 @@ class HomeScreenViewModel {
             homescreen = HomeScreen(riotCdnapi: riotCdnapi)
         }
         
-        championsIconSubscriber = homescreen.championsPublisher.sink { [unowned self] icons in
+        championsSubscriber = homescreen.championsPublisher.sink { [unowned self] icons in
          champions = icons
         }
     }
