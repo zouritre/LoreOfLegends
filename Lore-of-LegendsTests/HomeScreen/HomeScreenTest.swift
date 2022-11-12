@@ -62,8 +62,11 @@ final class HomeScreenTest: XCTestCase {
     }
     
     func testShouldReturnChampionsIconDownloadProgress() async {
-        let sub = viewmodel.homescreen.iconsDownloadedPublisher.sink { [unowned self] _ in
-            expectation.fulfill()
+        let sub = viewmodel.homescreen.iconsDownloadedPublisher.sink { [unowned self] downloadedCounter in
+            if downloadedCounter > 0 {
+                // Prevent subscriber from being called twice because of CurrentValueSubject
+                expectation.fulfill()
+            }
         }
         
         viewmodel.getChampions()
