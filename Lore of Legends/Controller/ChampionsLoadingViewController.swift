@@ -26,28 +26,39 @@ class ChampionsLoadingViewController: UIViewController {
         return formatter
     }
     
-    @IBOutlet weak var isDownloadingLabel: UILabel!
+    @IBOutlet weak var downloadLabel: UILabel!
     @IBOutlet weak var downloadProgressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        isDownloadingLabel.text = NSLocalizedString("Downloading champions icon", comment: "Champions download is running")
+        downloadLabel.text = NSLocalizedString("Downloading champions icon", comment: "Champions download is running")
         
         setupSubscribers()
     }
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        iconsDownloadProgressSubscriber = homescreenViewModel?.$iconsDownloaded.sink { [unowned self] count in
-            guard let count else { return }
-            // Set label
-            // Then
-            updateDownloadProgress(with: count)
+        iconsDownloadProgressSubscriber = homescreenViewModel?.$iconsDownloaded.sink { [unowned self] amountDownloaded in
+            guard let amountDownloaded, let totalNumberOfChampions else { return }
+            
+            DispatchQueue.main.async { [unowned self] in
+                // Update label for download progress
+                progressLabel.text = "\(amountDownloaded) / \(totalNumberOfChampions)"
+                // Update progress bar
+                updateDownloadProgress(with: amountDownloaded)
+                
+                if amountDownloaded == totalNumberOfChampions {
+                    // Dismiss if all icons have been downloaded
+                    dismiss(animated: true)
+                }
+            }
         }
     }
     
+    /// Update the progress bar
+    /// - Parameter iconsDownloaded: Amount of icons downloaded yet
     private func updateDownloadProgress(with iconsDownloaded: Int) {
         guard let total = homescreenViewModel?.totalNumberOfChampions else { return }
         
@@ -56,9 +67,7 @@ class ChampionsLoadingViewController: UIViewController {
         guard let progressToString = numberFormatter.string(from: progress as NSNumber) else { return }
         guard let progressFormatted = numberFormatter.number(from: progressToString) else { return }
         
-        DispatchQueue.main.async { [unowned self] in
-            downloadProgressBar.progress = Float(truncating: progressFormatted)
-        }
+        downloadProgressBar.progress = Float(truncating: progressFormatted)
     }
     
 
