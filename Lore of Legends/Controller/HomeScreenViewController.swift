@@ -118,7 +118,7 @@ class HomeScreenViewController: UIViewController {
     /// Subscriber for the original champion list. Receive a single value then cancel activity.
     var originalChampListSubscriber: AnyCancellable?
     /// Notify if champions download is pending or not
-    var isDownloadingSubscriber: AnyCancellable?
+    var totalNumberOfChampionsSubscriber: AnyCancellable?
     
     /// Main collectionview of the UI
     @IBOutlet weak var championIconsCollection: UICollectionView!
@@ -177,11 +177,11 @@ class HomeScreenViewController: UIViewController {
                 self.originalChampionList = champions
         })
         
-//        isDownloadingSubscriber = homescreenViewmodel.$isDownloading.sink { [unowned self] isDownloading in
-//            if isDownloading {
-//                performSegue(withIdentifier: "championsLoading", sender: nil)
-//            }
-//        }
+        totalNumberOfChampionsSubscriber = homescreenViewmodel.$totalNumberOfChampions.sink { [unowned self] total in
+            guard let total else { return }
+            
+            performSegue(withIdentifier: "championsLoading", sender: total)
+        }
     }
     
     
@@ -194,7 +194,9 @@ class HomeScreenViewController: UIViewController {
         }
         else if let vc = segue.destination as? ChampionsLoadingViewController {
             // Send the selected champion to the next view controller
-//            vc.championListVm = homescreenViewmodel
+            if let totalChampions = sender as? Int {
+                vc.totalNumberOfChampions = totalChampions
+            }
         }
     }
 

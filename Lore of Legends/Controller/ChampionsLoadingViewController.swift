@@ -12,6 +12,8 @@ class ChampionsLoadingViewController: UIViewController {
     
     /// View model instance
     weak var championListVm: ChampionListViewModel?
+    // Number of champions in League
+    var totalNumberOfChampions: Int?
     /// Subscriber for total number of champions in League
     var totalChampionsCountSub: AnyCancellable?
     /// Subsriber for the number of champions currently downloaded or fetched from Core Data
