@@ -198,6 +198,7 @@ class HomeScreenViewController: UIViewController {
             // Send the selected champion to the next view controller
             if let totalChampions = sender as? Int {
                 vc.totalNumberOfChampions = totalChampions
+                vc.homescreenViewModel = homescreenViewmodel
             }
         }
     }

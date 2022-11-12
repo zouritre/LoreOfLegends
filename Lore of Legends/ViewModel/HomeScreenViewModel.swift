@@ -12,7 +12,8 @@ class HomeScreenViewModel {
     @Published var champions: [Champion]?
     @Published var error: Error?
     @Published var totalNumberOfChampions: Int?
-    var iconsDownloaded: Int?
+    @Published var iconsDownloaded: Int?
+    
     private var championsSubscriber: AnyCancellable?
     private var totalNumberOfChampionsSubscriber: AnyCancellable?
     private var iconsDownloadedSubscriber: AnyCancellable?
