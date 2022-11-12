@@ -95,16 +95,8 @@ class ChampionDetailViewController: UIViewController {
         skinsPageViewController?.delegate = self
         
         setupSubscribers()
-        setupUiTexts(for: champion)
         
-        //        viewmodel.setSkinsForChampion(champion: champion)
-    }
-    
-    /// Set the text value of the different outlets of the UI
-    /// - Parameter champion: Champion from wich to extract data for the text values
-    private func setupUiTexts(for champion: Champion) {
-        loreTextView.text = champion.lore
-        championNameLabel.text = "\(champion.name), \(champion.title)"
+//        viewmodel.(champion: champion)
     }
     
     /// Implement the subscribers
@@ -115,6 +107,12 @@ class ChampionDetailViewController: UIViewController {
             DispatchQueue.main.async { [unowned self] in
                 // Hide the indicator
                 skinsLoadingIndicator.stopAnimating()
+                
+                // Display the champion lore
+                loreTextView.text = champ.lore
+                
+                // Display the champion name and honorific title
+                championNameLabel.text = "\(champ.name), \(champ.title)"
                 
                 for (index, skin) in champ.skins.enumerated() {
                     let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
