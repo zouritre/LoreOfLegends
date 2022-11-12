@@ -112,9 +112,11 @@ class ChampionDetailViewController: UIViewController {
                 loreTextView.text = champ.lore
                 
                 // Display the champion name and honorific title
-                championNameLabel.text = "\(champ.name), \(champ.title)"
+                championNameLabel.text = "\(champ.name), \(champ.title ?? "")"
                 
-                for (index, skin) in champ.skins.enumerated() {
+                guard let skins = champ.skins else { return }
+                
+                for (index, skin) in skins.enumerated() {
                     let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
                     
                     vc.skinImageData = skin.centered

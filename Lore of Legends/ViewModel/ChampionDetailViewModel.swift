@@ -29,4 +29,8 @@ class ChampionDetailViewModel {
     func setTitle(for champion: Champion) {
         viewmodel.setTitle(for: champion)
     }
+    
+    func setSkins(for champion: Champion) {
+        viewmodel.setSkins(for: champion)
+    }
 }

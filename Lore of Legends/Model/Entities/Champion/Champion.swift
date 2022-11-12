@@ -18,7 +18,7 @@ struct Champion: Codable {
     /// Champion icon as a data object
     var icon: Data?
     /// Array repsenting every skins of this champion
-    var skins: [ChampionAsset]
+    var skins: [ChampionAsset]?
     /// Lore of this champion
     var lore: String?
     
@@ -34,5 +34,9 @@ struct Champion: Codable {
     
     mutating func setTitle(with title: String) {
         self.title = title
+    }
+    
+    mutating func setSkins(with assets: [ChampionAsset]) {
+        self.skins = assets
     }
 }

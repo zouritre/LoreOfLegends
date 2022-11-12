@@ -33,5 +33,13 @@ class ChampionDetail {
             championPublisher.send(champion)
         }
     }
+    
+    func setSkins(for champion: Champion) {
+        Task {
+            let champion = try? await api?.setSkins(for: champion)
+            
+            championPublisher.send(champion)
+        }
+    }
 
 }

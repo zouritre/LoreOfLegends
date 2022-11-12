@@ -9,8 +9,6 @@ import Foundation
 
 /// Store information about a skin for a given champion
 struct ChampionAsset: Codable {
-    /// File name for the skin
-    var fileName: String
     /// Skin name
     var title: String
     /// Splash image as data object

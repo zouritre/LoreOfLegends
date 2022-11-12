@@ -51,4 +51,14 @@ final class ChampionDetailTest: XCTestCase {
         
         sub.cancel()
     }
+    
+    func testShouldReturnChampionSkins() async {
+        viewmodel.setSkins(for: champion)
+        
+        await waitForExpectations(timeout: 0.5)
+        
+        XCTAssertNotNil(viewmodel.champion?.skins)
+        
+        sub.cancel()
+    }
 }

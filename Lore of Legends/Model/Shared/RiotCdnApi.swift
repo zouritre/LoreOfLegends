@@ -9,6 +9,59 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    func setSkins(for champion: Champion) async throws -> Champion {
+        if let championFullJsonDecodable {
+            // Decodable already exist locally
+            for (championName, champInfo) in championFullJsonDecodable.data {
+                if championName == champion.name {
+                    let skins = await withTaskGroup(of: ChampionAsset.self) { taskgroup in
+                        for skin in champInfo.skins {
+                            let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(champInfo.image.full)_\(skin.num).jpg")
+                            let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(champInfo.image.full)_\(skin.num).jpg")
+                            
+                            taskgroup.addTask { [unowned self] in
+                                let splashData = try? await getData(at: splashUrl)
+                                let centeredData = try? await getData(at: centeredUrl)
+                                
+                                return ChampionAsset(title: skin.name, splash: splashData, centered: centeredData)
+                            }
+                        }
+                        
+                        var skins = [ChampionAsset]()
+                        
+                        for await asset in taskgroup {
+                            skins.append(asset)
+                        }
+                        
+                        return skins
+                    }
+                    
+                    var champion = champion
+                    
+                    champion.setSkins(with: skins)
+                    
+                    return champion
+                }
+            }
+        }
+        else {
+            // Create decodable object from API request
+            let decodable = try await getChampionsFullDataDecodable()
+            
+            for (championName, champInfo) in decodable.data {
+                if championName == champion.name {
+                    var champion = champion
+                    
+                    champion.setLore(with: champInfo.title)
+                    
+                    return champion
+                }
+            }
+        }
+        
+        return champion
+    }
+    
     func setTitle(for champion: Champion) async throws -> Champion {
         if let championFullJsonDecodable {
             // Decodable already exist locally
@@ -174,6 +227,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
 //}
 
 protocol RiotCdnApiDelegate: AnyObject {
+    func setSkins(for champion: Champion) async throws -> Champion
     func setTitle(for champion: Champion) async throws -> Champion
     func setLore(for champion: Champion) async throws -> Champion
     /// Retrieve every champions name and icon from Riot CDN
