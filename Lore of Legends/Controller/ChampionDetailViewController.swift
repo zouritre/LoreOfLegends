@@ -72,7 +72,7 @@ class ChampionDetailViewController: UIViewController {
     /// View model instance to use for fetching the useler selected champion skins images
     let viewmodel = ChampionDetailViewModel()
     /// Subscriber that notify the selected champion datas
-    var championDataSub: AnyCancellable?
+    var championSubscriber: AnyCancellable?
     /// ViewController that manages paginating for skins ViewController
     weak var skinsPageViewController: CenteredSkinsPageViewController?
     var pageViewControllers = [SkinViewController]()

@@ -10,7 +10,7 @@ import Combine
 
 class ChampionDetail {
     var api: RiotCdnApiDelegate? = RiotCdnApi()
-    var championPublisher = PassthroughSubject<Champion, Never>()
+    var championPublisher = PassthroughSubject<Champion?, Never>()
     
     init(customApi: RiotCdnApiDelegate? = nil) {
         if let customApi {
@@ -21,8 +21,6 @@ class ChampionDetail {
     func getInfo(for champion: Champion) {
         Task {
             let champion = try? await api?.setLore(for: champion)
-            
-            guard let champion else { return }
             
             championPublisher.send(champion)
         }

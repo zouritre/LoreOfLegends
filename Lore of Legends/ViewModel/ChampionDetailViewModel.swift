@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class ChampionDetailViewModel {
-    var champion: Champion?
+    @Published var champion: Champion?
     var viewmodel = ChampionDetail()
     var championSubscriber: AnyCancellable?
     
@@ -18,9 +18,7 @@ class ChampionDetailViewModel {
             self.viewmodel = ChampionDetail(customApi: api)
         }
         
-        championSubscriber = viewmodel.championPublisher.sink { champion in
-            self.champion = champion
-        }
+        viewmodel.championPublisher.assign(to: &$champion)
     }
     
     func getInfo(for champion: Champion) {
