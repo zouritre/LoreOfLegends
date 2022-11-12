@@ -62,7 +62,7 @@ final class HomeScreenTest: XCTestCase {
     }
     
     func testShouldReturnChampionsIconDownloadProgress() async {
-        let sub = viewmodel.homescreen.$iconsDownloadedPublisher.sink { [unowned self] _ in
+        let sub = viewmodel.homescreen.iconsDownloadedPublisher.sink { [unowned self] _ in
             expectation.fulfill()
         }
         

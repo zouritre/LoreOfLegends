@@ -32,7 +32,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                     let data = try? await getData(at: url)
                     let champion = Champion(name: info.name, title: "", imageName: "", icon: data, skins: [], lore: "")
                     
-                    caller.iconsDownloadedPublisher += 1
+                    caller.iconsDownloadedPublisher.value += 1
                     
                     return champion
                 }
