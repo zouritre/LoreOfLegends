@@ -12,6 +12,7 @@ class HomeScreen {
     private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi()
     var championsPublisher = PassthroughSubject<[Champion], Error>()
     var totalNumberOfChampionsPublisher = PassthroughSubject<Int, Never>()
+    var iconsDownloadedPublisher = PassthroughSubject<Int, Never>()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
         if let riotCdnapi {

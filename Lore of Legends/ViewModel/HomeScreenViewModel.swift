@@ -12,8 +12,10 @@ class HomeScreenViewModel {
     @Published var champions: [Champion]?
     @Published var error: Error?
     @Published var totalNumberOfChampions: Int?
+    var iconsDownloaded: Int?
     private var championsSubscriber: AnyCancellable?
     private var totalNumberOfChampionsSubscriber: AnyCancellable?
+    private var iconsDownloadedSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
@@ -33,6 +35,10 @@ class HomeScreenViewModel {
         totalNumberOfChampionsSubscriber = homescreen.totalNumberOfChampionsPublisher.sink(receiveValue: { [unowned self] total in
             totalNumberOfChampions = total
         })
+        
+        iconsDownloadedSubscriber = homescreen.iconsDownloadedPublisher.sink { [unowned self] count in
+            iconsDownloaded = count
+        }
     }
     
     func getChampions() {

@@ -61,9 +61,19 @@ final class HomeScreenTest: XCTestCase {
         sub.cancel()
     }
     
-    //    func testShouldReturnChampionsIconDownloadProgress() {
-    //
-    //    }
+    func testShouldReturnChampionsIconDownloadProgress() async {
+        let sub = viewmodel.homescreen.iconsDownloadedPublisher.sink { [unowned self] _ in
+            expectation.fulfill()
+        }
+        
+        viewmodel.getChampions()
+        
+        await waitForExpectations(timeout: 1)
+        
+        XCTAssertNotNil(viewmodel.iconsDownloaded)
+        
+        sub.cancel()
+    }
     
     func testShouldReturnTotalNumberOfChampionsInLeague() async {
         let sub = viewmodel.homescreen.totalNumberOfChampionsPublisher.sink { [unowned self] _ in

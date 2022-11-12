@@ -180,7 +180,9 @@ class HomeScreenViewController: UIViewController {
         totalNumberOfChampionsSubscriber = homescreenViewmodel.$totalNumberOfChampions.sink { [unowned self] total in
             guard let total else { return }
             
-            performSegue(withIdentifier: "championsLoading", sender: total)
+            DispatchQueue.main.async { [unowned self] in
+                performSegue(withIdentifier: "championsLoading", sender: total)
+            }
         }
     }
     
