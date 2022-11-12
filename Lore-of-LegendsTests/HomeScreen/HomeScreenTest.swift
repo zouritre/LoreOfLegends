@@ -10,10 +10,14 @@ import XCTest
 
 final class HomeScreenTest: XCTestCase {
     var expectation: XCTestExpectation!
+    var mockApi: RiotCdnApiMock!
+    var viewmodel: HomeScreenViewModel!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         expectation = expectation(description: "Wait for async task")
+        mockApi = RiotCdnApiMock()
+        viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
     }
     
     override func tearDownWithError() throws {
@@ -21,8 +25,6 @@ final class HomeScreenTest: XCTestCase {
     }
     
     func testShouldReturnChampionNameAndIcon() async {
-        let mockApi = RiotCdnApiMock()
-        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
         let sub = viewmodel.homescreen.championsPublisher.sink(receiveCompletion: { _ in }, receiveValue: { [unowned self] _ in
             expectation.fulfill()
         })
@@ -59,13 +61,11 @@ final class HomeScreenTest: XCTestCase {
         sub.cancel()
     }
     
-//    func testShouldReturnChampionsIconDownloadProgress() {
-//
-//    }
+    //    func testShouldReturnChampionsIconDownloadProgress() {
+    //
+    //    }
     
     func testShouldReturnTotalNumberOfChampionsInLeague() async {
-        let mockApi = RiotCdnApiMock()
-        let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
         let sub = viewmodel.homescreen.totalNumberOfChampionsPublisher.sink { [unowned self] _ in
             expectation.fulfill()
         }
