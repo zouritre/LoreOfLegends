@@ -9,12 +9,41 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
-    func setLore(for champion: Champion) async -> Champion {
-        return Champion(name: "", title: "", imageName: "", skins: [])
+    func setLore(for champion: Champion) async throws -> Champion {
+        if let championFullJsonDecodable {
+            // Decodable already exust locally
+            for (championName, champInfo) in championFullJsonDecodable.data {
+                if championName == champion.name {
+                    var champion = champion
+                    champion.setLore(with: champInfo.lore)
+                    
+                    return champion
+                }
+            }
+        }
+        else {
+            // Create decodable object from API request
+            let decodable = try await getChampionsFullDataDecodable()
+            
+            for (championName, champInfo) in decodable.data {
+                if championName == champion.name {
+                    var champion = champion
+                    
+                    champion.setLore(with: champInfo.lore)
+                    
+                    return champion
+                }
+            }
+        }
+        
+        return champion
     }
     
     func getChampions(caller: HomeScreen) async throws -> [Champion] {
-        let decodable = try await getChampionsFullDataDecodable()
+        
+        let decodable = championFullJsonDecodable == nil ? try await getChampionsFullDataDecodable() : championFullJsonDecodable
+        
+        guard let decodable else { throw RiotCdnApiError.DecodingFail }
         
         // Notify how many champions there is in League
         caller.totalNumberOfChampionsPublisher.send(decodable.keys.count)
@@ -113,7 +142,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
 //}
 
 protocol RiotCdnApiDelegate: AnyObject {
-    func setLore(for champion: Champion) async -> Champion
+    func setLore(for champion: Champion) async throws -> Champion
     /// Retrieve every champions name and icon from Riot CDN
     /// - Returns: Array of Champion object with properties name and icon setted
     func getChampions(caller: HomeScreen) async throws -> [Champion]
@@ -146,6 +175,8 @@ class RiotCdnApi {
     /// Number of skins for the selected champion
     var skinsCount = 0
     
+    var championFullJsonDecodable: ChampionFullJsonDecodable?
+    
     /// Retrieve championFull.json file from Riot CDN and decodes it
     /// - Returns: Decoable of championFull.json
     private func getChampionsFullDataDecodable() async throws -> ChampionFullJsonDecodable {
@@ -155,6 +186,11 @@ class RiotCdnApi {
         let data = try await getData(at: jsonUrl)
         let decodable = try decodeChampionFullJson(from: data)
         
+        // Locally store the decodable for reuse
+        if championFullJsonDecodable == nil {
+            championFullJsonDecodable = decodable
+        }
+        
         return decodable
     }
     
@@ -162,7 +198,7 @@ class RiotCdnApi {
     /// - Parameter url: URL of the request
     /// - Returns: Data object retrieved from the server response
     private func getData(at url: URL?) async throws -> Data {
-        guard let url else { throw ChampionListError.badUrl }
+        guard let url else { throw RiotCdnApiError.badUrl }
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -196,7 +232,7 @@ class RiotCdnApi {
         let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(locale)/championFull.json")
         
         guard let url else {
-            throw ChampionListError.badUrl
+            throw RiotCdnApiError.badUrl
         }
         
         return url
@@ -218,7 +254,7 @@ class RiotCdnApi {
             return decodable
         }
         catch {
-            throw ChampionListError.DecodingFail
+            throw RiotCdnApiError.DecodingFail
         }
     }
 }

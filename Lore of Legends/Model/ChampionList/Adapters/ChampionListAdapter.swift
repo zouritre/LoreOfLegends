@@ -19,10 +19,10 @@ extension ChampionListAdapter: ChampionListDelegate {
             
             do {
                 // Retrieve all champions from Riot CDN
-                let champions = try fetchChampions()
-                
-                // Send the array of champions retrieved from local storage
-                caller.championsDataSubject.send(champions)
+//                let champions = try fetchChampions()
+//
+//                // Send the array of champions retrieved from local storage
+//                caller.championsDataSubject.send(champions)
             }
             catch {
                 // Force downloading assets again on next app start
@@ -191,51 +191,51 @@ class ChampionListAdapter {
     /// Retrieve the Champion object saved to Core Data
     /// - Parameter context: Context to use for fetching from Core Data
     /// - Returns: Champion object retrieved from persistent store
-    func fetchChampions(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws -> [Champion] {
-        // fetch all data from ChampionData entity
-        let championsEncoded = try context.fetch(.init(entityName: "ChampionData"))
-        
-        guard let championsEncoded = championsEncoded as? [ChampionData] else {
-            throw ChampionListError.CastingFailed
-        }
-        
-        // initialise an empty array array of Champion objects
-        var champions = [Champion]()
-        
-        for champion in championsEncoded {
-            guard let stringifiedData = champion.encodedData else {
-                continue
-            }
-            
-            // Convert the stringifiedData string to a Data object
-            let data = Data(stringifiedData.utf8)
-            
-            // Decode the data object to a Champion object
-            let decodedChampion = try JSONDecoder().decode(Champion.self, from: data)
-            
-            // Append the newly retrieved Champion object to an array
-            champions.append(decodedChampion)
-        }
-        
-        return champions
-    }
+//    func fetchChampions(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws -> [Champion] {
+//        // fetch all data from ChampionData entity
+//        let championsEncoded = try context.fetch(.init(entityName: "ChampionData"))
+//
+//        guard let championsEncoded = championsEncoded as? [ChampionData] else {
+//            throw ChampionListError.CastingFailed
+//        }
+//
+//        // initialise an empty array array of Champion objects
+//        var champions = [Champion]()
+//
+//        for champion in championsEncoded {
+//            guard let stringifiedData = champion.encodedData else {
+//                continue
+//            }
+//
+//            // Convert the stringifiedData string to a Data object
+//            let data = Data(stringifiedData.utf8)
+//
+//            // Decode the data object to a Champion object
+//            let decodedChampion = try JSONDecoder().decode(Champion.self, from: data)
+//
+//            // Append the newly retrieved Champion object to an array
+//            champions.append(decodedChampion)
+//        }
+//
+//        return champions
+//    }
     
     /// Remove all data from ChampionData entity in Core Data
     /// - Parameter context: Context used to modify the persistent store
-    func removeChampionsDataFromStorage(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws {
-        // Fetch all data from ChampionData entity
-        let storedData = try context.fetch(.init(entityName: "ChampionData"))
-        
-        guard let storedData = storedData as? [ChampionData] else {
-            throw ChampionListError.CastingFailed
-        }
-        
-        for entry in storedData {
-            // Remove all rows from ChampionData entity
-            context.delete(entry)
-        }
-        
-        // Save the context modifications
-        try context.save()
-    }
+//    func removeChampionsDataFromStorage(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) throws {
+//        // Fetch all data from ChampionData entity
+//        let storedData = try context.fetch(.init(entityName: "ChampionData"))
+//
+//        guard let storedData = storedData as? [ChampionData] else {
+//            throw ChampionListError.CastingFailed
+//        }
+//
+//        for entry in storedData {
+//            // Remove all rows from ChampionData entity
+//            context.delete(entry)
+//        }
+//
+//        // Save the context modifications
+//        try context.save()
+//    }
 }

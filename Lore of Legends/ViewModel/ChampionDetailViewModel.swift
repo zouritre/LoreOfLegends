@@ -17,6 +17,7 @@ class ChampionDetailViewModel {
         if let api {
             self.viewmodel = ChampionDetail(customApi: api)
         }
+        
         championSubscriber = viewmodel.championPublisher.sink { champion in
             self.champion = champion
         }

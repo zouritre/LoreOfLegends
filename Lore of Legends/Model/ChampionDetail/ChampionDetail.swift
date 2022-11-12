@@ -20,7 +20,7 @@ class ChampionDetail {
     
     func getInfo(for champion: Champion) {
         Task {
-            let champion = await api?.setLore(for: champion)
+            let champion = try? await api?.setLore(for: champion)
             
             guard let champion else { return }
             

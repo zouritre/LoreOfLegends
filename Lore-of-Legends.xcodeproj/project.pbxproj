@@ -202,6 +202,7 @@
 		E93B365528FC4748003BB0A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9BEA3F5290B1EE400FE723D /* Misc */,
 				E9F9188B2912D82600B09251 /* Shared */,
 				E983BA78290BF1050008983B /* Entities */,
 				E93B365628FC4748003BB0A3 /* ChampionList */,
@@ -216,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				E93B365728FC4748003BB0A3 /* ChampionList.swift */,
-				E9BEA3F5290B1EE400FE723D /* Misc */,
 				E9BEA3F4290B1EC600FE723D /* Adapters */,
 			);
 			path = ChampionList;

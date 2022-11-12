@@ -34,5 +34,7 @@ final class ChampionDetailTest: XCTestCase {
         await waitForExpectations(timeout: 0.5)
         
         XCTAssertNotNil(viewmodel.champion?.lore)
+        
+        sub.cancel()
     }
 }

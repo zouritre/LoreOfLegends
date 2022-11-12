@@ -7,11 +7,11 @@
 
 import Foundation
 
-extension ChampionListError: LocalizedError {
+extension RiotCdnApiError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .DecodingFail:
-            return NSLocalizedString("ChampionListError.DecodingFail", comment: "Json decoding failed on champion json data")
+            return NSLocalizedString("Data decoding failed.", comment: "Json decoding failed on championFullData.json data")
         case .badUrl:
             return "Champ list bad url"
         case .GetJsonFailed:
@@ -26,7 +26,7 @@ extension ChampionListError: LocalizedError {
     }
 }
 
-enum ChampionListError: Error {
+enum RiotCdnApiError: Error {
     case DecodingFail
     case badUrl
     case GetJsonFailed

@@ -52,13 +52,10 @@ extension HomeScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt: IndexPath) {
         let cell = collectionView.cellForItem(at: didSelectItemAt) as? ChampionIconCell
         
-        guard let cell else { return }
-        
-        // Store the selected champion
-        selectedChampion = cell.champion
+        guard let cell, let champion = cell.champion else { return }
         
         // Go to the champion detail screen
-        performSegue(withIdentifier: "goToDetail", sender: nil)
+        performSegue(withIdentifier: "goToDetail", sender: champion)
     }
 }
 
@@ -104,7 +101,6 @@ extension HomeScreenViewController: UISearchBarDelegate {
 }
 
 class HomeScreenViewController: UIViewController {
-    var selectedChampion: Champion?
     /// Original list of champions received the first time it's successfully fetched from API. Only set once per app execution.
     var originalChampionList: [Champion] = []
     /// View model
@@ -191,8 +187,10 @@ class HomeScreenViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChampionDetailViewController {
-            // Send the selected champion to the next view controller
-            vc.champion = selectedChampion
+            if let champion = sender as? Champion {
+                // Send the selected champion to the next view controller
+                vc.champion = champion
+            }
         }
         else if let vc = segue.destination as? ChampionsLoadingViewController {
             // Send the selected champion to the next view controller
