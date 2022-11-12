@@ -10,7 +10,11 @@ import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
     func setInfo(for champion: Champion) async throws -> Champion {
-        return champion
+        let championWithSkins = try await setSkins(for: champion)
+        let championWithSkinsAndLore = try await setLore(for: championWithSkins)
+        let championWithSkinsAndLoreAndTitle = try await setTitle(for: championWithSkinsAndLore)
+        
+        return championWithSkinsAndLoreAndTitle
     }
     
     func setSkins(for champion: Champion) async throws -> Champion {
