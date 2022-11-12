@@ -13,8 +13,6 @@ struct Champion: Codable {
     var name: String
     /// Champion honorific name
     var title: String?
-    /// The skins images name for this champion according to Riot CDN
-    var imageName: String
     /// Champion icon as a data object
     var icon: Data?
     /// Array repsenting every skins of this champion

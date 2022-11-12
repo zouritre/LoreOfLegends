@@ -9,6 +9,10 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    func setInfo(for champion: Champion) async throws -> Champion {
+        return champion
+    }
+    
     func setSkins(for champion: Champion) async throws -> Champion {
         if let championFullJsonDecodable {
             // Decodable already exist locally
@@ -146,7 +150,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                 taskGroup.addTask { [unowned self] in
                     // Get icon as data object from url
                     let data = try? await getData(at: url)
-                    let champion = Champion(name: info.name, title: "", imageName: "", icon: data, skins: [], lore: "")
+                    let champion = Champion(name: info.name, title: "", icon: data, skins: [], lore: "")
                     
                     if caller.iconsDownloadedPublisher.value != nil {
                         caller.iconsDownloadedPublisher.value! += 1
@@ -227,6 +231,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
 //}
 
 protocol RiotCdnApiDelegate: AnyObject {
+    func setInfo(for champion: Champion) async throws -> Champion
     func setSkins(for champion: Champion) async throws -> Champion
     func setTitle(for champion: Champion) async throws -> Champion
     func setLore(for champion: Champion) async throws -> Champion

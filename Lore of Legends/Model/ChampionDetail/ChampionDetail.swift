@@ -41,5 +41,13 @@ class ChampionDetail {
             championPublisher.send(champion)
         }
     }
-
+    
+    func setInfo(for champion: Champion) {
+        Task {
+            let champion = try? await api?.setInfo(for: champion)
+            
+            championPublisher.send(champion)
+        }
+    }
+    
 }

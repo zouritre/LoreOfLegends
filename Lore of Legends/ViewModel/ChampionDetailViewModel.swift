@@ -33,4 +33,8 @@ class ChampionDetailViewModel {
     func setSkins(for champion: Champion) {
         viewmodel.setSkins(for: champion)
     }
+    
+    func setInfo(for champion: Champion) {
+        viewmodel.setInfo(for: champion)
+    }
 }

@@ -16,12 +16,12 @@ final class ChampionDetailTest: XCTestCase {
     var champion: Champion!
     var expectation: XCTestExpectation!
     var sub: AnyCancellable!
-        
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockApi = RiotCdnApiMock()
         viewmodel = ChampionDetailViewModel(api: mockApi)
-        champion = Champion(name: "", title: "", imageName: "", skins: [], lore: "")
+        champion = Champion(name: "", title: "", skins: [], lore: "")
         expectation = expectation(description: "Wait for async task")
         sub = viewmodel.viewmodel.championPublisher.sink { [unowned self] _ in
             expectation.fulfill()
@@ -58,6 +58,18 @@ final class ChampionDetailTest: XCTestCase {
         await waitForExpectations(timeout: 0.5)
         
         XCTAssertNotNil(viewmodel.champion?.skins)
+        
+        sub.cancel()
+    }
+    
+    func testShouldReturnChampionHonorificTitleAndLoreAndSkins() async {
+        viewmodel.setInfo(for: champion)
+        
+        await waitForExpectations(timeout: 0.5)
+        
+        XCTAssertNotNil(viewmodel.champion?.skins)
+        XCTAssertNotNil(viewmodel.champion?.lore)
+        XCTAssertNotNil(viewmodel.champion?.title)
         
         sub.cancel()
     }
