@@ -31,7 +31,7 @@ extension ChampionDetailViewController: UIPageViewControllerDelegate {
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
             if let itemNumber = currentVc.skinIndex {
-             return itemNumber
+                return itemNumber
             }
         }
         
@@ -97,7 +97,7 @@ class ChampionDetailViewController: UIViewController {
         setupSubscribers()
         setupUiTexts(for: champion)
         
-//        viewmodel.setSkinsForChampion(champion: champion)
+        //        viewmodel.setSkinsForChampion(champion: champion)
     }
     
     /// Set the text value of the different outlets of the UI
@@ -109,30 +109,30 @@ class ChampionDetailViewController: UIViewController {
     
     /// Implement the subscribers
     private func setupSubscribers() {
-//        championDataSub = viewmodel.$champion.sink(receiveValue: { champ in
-//            if let champ {
-//                DispatchQueue.main.async { [unowned self] in
-//                    // Hide the indicator
-//                    skinsLoadingIndicator.stopAnimating()
-//                    
-//                    for (index, skin) in champ.skins.enumerated() {
-//                        let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
-//                        
-//                        vc.skinImageData = skin.centered
-//                        vc.skinIndex = index
-//                        vc.skinName = skin.title
-//                        
-//                        pageViewControllers.append(vc)
-//                    }
-//                    
-//                    guard let firstSkin = pageViewControllers.first else {
-//                        return
-//                    }
-//                    
-//                    self.skinsPageViewController?.setViewControllers([firstSkin], direction: .forward, animated: true)
-//                }
-//            }
-//        })
+        championSubscriber = viewmodel.$champion.sink(receiveValue: { champ in
+            guard let champ else { return }
+            
+            DispatchQueue.main.async { [unowned self] in
+                // Hide the indicator
+                skinsLoadingIndicator.stopAnimating()
+                
+                for (index, skin) in champ.skins.enumerated() {
+                    let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
+                    
+                    vc.skinImageData = skin.centered
+                    vc.skinIndex = index
+                    vc.skinName = skin.title
+                    
+                    pageViewControllers.append(vc)
+                }
+                
+                guard let firstSkin = pageViewControllers.first else {
+                    return
+                }
+                
+                self.skinsPageViewController?.setViewControllers([firstSkin], direction: .forward, animated: true)
+            }
+        })
     }
     
     // MARK: - Navigation

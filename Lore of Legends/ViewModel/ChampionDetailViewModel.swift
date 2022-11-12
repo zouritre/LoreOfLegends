@@ -10,6 +10,7 @@ import Combine
 
 class ChampionDetailViewModel {
     @Published var champion: Champion?
+    
     var viewmodel = ChampionDetail()
     var championSubscriber: AnyCancellable?
     
