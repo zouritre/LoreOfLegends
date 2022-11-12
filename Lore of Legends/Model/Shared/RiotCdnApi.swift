@@ -17,7 +17,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         // Group every champion icon download in a task group and stop execution until they finish
         let champions = await withTaskGroup(of: Champion.self) { taskGroup in
-            for (index, (_, info)) in decodable.data.enumerated() {
+            for (_, info) in decodable.data {
                 // Icon name
                 var imageName = info.image.full
                 
@@ -31,9 +31,8 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                     // Get icon as data object from url
                     let data = try? await getData(at: url)
                     let champion = Champion(name: info.name, title: "", imageName: "", icon: data, skins: [], lore: "")
-                    let nonZeroBasedIndex = index+1
                     
-                    caller.iconsDownloadedPublisher.send(nonZeroBasedIndex)
+                    caller.iconsDownloadedPublisher += 1
                     
                     return champion
                 }

@@ -9,15 +9,15 @@ import XCTest
 @testable import Lore_of_Legends
 
 final class HomeScreenTest: XCTestCase {
-    var expectation: XCTestExpectation!
     var mockApi: RiotCdnApiMock!
     var viewmodel: HomeScreenViewModel!
+    var expectation: XCTestExpectation!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        expectation = expectation(description: "Wait for async task")
         mockApi = RiotCdnApiMock()
         viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
+        expectation = expectation(description: "Wait for async task")
     }
     
     override func tearDownWithError() throws {
@@ -62,13 +62,13 @@ final class HomeScreenTest: XCTestCase {
     }
     
     func testShouldReturnChampionsIconDownloadProgress() async {
-        let sub = viewmodel.homescreen.iconsDownloadedPublisher.sink { [unowned self] _ in
+        let sub = viewmodel.homescreen.$iconsDownloadedPublisher.sink { [unowned self] _ in
             expectation.fulfill()
         }
         
         viewmodel.getChampions()
         
-        await waitForExpectations(timeout: 1)
+        await waitForExpectations(timeout: 0.5)
         
         XCTAssertNotNil(viewmodel.iconsDownloaded)
         

@@ -37,7 +37,7 @@ class HomeScreenViewModel {
             totalNumberOfChampions = total
         })
         
-        iconsDownloadedSubscriber = homescreen.iconsDownloadedPublisher.sink { [unowned self] count in
+        iconsDownloadedSubscriber = homescreen.$iconsDownloadedPublisher.sink { [unowned self] count in
             iconsDownloaded = count
         }
     }

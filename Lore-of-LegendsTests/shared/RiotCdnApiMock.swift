@@ -16,7 +16,8 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
         }
         else {
             caller.totalNumberOfChampionsPublisher.send(1)
-            caller.iconsDownloadedPublisher.send(1)
+            caller.iconsDownloadedPublisher = 1
+            
             return [Champion(name: "Aatrox", title: "", imageName: "", icon: Data(), skins: [], lore: "")]
         }
     }
