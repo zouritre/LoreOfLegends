@@ -33,13 +33,11 @@ class HomeScreenViewModel {
             self.champions = champions
         })
         
-        totalNumberOfChampionsSubscriber = homescreen.totalNumberOfChampionsPublisher.sink(receiveValue: { [unowned self] total in
-            totalNumberOfChampions = total
-        })
+        // Republish publisher values to totalNumberOfChampions property
+        homescreen.totalNumberOfChampionsPublisher.assign(to: &$totalNumberOfChampions)
         
-        iconsDownloadedSubscriber = homescreen.iconsDownloadedPublisher.sink { [unowned self] count in
-            iconsDownloaded = count
-        }
+        // Republish publisher values to iconsDownloaded property
+        homescreen.iconsDownloadedPublisher.assign(to: &$iconsDownloaded)
     }
     
     func getChampions() {

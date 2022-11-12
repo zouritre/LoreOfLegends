@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class ChampionDetail {
-    var api: RiotCdnApiDelegate? = RiotCdnApi()
+    private var api: RiotCdnApiDelegate? = RiotCdnApi()
     var championPublisher = PassthroughSubject<Champion?, Never>()
     
     init(customApi: RiotCdnApiDelegate? = nil) {
