@@ -9,6 +9,10 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    func setLore(for champion: Champion) async -> Champion {
+        return Champion(name: "", title: "", imageName: "", skins: [])
+    }
+    
     func getChampions(caller: HomeScreen) async throws -> [Champion] {
         let decodable = try await getChampionsFullDataDecodable()
         
@@ -70,45 +74,46 @@ extension RiotCdnApi: RiotCdnApiDelegate {
     }
 }
 
-extension RiotCdnApi: ChampionDetailAdapterDelegate {
-    func setSkins(caller: ChampionDetailAdapter, for champion: Champion) {
-        self.selectedChampion = champion
-        self.caller = caller
-        self.skinsCount = champion.skins.count
-        
-        for skin in champion.skins {
-            let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(skin.fileName)")
-            let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(skin.fileName)")
-            
-            Task {
-                // A splash image as data object for the selected champion
-                var splash: Data?
-                // A centered image as data object for the selected champion
-                var centered: Data?
-                
-                if let splashUrl {
-                    let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
-                    splash = splashData
-                }
-                if let centeredUrl {
-                    let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
-                    centered = centeredData
-                }
-                
-                // A ChampionAsset object for the selected champion skin currently being processed
-                var asset = skin
-                
-                asset.setSplash(with: splash)
-                asset.setCenteredImage(with: centered)
-                
-                // Store the skin in memory while async tasks finishes
-                skins.append(asset)
-            }
-        }
-    }
-}
+//extension RiotCdnApi: ChampionDetailAdapterDelegate {
+//    func setSkins(caller: ChampionDetailAdapter, for champion: Champion) {
+//        self.selectedChampion = champion
+//        self.caller = caller
+//        self.skinsCount = champion.skins.count
+//
+//        for skin in champion.skins {
+//            let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(skin.fileName)")
+//            let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(skin.fileName)")
+//
+//            Task {
+//                // A splash image as data object for the selected champion
+//                var splash: Data?
+//                // A centered image as data object for the selected champion
+//                var centered: Data?
+//
+//                if let splashUrl {
+//                    let (splashData, _) = try await URLSession.shared.data(from: splashUrl)
+//                    splash = splashData
+//                }
+//                if let centeredUrl {
+//                    let (centeredData, _) = try await URLSession.shared.data(from: centeredUrl)
+//                    centered = centeredData
+//                }
+//
+//                // A ChampionAsset object for the selected champion skin currently being processed
+//                var asset = skin
+//
+//                asset.setSplash(with: splash)
+//                asset.setCenteredImage(with: centered)
+//
+//                // Store the skin in memory while async tasks finishes
+//                skins.append(asset)
+//            }
+//        }
+//    }
+//}
 
 protocol RiotCdnApiDelegate: AnyObject {
+    func setLore(for champion: Champion) async -> Champion
     /// Retrieve every champions name and icon from Riot CDN
     /// - Returns: Array of Champion object with properties name and icon setted
     func getChampions(caller: HomeScreen) async throws -> [Champion]
@@ -119,27 +124,25 @@ protocol RiotCdnApiDelegate: AnyObject {
 }
 
 class RiotCdnApi {
-    /// The adapter class that called a method of this class
-    var caller: ChampionDetailAdapter?
-    /// Champion to be processed with custom datas
-    var selectedChampion: Champion?
-    /// Skins of the selected champion
-    var skins = [ChampionAsset]() {
-        didSet {
-            if skins.count == skinsCount {
-                // Sort skins by name in ascending order
-                skins.sort(by: { return $0.fileName < $1.fileName })
-                
-                // Set sorted skins array to selected champion skins array
-                selectedChampion?.skins = skins
-                
-                guard let selectedChampion else { return }
-                
-                // Notify viewmodel of the selected champion after being processed
-                caller?.caller?.championDataPublisher.send(selectedChampion)
-            }
-        }
-    }
+//    /// Champion to be processed with custom datas
+//    var selectedChampion: Champion?
+//    /// Skins of the selected champion
+//    var skins = [ChampionAsset]() {
+//        didSet {
+//            if skins.count == skinsCount {
+//                // Sort skins by name in ascending order
+//                skins.sort(by: { return $0.fileName < $1.fileName })
+//                
+//                // Set sorted skins array to selected champion skins array
+//                selectedChampion?.skins = skins
+//                
+//                guard let selectedChampion else { return }
+//                
+//                // Notify viewmodel of the selected champion after being processed
+//                caller?.caller?.championDataPublisher.send(selectedChampion)
+//            }
+//        }
+//    }
     /// Number of skins for the selected champion
     var skinsCount = 0
     

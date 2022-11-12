@@ -10,6 +10,14 @@ import Combine
 @testable import Lore_of_Legends
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
+    func setLore(for champion: Lore_of_Legends.Champion) -> Champion {
+        var champion = champion
+        
+        champion.setLore(with: "Hello")
+        
+        return champion
+    }
+    
     func getChampions(caller: HomeScreen) async throws -> [Lore_of_Legends.Champion] {
         if throwing {
             throw MockError()
@@ -31,15 +39,15 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
     }
 }
 
-extension RiotCdnApiMock: ChampionDetailAdapterDelegate {
-    func setSkins(caller: Lore_of_Legends.ChampionDetailAdapter ,for champion: Lore_of_Legends.Champion) {
-        let asset = ChampionAsset(fileName: "", title: "", splash: Data(), centered: Data())
-        var champ = champion
-        champ.skins.append(asset)
-        
-        caller.caller?.championDataPublisher.send(champ)
-    }
-}
+//extension RiotCdnApiMock: ChampionDetailAdapterDelegate {
+//    func setSkins(caller: Lore_of_Legends.ChampionDetailAdapter ,for champion: Lore_of_Legends.Champion) {
+//        let asset = ChampionAsset(fileName: "", title: "", splash: Data(), centered: Data())
+//        var champ = champion
+//        champ.skins.append(asset)
+//        
+//        caller.caller?.championDataPublisher.send(champ)
+//    }
+//}
 
 class RiotCdnApiMock {
     var throwing: Bool = false

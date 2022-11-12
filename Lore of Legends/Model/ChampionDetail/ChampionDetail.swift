@@ -8,21 +8,23 @@
 import Foundation
 import Combine
 
-protocol ChampionDetailDelegate {
-    /// Retrieve and set skins images for the given champion
-    /// - Parameters:
-    ///   - caller: The class calling this method
-    ///   - champion: Champion object for wich to retrieve skins images
-    func setSkinImages(caller: ChampionDetail, champion: Champion)
-}
-
 class ChampionDetail {
-    /// Adapter responsible for processing a given champion skins
-    var delegate: ChampionDetailDelegate
-    /// Publisher used to send Champion object processed by the delegate
-    var championDataPublisher = PassthroughSubject<Champion, Never>()
+    var api: RiotCdnApiDelegate? = RiotCdnApi()
+    var championPublisher = PassthroughSubject<Champion, Never>()
     
-    init(adapter: ChampionDetailDelegate = ChampionDetailAdapter()) {
-        self.delegate = adapter
+    init(customApi: RiotCdnApiDelegate? = nil) {
+        if let customApi {
+            self.api = customApi
+        }
+    }
+    
+    func getInfo(for champion: Champion) {
+        Task {
+            let champion = await api?.setLore(for: champion)
+            
+            guard let champion else { return }
+            
+            championPublisher.send(champion)
+        }
     }
 }

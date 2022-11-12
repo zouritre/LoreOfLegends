@@ -10,68 +10,29 @@ import Combine
 @testable import Lore_of_Legends
 
 final class ChampionDetailTest: XCTestCase {
-
-    var mockApi: RiotCdnApiMock?
-    var adapter: ChampionDetailAdapter?
-    var model: ChampionDetail?
-    var vm: ChampionDetailViewModel?
-    var champion = Champion(name: "", title: "", imageName: "", skins: [], lore: "")
-    var expectation: XCTestExpectation?
-    var sub: AnyCancellable?
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        mockApi = RiotCdnApiMock()
         
-        guard let mockApi else { return }
-        
-        adapter = ChampionDetailAdapter(delegate: mockApi)
-        
-        guard let adapter else { return }
-        
-        vm = ChampionDetailViewModel()
-        
-        guard let vm else { return }
-        
-        vm.model.delegate = adapter
-        expectation = expectation(description: "Wait for champion data")
-        
-        guard let expectation else { return }
-        
-        sub = vm.$champion.sink(receiveValue: { champ in
-            if champ != nil {
-                expectation.fulfill()
-            }
-        })
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testShouldNotifyOneChampionObject() async {
-        vm?.setSkinsForChampion(champion: champion)
+    func testShouldReturnChampionLore() async {
+        let mockApi = RiotCdnApiMock()
+        let viewmodel = ChampionDetailViewModel(api: mockApi)
+        let champion = Champion(name: "", title: "", imageName: "", skins: [], lore: "")
+        let expectation = expectation(description: "Wait for async task")
+        let sub = viewmodel.viewmodel.championPublisher.sink { _ in
+            expectation.fulfill()
+        }
         
-        await waitForExpectations(timeout: 1)
+        viewmodel.getInfo(for: champion)
         
-        XCTAssertNotNil(vm?.champion)
-    }
-    
-    func testShouldReturnGivenChampionSplashImage() async {
+        await waitForExpectations(timeout: 0.5)
         
-        vm?.setSkinsForChampion(champion: champion)
-        
-        await waitForExpectations(timeout: 1)
-        
-        XCTAssertNotNil(vm?.champion?.skins[0].splash)
-    }
-    
-    func testShouldReturnGivenChampionCenteredImage() async {
-        
-        vm?.setSkinsForChampion(champion: champion)
-        
-        await waitForExpectations(timeout: 1)
-        
-        XCTAssertNotNil(vm?.champion?.skins[0].centered)
+        XCTAssertNotNil(viewmodel.champion?.lore)
     }
 }

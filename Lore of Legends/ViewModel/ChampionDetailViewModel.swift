@@ -9,20 +9,20 @@ import Foundation
 import Combine
 
 class ChampionDetailViewModel {
-    @Published var champion: Champion?
+    var champion: Champion?
+    var viewmodel = ChampionDetail()
+    var championSubscriber: AnyCancellable?
     
-    var model = ChampionDetail()
-    
-    init() {
-        self.championDataSub = self.model.championDataPublisher.sink(receiveValue: { champion in
-            print("Champ arrived: ", champion)
+    init(api: RiotCdnApiDelegate? = nil) {
+        if let api {
+            self.viewmodel = ChampionDetail(customApi: api)
+        }
+        championSubscriber = viewmodel.championPublisher.sink { champion in
             self.champion = champion
-        })
+        }
     }
     
-    var championDataSub: AnyCancellable?
-    
-    func setSkinsForChampion(champion: Champion) {
-        model.delegate.setSkinImages(caller: model, champion: champion)
+    func getInfo(for champion: Champion) {
+        viewmodel.getInfo(for: champion)
     }
 }
