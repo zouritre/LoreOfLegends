@@ -10,6 +10,14 @@ import Combine
 @testable import Lore_of_Legends
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
+    func setTitle(for champion: Lore_of_Legends.Champion) async throws -> Lore_of_Legends.Champion {
+        var champion = champion
+        
+        champion.setTitle(with: "Hello")
+        
+        return champion
+    }
+    
     func setLore(for champion: Lore_of_Legends.Champion) -> Champion {
         var champion = champion
         

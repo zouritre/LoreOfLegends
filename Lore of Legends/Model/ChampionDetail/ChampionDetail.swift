@@ -18,11 +18,20 @@ class ChampionDetail {
         }
     }
     
-    func getInfo(for champion: Champion) {
+    func setLore(for champion: Champion) {
         Task {
             let champion = try? await api?.setLore(for: champion)
             
             championPublisher.send(champion)
         }
     }
+    
+    func setTitle(for champion: Champion) {
+        Task {
+            let champion = try? await api?.setTitle(for: champion)
+            
+            championPublisher.send(champion)
+        }
+    }
+
 }

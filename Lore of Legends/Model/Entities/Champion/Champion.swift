@@ -12,7 +12,7 @@ struct Champion: Codable {
     /// Champion name
     var name: String
     /// Champion honorific name
-    var title: String
+    var title: String?
     /// The skins images name for this champion according to Riot CDN
     var imageName: String
     /// Champion icon as a data object
@@ -30,5 +30,9 @@ struct Champion: Codable {
     
     mutating func setLore(with lore: String) {
         self.lore = lore
+    }
+    
+    mutating func setTitle(with title: String) {
+        self.title = title
     }
 }

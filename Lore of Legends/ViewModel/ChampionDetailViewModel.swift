@@ -22,7 +22,11 @@ class ChampionDetailViewModel {
         viewmodel.championPublisher.assign(to: &$champion)
     }
     
-    func getInfo(for champion: Champion) {
-        viewmodel.getInfo(for: champion)
+    func setLore(for champion: Champion) {
+        viewmodel.setLore(for: champion)
+    }
+    
+    func setTitle(for champion: Champion) {
+        viewmodel.setTitle(for: champion)
     }
 }
