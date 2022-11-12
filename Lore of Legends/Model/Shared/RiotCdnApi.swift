@@ -12,15 +12,23 @@ extension RiotCdnApi: RiotCdnApiDelegate {
     func getChampions(caller: HomeScreen) async throws -> [Champion] {
         let decodable = try await getChampionsFullDataDecodable()
         
+        // Notify how many champions there is in League
+        caller.totalNumberOfChampionsPublisher.send(decodable.keys.count)
+        
+        // Group every champion icon download in a task group and stop execution until they finish
         let champions = await withTaskGroup(of: Champion.self) { taskGroup in
             for (_, info) in decodable.data {
+                // Icon name
                 var imageName = info.image.full
                 
                 //Remove file extension
                 imageName.removeLast(4)
                 
+                // Url to the icon
                 let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/\(imageName)_0.jpg")
-                taskGroup.addTask { [unowned self]  in
+                
+                taskGroup.addTask { [unowned self] in
+                    // Get icon as data object from url
                     let data = try? await getData(at: url)
                     let champion = Champion(name: info.name, title: "", imageName: "", icon: data, skins: [], lore: "")
                     
@@ -133,6 +141,8 @@ class RiotCdnApi {
     /// Number of skins for the selected champion
     var skinsCount = 0
     
+    /// Retrieve championFull.json file from Riot CDN and decodes it
+    /// - Returns: Decoable of championFull.json
     private func getChampionsFullDataDecodable() async throws -> ChampionFullJsonDecodable {
         let patchVersion = try await getLastestPatchVersion()
         let locale = getLocalizationForChampionsData()
@@ -143,6 +153,9 @@ class RiotCdnApi {
         return decodable
     }
     
+    /// Make a request to the provided url
+    /// - Parameter url: URL of the request
+    /// - Returns: Data object retrieved from the server response
     private func getData(at url: URL?) async throws -> Data {
         guard let url else { throw ChampionListError.badUrl }
         
@@ -156,6 +169,8 @@ class RiotCdnApi {
         }
     }
     
+    /// Returns a locale according to the devide language and region
+    /// - Returns: Locale supported by Riot CDN
     private func getLocalizationForChampionsData() -> Locale {
         let deviceLocale = Locale.current
         
