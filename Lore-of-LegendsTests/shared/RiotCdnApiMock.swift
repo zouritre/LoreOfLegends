@@ -51,10 +51,6 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
     }
     
     func getSupportedLanguages() async throws -> [Locale] {
-        if throwing {
-            throw MockError()
-        }
-        
         return [Locale(identifier: "")]
     }
 }

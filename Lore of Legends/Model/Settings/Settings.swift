@@ -8,16 +8,21 @@
 import Foundation
 import Combine
 
-protocol SettingsDelegate: AnyObject {
-    /// Request all languages supported by Riot CDN API
-    /// - Parameter caller: Object wich called this method
-    func getLanguages(caller: Settings)
-}
-
-/// Main use-case for Settings functionnality
 class Settings {
-    /// Object responsible for handling language list requests
-    weak var delegate: SettingsDelegate?
-    /// Publisher that send result for languages request
-    var languagesPublisher = PassthroughSubject<[Locale], Error>()
+    var riotCdnApi: RiotCdnApiDelegate? = RiotCdnApi.shared
+    var languagesPublisher = PassthroughSubject<[Locale]?, Never>()
+    
+    init(riotCdnApi: RiotCdnApiDelegate? = nil) {
+        if let riotCdnApi {
+            self.riotCdnApi = riotCdnApi
+        }
+    }
+    
+    func getSupportedLanguages() {
+        Task {
+            let languages = try await riotCdnApi?.getSupportedLanguages()
+            
+            languagesPublisher.send(languages)
+        }
+    }
 }

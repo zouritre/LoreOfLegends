@@ -17,7 +17,6 @@
 		E9160E2C291D50A8006CF845 /* SettingsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2B291D50A8006CF845 /* SettingsTest.swift */; };
 		E9160E2E291D511A006CF845 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2D291D511A006CF845 /* SettingsViewModel.swift */; };
 		E9160E30291D52C2006CF845 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E2F291D52C2006CF845 /* Settings.swift */; };
-		E9160E33291D532C006CF845 /* SettingsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E32291D532C006CF845 /* SettingsAdapter.swift */; };
 		E9160E35291D6845006CF845 /* SettingsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9160E34291D6845006CF845 /* SettingsError.swift */; };
 		E9179F16291177AB00E178F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9179F15291177AB00E178F8 /* Persistence.swift */; };
 		E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9179F1729117BF900E178F8 /* MainDataStore.xcdatamodeld */; };
@@ -73,7 +72,6 @@
 		E9160E2B291D50A8006CF845 /* SettingsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTest.swift; sourceTree = "<group>"; };
 		E9160E2D291D511A006CF845 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E9160E2F291D52C2006CF845 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		E9160E32291D532C006CF845 /* SettingsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdapter.swift; sourceTree = "<group>"; };
 		E9160E34291D6845006CF845 /* SettingsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsError.swift; sourceTree = "<group>"; };
 		E9179F15291177AB00E178F8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9179F1829117BF900E178F8 /* MainDataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataStore.xcdatamodel; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				E9160E2F291D52C2006CF845 /* Settings.swift */,
-				E9160E32291D532C006CF845 /* SettingsAdapter.swift */,
 				E9160E34291D6845006CF845 /* SettingsError.swift */,
 			);
 			path = Settings;
@@ -532,7 +529,6 @@
 				E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */,
 				E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */,
 				E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */,
-				E9160E33291D532C006CF845 /* SettingsAdapter.swift in Sources */,
 				E93B366A28FC4C00003BB0A3 /* ChampionListAdapter.swift in Sources */,
 				E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
