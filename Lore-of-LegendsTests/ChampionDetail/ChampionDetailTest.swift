@@ -21,7 +21,7 @@ final class ChampionDetailTest: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockApi = RiotCdnApiMock()
         viewmodel = ChampionDetailViewModel(api: mockApi)
-        champion = Champion(name: "", title: "", skins: [], lore: "")
+        champion = Champion(id: "", name: "", title: "", skins: [], lore: "")
         expectation = expectation(description: "Wait for async task")
         sub = viewmodel.viewmodel.championPublisher.sink { [unowned self] _ in
             expectation.fulfill()

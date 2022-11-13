@@ -9,6 +9,8 @@ import Foundation
 
 /// Store information about a given champion in League
 struct Champion: Codable {
+    // Champion internal name
+    var id: String
     /// Champion name
     var name: String
     /// Champion honorific name

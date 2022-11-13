@@ -127,7 +127,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                 taskGroup.addTask { [unowned self] in
                     // Get icon as data object from url
                     let data = try? await getData(at: url)
-                    let champion = Champion(name: info.name, title: "", icon: data, skins: [], lore: "")
+                    let champion = Champion(id: info.id, name: info.name, title: "", icon: data, skins: [], lore: "")
                     
                     if caller.iconsDownloadedPublisher.value != nil {
                         caller.iconsDownloadedPublisher.value! += 1

@@ -11,11 +11,11 @@ import Combine
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
     func setInfo(for champion: Lore_of_Legends.Champion) async throws -> Lore_of_Legends.Champion {
-        return Champion(name: "", title: "", skins: [], lore: "")
+        return Champion(id: "", name: "", title: "", skins: [], lore: "")
     }
     
     func setSkins(for champion: Lore_of_Legends.Champion) async throws -> Lore_of_Legends.Champion {
-        return Champion(name: "", skins: [])
+        return Champion(id: "", name: "", skins: [])
     }
     
     func setTitle(for champion: Lore_of_Legends.Champion) async throws -> Lore_of_Legends.Champion {
@@ -42,7 +42,7 @@ extension RiotCdnApiMock: RiotCdnApiDelegate {
             caller.totalNumberOfChampionsPublisher.send(1)
             caller.iconsDownloadedPublisher.value = 1
             
-            return [Champion(name: "Aatrox", title: "", icon: Data(), skins: [], lore: "")]
+            return [Champion(id: "", name: "Aatrox", title: "", icon: Data(), skins: [], lore: "")]
         }
     }
     
