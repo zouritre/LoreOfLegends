@@ -115,6 +115,8 @@ class HomeScreenViewController: UIViewController {
     var originalChampListSubscriber: AnyCancellable?
     /// Notify if champions download is pending or not
     var totalNumberOfChampionsSubscriber: AnyCancellable?
+    /// Notify when a new update is available
+    var newUpdateSubscriber: AnyCancellable?
     
     /// Main collectionview of the UI
     @IBOutlet weak var championIconsCollection: UICollectionView!
@@ -179,6 +181,12 @@ class HomeScreenViewController: UIViewController {
             DispatchQueue.main.async { [unowned self] in
                 performSegue(withIdentifier: "championsLoading", sender: total)
             }
+        }
+        
+        newUpdateSubscriber = homescreenViewmodel.$newUpdate.sink { [unowned self] newVersion in
+            guard let newVersion else { return }
+            
+            alert(message: NSLocalizedString("Patch \(newVersion) is available! Restart the app to update.", comment: "A new patch is available"))
         }
     }
     
