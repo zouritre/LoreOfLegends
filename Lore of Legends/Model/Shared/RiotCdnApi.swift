@@ -24,7 +24,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         // Decodable already exist locally
         for (championName, champInfo) in decodable.data {
-            if championName == champion.name {
+            if championName == champion.id {
                 let skins = await withTaskGroup(of: ChampionAsset.self) { taskgroup in
                     for skin in champInfo.skins {
                         var imageName = champInfo.image.full
@@ -73,7 +73,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         // Decodable already exist locally
         for (championName, champInfo) in decodable.data {
-            if championName == champion.name {
+            if championName == champion.id {
                 var champion = champion
                 champion.setTitle(with: champInfo.title)
                 
@@ -92,7 +92,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         // Decodable already exist locally
         for (championName, champInfo) in decodable.data {
-            if championName == champion.name {
+            if championName == champion.id {
                 var champion = champion
                 champion.setLore(with: champInfo.lore)
                 
