@@ -46,6 +46,8 @@
 		E9CD8C52290AF6440042C46B /* championFull.json in Resources */ = {isa = PBXBuildFile; fileRef = E9CD8C51290AF6440042C46B /* championFull.json */; };
 		E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DC37362902EA8B008384FC /* ChampionIconCell.swift */; };
 		E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DC37372902EA8C008384FC /* ChampionIconCell.xib */; };
+		E9FBEFE729213E0C00A2D0DB /* CoreDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBEFE629213E0C00A2D0DB /* CoreDataApi.swift */; };
+		E9FBEFE929213FA000A2D0DB /* CoreDataApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */; };
 		E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF04412904B37500DE07A4 /* ChampionAsset.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +105,8 @@
 		E9CD8C51290AF6440042C46B /* championFull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = championFull.json; sourceTree = "<group>"; };
 		E9DC37362902EA8B008384FC /* ChampionIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionIconCell.swift; sourceTree = "<group>"; };
 		E9DC37372902EA8C008384FC /* ChampionIconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionIconCell.xib; sourceTree = "<group>"; };
+		E9FBEFE629213E0C00A2D0DB /* CoreDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataApi.swift; sourceTree = "<group>"; };
+		E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataApiError.swift; sourceTree = "<group>"; };
 		E9FF04412904B37500DE07A4 /* ChampionAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionAsset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -353,6 +357,7 @@
 			children = (
 				E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */,
 				E93B365A28FC4748003BB0A3 /* RiotCdnApiError.swift */,
+				E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				E9BEA3F0290B123300FE723D /* RiotCdnApi.swift */,
+				E9FBEFE629213E0C00A2D0DB /* CoreDataApi.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -513,11 +519,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9FBEFE929213FA000A2D0DB /* CoreDataApiError.swift in Sources */,
 				E93B366C28FC4C00003BB0A3 /* ChampionList.swift in Sources */,
 				E9937349291A964700FE2DD7 /* CenteredSkinsPageViewController.swift in Sources */,
 				E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */,
 				E9179F16291177AB00E178F8 /* Persistence.swift in Sources */,
 				E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */,
+				E9FBEFE729213E0C00A2D0DB /* CoreDataApi.swift in Sources */,
 				E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */,
 				E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */,
 				E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */,
