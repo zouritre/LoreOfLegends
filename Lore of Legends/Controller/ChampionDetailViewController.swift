@@ -13,8 +13,8 @@ extension ChampionDetailViewController: UIPageViewControllerDelegate {
         if finished {
             if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
                 if currentVc.skinIndex == 0 {
-                    if let champion {
-                        championNameLabel.text = "\(champion.name), \(champion.title)"
+                    if let champion, let title = champion.title {
+                        championNameLabel.text = "\(champion.name), \(title)"
                     }
                 }
                 else {
@@ -101,9 +101,11 @@ class ChampionDetailViewController: UIViewController {
     
     /// Implement the subscribers
     private func setupSubscribers() {
-        championSubscriber = viewmodel.$champion.sink(receiveValue: { champ in
+        championSubscriber = viewmodel.$champion.sink(receiveValue: { [unowned self] champ in
             print(champ)
             guard let champ else { return }
+            
+            champion = champ
             
             DispatchQueue.main.async { [unowned self] in
                 // Hide the indicator

@@ -40,7 +40,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                             let splashData = try? await getData(at: splashUrl)
                             let centeredData = try? await getData(at: centeredUrl)
                             
-                            return ChampionAsset(title: skin.name, splash: splashData, centered: centeredData)
+                            return ChampionAsset(num: skin.num, title: skin.name, splash: splashData, centered: centeredData)
                         }
                     }
                     
@@ -49,6 +49,8 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                     for await asset in taskgroup {
                         skins.append(asset)
                     }
+                    
+                    skins.sort(by: { $0.num < $1.num })
                     
                     return skins
                 }
