@@ -9,16 +9,19 @@ import Foundation
 import Combine
 
 class SettingsViewModel {
-    @Published var languages: [Locale]?
+    var languages = CurrentValueSubject<[Locale]?, Never>(nil)
     
     var settings = Settings()
+    var languagesSubscriber: AnyCancellable?
     
     init(riotCdnApi: RiotCdnApiDelegate? = nil) {
         if let riotCdnApi {
             self.settings = Settings(riotCdnApi: riotCdnApi)
         }
         
-        settings.languagesPublisher.assign(to: &$languages)
+        languagesSubscriber = settings.languagesPublisher.sink { [unowned self] languages in
+            self.languages.value = languages
+        }
     }
     
     func getSupportedLanguages() {

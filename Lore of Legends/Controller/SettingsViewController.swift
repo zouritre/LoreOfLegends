@@ -14,7 +14,7 @@ extension SettingsViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let languages = vm.languages else { return 0 }
+        guard let languages = vm.languages.value else { return 0 }
         
         return languages.count
     }
@@ -22,7 +22,7 @@ extension SettingsViewController: UIPickerViewDataSource {
 
 extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let languages = vm.languages else { return "" }
+        guard let languages = vm.languages.value else { return "" }
         
         return languages[row].identifier
     }
@@ -41,8 +41,10 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
+        guard let languages = vm.languages.value else { return }
+        
         // Save the new language selected by the user
-        UserDefaults.standard.setValue("de_DE", forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
+        UserDefaults.standard.setValue(languages[languagePicker.selectedRow(inComponent: 0)].identifier, forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
         // Forces redownload of champions data
         UserDefaults.standard.setValue(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         
@@ -50,7 +52,7 @@ class SettingsViewController: UIViewController {
     }
     
     private func setupSubscribers() {
-        languagesSubscriber = vm.$languages.sink { [unowned self] _ in
+        languagesSubscriber = vm.languages.sink { [unowned self] _ in
             languagePicker.reloadAllComponents()
         }
     }
