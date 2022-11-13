@@ -15,9 +15,9 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         let url = URL(string: "https://ddragon.leagueoflegends.com/api/versions.json")
         let data = try await getData(at: url)
         let allPatchVersions = try JSONDecoder().decode([String].self, from: data)
-        let latestVersion = allPatchVersions[0]
+        let lastestVersion = allPatchVersions[0]
         
-        return latestVersion
+        return lastestVersion
     }
     
     func setInfo(for champion: Champion) async throws -> Champion {

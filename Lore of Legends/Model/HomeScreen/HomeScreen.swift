@@ -47,6 +47,9 @@ class HomeScreen {
                     let champions = try coreDataApi.fetchChampions()
                     
                     championsPublisher.send(champions)
+                    
+                    // Force redownload of assets
+                    isAssetSavedLocally = false
                 }
                 catch {
                     championsPublisher.send(completion: .failure(error))
