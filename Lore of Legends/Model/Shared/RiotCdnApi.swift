@@ -237,11 +237,27 @@ class RiotCdnApi {
     /// Returns a locale according to the devide language and region
     /// - Returns: Locale supported by Riot CDN
     private func getLocalizationForChampionsData() -> Locale {
-        let deviceLocale = Locale.current
+        let loreLanguage = UserDefaults.standard.string(forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
         
-        switch deviceLocale.identifier {
-        case "fr-FR": return deviceLocale
-        default: return Locale(identifier: "en-US")
+        if let loreLanguage {
+            return Locale(identifier: loreLanguage)
+        }
+        else {
+            var languageCode: String?
+            
+            if #available(iOS 16, *) {
+                languageCode = Locale.current.language.languageCode?.identifier
+            }
+            else {
+                languageCode = Locale.current.languageCode
+            }
+            
+            switch languageCode {
+            case "fr":
+                return Locale(identifier: "fr_FR")
+            default:
+                return Locale(identifier: "en_US")
+            }
         }
     }
     
@@ -251,9 +267,7 @@ class RiotCdnApi {
     ///   - localization: Locale identifier representing the language in wich the data should be returned
     /// - Returns: An URL to ChampionFull.json file from Riot CDN
     private func getChampionsFullJsonUrl(for patchVersion: String, and localization: Locale) throws -> URL {
-        let locale = localization.identifier.replacingOccurrences(of: "-", with: "_")
-        print(locale)
-        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(locale)/championFull.json")
+        let url = URL(string: "https://ddragon.leagueoflegends.com/cdn/\(patchVersion)/data/\(localization.identifier)/championFull.json")
         
         guard let url else {
             throw RiotCdnApiError.badUrl
