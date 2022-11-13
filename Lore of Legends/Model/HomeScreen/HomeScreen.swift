@@ -48,6 +48,9 @@ class HomeScreen {
                     
                     championsPublisher.send(champions)
                     
+                    // Remove existing datas
+                    try coreDataApi.removeChampionsDataFromStorage()
+                    // Save new datas
                     try coreDataApi.save(champions: champions)
                     
                     isAssetSavedLocally = true
