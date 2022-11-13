@@ -251,7 +251,12 @@ class RiotCdnApi {
     /// Get the lastest patch version for League
     /// - Returns: A string idicating the lastest patch versions
     private func getLastestPatchVersion() async throws -> String {
-        return "12.20.1"
+        let url = URL(string: "https://ddragon.leagueoflegends.com/api/versions.json")
+        let data = try await getData(at: url)
+        let allPatchVersions = try JSONDecoder().decode([String].self, from: data)
+        let latestVersion = allPatchVersions[0]
+        
+        return latestVersion
     }
     
     /// Decode a data object to the given decodable format
