@@ -10,60 +10,59 @@ import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
     func setInfo(for champion: Champion) async throws -> Champion {
-        let championWithSkins = try await setSkins(for: champion)
-        let championWithSkinsAndLore = try await setLore(for: championWithSkins)
-        let championWithSkinsAndLoreAndTitle = try await setTitle(for: championWithSkinsAndLore)
+        let championWithTitle = try await setTitle(for: champion)
+        let championWithTitleAndLore = try await setLore(for: championWithTitle)
+        let championWithSkinsAndLoreAndTitle = try await setSkins(for: championWithTitleAndLore)
         
         return championWithSkinsAndLoreAndTitle
     }
     
     func setSkins(for champion: Champion) async throws -> Champion {
+        var decodable: ChampionFullJsonDecodable!
+        
         if let championFullJsonDecodable {
-            // Decodable already exist locally
-            for (championName, champInfo) in championFullJsonDecodable.data {
-                if championName == champion.name {
-                    let skins = await withTaskGroup(of: ChampionAsset.self) { taskgroup in
-                        for skin in champInfo.skins {
-                            let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(champInfo.image.full)_\(skin.num).jpg")
-                            let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(champInfo.image.full)_\(skin.num).jpg")
-                            
-                            taskgroup.addTask { [unowned self] in
-                                let splashData = try? await getData(at: splashUrl)
-                                let centeredData = try? await getData(at: centeredUrl)
-                                
-                                return ChampionAsset(title: skin.name, splash: splashData, centered: centeredData)
-                            }
-                        }
-                        
-                        var skins = [ChampionAsset]()
-                        
-                        for await asset in taskgroup {
-                            skins.append(asset)
-                        }
-                        
-                        return skins
-                    }
-                    
-                    var champion = champion
-                    
-                    champion.setSkins(with: skins)
-                    
-                    return champion
-                }
-            }
+            decodable = championFullJsonDecodable
         }
         else {
-            // Create decodable object from API request
-            let decodable = try await getChampionsFullDataDecodable()
-            
-            for (championName, champInfo) in decodable.data {
-                if championName == champion.name {
-                    var champion = champion
+            decodable = try await getChampionsFullDataDecodable()
+        }
+        
+        // Decodable already exist locally
+        for (championName, champInfo) in decodable.data {
+            if championName == champion.name {
+                let skins = await withTaskGroup(of: ChampionAsset.self) { taskgroup in
+                    for skin in champInfo.skins {
+                        var imageName = champInfo.image.full
+                        
+                        // Remove image extension
+                        imageName.removeLast(4)
+                        
+                        let splashUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(imageName)_\(skin.num).jpg")
+                        let centeredUrl = URL(string: "https://ddragon.leagueoflegends.com/cdn/img/champion/centered/\(imageName)_\(skin.num).jpg")
+                        
+                        taskgroup.addTask { [unowned self] in
+                            
+                            let splashData = try? await getData(at: splashUrl)
+                            let centeredData = try? await getData(at: centeredUrl)
+                            
+                            return ChampionAsset(title: skin.name, splash: splashData, centered: centeredData)
+                        }
+                    }
                     
-                    champion.setLore(with: champInfo.title)
+                    var skins = [ChampionAsset]()
                     
-                    return champion
+                    for await asset in taskgroup {
+                        skins.append(asset)
+                    }
+                    
+                    return skins
                 }
+                
+                var champion = champion
+                
+                champion.setSkins(with: skins)
+                
+                return champion
             }
         }
         
@@ -76,7 +75,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
             for (championName, champInfo) in championFullJsonDecodable.data {
                 if championName == champion.name {
                     var champion = champion
-                    champion.setLore(with: champInfo.title)
+                    champion.setTitle(with: champInfo.title)
                     
                     return champion
                 }
@@ -90,7 +89,7 @@ extension RiotCdnApi: RiotCdnApiDelegate {
                 if championName == champion.name {
                     var champion = champion
                     
-                    champion.setLore(with: champInfo.title)
+                    champion.setTitle(with: champInfo.title)
                     
                     return champion
                 }
@@ -249,25 +248,25 @@ protocol RiotCdnApiDelegate: AnyObject {
 }
 
 class RiotCdnApi {
-//    /// Champion to be processed with custom datas
-//    var selectedChampion: Champion?
-//    /// Skins of the selected champion
-//    var skins = [ChampionAsset]() {
-//        didSet {
-//            if skins.count == skinsCount {
-//                // Sort skins by name in ascending order
-//                skins.sort(by: { return $0.fileName < $1.fileName })
-//                
-//                // Set sorted skins array to selected champion skins array
-//                selectedChampion?.skins = skins
-//                
-//                guard let selectedChampion else { return }
-//                
-//                // Notify viewmodel of the selected champion after being processed
-//                caller?.caller?.championDataPublisher.send(selectedChampion)
-//            }
-//        }
-//    }
+    //    /// Champion to be processed with custom datas
+    //    var selectedChampion: Champion?
+    //    /// Skins of the selected champion
+    //    var skins = [ChampionAsset]() {
+    //        didSet {
+    //            if skins.count == skinsCount {
+    //                // Sort skins by name in ascending order
+    //                skins.sort(by: { return $0.fileName < $1.fileName })
+    //
+    //                // Set sorted skins array to selected champion skins array
+    //                selectedChampion?.skins = skins
+    //
+    //                guard let selectedChampion else { return }
+    //
+    //                // Notify viewmodel of the selected champion after being processed
+    //                caller?.caller?.championDataPublisher.send(selectedChampion)
+    //            }
+    //        }
+    //    }
     /// Number of skins for the selected champion
     var skinsCount = 0
     

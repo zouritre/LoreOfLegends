@@ -96,12 +96,13 @@ class ChampionDetailViewController: UIViewController {
         
         setupSubscribers()
         
-//        viewmodel.(champion: champion)
+        viewmodel.setInfo(for: champion)
     }
     
     /// Implement the subscribers
     private func setupSubscribers() {
         championSubscriber = viewmodel.$champion.sink(receiveValue: { champ in
+            print(champ)
             guard let champ else { return }
             
             DispatchQueue.main.async { [unowned self] in
