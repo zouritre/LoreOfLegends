@@ -197,6 +197,8 @@ protocol RiotCdnApiDelegate: AnyObject {
 
 class RiotCdnApi {
     
+    static let shared = RiotCdnApi()
+    
     var championFullJsonDecodable: ChampionFullJsonDecodable?
     
     /// Retrieve championFull.json file from Riot CDN and decodes it

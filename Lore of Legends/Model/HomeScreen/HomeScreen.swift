@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class HomeScreen {
-    private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi()
+    private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi.shared
     private var coreDataApi = CoreDataApi()
     var championsPublisher = PassthroughSubject<[Champion], Error>()
     var totalNumberOfChampionsPublisher = PassthroughSubject<Int?, Never>()
