@@ -9,6 +9,7 @@ import Foundation
 
 /// Custom keys for UserDefault
 enum UserDefaultKeys: String {
-    case isAssetSavedLocally = "isAssetSavedLocally"
-    case userSelectedLanguage = ""
+    case isAssetSavedLocally
+    case userSelectedLanguage
+    case patchVersionForAssetsSaved
 }

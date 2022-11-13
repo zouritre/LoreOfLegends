@@ -10,6 +10,10 @@ import Combine
 @testable import Lore_of_Legends
 
 extension RiotCdnApiMock: RiotCdnApiDelegate {
+    func getLastestPatchVersion() async throws -> String {
+        return "1.2.4"
+    }
+    
     func setInfo(for champion: Lore_of_Legends.Champion) async throws -> Lore_of_Legends.Champion {
         return Champion(id: "", name: "", title: "", skins: [], lore: "")
     }

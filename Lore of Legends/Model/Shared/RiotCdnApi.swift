@@ -9,6 +9,17 @@ import Foundation
 import Combine
 
 extension RiotCdnApi: RiotCdnApiDelegate {
+    /// Get the lastest patch version for League
+    /// - Returns: A string idicating the lastest patch versions
+    func getLastestPatchVersion() async throws -> String {
+        let url = URL(string: "https://ddragon.leagueoflegends.com/api/versions.json")
+        let data = try await getData(at: url)
+        let allPatchVersions = try JSONDecoder().decode([String].self, from: data)
+        let latestVersion = allPatchVersions[0]
+        
+        return latestVersion
+    }
+    
     func setInfo(for champion: Champion) async throws -> Champion {
         let championWithTitle = try await setTitle(for: champion)
         let championWithTitleAndLore = try await setLore(for: championWithTitle)
@@ -174,6 +185,7 @@ protocol RiotCdnApiDelegate: AnyObject {
     func setSkins(for champion: Champion) async throws -> Champion
     func setTitle(for champion: Champion) async throws -> Champion
     func setLore(for champion: Champion) async throws -> Champion
+    func getLastestPatchVersion() async throws -> String
     /// Retrieve every champions name and icon from Riot CDN
     /// - Returns: Array of Champion object with properties name and icon setted
     func getChampions(caller: HomeScreen) async throws -> [Champion]
@@ -246,17 +258,6 @@ class RiotCdnApi {
         }
         
         return url
-    }
-    
-    /// Get the lastest patch version for League
-    /// - Returns: A string idicating the lastest patch versions
-    private func getLastestPatchVersion() async throws -> String {
-        let url = URL(string: "https://ddragon.leagueoflegends.com/api/versions.json")
-        let data = try await getData(at: url)
-        let allPatchVersions = try JSONDecoder().decode([String].self, from: data)
-        let latestVersion = allPatchVersions[0]
-        
-        return latestVersion
     }
     
     /// Decode a data object to the given decodable format

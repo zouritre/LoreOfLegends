@@ -13,6 +13,7 @@ class HomeScreenViewModel {
     @Published var error: Error?
     @Published var totalNumberOfChampions: Int?
     @Published var iconsDownloaded: Int?
+    @Published var newUpdate: String?
     
     private var championsSubscriber: AnyCancellable?
     private var totalNumberOfChampionsSubscriber: AnyCancellable?
@@ -35,9 +36,10 @@ class HomeScreenViewModel {
         
         // Republish publisher values to totalNumberOfChampions property
         homescreen.totalNumberOfChampionsPublisher.assign(to: &$totalNumberOfChampions)
-        
         // Republish publisher values to iconsDownloaded property
         homescreen.iconsDownloadedPublisher.assign(to: &$iconsDownloaded)
+        // Republish publisher values to newUpdate property
+        homescreen.newUpdatePublisher.assign(to: &$newUpdate)
     }
     
     func getChampions() {

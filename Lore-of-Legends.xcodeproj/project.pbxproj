@@ -48,6 +48,7 @@
 		E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DC37372902EA8C008384FC /* ChampionIconCell.xib */; };
 		E9FBEFE729213E0C00A2D0DB /* CoreDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBEFE629213E0C00A2D0DB /* CoreDataApi.swift */; };
 		E9FBEFE929213FA000A2D0DB /* CoreDataApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */; };
+		E9FBEFEB29215D0200A2D0DB /* UserDefaultsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBEFEA29215D0200A2D0DB /* UserDefaultsError.swift */; };
 		E9FF04422904B37500DE07A4 /* ChampionAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF04412904B37500DE07A4 /* ChampionAsset.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		E9DC37372902EA8C008384FC /* ChampionIconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionIconCell.xib; sourceTree = "<group>"; };
 		E9FBEFE629213E0C00A2D0DB /* CoreDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataApi.swift; sourceTree = "<group>"; };
 		E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataApiError.swift; sourceTree = "<group>"; };
+		E9FBEFEA29215D0200A2D0DB /* UserDefaultsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsError.swift; sourceTree = "<group>"; };
 		E9FF04412904B37500DE07A4 /* ChampionAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionAsset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -358,6 +360,7 @@
 				E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */,
 				E93B365A28FC4748003BB0A3 /* RiotCdnApiError.swift */,
 				E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */,
+				E9FBEFEA29215D0200A2D0DB /* UserDefaultsError.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				E9160E30291D52C2006CF845 /* Settings.swift in Sources */,
 				E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */,
 				E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */,
+				E9FBEFEB29215D0200A2D0DB /* UserDefaultsError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

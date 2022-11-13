@@ -18,6 +18,8 @@ final class HomeScreenTest: XCTestCase {
         mockApi = RiotCdnApiMock()
         viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
         expectation = expectation(description: "Wait for async task")
+        viewmodel.homescreen.isAssetSavedLocally = false
+        viewmodel.homescreen.patchVersionForAssetsSaved = nil
     }
     
     override func tearDownWithError() throws {
@@ -91,6 +93,23 @@ final class HomeScreenTest: XCTestCase {
         
         XCTAssertEqual(viewmodel.totalNumberOfChampions, 1)
         
+        sub.cancel()
+    }
+    
+    func testShouldReturnLastestPatchVersion() async {
+        viewmodel.homescreen.isAssetSavedLocally = true
+        viewmodel.homescreen.patchVersionForAssetsSaved = "1.2.3"
+
+        let sub = viewmodel.homescreen.newUpdatePublisher.sink { [unowned self] _ in
+            expectation.fulfill()
+        }
+
+        viewmodel.getChampions()
+
+        await waitForExpectations(timeout: 1)
+
+        XCTAssertNotNil(viewmodel.newUpdate)
+
         sub.cancel()
     }
 }
