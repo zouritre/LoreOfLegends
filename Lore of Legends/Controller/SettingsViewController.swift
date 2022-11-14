@@ -24,6 +24,10 @@ extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         guard let languages = vm.languages.value else { return "Vide" }
         
+        if languages[row].identifier == "vn_VN" {
+            return NSLocalizedString("VIETNAMESE", comment: "Language for Vietnam country")
+        }
+        
         return Locale.current.localizedString(forLanguageCode: languages[row].identifier)?.uppercased()
     }
 }
