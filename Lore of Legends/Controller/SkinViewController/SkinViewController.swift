@@ -8,9 +8,11 @@
 import UIKit
 
 class SkinViewController: UIViewController {
-    var skinImageData: Data?
+    var centeredSkinData: Data?
+    var splashSkinData: Data?
     var skinIndex: Int?
     var skinName: String?
+    var assetToDisplay: ChampionAssetType?
     
     @IBOutlet weak var skinImageView: UIImageView!
     
@@ -21,12 +23,17 @@ class SkinViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let skinImageData else {
-            print("data is empty")
+        guard let assetToDisplay else {
+            
             return
         }
         
-        skinImageView.image = UIImage(data: skinImageData)
+        switch assetToDisplay {
+        case .centered:
+            if let centeredSkinData { skinImageView.image = UIImage(data: centeredSkinData) }
+        case .splash:
+            if let splashSkinData { skinImageView.image = UIImage(data: splashSkinData) }
+        }
     }
 
 

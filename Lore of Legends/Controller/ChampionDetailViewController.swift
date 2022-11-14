@@ -125,9 +125,11 @@ class ChampionDetailViewController: UIViewController {
                 for (index, skin) in skins.enumerated() {
                     let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
                     
-                    vc.skinImageData = skin.centered
+                    vc.centeredSkinData = skin.centered
+                    vc.splashSkinData = skin.splash
                     vc.skinIndex = index
                     vc.skinName = skin.title
+                    vc.assetToDisplay = .centered
                     
                     pageViewControllers.append(vc)
                 }
@@ -155,13 +157,14 @@ class ChampionDetailViewController: UIViewController {
                 return
             }
             
-            vc.pageViewControllers = self.pageViewControllers
+            vc.pageViewControllers = pageViewControllers
             
             guard let currentVc = skinsPageViewController?.viewControllers?.first as? SkinViewController else {
                 
                 return }
             
             vc.currentVc = currentVc
+            vc.champion = champion
         }
     }
 }
