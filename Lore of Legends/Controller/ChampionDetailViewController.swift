@@ -8,6 +8,40 @@
 import UIKit
 import Combine
 
+extension ChampionDetailViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if finished {
+            if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
+                if currentVc.skinIndex == 0 {
+                    if let champion, let title = champion.title {
+                        championNameLabel.text = "\(champion.name), \(title)"
+                    }
+                }
+                else {
+                    championNameLabel.text = currentVc.skinName
+                }
+            }
+        }
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        guard let vc = pageViewController as? SkinDisplayViewController else {
+            return 0 }
+        
+        return vc.controllers.count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
+            if let itemNumber = currentVc.skinIndex {
+                return itemNumber
+            }
+        }
+        
+        return 0
+    }
+}
+
 class ChampionDetailViewController: UIViewController {
     
     var skins = [ChampionAsset]()
@@ -34,8 +68,8 @@ class ChampionDetailViewController: UIViewController {
             return
         }
         
+        skinsPageViewController?.delegate = self
         setupSubscribers()
-        
         viewmodel.setInfo(for: champion)
     }
     

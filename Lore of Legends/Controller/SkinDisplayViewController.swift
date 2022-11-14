@@ -9,20 +9,6 @@ import UIKit
 import Combine
 
 extension SkinDisplayViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-//        if finished {
-//            if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
-//                if currentVc.skinIndex == 0 {
-//                    if let champion, let title = champion.title {
-//                        championNameLabel.text = "\(champion.name), \(title)"
-//                    }
-//                }
-//                else {
-//                    championNameLabel.text = currentVc.skinName
-//                }
-//            }
-//        }
-    }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return controllers.count
@@ -74,6 +60,7 @@ class SkinDisplayViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        delegate = self
         dataSource = self
     }
     
