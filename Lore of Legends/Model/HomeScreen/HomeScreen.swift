@@ -47,9 +47,6 @@ class HomeScreen {
                     let champions = try coreDataApi.fetchChampions()
                     
                     championsPublisher.send(champions)
-                    
-                    // Force redownload of assets
-                    isAssetSavedLocally = false
                 }
                 catch {
                     championsPublisher.send(completion: .failure(error))
@@ -58,6 +55,9 @@ class HomeScreen {
                 if let (updateAvailable, newVersion) = try? await updateAvailable() {
                     if updateAvailable {
                         newUpdatePublisher.send(newVersion)
+                        
+                        // Force redownload of assets
+                        isAssetSavedLocally = false
                     }
                 }
             }
