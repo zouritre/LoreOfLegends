@@ -56,8 +56,10 @@ class SettingsViewController: UIViewController {
     }
     
     private func setupSubscribers() {
-        languagesSubscriber = vm.languages.sink { [unowned self] _ in
-            languagePicker.reloadAllComponents()
+        languagesSubscriber = vm.languages.sink { [unowned self] languages in
+            if languages != nil {
+                languagePicker.reloadAllComponents()
+            }
         }
     }
     
