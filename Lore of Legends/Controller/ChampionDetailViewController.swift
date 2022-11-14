@@ -102,7 +102,6 @@ class ChampionDetailViewController: UIViewController {
     /// Implement the subscribers
     private func setupSubscribers() {
         championSubscriber = viewmodel.$champion.sink(receiveValue: { [unowned self] champ in
-            print(champ)
             guard let champ else { return }
             
             champion = champ
