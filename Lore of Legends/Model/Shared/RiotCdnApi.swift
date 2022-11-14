@@ -169,9 +169,23 @@ extension RiotCdnApi: RiotCdnApiDelegate {
         
         let languagesString = try JSONDecoder().decode([String].self, from: data)
         
+        // Array of identifiers without duplicate language codes
+        var languagesWithoutDuplicates = [String]()
+        
+        languagesString.forEach { identifier in
+            // Get the language code from the identifier
+            let languageCode = Locale(identifier: identifier).languageCode
+            
+            // Check for duplicates
+            let duplicate = languagesWithoutDuplicates.first { Locale(identifier: $0).languageCode == languageCode}
+            
+            // Append the identifier if it's not duplicated
+            if duplicate == nil { languagesWithoutDuplicates.append(identifier) }
+        }
+        
         var locales = [Locale]()
         
-        languagesString.forEach { language in
+        languagesWithoutDuplicates.forEach { language in
             locales.append(Locale(identifier: language))
         }
         
