@@ -173,7 +173,7 @@
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-Dj-NUd">
                                         <rect key="frame" x="8" y="8" width="374" height="271.66666666666669"/>
                                         <connections>
-                                            <segue destination="ZBM-JM-ilW" kind="embed" identifier="centeredSkinPageVC" id="fYw-kO-VOP"/>
+                                            <segue destination="ZBM-JM-ilW" kind="embed" identifier="showCentered" id="fYw-kO-VOP"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -252,6 +252,7 @@
                         <outlet property="skinsContainerView" destination="oDe-Dj-NUd" id="Zha-up-iia"/>
                         <outlet property="skinsLoadingIndicator" destination="Xgs-3g-FuH" id="fBU-If-bDi"/>
                         <segue destination="hl9-Wc-ges" kind="show" identifier="showSplash" id="tLb-xP-amD"/>
+                        <segue destination="ZBM-JM-ilW" kind="show" identifier="showSplash" id="9Fk-if-QpW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zg2-RU-0xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -263,10 +264,10 @@
             </objects>
             <point key="canvasLocation" x="1003" y="4"/>
         </scene>
-        <!--Splash Skin View Controller-->
+        <!--Skin Display View Controller-->
         <scene sceneID="GX2-NP-WPh">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hl9-Wc-ges" customClass="SplashSkinViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hl9-Wc-ges" customClass="SkinDisplayViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="An9-Ax-Nx4">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="3s2-HW-33c">
                             <connections>
@@ -326,10 +327,11 @@
             </objects>
             <point key="canvasLocation" x="34" y="755"/>
         </scene>
-        <!--Centered Skins Page View Controller-->
+        <!--Skin Display View Controller-->
         <scene sceneID="DJs-iO-cpf">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZBM-JM-ilW" customClass="CenteredSkinsPageViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZBM-JM-ilW" customClass="SkinDisplayViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6eU-Dd-qQq"/>
                     <size key="freeformSize" width="500" height="500"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGa-yn-bxx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -337,6 +339,9 @@
             <point key="canvasLocation" x="2071" y="4"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fYw-kO-VOP"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>
         <systemColor name="labelColor">

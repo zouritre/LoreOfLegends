@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Combine
 
-extension SplashSkinViewController: UIPageViewControllerDelegate {
+extension SkinDisplayViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
 //        if finished {
 //            if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
@@ -24,7 +25,7 @@ extension SplashSkinViewController: UIPageViewControllerDelegate {
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return pageViewControllers.count
+        return controllers.count
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
@@ -38,13 +39,13 @@ extension SplashSkinViewController: UIPageViewControllerDelegate {
     }
 }
 
-extension SplashSkinViewController: UIPageViewControllerDataSource {
+extension SkinDisplayViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
             guard let currentSkinIndex = currentVc.skinIndex else { return nil }
             
             if currentSkinIndex > 0 {
-                return pageViewControllers[currentSkinIndex-1]
+                return controllers[currentSkinIndex-1]
             }
         }
         
@@ -55,38 +56,53 @@ extension SplashSkinViewController: UIPageViewControllerDataSource {
         if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
             guard let currentSkinIndex = currentVc.skinIndex else { return nil }
             
-            if currentSkinIndex < pageViewControllers.count-1 {
-                return pageViewControllers[currentSkinIndex+1]
+            if currentSkinIndex < controllers.count-1 {
+                return controllers[currentSkinIndex+1]
             }
         }
         
         return nil
     }
 }
-class SplashSkinViewController: UIPageViewController {
+
+class SkinDisplayViewController: UIPageViewController {
     
-    var champion: Champion?
-    var pageViewControllers = [SkinViewController]()
-    var currentVc: SkinViewController?
+    var controllers = [SkinViewController]()
+    var skins: [ChampionAsset]?
+    var assetType: ChampionAssetType = .centered
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        delegate = self
         dataSource = self
-        
-        guard let currentVc else {
+    }
+    
+    func setupControllers(with skins: [ChampionAsset], for assetType: ChampionAssetType, selectedSkinIndex: Int? = nil) {
+        for (index, skin) in skins.enumerated() {
+            let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
             
-            return
+            vc.centeredSkinData = skin.centered
+            vc.splashSkinData = skin.splash
+            vc.skinIndex = index
+            vc.skinName = skin.title
+            vc.assetToDisplay = assetType
+            
+            controllers.append(vc)
         }
         
-        currentVc.assetToDisplay = .splash
-        
-        pageViewControllers.forEach { controller in
-            controller.assetToDisplay = .splash
+        if assetType == .centered {
+            guard let firstSkin = controllers.first else { return }
+            
+            setViewControllers([firstSkin], direction: .forward, animated: true)
         }
-        
-        setViewControllers([currentVc], direction: .forward, animated: true)
+        else if assetType == .splash {
+            guard let selectedSkinIndex else { return }
+            
+            if controllers.firstIndex(where: { $0.skinIndex == selectedSkinIndex }) != nil {
+                // selectedSkinIndex is in controller array bounds
+                setViewControllers([controllers[selectedSkinIndex]], direction: .forward, animated: true)
+            }
+        }
     }
     
     @IBAction func shareButton(_ sender: UIBarButtonItem) {
