@@ -301,9 +301,9 @@
 				E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */,
 				E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */,
 				E9937348291A964700FE2DD7 /* CenteredSkinsPageViewController.swift */,
+				E9B927B42922B4D0001EF8C5 /* SplashSkinViewController.swift */,
 				E90E9509291B120E0022C7F5 /* SkinViewController */,
 				E930E9E5291C55A30003B643 /* SettingsViewController.swift */,
-				E9B927B42922B4D0001EF8C5 /* SplashSkinViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

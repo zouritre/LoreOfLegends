@@ -68,10 +68,9 @@ class SplashSkinViewController: UIPageViewController {
     var champion: Champion?
     var pageViewControllers = [SkinViewController]()
     var currentVc: SkinViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("controller count: ", pageViewControllers.count)
-        print("current skin: ", currentVc?.skinName)
         // Do any additional setup after loading the view.
         delegate = self
         dataSource = self
@@ -90,7 +89,10 @@ class SplashSkinViewController: UIPageViewController {
         setViewControllers([currentVc], direction: .forward, animated: true)
     }
     
-
+    @IBAction func shareButton(_ sender: UIBarButtonItem) {
+        print("shared")
+    }
+    
     /*
     // MARK: - Navigation
 

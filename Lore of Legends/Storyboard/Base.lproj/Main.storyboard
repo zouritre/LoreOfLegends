@@ -267,7 +267,13 @@
         <scene sceneID="GX2-NP-WPh">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hl9-Wc-ges" customClass="SplashSkinViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="An9-Ax-Nx4"/>
+                    <navigationItem key="navigationItem" id="An9-Ax-Nx4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="3s2-HW-33c">
+                            <connections>
+                                <action selector="shareButton:" destination="hl9-Wc-ges" id="Jse-fk-owX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zoa-KN-fa1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
