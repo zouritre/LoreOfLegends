@@ -183,6 +183,11 @@ extension RiotCdnApi: RiotCdnApiDelegate {
             if duplicate == nil { languagesWithoutDuplicates.append(identifier) }
         }
         
+        let uncompatibleLanguage = languagesWithoutDuplicates.firstIndex(of: "id_ID")
+        
+        // Remove Indonesian language as its json structure is not the same thus make decoding fail.
+        if let uncompatibleLanguage { languagesWithoutDuplicates.remove(at: uncompatibleLanguage) }
+        
         var locales = [Locale]()
         
         languagesWithoutDuplicates.forEach { language in
