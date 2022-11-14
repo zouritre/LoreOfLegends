@@ -22,9 +22,9 @@ extension SettingsViewController: UIPickerViewDataSource {
 
 extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let languages = vm.languages.value else { return "" }
+        guard let languages = vm.languages.value else { return "Vide" }
         
-        return languages[row].identifier
+        return Locale.current.localizedString(forLanguageCode: languages[row].identifier)?.uppercased()
     }
 }
 
@@ -36,15 +36,15 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         vm.getSupportedLanguages()
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
         guard let languages = vm.languages.value else { return }
         
+        let selectedLanguageIndex = languagePicker.selectedRow(inComponent: 0)
         // Save the new language selected by the user
-        UserDefaults.standard.setValue(languages[languagePicker.selectedRow(inComponent: 0)].identifier, forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
+        UserDefaults.standard.setValue(languages[selectedLanguageIndex].identifier, forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
         // Forces redownload of champions data
         UserDefaults.standard.setValue(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         
