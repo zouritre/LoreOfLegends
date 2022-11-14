@@ -99,6 +99,10 @@ class ChampionDetailViewController: UIViewController {
         viewmodel.setInfo(for: champion)
     }
     
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        print("tapped")
+        performSegue(withIdentifier: "showSplash", sender: nil)
+    }
     /// Implement the subscribers
     private func setupSubscribers() {
         championSubscriber = viewmodel.$champion.sink(receiveValue: { [unowned self] champ in
@@ -144,6 +148,20 @@ class ChampionDetailViewController: UIViewController {
         if segue.identifier == "centeredSkinPageVC" {
             // Retrieve CenteredSkinsPageViewController instance
             skinsPageViewController = segue.destination as? CenteredSkinsPageViewController
+        }
+        else if segue.identifier == "showSplash" {
+            guard let vc = segue.destination as? SplashSkinViewController else {
+                
+                return
+            }
+            
+            vc.pageViewControllers = self.pageViewControllers
+            
+            guard let currentVc = skinsPageViewController?.viewControllers?.first as? SkinViewController else {
+                
+                return }
+            
+            vc.currentVc = currentVc
         }
     }
 }

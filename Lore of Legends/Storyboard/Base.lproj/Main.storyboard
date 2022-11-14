@@ -178,6 +178,7 @@
                                     </containerView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Xgs-3g-FuH" firstAttribute="centerY" secondItem="maY-5H-xRD" secondAttribute="centerY" id="4Hu-pr-860"/>
                                     <constraint firstItem="oDe-Dj-NUd" firstAttribute="top" secondItem="maY-5H-xRD" secondAttribute="topMargin" id="FpP-uY-tUj"/>
@@ -186,6 +187,9 @@
                                     <constraint firstItem="oDe-Dj-NUd" firstAttribute="leading" secondItem="maY-5H-xRD" secondAttribute="leadingMargin" id="w9m-t3-P9H"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="oDe-Dj-NUd" secondAttribute="trailing" id="wN6-1B-OcH"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BRx-ww-QEj" appends="YES" id="vvQ-zE-U5p"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-sh-gPj" userLabel="SkinName">
                                 <rect key="frame" x="0.0" y="378.66666666666669" width="390" height="72"/>
@@ -251,13 +255,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zg2-RU-0xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="BRx-ww-QEj">
+                    <connections>
+                        <action selector="imageTapped:" destination="TMw-cn-At7" id="RPE-Hu-G4x"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1003" y="4"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Splash Skin View Controller-->
         <scene sceneID="GX2-NP-WPh">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hl9-Wc-ges" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hl9-Wc-ges" customClass="SplashSkinViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="An9-Ax-Nx4"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zoa-KN-fa1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
