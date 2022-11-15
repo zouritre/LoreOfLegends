@@ -64,6 +64,15 @@ class SkinDisplayViewController: UIPageViewController {
         dataSource = self
     }
     
+    @IBAction func shareButton(_ sender: UIBarButtonItem) {
+        guard let currentVC = viewControllers?.first as? SkinViewController,
+              let currentSkinImage = currentVC.skinImageView.image else { return }
+        
+        let action = UIActivityViewController(activityItems: [currentSkinImage], applicationActivities: nil)
+        
+        present(action, animated: true)
+    }
+    
     func setupControllers(with skins: [ChampionAsset], for assetType: ChampionAssetType, selectedSkinIndex: Int? = nil) {
         for (index, skin) in skins.enumerated() {
             let vc = SkinViewController(nibName: "SkinViewController", bundle: nil)
@@ -90,10 +99,6 @@ class SkinDisplayViewController: UIPageViewController {
                 setViewControllers([controllers[selectedSkinIndex]], direction: .forward, animated: true)
             }
         }
-    }
-    
-    @IBAction func shareButton(_ sender: UIBarButtonItem) {
-        print("shared")
     }
     
     /*
