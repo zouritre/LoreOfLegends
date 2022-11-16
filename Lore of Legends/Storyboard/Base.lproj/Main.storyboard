@@ -114,36 +114,33 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HTE-XX-hJk"/>
                                 </connections>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qds-n3-zvB">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="111"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hC8-3t-mHJ"/>
-                                    <barButtonItem id="Uq4-Q4-HZs">
-                                        <imageReference key="image" image="gear" catalog="system" symbolScale="large" renderingMode="original"/>
-                                        <connections>
-                                            <action selector="settingsButon:" destination="BYZ-38-t0r" id="gNo-LJ-9R3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Qds-n3-zvB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2pI-SU-0mV"/>
-                            <constraint firstAttribute="trailing" secondItem="Qds-n3-zvB" secondAttribute="trailing" id="4X8-YR-udy"/>
                             <constraint firstItem="wsy-tj-Ccx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="BIb-BV-stK"/>
-                            <constraint firstItem="Qds-n3-zvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HKv-WL-Zip"/>
                             <constraint firstItem="wsy-tj-Ccx" firstAttribute="top" secondItem="gss-4W-0of" secondAttribute="bottom" constant="15" id="eC6-Tc-qvX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wsy-tj-Ccx" secondAttribute="trailing" constant="10" id="fe3-JT-gZd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gss-4W-0of" secondAttribute="trailing" constant="10" id="fpf-fE-QTy"/>
-                            <constraint firstItem="gss-4W-0of" firstAttribute="top" secondItem="Qds-n3-zvB" secondAttribute="bottom" id="gZA-Ng-wgF"/>
                             <constraint firstItem="gss-4W-0of" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="idD-E9-8xa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wsy-tj-Ccx" secondAttribute="bottom" constant="10" id="oDR-cB-BSA"/>
                             <constraint firstItem="gss-4W-0of" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="tPi-cA-myJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Lore of Legends" id="ZVU-3N-y0e"/>
+                    <navigationItem key="navigationItem" title="Lore of Legends" id="ZVU-3N-y0e">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="mkg-xO-BHi">
+                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                <hierarchicalColors>
+                                    <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </hierarchicalColors>
+                            </imageReference>
+                            <connections>
+                                <action selector="settingsButon:" destination="BYZ-38-t0r" id="w5O-wO-2Fu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="championIconsCollection" destination="wsy-tj-Ccx" id="UsP-hr-i0Q"/>
                         <segue destination="TMw-cn-At7" kind="show" identifier="goToDetail" id="GT9-1A-2Uz"/>
@@ -345,7 +342,7 @@
         <segue reference="9Fk-if-QpW"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

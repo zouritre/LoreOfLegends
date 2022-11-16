@@ -123,13 +123,18 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
         
         setupCollectionView()
         
         setupSubscribers()
         
         homescreenViewmodel.getChampions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let titleImage = UIImage(named: "full2")?.resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0), resizingMode: .stretch)
+        navigationItem.titleView = UIImageView(image: titleImage)
     }
     
     @IBAction func settingsButon(_ sender: UIBarButtonItem) {
