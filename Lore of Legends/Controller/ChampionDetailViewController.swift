@@ -57,6 +57,7 @@ class ChampionDetailViewController: UIViewController {
     @IBOutlet weak var skinsLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var championNameLabel: UILabel!
     @IBOutlet weak var skinsContainerView: UIView!
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var loreTextView: UITextView!
     
     override func viewDidLoad() {
@@ -100,6 +101,8 @@ class ChampionDetailViewController: UIViewController {
                 self.skins = skins
                 
                 skinsPageViewController?.setupControllers(with: skins, for: .centered)
+                
+                mainView.isHidden = false
             }
         })
     }
