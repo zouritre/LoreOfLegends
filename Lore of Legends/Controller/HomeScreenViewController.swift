@@ -123,6 +123,7 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
         
         setupCollectionView()
         

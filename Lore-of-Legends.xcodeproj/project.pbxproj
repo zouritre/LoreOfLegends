@@ -29,6 +29,7 @@
 		E93B366928FC4C00003BB0A3 /* RiotCdnApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* RiotCdnApiError.swift */; };
 		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
 		E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9554FCA28FD80BF00A5E071 /* Localizable.strings */; };
+		E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */; };
 		E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981EB412909C3A1002980DC /* UserDefaultKeys.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
@@ -85,6 +86,7 @@
 		E93B365C28FC4748003BB0A3 /* Champion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
 		E9554FC928FD80BF00A5E071 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9554FCB28FD80C500A5E071 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Friz-Quadrata-Bold.otf"; sourceTree = "<group>"; };
 		E981EB412909C3A1002980DC /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +231,22 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		E967B0E9292563A00029D56A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E967B0EA292563AA0029D56A /* Font */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E967B0EA292563AA0029D56A /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		E981EB402909A2F0002980DC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +286,7 @@
 		E990E9F828FC247400F63D70 /* Lore of Legends */ = {
 			isa = PBXGroup;
 			children = (
+				E967B0E9292563A00029D56A /* Resources */,
 				E9554FC528FD784700A5E071 /* Localization */,
 				E93B367628FC51F1003BB0A3 /* ViewModel */,
 				E93B365528FC4748003BB0A3 /* Model */,
@@ -476,6 +495,7 @@
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
+				E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */,
 				E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */,
 				E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */,
 				E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */,
