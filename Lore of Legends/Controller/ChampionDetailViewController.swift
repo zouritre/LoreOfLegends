@@ -99,7 +99,8 @@ class ChampionDetailViewController: UIViewController {
                 
                 self.skins = skins
                 
-                skinsPageViewController?.setupControllers(with: skins, for: .centered)            }
+                skinsPageViewController?.setupControllers(with: skins, for: .centered)
+            }
         })
     }
     

@@ -66,11 +66,13 @@ class SkinDisplayViewController: UIPageViewController {
     
     @IBAction func shareButton(_ sender: UIBarButtonItem) {
         guard let currentVC = viewControllers?.first as? SkinViewController,
-              let currentSkinImage = currentVC.skinImageView.image else { return }
+              let currentSkinImage = currentVC.skinImageView.image
+        else { return }
+
+        let activityController = UIActivityViewController(activityItems: [currentSkinImage], applicationActivities: nil)
+        activityController.excludedActivityTypes = [.assignToContact, .print]
         
-        let action = UIActivityViewController(activityItems: [currentSkinImage], applicationActivities: nil)
-        
-        present(action, animated: true)
+        present(activityController, animated: true)
     }
     
     func setupControllers(with skins: [ChampionAsset], for assetType: ChampionAssetType, selectedSkinIndex: Int? = nil) {
