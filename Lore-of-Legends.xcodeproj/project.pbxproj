@@ -259,7 +259,6 @@
 		E983BA78290BF1050008983B /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				E981EB412909C3A1002980DC /* UserDefaultKeys.swift */,
 				E9BEA3F3290B1E9400FE723D /* Champion */,
 			);
 			path = Entities;
@@ -381,6 +380,7 @@
 		E9F9188B2912D82600B09251 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E981EB412909C3A1002980DC /* UserDefaultKeys.swift */,
 				E9BEA3F0290B123300FE723D /* RiotCdnApi.swift */,
 				E9FBEFE629213E0C00A2D0DB /* CoreDataApi.swift */,
 			);
