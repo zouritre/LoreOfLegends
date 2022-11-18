@@ -75,10 +75,9 @@ class ChampionDetailViewController: UIViewController {
     }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
-//        currentSkinDisplayed = skinsPageViewController?.viewControllers?.first as? SkinViewController
-        
         performSegue(withIdentifier: "showSplash", sender: nil)
     }
+    
     /// Implement the subscribers
     private func setupSubscribers() {
         championSubscriber = viewmodel.$champion.sink(receiveValue: { [unowned self] champ in

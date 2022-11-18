@@ -28,6 +28,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Friz-Quadrata-Bold.otf</string>
+		<string>FrizQuadrataRegular.ttf</string>
 	</array>
 </dict>
 </plist>

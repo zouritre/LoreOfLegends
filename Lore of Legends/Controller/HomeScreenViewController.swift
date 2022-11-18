@@ -123,7 +123,10 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
+        
+        // Set font for UILabel and UITextView globally
+        UILabel.appearance().font = UIFont(name: "FrizQuadrataBold", size: 17)!
+        UITextView.appearance().font = UIFont(name: "FrizQua-ReguOS", size: 14)!
         
         setupCollectionView()
         

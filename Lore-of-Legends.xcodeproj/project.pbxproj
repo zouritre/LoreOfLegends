@@ -34,6 +34,7 @@
 		E990EA0128FC247400F63D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990E9FF28FC247400F63D70 /* Main.storyboard */; };
 		E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0228FC247500F63D70 /* Assets.xcassets */; };
 		E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990EA0428FC247500F63D70 /* LaunchScreen.storyboard */; };
+		E99AFAAB2927D12100CEB15F /* FrizQuadrataRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E99AFAAA2927D12100CEB15F /* FrizQuadrataRegular.ttf */; };
 		E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */; };
 		E9B5A58E290D83DD00F0A61A /* ChampionsLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */; };
 		E9B927B52922B4D0001EF8C5 /* SkinDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B927B42922B4D0001EF8C5 /* SkinDisplayViewController.swift */; };
@@ -91,6 +92,7 @@
 		E990EA0228FC247500F63D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E990EA0528FC247500F63D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E990EA0728FC247500F63D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99AFAAA2927D12100CEB15F /* FrizQuadrataRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FrizQuadrataRegular.ttf; sourceTree = "<group>"; };
 		E9A0C5D628FEB5FB00E468ED /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		E9B5A58D290D83DD00F0A61A /* ChampionsLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionsLoadingViewController.swift; sourceTree = "<group>"; };
 		E9B927B42922B4D0001EF8C5 /* SkinDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinDisplayViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		E967B0EA292563AA0029D56A /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				E99AFAAA2927D12100CEB15F /* FrizQuadrataRegular.ttf */,
 				E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */,
 			);
 			path = Font;
@@ -480,6 +483,7 @@
 				E90E9508291B12030022C7F5 /* SkinViewController.xib in Resources */,
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
+				E99AFAAB2927D12100CEB15F /* FrizQuadrataRegular.ttf in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
 				E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */,
 				E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */,
