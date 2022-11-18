@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908683229167E5C00297FD7 /* ChampionDetailCell.swift */; };
-		E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E908683329167E5C00297FD7 /* ChampionDetailCell.xib */; };
 		E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E9505291B12030022C7F5 /* SkinViewController.swift */; };
 		E90E9508291B12030022C7F5 /* SkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90E9506291B12030022C7F5 /* SkinViewController.xib */; };
 		E90FFD5C291DB65100ED225D /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90FFD5B291DB65100ED225D /* HomeScreenViewModel.swift */; };
@@ -62,8 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E908683229167E5C00297FD7 /* ChampionDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailCell.swift; sourceTree = "<group>"; };
-		E908683329167E5C00297FD7 /* ChampionDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionDetailCell.xib; sourceTree = "<group>"; };
 		E90E9505291B12030022C7F5 /* SkinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinViewController.swift; sourceTree = "<group>"; };
 		E90E9506291B12030022C7F5 /* SkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkinViewController.xib; sourceTree = "<group>"; };
 		E90FFD5B291DB65100ED225D /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
@@ -135,15 +131,6 @@
 				E9DC37372902EA8C008384FC /* ChampionIconCell.xib */,
 			);
 			path = ChampionIconCell;
-			sourceTree = "<group>";
-		};
-		E908683629167E6200297FD7 /* ChampionDetailCell */ = {
-			isa = PBXGroup;
-			children = (
-				E908683229167E5C00297FD7 /* ChampionDetailCell.swift */,
-				E908683329167E5C00297FD7 /* ChampionDetailCell.xib */,
-			);
-			path = ChampionDetailCell;
 			sourceTree = "<group>";
 		};
 		E90E9509291B120E0022C7F5 /* SkinViewController */ = {
@@ -335,7 +322,6 @@
 			isa = PBXGroup;
 			children = (
 				E908683129167E1B00297FD7 /* ChampionIconCell */,
-				E908683629167E6200297FD7 /* ChampionDetailCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -496,7 +482,6 @@
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
 				E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */,
-				E908683529167E5C00297FD7 /* ChampionDetailCell.xib in Resources */,
 				E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */,
 				E9DC37392902EA8C008384FC /* ChampionIconCell.xib in Resources */,
 			);
@@ -545,7 +530,6 @@
 				E9B5A58E290D83DD00F0A61A /* ChampionsLoadingViewController.swift in Sources */,
 				E9160E30291D52C2006CF845 /* Settings.swift in Sources */,
 				E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */,
-				E908683429167E5C00297FD7 /* ChampionDetailCell.swift in Sources */,
 				E9B927B52922B4D0001EF8C5 /* SkinDisplayViewController.swift in Sources */,
 				E9FBEFEB29215D0200A2D0DB /* UserDefaultsError.swift in Sources */,
 				E9B927B72922C64B001EF8C5 /* ChampionAssetType.swift in Sources */,
