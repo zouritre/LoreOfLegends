@@ -16,7 +16,6 @@ class SkinViewController: UIViewController {
     
     @IBOutlet weak var skinImageView: UIImageView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
