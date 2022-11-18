@@ -98,6 +98,11 @@ extension HomeScreenViewController: UISearchBarDelegate {
             self.homescreenViewmodel.champions = originalListCopy
         }
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Close the keyboard
+        searchBar.resignFirstResponder()
+    }
 }
 
 class HomeScreenViewController: UIViewController {
