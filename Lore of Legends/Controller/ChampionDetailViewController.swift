@@ -25,7 +25,7 @@ extension ChampionDetailViewController: UIPageViewControllerDelegate {
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        guard let vc = pageViewController as? SkinDisplayViewController else {
+        guard let vc = pageViewController as? SkinPageViewController else {
             return 0 }
         
         return vc.controllers.count
@@ -52,7 +52,7 @@ class ChampionDetailViewController: UIViewController {
     /// Subscriber that notify the selected champion datas
     var championSubscriber: AnyCancellable?
     /// ViewController that manages paginating for skins ViewController
-    weak var skinsPageViewController: SkinDisplayViewController?
+    weak var skinsPageViewController: SkinPageViewController?
     
     @IBOutlet weak var skinsLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var championNameLabel: UILabel!
@@ -112,10 +112,10 @@ class ChampionDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCentered" {
             // Retrieve CenteredSkinsPageViewController instance
-            skinsPageViewController = segue.destination as? SkinDisplayViewController
+            skinsPageViewController = segue.destination as? SkinPageViewController
         }
         else if segue.identifier == "showSplash" {
-            guard let vc = segue.destination as? SkinDisplayViewController,
+            guard let vc = segue.destination as? SkinPageViewController,
                   let selectedSkin = skinsPageViewController?.viewControllers?.first as? SkinViewController,
                   let selectedSkinIndex = selectedSkin.skinIndex else {
                 return }

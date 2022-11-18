@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-extension SkinDisplayViewController: UIPageViewControllerDelegate {
+extension SkinPageViewController: UIPageViewControllerDelegate {
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return controllers.count
@@ -25,7 +25,7 @@ extension SkinDisplayViewController: UIPageViewControllerDelegate {
     }
 }
 
-extension SkinDisplayViewController: UIPageViewControllerDataSource {
+extension SkinPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let currentVc = pageViewController.viewControllers?.first as? SkinViewController {
             guard let currentSkinIndex = currentVc.skinIndex else { return nil }
@@ -51,7 +51,7 @@ extension SkinDisplayViewController: UIPageViewControllerDataSource {
     }
 }
 
-class SkinDisplayViewController: UIPageViewController {
+class SkinPageViewController: UIPageViewController {
     
     var controllers = [SkinViewController]()
     var skins: [ChampionAsset]?

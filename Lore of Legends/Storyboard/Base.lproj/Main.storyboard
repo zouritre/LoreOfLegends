@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tUc-1h-mC1">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -19,6 +17,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EIe-sm-qVE">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -34,24 +33,24 @@
             <objects>
                 <viewController id="QhI-kb-aed" customClass="SettingsViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ve1-2z-Zs2">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language for lores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzi-mF-YZr">
-                                <rect key="frame" x="0.0" y="141" width="390" height="21"/>
+                                <rect key="frame" x="0.0" y="94" width="600" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK5-FQ-tgK">
-                                <rect key="frame" x="0.0" y="192" width="390" height="216"/>
+                                <rect key="frame" x="0.0" y="145" width="600" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="QhI-kb-aed" id="dVD-6q-SNS"/>
                                     <outlet property="delegate" destination="QhI-kb-aed" id="bKd-6b-GL7"/>
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-hq-sRf">
-                                <rect key="frame" x="50" y="725" width="290" height="35"/>
+                                <rect key="frame" x="50" y="515" width="500" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save"/>
                                 <connections>
@@ -89,18 +88,18 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gss-4W-0of">
-                                <rect key="frame" x="10" y="111" width="370" height="56"/>
+                                <rect key="frame" x="10" y="64" width="580" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="hGH-hk-gUO"/>
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wsy-tj-Ccx">
-                                <rect key="frame" x="10" y="182" width="370" height="618"/>
+                                <rect key="frame" x="10" y="135" width="580" height="455"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iFz-bg-5xv">
                                     <size key="itemSize" width="100" height="100"/>
@@ -157,21 +156,21 @@
             <objects>
                 <viewController id="TMw-cn-At7" customClass="ChampionDetailViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9KZ-C5-0wW">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Xgs-3g-FuH">
-                                <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                                <rect key="frame" x="281.66666666666669" y="281.66666666666669" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="don-h3-4KC" userLabel="MainView">
-                                <rect key="frame" x="0.0" y="91" width="390" height="719"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maY-5H-xRD" userLabel="SkinImage">
-                                        <rect key="frame" x="8" y="8" width="374" height="359.66666666666669"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="278"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-Dj-NUd">
-                                                <rect key="frame" x="8" y="8" width="358" height="343.66666666666669"/>
+                                                <rect key="frame" x="8" y="8" width="568" height="262"/>
                                                 <connections>
                                                     <segue destination="ZBM-JM-ilW" kind="embed" identifier="showCentered" id="fYw-kO-VOP"/>
                                                 </connections>
@@ -190,10 +189,10 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-sh-gPj" userLabel="SkinName">
-                                        <rect key="frame" x="8" y="367.66666666666669" width="374" height="71.666666666666686"/>
+                                        <rect key="frame" x="8" y="286" width="584" height="55.666666666666686"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOb-sx-FOv">
-                                                <rect key="frame" x="166" y="25.333333333333314" width="42" height="21"/>
+                                                <rect key="frame" x="271" y="17.333333333333314" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -206,10 +205,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwb-jo-6rd" userLabel="Lore">
-                                        <rect key="frame" x="8" y="439.33333333333337" width="374" height="271.66666666666663"/>
+                                        <rect key="frame" x="8" y="341.66666666666669" width="584" height="206.33333333333331"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S59-oW-BlV">
-                                                <rect key="frame" x="8" y="7.9999999999999858" width="358" height="255.66666666666663"/>
+                                                <rect key="frame" x="8" y="8" width="568" height="190.33333333333337"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor"/>
@@ -278,20 +277,20 @@
             <objects>
                 <viewController modalPresentationStyle="currentContext" id="dqK-UU-DDr" customClass="ChampionsLoadingViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KJG-PZ-4OG">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiL-wj-Eql">
-                                <rect key="frame" x="0.0" y="390" width="390" height="0.0"/>
+                                <rect key="frame" x="0.0" y="268" width="600" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-d1-Ol8">
-                                <rect key="frame" x="97.666666666666686" y="420" width="195" height="4"/>
+                                <rect key="frame" x="150" y="298" width="300" height="4"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDK-ZU-7bU">
-                                <rect key="frame" x="178" y="454" width="34" height="21"/>
+                                <rect key="frame" x="283" y="332" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -320,10 +319,10 @@
             </objects>
             <point key="canvasLocation" x="34" y="755"/>
         </scene>
-        <!--Skin Display View Controller-->
+        <!--Skin Page View Controller-->
         <scene sceneID="DJs-iO-cpf">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZBM-JM-ilW" customClass="SkinDisplayViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZBM-JM-ilW" customClass="SkinPageViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6eU-Dd-qQq">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="rww-Gx-Gka">
                             <connections>
