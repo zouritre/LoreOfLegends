@@ -10,11 +10,14 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Preload the activity controller, improving it's opening time on subsequent calls.
+        let lagfreeAVC:UIActivityViewController = UIActivityViewController(activityItems:  ["start"], applicationActivities: nil)
+        lagfreeAVC.becomeFirstResponder()
+        lagfreeAVC.resignFirstResponder()
+        
         return true
     }
 
