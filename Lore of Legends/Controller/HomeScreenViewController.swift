@@ -118,6 +118,9 @@ extension HomeScreenViewController: UISearchBarDelegate {
 
 extension HomeScreenViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // Hide the  keyboard
+        self.searchBar.resignFirstResponder()
+        
         // Get scroll direction
         let scrollDirection = scrollView.panGestureRecognizer.velocity(in: championIconsCollection).y <= 0 ? "down" : "up"
         
@@ -152,6 +155,7 @@ class HomeScreenViewController: UIViewController {
     var newUpdateSubscriber: AnyCancellable?
     
     /// Main collectionview of the UI
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var championIconsCollection: UICollectionView!
     
     override func viewDidLoad() {
