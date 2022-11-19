@@ -10,7 +10,7 @@ import Combine
 
 class HomeScreen {
     private var riotCdnApi: RiotCdnApiDelegate = RiotCdnApi.shared
-    private var coreDataApi = CoreDataApi()
+    private var coreDataApi = CoreDataApi.shared
     var championsPublisher = PassthroughSubject<[Champion], Error>()
     var totalNumberOfChampionsPublisher = PassthroughSubject<Int?, Never>()
     var iconsDownloadedPublisher = CurrentValueSubject<Int?, Never>(0)

@@ -9,6 +9,11 @@ import Foundation
 import CoreData
 
 actor CoreDataApi {
+    // Shared instance
+    static let shared = CoreDataApi()
+    
+    private init() {}
+    
     /// Save to Core Data every champions retrieved from Riot CDN
     /// - Parameters:
     ///   - champions: Array of Champion objects to saved locally
