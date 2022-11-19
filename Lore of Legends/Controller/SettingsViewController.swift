@@ -42,7 +42,10 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubscribers()
-        vm.getSupportedLanguages()
+        
+        Task {
+            await vm.getSupportedLanguages()
+        }
     }
     
     @IBAction func saveButton(_ sender: UIButton) {

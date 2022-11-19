@@ -21,18 +21,10 @@ final class SettingsTest: XCTestCase {
     func testShouldReturnAllLanguagesSupportedByRiotCdn() async {
         let mockApi = RiotCdnApiMock()
         let viewmodel = SettingsViewModel(riotCdnApi: mockApi)
-        let expectation = expectation(description: "Wait for asyn task")
-        let sub = viewmodel.settings.languagesPublisher.sink { _ in
-            expectation.fulfill()
-        }
         
-        viewmodel.getSupportedLanguages()
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.getSupportedLanguages()
         
         XCTAssertNotNil(viewmodel.languages)
-        
-        sub.cancel()
     }
 
 }

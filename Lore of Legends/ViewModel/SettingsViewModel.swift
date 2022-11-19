@@ -24,7 +24,7 @@ class SettingsViewModel {
         }
     }
     
-    func getSupportedLanguages() {
-        settings.getSupportedLanguages()
+    func getSupportedLanguages() async {
+        await settings.getSupportedLanguages()
     }
 }

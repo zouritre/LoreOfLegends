@@ -18,11 +18,9 @@ class Settings {
         }
     }
     
-    func getSupportedLanguages() {
-        Task {
-            let languages = try await riotCdnApi?.getSupportedLanguages()
-            
-            languagesPublisher.send(languages)
-        }
+    func getSupportedLanguages() async {
+        let languages = try? await riotCdnApi?.getSupportedLanguages()
+        
+        languagesPublisher.send(languages)
     }
 }
