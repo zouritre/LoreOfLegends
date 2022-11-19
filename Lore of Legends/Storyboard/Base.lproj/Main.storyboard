@@ -129,7 +129,11 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="4PE-FG-QjI"/>
+                        <barButtonItem title="Item" id="4PE-FG-QjI">
+                            <connections>
+                                <action selector="leaguePatchUrl:" destination="BYZ-38-t0r" id="k5k-sT-vN4"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Lore of Legends" id="ZVU-3N-y0e">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="mkg-xO-BHi">

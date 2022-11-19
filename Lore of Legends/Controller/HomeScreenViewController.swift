@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SafariServices
 
 extension UIViewController {
     /// Display an alert with a custom message
@@ -180,6 +181,16 @@ class HomeScreenViewController: UIViewController {
         let currentPatchVersion = UserDefaults.standard.string(forKey: UserDefaultKeys.patchVersionForAssetsSaved.rawValue)
         
         patchVersionItem.title = "\(NSLocalizedString("Patch version", comment: "The League patch version for assets saved on this device")): \(currentPatchVersion ?? "")"
+    }
+    
+    @IBAction func leaguePatchUrl(_ sender: Any) {
+        let officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/en-us/news/tags/patch-notes/")
+        
+        guard let officialPatchNotesUrl else { return }
+        
+        let safariController = SFSafariViewController(url: officialPatchNotesUrl)
+        
+        present(safariController, animated: true)
     }
     
     @IBAction func settingsButon(_ sender: UIBarButtonItem) {
