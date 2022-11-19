@@ -31,7 +31,9 @@ class HomeScreenViewModel {
             case .failure(let error): self.error = error
             }
         }, receiveValue: { [unowned self] champions in
-            self.champions = champions
+            self.champions = champions.sorted(by: { previousChampion, nextChampion in
+                previousChampion.name < nextChampion.name
+            })
         })
         
         // Republish publisher values to totalNumberOfChampions property

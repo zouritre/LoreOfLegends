@@ -152,7 +152,6 @@ class HomeScreenViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        alert(type: .Error, message: "Error test")
         let titleImage = UIImage(named: "full2")?.resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0), resizingMode: .stretch)
         navigationItem.titleView = UIImageView(image: titleImage)
     }
