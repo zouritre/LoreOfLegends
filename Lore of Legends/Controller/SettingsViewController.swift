@@ -40,6 +40,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupSubscribers()
         vm.getSupportedLanguages()
     }
     
@@ -58,7 +60,9 @@ class SettingsViewController: UIViewController {
     private func setupSubscribers() {
         languagesSubscriber = vm.languages.sink { [unowned self] languages in
             if languages != nil {
-                languagePicker.reloadAllComponents()
+                DispatchQueue.main.async { [unowned self] in
+                    languagePicker.reloadAllComponents()
+                }
             }
         }
     }
