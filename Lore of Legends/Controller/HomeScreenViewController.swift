@@ -116,6 +116,23 @@ extension HomeScreenViewController: UISearchBarDelegate {
     }
 }
 
+extension HomeScreenViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // Get scroll direction
+        let scrollDirection = scrollView.panGestureRecognizer.velocity(in: championIconsCollection).y <= 0 ? "down" : "up"
+        
+        if scrollDirection == "down" {
+            // Device orientation is not landscape and is scrolling down
+            navigationController?.setNavigationBarHidden(true, animated: true)
+            navigationController?.setToolbarHidden(true, animated: true)
+        }
+        else if scrollDirection == "up" {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.setToolbarHidden(false, animated: true)
+        }
+    }
+}
+
 class HomeScreenViewController: UIViewController {
     /// Original list of champions received the first time it's successfully fetched from API. Only set once per app execution.
     var originalChampionList: [Champion] = []
@@ -139,7 +156,7 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         // Set font for navigation bar title
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
         
