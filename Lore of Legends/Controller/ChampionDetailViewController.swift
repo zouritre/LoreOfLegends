@@ -71,7 +71,10 @@ class ChampionDetailViewController: UIViewController {
         
         skinsPageViewController?.delegate = self
         setupSubscribers()
-        viewmodel.setInfo(for: champion)
+        
+        Task {
+            await viewmodel.setInfo(for: champion)
+        }
     }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {

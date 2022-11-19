@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Combine
 @testable import Lore_of_Legends
 
 final class ChampionDetailTest: XCTestCase {
@@ -14,18 +13,12 @@ final class ChampionDetailTest: XCTestCase {
     var mockApi: RiotCdnApiMock!
     var viewmodel: ChampionDetailViewModel!
     var champion: Champion!
-    var expectation: XCTestExpectation!
-    var sub: AnyCancellable!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockApi = RiotCdnApiMock()
         viewmodel = ChampionDetailViewModel(api: mockApi)
         champion = Champion(id: "", name: "", title: "", skins: [], lore: "")
-        expectation = expectation(description: "Wait for async task")
-        sub = viewmodel.viewmodel.championPublisher.sink { [unowned self] _ in
-            expectation.fulfill()
-        }
     }
     
     override func tearDownWithError() throws {
@@ -33,44 +26,28 @@ final class ChampionDetailTest: XCTestCase {
     }
     
     func testShouldReturnChampionLore() async {
-        viewmodel.setLore(for: champion)
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.setLore(for: champion)
         
         XCTAssertNotNil(viewmodel.champion?.lore)
-        
-        sub.cancel()
     }
     
     func testShouldReturnChampionHonorificTitle() async {
-        viewmodel.setTitle(for: champion)
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.setTitle(for: champion)
         
         XCTAssertNotNil(viewmodel.champion?.title)
-        
-        sub.cancel()
     }
     
     func testShouldReturnChampionSkins() async {
-        viewmodel.setSkins(for: champion)
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.setSkins(for: champion)
         
         XCTAssertNotNil(viewmodel.champion?.skins)
-        
-        sub.cancel()
     }
     
     func testShouldReturnChampionHonorificTitleAndLoreAndSkins() async {
-        viewmodel.setInfo(for: champion)
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.setInfo(for: champion)
         
         XCTAssertNotNil(viewmodel.champion?.skins)
         XCTAssertNotNil(viewmodel.champion?.lore)
         XCTAssertNotNil(viewmodel.champion?.title)
-        
-        sub.cancel()
     }
 }

@@ -22,19 +22,19 @@ class ChampionDetailViewModel {
         viewmodel.championPublisher.assign(to: &$champion)
     }
     
-    func setLore(for champion: Champion) {
-        viewmodel.setLore(for: champion)
+    func setLore(for champion: Champion) async {
+        await viewmodel.setLore(for: champion)
     }
     
-    func setTitle(for champion: Champion) {
-        viewmodel.setTitle(for: champion)
+    func setTitle(for champion: Champion) async {
+        await viewmodel.setTitle(for: champion)
     }
     
-    func setSkins(for champion: Champion) {
-        viewmodel.setSkins(for: champion)
+    func setSkins(for champion: Champion) async {
+        await viewmodel.setSkins(for: champion)
     }
     
-    func setInfo(for champion: Champion) {
-        viewmodel.setInfo(for: champion)
+    func setInfo(for champion: Champion) async {
+        await viewmodel.setInfo(for: champion)
     }
 }
