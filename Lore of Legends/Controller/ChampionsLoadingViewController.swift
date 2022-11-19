@@ -33,7 +33,7 @@ class ChampionsLoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadLabel.text = NSLocalizedString("Downloading champions icon", comment: "Champions download is running")
+        downloadLabel.text = NSLocalizedString("Downloading champions", comment: "Champions download is running")
         
         setupSubscribers()
     }
