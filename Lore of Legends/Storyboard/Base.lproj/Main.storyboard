@@ -33,7 +33,7 @@
         <!--Settings View Controller-->
         <scene sceneID="twK-u6-Qdu">
             <objects>
-                <viewController id="QhI-kb-aed" customClass="SettingsViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController keyboardType="off" id="QhI-kb-aed" customClass="SettingsViewController" customModule="Lore_of_Legends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ve1-2z-Zs2">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,10 +51,18 @@
                                     <outlet property="delegate" destination="QhI-kb-aed" id="bKd-6b-GL7"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-hq-sRf">
-                                <rect key="frame" x="50" y="676" width="290" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-hq-sRf">
+                                <rect key="frame" x="50" y="681" width="290" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveButton:" destination="QhI-kb-aed" eventType="touchUpInside" id="Gqr-xY-mXh"/>
                                 </connections>
