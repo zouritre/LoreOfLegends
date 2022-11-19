@@ -15,6 +15,7 @@ class HomeScreen {
     var totalNumberOfChampionsPublisher = PassthroughSubject<Int?, Never>()
     var iconsDownloadedPublisher = CurrentValueSubject<Int?, Never>(0)
     var newUpdatePublisher = PassthroughSubject<String?, Never>()
+    var patchVersionPublisher = PassthroughSubject<String?, Never>()
     /// A bool indicating if the downloaded champions assets is already saved on the device locale storage
     var isAssetSavedLocally: Bool {
         get {
@@ -82,6 +83,8 @@ class HomeScreen {
                 championsPublisher.send(completion: .failure(error))
             }
         }
+        
+        patchVersionPublisher.send(patchVersionForAssetsSaved)
     }
     
     private func updateAvailable() async throws -> (newPatchAvailable: Bool, version: String?) {

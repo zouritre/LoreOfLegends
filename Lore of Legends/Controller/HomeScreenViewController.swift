@@ -154,6 +154,8 @@ class HomeScreenViewController: UIViewController {
     var totalNumberOfChampionsSubscriber: AnyCancellable?
     /// Notify when a new update is available
     var newUpdateSubscriber: AnyCancellable?
+    // Notify patch version for assets saved on the device
+    var patchVersionSubscriber: AnyCancellable?
     
     /// Main collectionview of the UI
     @IBOutlet weak var searchBar: UISearchBar!
@@ -177,12 +179,6 @@ class HomeScreenViewController: UIViewController {
         Task {
             await homescreenViewmodel.getChampions()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let currentPatchVersion = UserDefaults.standard.string(forKey: UserDefaultKeys.patchVersionForAssetsSaved.rawValue)
-        
-        patchVersionItem.title = "\(NSLocalizedString("Patch version", comment: "The League patch version for assets saved on this device")): \(currentPatchVersion ?? "")"
     }
     
     @IBAction func leaguePatchUrl(_ sender: Any) {
@@ -251,6 +247,12 @@ class HomeScreenViewController: UIViewController {
             guard let newVersion else { return }
             
             alert(type: .Update, message: NSLocalizedString("Patch \(newVersion) is available! Restart the app to update.", comment: "A new patch is available"))
+        }
+        
+        patchVersionSubscriber = homescreenViewmodel.$patchVersion.sink { [unowned self] patchVersion in
+            DispatchQueue.main.async { [unowned self] in
+                patchVersionItem.title = "\(NSLocalizedString("Patch version", comment: "The League patch version for assets saved on this device")): \(patchVersion ?? "")"
+            }
         }
     }
     
