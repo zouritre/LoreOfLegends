@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Friz-Quadrata-Bold.otf</string>
+		<string>FrizQuadrataRegular.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,14 +26,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to access your photo library to save the image.</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Dark</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Friz-Quadrata-Bold.otf</string>
-		<string>FrizQuadrataRegular.ttf</string>
-	</array>
 </dict>
 </plist>
