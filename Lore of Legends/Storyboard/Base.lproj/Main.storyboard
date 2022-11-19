@@ -148,6 +148,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="championIconsCollection" destination="wsy-tj-Ccx" id="UsP-hr-i0Q"/>
+                        <outlet property="patchVersionItem" destination="4PE-FG-QjI" id="4wK-h3-kKq"/>
                         <outlet property="searchBar" destination="gss-4W-0of" id="hHP-Fp-aMx"/>
                         <segue destination="TMw-cn-At7" kind="show" identifier="goToDetail" id="GT9-1A-2Uz"/>
                         <segue destination="dqK-UU-DDr" kind="presentation" identifier="championsLoading" modalPresentationStyle="fullScreen" id="iCG-Pc-XKV"/>

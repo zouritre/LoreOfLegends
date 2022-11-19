@@ -156,6 +156,7 @@ class HomeScreenViewController: UIViewController {
     
     /// Main collectionview of the UI
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var patchVersionItem: UIBarButtonItem!
     @IBOutlet weak var championIconsCollection: UICollectionView!
     
     override func viewDidLoad() {
@@ -173,6 +174,12 @@ class HomeScreenViewController: UIViewController {
         setupSubscribers()
         
         homescreenViewmodel.getChampions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let currentPatchVersion = UserDefaults.standard.string(forKey: UserDefaultKeys.patchVersionForAssetsSaved.rawValue)
+        
+        patchVersionItem.title = "\(NSLocalizedString("Patch version", comment: "The League patch version for assets saved on this device")): \(currentPatchVersion ?? "")"
     }
     
     @IBAction func settingsButon(_ sender: UIBarButtonItem) {
