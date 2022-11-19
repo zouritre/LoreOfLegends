@@ -23,6 +23,7 @@
 		E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B6F4C29129AD2001CC206 /* ChampionDetail.swift */; };
 		E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E9E5291C55A30003B643 /* SettingsViewController.swift */; };
 		E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */; };
+		E936E3082929021700E83B7B /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936E3072929021700E83B7B /* AlertType.swift */; };
 		E93B366828FC4C00003BB0A3 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365C28FC4748003BB0A3 /* Champion.swift */; };
 		E93B366928FC4C00003BB0A3 /* RiotCdnApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365A28FC4748003BB0A3 /* RiotCdnApiError.swift */; };
 		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
@@ -77,6 +78,7 @@
 		E92B6F4C29129AD2001CC206 /* ChampionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetail.swift; sourceTree = "<group>"; };
 		E930E9E5291C55A30003B643 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9339F58290866BF001AB3C9 /* ChampionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailViewController.swift; sourceTree = "<group>"; };
+		E936E3072929021700E83B7B /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		E93B364728FC3590003BB0A3 /* Lore-of-LegendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lore-of-LegendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampionFullJsonDecodable.swift; sourceTree = "<group>"; };
 		E93B365A28FC4748003BB0A3 /* RiotCdnApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiotCdnApiError.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				E93B365A28FC4748003BB0A3 /* RiotCdnApiError.swift */,
 				E9FBEFE829213FA000A2D0DB /* CoreDataApiError.swift */,
 				E9FBEFEA29215D0200A2D0DB /* UserDefaultsError.swift */,
+				E936E3072929021700E83B7B /* AlertType.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				E9A0C5D728FEB5FB00E468ED /* HomeScreenViewController.swift in Sources */,
 				E9B927B52922B4D0001EF8C5 /* SkinPageViewController.swift in Sources */,
 				E9FBEFEB29215D0200A2D0DB /* UserDefaultsError.swift in Sources */,
+				E936E3082929021700E83B7B /* AlertType.swift in Sources */,
 				E9B927B72922C64B001EF8C5 /* ChampionAssetType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

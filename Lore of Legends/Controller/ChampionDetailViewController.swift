@@ -64,7 +64,7 @@ class ChampionDetailViewController: UIViewController {
         super.viewDidLoad()
         
         guard let champion else {
-            alert(message: "Couldn't retrieve champion data")
+            alert(type: .Error, message: "Couldn't retrieve champion data")
             
             return
         }

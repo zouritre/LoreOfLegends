@@ -52,7 +52,7 @@ class SettingsViewController: UIViewController {
         // Forces redownload of champions data
         UserDefaults.standard.setValue(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         
-        alert(message: NSLocalizedString("Please restart the app to apply the new language", comment: "User selected a new language for lores display"))
+        alert(type: .Information, message: NSLocalizedString("Please restart the app to apply the new language", comment: "User selected a new language for lores display"))
     }
     
     private func setupSubscribers() {

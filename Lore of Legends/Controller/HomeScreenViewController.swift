@@ -11,8 +11,19 @@ import Combine
 extension UIViewController {
     /// Display an alert with a custom message
     /// - Parameter message: Text to display in the alert
-    func alert(message: String) {
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+    func alert(type: AlertType, message: String) {
+        var title = ""
+        
+        switch type {
+        case .Error:
+            title = NSLocalizedString("Error", comment: "An error ocurred")
+        case .Update:
+            title = NSLocalizedString("Update", comment: "An update is available")
+        case .Information:
+            title = NSLocalizedString("Information", comment: "Provide information about an event")
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default))
         
         DispatchQueue.main.async {
@@ -141,6 +152,7 @@ class HomeScreenViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        alert(type: .Error, message: "Error test")
         let titleImage = UIImage(named: "full2")?.resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0), resizingMode: .stretch)
         navigationItem.titleView = UIImageView(image: titleImage)
     }
@@ -174,7 +186,7 @@ class HomeScreenViewController: UIViewController {
         errorSubscriber = homescreenViewmodel.$error.sink(receiveValue: { [unowned self] dataError in
             guard let dataError else { return }
 
-            self.alert(message: dataError.localizedDescription)
+            self.alert(type: .Error, message: dataError.localizedDescription)
         })
         
         originalChampListSubscriber = originalChampListPublisher.sink(receiveCompletion: { completion in
@@ -200,7 +212,7 @@ class HomeScreenViewController: UIViewController {
         newUpdateSubscriber = homescreenViewmodel.$newUpdate.sink { [unowned self] newVersion in
             guard let newVersion else { return }
             
-            alert(message: NSLocalizedString("Patch \(newVersion) is available! Restart the app to update.", comment: "A new patch is available"))
+            alert(type: .Update, message: NSLocalizedString("Patch \(newVersion) is available! Restart the app to update.", comment: "A new patch is available"))
         }
     }
     
