@@ -11,13 +11,11 @@ import XCTest
 final class HomeScreenTest: XCTestCase {
     var mockApi: RiotCdnApiMock!
     var viewmodel: HomeScreenViewModel!
-    var expectation: XCTestExpectation!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockApi = RiotCdnApiMock()
         viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
-        expectation = expectation(description: "Wait for async task")
         viewmodel.homescreen.isAssetSavedLocally = false
         viewmodel.homescreen.patchVersionForAssetsSaved = nil
     }
@@ -27,13 +25,7 @@ final class HomeScreenTest: XCTestCase {
     }
     
     func testShouldReturnChampionNameAndIcon() async {
-        let sub = viewmodel.homescreen.championsPublisher.sink(receiveCompletion: { _ in }, receiveValue: { [unowned self] _ in
-            expectation.fulfill()
-        })
-        
-        viewmodel.getChampions()
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.getChampions()
         
         guard let champions = viewmodel.champions else {
             XCTAssertTrue(false)
@@ -43,73 +35,35 @@ final class HomeScreenTest: XCTestCase {
         
         XCTAssertNotNil(champions[0].icon)
         XCTAssertGreaterThan(champions[0].name.count, 0)
-        
-        sub.cancel()
     }
     
     func testShouldThrowAnError() async {
         let mockApi = RiotCdnApiMock(throwing: true)
         let viewmodel = HomeScreenViewModel(riotCdnapi: mockApi)
-        let sub = viewmodel.homescreen.championsPublisher.sink(receiveCompletion: { [unowned self] _ in
-            expectation.fulfill()
-        }, receiveValue: { _ in })
         
-        viewmodel.getChampions()
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.getChampions()
         
         XCTAssertNotNil(viewmodel.error)
-        
-        sub.cancel()
     }
     
     func testShouldReturnChampionsIconDownloadProgress() async {
-        let sub = viewmodel.homescreen.iconsDownloadedPublisher.sink { [unowned self] downloadedCounter in
-            guard let downloadedCounter else { return }
-            
-            if downloadedCounter > 0 {
-                // Prevent subscriber from being called twice because of CurrentValueSubject
-                expectation.fulfill()
-            }
-        }
-        
-        viewmodel.getChampions()
-        
-        await waitForExpectations(timeout: 0.5)
+        await viewmodel.getChampions()
         
         XCTAssertNotNil(viewmodel.iconsDownloaded)
-        
-        sub.cancel()
     }
     
     func testShouldReturnTotalNumberOfChampionsInLeague() async {
-        let sub = viewmodel.homescreen.totalNumberOfChampionsPublisher.sink { [unowned self] _ in
-            expectation.fulfill()
-        }
-        
-        viewmodel.getChampions()
-        
-        await waitForExpectations(timeout: 1)
+        await viewmodel.getChampions()
         
         XCTAssertEqual(viewmodel.totalNumberOfChampions, 1)
-        
-        sub.cancel()
     }
     
     func testShouldReturnLastestPatchVersion() async {
         viewmodel.homescreen.isAssetSavedLocally = true
         viewmodel.homescreen.patchVersionForAssetsSaved = "1.2.3"
 
-        let sub = viewmodel.homescreen.newUpdatePublisher.sink { [unowned self] _ in
-            expectation.fulfill()
-        }
-
-        viewmodel.getChampions()
-
-        await waitForExpectations(timeout: 1)
-
+        await viewmodel.getChampions()
+        
         XCTAssertNotNil(viewmodel.newUpdate)
-
-        sub.cancel()
     }
 }

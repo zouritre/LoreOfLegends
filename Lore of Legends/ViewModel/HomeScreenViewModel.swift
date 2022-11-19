@@ -44,7 +44,7 @@ class HomeScreenViewModel {
         homescreen.newUpdatePublisher.assign(to: &$newUpdate)
     }
     
-    func getChampions() {
-        homescreen.getChampions()
+    func getChampions() async {
+        await homescreen.getChampions()
     }
 }

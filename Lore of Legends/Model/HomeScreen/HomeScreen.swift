@@ -40,48 +40,46 @@ class HomeScreen {
         }
     }
     
-    func getChampions() {
-        Task {
-            if isAssetSavedLocally {
-                do {
-                    let champions = try coreDataApi.fetchChampions()
-                    
-                    championsPublisher.send(champions)
-                }
-                catch {
-                    championsPublisher.send(completion: .failure(error))
-                }
+    func getChampions() async {
+        if isAssetSavedLocally {
+            do {
+                let champions = try await coreDataApi.fetchChampions()
                 
-                if let (updateAvailable, newVersion) = try? await updateAvailable() {
-                    if updateAvailable {
-                        newUpdatePublisher.send(newVersion)
-                        
-                        // Force redownload of assets
-                        isAssetSavedLocally = false
-                    }
+                championsPublisher.send(champions)
+            }
+            catch {
+                championsPublisher.send(completion: .failure(error))
+            }
+            
+            if let (updateAvailable, newVersion) = try? await updateAvailable() {
+                if updateAvailable {
+                    newUpdatePublisher.send(newVersion)
+                    
+                    // Force redownload of assets
+                    isAssetSavedLocally = false
                 }
             }
-            else {
-                do {
-                    let champions = try await riotCdnApi.getChampions(caller: self)
-                    
-                    championsPublisher.send(champions)
-                    
-                    let currentPatch = try await riotCdnApi.getLastestPatchVersion()
-                    
-                    // Save the current patch version for the saved assets
-                    patchVersionForAssetsSaved = currentPatch
-                    
-                    // Remove existing datas
-                    try coreDataApi.removeChampionsDataFromStorage()
-                    // Save new datas
-                    try coreDataApi.save(champions: champions)
-                    
-                    isAssetSavedLocally = true
-                }
-                catch {
-                    championsPublisher.send(completion: .failure(error))
-                }
+        }
+        else {
+            do {
+                let champions = try await riotCdnApi.getChampions(caller: self)
+                
+                championsPublisher.send(champions)
+                
+                let currentPatch = try await riotCdnApi.getLastestPatchVersion()
+                
+                // Save the current patch version for the saved assets
+                patchVersionForAssetsSaved = currentPatch
+                
+                // Remove existing datas
+                try await coreDataApi.removeChampionsDataFromStorage()
+                // Save new datas
+                try await coreDataApi.save(champions: champions)
+                
+                isAssetSavedLocally = true
+            }
+            catch {
+                championsPublisher.send(completion: .failure(error))
             }
         }
     }

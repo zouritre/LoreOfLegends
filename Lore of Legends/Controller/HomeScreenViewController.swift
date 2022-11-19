@@ -174,7 +174,9 @@ class HomeScreenViewController: UIViewController {
         
         setupSubscribers()
         
-        homescreenViewmodel.getChampions()
+        Task {
+            await homescreenViewmodel.getChampions()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

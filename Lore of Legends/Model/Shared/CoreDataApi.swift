@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataApi {
+actor CoreDataApi {
     /// Save to Core Data every champions retrieved from Riot CDN
     /// - Parameters:
     ///   - champions: Array of Champion objects to saved locally
