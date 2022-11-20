@@ -50,7 +50,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
         else {
             // Else dequeue a custom cell and returns it
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "champion-icon", for: indexPath) as? ChampionIconCell
-
+            
             guard let cell else { return UICollectionViewCell() }
             
             cell.champion = champions[indexPath.row]
@@ -80,20 +80,20 @@ extension HomeScreenViewController: UISearchBarDelegate {
         else {
             // Else filter the champion list against the given search text
             var foundPerfectMatch = false
-
+            
             // Set the collectionview datasource array to contain a single champion matching the exact search text
             for champion in originalChampionList {
                 if champion.name == searchText {
                     self.homescreenViewmodel.champions = [champion]
                     foundPerfectMatch = true
-
+                    
                     break
                 }
             }
-
+            
             // Exit the statement if a champion name matched the exact search text
             if foundPerfectMatch { return }
-
+            
             // Create a copy or the original champion list
             var originalListCopy = originalChampionList
             
@@ -122,22 +122,40 @@ extension HomeScreenViewController: UIScrollViewDelegate {
         // Hide the  keyboard
         self.searchBar.resignFirstResponder()
         
-        // Get scroll direction
-        let scrollDirection = scrollView.panGestureRecognizer.velocity(in: championIconsCollection).y <= 0 ? "down" : "up"
+        if scrollView.panGestureRecognizer.velocity(in: championIconsCollection).y < 0 {
+            scrollDirection = "down"
+        }
+        else if scrollView.panGestureRecognizer.velocity(in: championIconsCollection).y > 0 {
+            scrollDirection = "up"
+        }
         
-        if scrollDirection == "down" {
-            // Device orientation is not landscape and is scrolling down
+        if didEndDecelerating && scrollDirection == "down" {
+            // Prevent this code from executing until scrolling animation completly stops
+            // Then
             navigationController?.setNavigationBarHidden(true, animated: true)
             navigationController?.setToolbarHidden(true, animated: true)
         }
-        else if scrollDirection == "up" {
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        didEndDecelerating = false
+        
+        if scrollDirection == "up" {
             navigationController?.setNavigationBarHidden(false, animated: true)
             navigationController?.setToolbarHidden(false, animated: true)
         }
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        didEndDecelerating = true
+    }
 }
 
 class HomeScreenViewController: UIViewController {
+    /// CollectionView scroll direction
+    var scrollDirection = "neutral"
+    /// Scrolling inside CollectionView  has ended
+    var didEndDecelerating: Bool = true
     /// Original list of champions received the first time it's successfully fetched from API. Only set once per app execution.
     var originalChampionList: [Champion] = []
     /// View model
@@ -164,7 +182,7 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        //        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         // Set font for navigation bar title
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
         
@@ -219,7 +237,7 @@ class HomeScreenViewController: UIViewController {
         
         errorSubscriber = homescreenViewmodel.$error.sink(receiveValue: { [unowned self] dataError in
             guard let dataError else { return }
-
+            
             self.alert(type: .Error, message: dataError.localizedDescription)
         })
         
@@ -232,7 +250,7 @@ class HomeScreenViewController: UIViewController {
                 return
             }
         }, receiveValue: { champions in
-                self.originalChampionList = champions
+            self.originalChampionList = champions
         })
         
         totalNumberOfChampionsSubscriber = homescreenViewmodel.$totalNumberOfChampions.sink { [unowned self] total in
@@ -258,7 +276,7 @@ class HomeScreenViewController: UIViewController {
     
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChampionDetailViewController {
             if let champion = sender as? Champion {
@@ -274,5 +292,5 @@ class HomeScreenViewController: UIViewController {
             }
         }
     }
-
+    
 }
