@@ -29,6 +29,8 @@
 		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
 		E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */; };
 		E979DCD0292A776800E6166F /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979DCCF292A776800E6166F /* RoundedView.swift */; };
+		E979DCDF292AA3E100E6166F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E979DCDD292AA3E100E6166F /* InfoPlist.strings */; };
+		E979DCE2292AA3E100E6166F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E979DCE0292AA3E100E6166F /* Localizable.strings */; };
 		E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981EB412909C3A1002980DC /* UserDefaultKeys.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
@@ -86,6 +88,8 @@
 		E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Friz-Quadrata-Bold.otf"; sourceTree = "<group>"; };
 		E979DCCF292A776800E6166F /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		E979DCD2292A9AFD00E6166F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		E979DCDE292AA3E100E6166F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E979DCE1292AA3E100E6166F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E981EB412909C3A1002980DC /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 		E967B0E9292563A00029D56A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E979DCE3292AA4DF00E6166F /* Localization */,
 				E967B0EA292563AA0029D56A /* Font */,
 			);
 			path = Resources;
@@ -229,6 +234,15 @@
 				E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		E979DCE3292AA4DF00E6166F /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				E979DCE0292AA3E100E6166F /* Localizable.strings */,
+				E979DCDD292AA3E100E6166F /* InfoPlist.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		E981EB402909A2F0002980DC /* CoreData */ = {
@@ -476,8 +490,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E90E9508291B12030022C7F5 /* SkinViewController.xib in Resources */,
+				E979DCDF292AA3E100E6166F /* InfoPlist.strings in Resources */,
 				E990EA0628FC247500F63D70 /* LaunchScreen.storyboard in Resources */,
 				E990EA0328FC247500F63D70 /* Assets.xcassets in Resources */,
+				E979DCE2292AA3E100E6166F /* Localizable.strings in Resources */,
 				E99AFAAB2927D12100CEB15F /* FrizQuadrataRegular.ttf in Resources */,
 				E990EA0128FC247400F63D70 /* Main.storyboard in Resources */,
 				E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */,
@@ -547,6 +563,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E979DCDD292AA3E100E6166F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E979DCDE292AA3E100E6166F /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E979DCE0292AA3E100E6166F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E979DCE1292AA3E100E6166F /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		E990E9FF28FC247400F63D70 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

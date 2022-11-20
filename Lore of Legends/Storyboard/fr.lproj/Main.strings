@@ -1,9 +1,11 @@
-
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "4PE-FG-QjI"; */
 "4PE-FG-QjI.title" = "Item";
 
 /* Class = "UILabel"; text = "Language for lores"; ObjectID = "Bzi-mF-YZr"; */
-"Bzi-mF-YZr.text" = "Language for lores";
+"Bzi-mF-YZr.text" = "Langue d'affichage du lore";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "mkg-xO-BHi"; */
+"mkg-xO-BHi.title" = "Item";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "MOb-sx-FOv"; */
 "MOb-sx-FOv.text" = "Label";
@@ -14,11 +16,9 @@
 /* Class = "UILabel"; text = "0 / 0"; ObjectID = "TDK-ZU-7bU"; */
 "TDK-ZU-7bU.text" = "0 / 0";
 
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "ZaY-hq-sRf"; */
+"ZaY-hq-sRf.normalTitle" = "Sauvegarder";
+
 /* Class = "UINavigationItem"; title = "Lore of Legends"; ObjectID = "ZVU-3N-y0e"; */
 "ZVU-3N-y0e.title" = "Lore of Legends";
 
-/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "ZaY-hq-sRf"; */
-"ZaY-hq-sRf.normalTitle" = "Save";
-
-/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "mkg-xO-BHi"; */
-"mkg-xO-BHi.title" = "Item";
