@@ -29,6 +29,7 @@
 		E93B366D28FC4C00003BB0A3 /* ChampionFullJsonDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B365928FC4748003BB0A3 /* ChampionFullJsonDecodable.swift */; };
 		E9554FC828FD80BF00A5E071 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9554FCA28FD80BF00A5E071 /* Localizable.strings */; };
 		E967B0EC292563D00029D56A /* Friz-Quadrata-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */; };
+		E979DCD0292A776800E6166F /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979DCCF292A776800E6166F /* RoundedView.swift */; };
 		E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981EB412909C3A1002980DC /* UserDefaultKeys.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
@@ -86,6 +87,7 @@
 		E9554FC928FD80BF00A5E071 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9554FCB28FD80C500A5E071 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E967B0EB292563D00029D56A /* Friz-Quadrata-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Friz-Quadrata-Bold.otf"; sourceTree = "<group>"; };
+		E979DCCF292A776800E6166F /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		E981EB412909C3A1002980DC /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				E908683129167E1B00297FD7 /* ChampionIconCell */,
+				E979DCCF292A776800E6166F /* RoundedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				E9179F1929117BF900E178F8 /* MainDataStore.xcdatamodeld in Sources */,
 				E92B6F4D29129AD2001CC206 /* ChampionDetail.swift in Sources */,
 				E930E9E6291C55A30003B643 /* SettingsViewController.swift in Sources */,
+				E979DCD0292A776800E6166F /* RoundedView.swift in Sources */,
 				E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */,
 				E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */,
 				E9339F59290866BF001AB3C9 /* ChampionDetailViewController.swift in Sources */,
