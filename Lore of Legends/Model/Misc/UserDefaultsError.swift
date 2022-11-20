@@ -7,6 +7,14 @@
 
 import Foundation
 
+extension UserDefaultsError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .keyNotSet:
+            return NSLocalizedString("Couldn't retrieve default configuration", comment: "Failed to read a configuration key")
+        }
+    }
+}
 enum UserDefaultsError: Error {
     case keyNotSet
 }

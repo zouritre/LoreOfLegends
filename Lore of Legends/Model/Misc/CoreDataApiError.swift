@@ -11,7 +11,7 @@ extension CoreDataApiError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .castingFailed:
-            return NSLocalizedString("Couldn't retrieve champions from database", comment: "Failed casting fetched data")
+            return NSLocalizedString("Couldn't retrieve champions from database", comment: "Core Data fetch failed")
         }
     }
 }
