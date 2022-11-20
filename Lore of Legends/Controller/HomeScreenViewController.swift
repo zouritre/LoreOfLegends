@@ -205,7 +205,24 @@ class HomeScreenViewController: UIViewController {
     }
     
     @IBAction func leaguePatchUrl(_ sender: Any) {
-        let officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/en-us/news/tags/patch-notes/")
+        var officialPatchNotesUrl: URL?
+        
+        if #available(iOS 16, *) {
+            if Locale.current.language.languageCode == "fr" {
+                officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes/")
+            }
+            else {
+                officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/en-us/news/tags/patch-notes/")
+            }
+        }
+        else {
+            if Locale.current.languageCode == "fr" {
+                officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes/")
+            }
+            else {
+                officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/en-us/news/tags/patch-notes/")
+            }
+        }
         
         guard let officialPatchNotesUrl else { return }
         
