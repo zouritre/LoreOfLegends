@@ -199,6 +199,11 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     @IBAction func leaguePatchUrl(_ sender: Any) {
         let officialPatchNotesUrl = URL(string: "https://www.leagueoflegends.com/en-us/news/tags/patch-notes/")
         
