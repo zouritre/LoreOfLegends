@@ -15,12 +15,10 @@ class ChampionIconCell: UICollectionViewCell {
             guard let newValue, let icon = newValue.icon else { return }
             
             champIcon.image = UIImage(data: icon)
-            champName.text = newValue.name
         }
     }
     
     @IBOutlet weak var champIcon: UIImageView!
-    @IBOutlet weak var champName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

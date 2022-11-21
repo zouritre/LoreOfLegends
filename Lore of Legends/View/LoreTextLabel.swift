@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoreTextView: UILabel {
+class LoreTextLabel: UILabel {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -16,11 +16,11 @@ class LoreTextView: UILabel {
         minimumScaleFactor = 0.01
         numberOfLines = 0
         
-        if let customFont = UIFont(name: "FrizQua-ReguOS", size: 50) {
+        if let customFont = UIFont(name: "FrizQua-ReguOS", size: 40) {
             font = customFont
         }
         else {
-            font = .systemFont(ofSize: 50)
+            font = .systemFont(ofSize: 40)
         }
     }
 }
