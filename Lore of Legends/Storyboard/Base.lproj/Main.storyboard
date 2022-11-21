@@ -359,6 +359,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="500" height="500"/>
+                    <connections>
+                        <outlet property="shareButton" destination="rww-Gx-Gka" id="Kde-Pr-imx"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGa-yn-bxx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -57,6 +57,8 @@ class SkinPageViewController: UIPageViewController {
     var skins: [ChampionAsset]?
     var assetType: ChampionAssetType = .centered
     
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -70,7 +72,13 @@ class SkinPageViewController: UIPageViewController {
         else { return }
 
         let activityController = UIActivityViewController(activityItems: [currentSkinImage], applicationActivities: nil)
-        activityController.excludedActivityTypes = [.assignToContact, .print]
+        activityController.excludedActivityTypes = [.assignToContact]
+        if #available(iOS 16.0, *) {
+            activityController.popoverPresentationController?.sourceItem = shareButton
+        } else {
+            // Fallback on earlier versions
+        activityController.popoverPresentationController?.barButtonItem = shareButton
+        }
         
         present(activityController, animated: true)
     }
