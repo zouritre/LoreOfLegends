@@ -21,14 +21,31 @@ extension SettingsViewController: UIPickerViewDataSource {
 }
 
 extension SettingsViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let languages = vm.languages.value else { return "Vide" }
+    
+    func pickerView(
+        _ pickerView: UIPickerView,
+        rowHeightForComponent component: Int
+    ) -> CGFloat {
+        return super.view.layer.bounds.size.height * 0.1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        label.font = UIFont(name: "FrizQuadrataBold", size: 70)!
+        
+        guard let languages = vm.languages.value else { return label }
         
         if languages[row].identifier == "vn_VN" {
-            return NSLocalizedString("VIETNAMESE", comment: "Language for Vietnam country")
+            label.text = NSLocalizedString("VIETNAMESE", comment: "Language for Vietnam country")
+            
+            return label
         }
         
-        return Locale.current.localizedString(forLanguageCode: languages[row].identifier)?.uppercased()
+        let localizedIdentifier = Locale.current.localizedString(forLanguageCode: languages[row].identifier)?.uppercased()
+        
+        label.text = localizedIdentifier
+        
+        return label
     }
 }
 
@@ -36,16 +53,20 @@ class SettingsViewController: UIViewController {
     let vm = SettingsViewModel()
     var languagesSubscriber: AnyCancellable?
     
+    @IBOutlet weak var languageSelectionLabel: UILabel!
     @IBOutlet weak var languagePicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupSubscribers()
         
         Task {
             await vm.getSupportedLanguages()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        languageSelectionLabel.font = UIFont(name: "FrizQuadrataBold", size: 30)!
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
