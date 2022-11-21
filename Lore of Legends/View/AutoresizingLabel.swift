@@ -8,6 +8,7 @@
 import UIKit
 
 public class AutoresizingLabel: UILabel {
+    private var fontSize: CGFloat!
     
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -17,11 +18,18 @@ public class AutoresizingLabel: UILabel {
         numberOfLines = 1
         textAlignment = .center
         
-        if let customFont = UIFont(name: "FrizQuadrataBold", size: 50) {
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            fontSize = 50
+        }
+        else {
+            fontSize = 20
+        }
+        
+        if let customFont = UIFont(name: "FrizQuadrataBold", size: fontSize) {
             font = customFont
         }
         else {
-            font = .systemFont(ofSize: 50)
+            font = .systemFont(ofSize: fontSize)
         }
     }
 }

@@ -208,6 +208,8 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("hor: ", traitCollection.horizontalSizeClass.rawValue)
+        print("ver: ", traitCollection.verticalSizeClass.rawValue)
         //        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         // Set font for navigation bar title
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
