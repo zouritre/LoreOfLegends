@@ -31,6 +31,8 @@
 		E979DCD0292A776800E6166F /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979DCCF292A776800E6166F /* RoundedView.swift */; };
 		E979DCDF292AA3E100E6166F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E979DCDD292AA3E100E6166F /* InfoPlist.strings */; };
 		E979DCE2292AA3E100E6166F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E979DCE0292AA3E100E6166F /* Localizable.strings */; };
+		E98006B3292BAF2500469338 /* AutoresizingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98006B2292BAF2500469338 /* AutoresizingLabel.swift */; };
+		E98006B5292BD54200469338 /* LoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98006B4292BD54200469338 /* LoreTextView.swift */; };
 		E981EB422909C3A1002980DC /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981EB412909C3A1002980DC /* UserDefaultKeys.swift */; };
 		E990E9FA28FC247400F63D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9F928FC247400F63D70 /* AppDelegate.swift */; };
 		E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990E9FB28FC247400F63D70 /* SceneDelegate.swift */; };
@@ -90,6 +92,8 @@
 		E979DCD2292A9AFD00E6166F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		E979DCDE292AA3E100E6166F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E979DCE1292AA3E100E6166F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E98006B2292BAF2500469338 /* AutoresizingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoresizingLabel.swift; sourceTree = "<group>"; };
+		E98006B4292BD54200469338 /* LoreTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreTextView.swift; sourceTree = "<group>"; };
 		E981EB412909C3A1002980DC /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E990E9F628FC247300F63D70 /* Lore-of-Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lore-of-Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990E9F928FC247400F63D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -333,6 +337,8 @@
 			children = (
 				E908683129167E1B00297FD7 /* ChampionIconCell */,
 				E979DCCF292A776800E6166F /* RoundedView.swift */,
+				E98006B2292BAF2500469338 /* AutoresizingLabel.swift */,
+				E98006B4292BD54200469338 /* LoreTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,6 +541,7 @@
 				E93B366928FC4C00003BB0A3 /* RiotCdnApiError.swift in Sources */,
 				E90E9507291B12030022C7F5 /* SkinViewController.swift in Sources */,
 				E9DC37382902EA8C008384FC /* ChampionIconCell.swift in Sources */,
+				E98006B3292BAF2500469338 /* AutoresizingLabel.swift in Sources */,
 				E90FFD5C291DB65100ED225D /* HomeScreenViewModel.swift in Sources */,
 				E9160E35291D6845006CF845 /* SettingsError.swift in Sources */,
 				E990E9FC28FC247400F63D70 /* SceneDelegate.swift in Sources */,
@@ -549,6 +556,7 @@
 				E9FBEFEB29215D0200A2D0DB /* UserDefaultsError.swift in Sources */,
 				E936E3082929021700E83B7B /* AlertType.swift in Sources */,
 				E9B927B72922C64B001EF8C5 /* ChampionAssetType.swift in Sources */,
+				E98006B5292BD54200469338 /* LoreTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

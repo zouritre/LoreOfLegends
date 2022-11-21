@@ -58,7 +58,7 @@ class ChampionDetailViewController: UIViewController {
     @IBOutlet weak var championNameLabel: UILabel!
     @IBOutlet weak var skinsContainerView: UIView!
     @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var loreTextView: UITextView!
+    @IBOutlet weak var loreTextView: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

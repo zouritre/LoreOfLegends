@@ -58,15 +58,12 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupSubscribers()
         
         Task {
             await vm.getSupportedLanguages()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        languageSelectionLabel.font = UIFont(name: "FrizQuadrataBold", size: 30)!
     }
     
     @IBAction func saveButton(_ sender: UIButton) {

@@ -186,10 +186,6 @@ class HomeScreenViewController: UIViewController {
         // Set font for navigation bar title
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
         
-        // Set font for UILabel and UITextView globally
-        UILabel.appearance().font = UIFont(name: "FrizQuadrataBold", size: 17)!
-        UITextView.appearance().font = UIFont(name: "FrizQua-ReguOS", size: 14)!
-        
         setupCollectionView()
         
         setupSubscribers()

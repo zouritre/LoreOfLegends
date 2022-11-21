@@ -38,14 +38,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language for lores" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzi-mF-YZr">
-                                <rect key="frame" x="0.0" y="153" width="430" height="35"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language for lores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzi-mF-YZr" customClass="AutoresizingLabel" customModule="Lore_of_Legends" customModuleProvider="target">
+                                <rect key="frame" x="12" y="153" width="406" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK5-FQ-tgK">
-                                <rect key="frame" x="0.0" y="218" width="430" height="536.33333333333337"/>
+                                <rect key="frame" x="0.0" y="203" width="430" height="551.33333333333337"/>
                                 <connections>
                                     <outlet property="dataSource" destination="QhI-kb-aed" id="dVD-6q-SNS"/>
                                     <outlet property="delegate" destination="QhI-kb-aed" id="bKd-6b-GL7"/>
@@ -75,9 +75,9 @@
                         <viewLayoutGuide key="safeArea" id="vjG-wV-CqE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Bzi-mF-YZr" firstAttribute="leading" secondItem="vjG-wV-CqE" secondAttribute="leading" id="1bI-MN-QEw"/>
+                            <constraint firstItem="Bzi-mF-YZr" firstAttribute="leadingMargin" secondItem="vjG-wV-CqE" secondAttribute="leading" constant="20" id="1bI-MN-QEw"/>
                             <constraint firstItem="JK5-FQ-tgK" firstAttribute="bottom" secondItem="ZaY-hq-sRf" secondAttribute="top" constant="30" id="Jbr-uU-Isp"/>
-                            <constraint firstItem="vjG-wV-CqE" firstAttribute="trailing" secondItem="Bzi-mF-YZr" secondAttribute="trailing" id="JrA-k1-9IE"/>
+                            <constraint firstItem="vjG-wV-CqE" firstAttribute="trailing" secondItem="Bzi-mF-YZr" secondAttribute="trailingMargin" constant="20" id="JrA-k1-9IE"/>
                             <constraint firstItem="ZaY-hq-sRf" firstAttribute="leading" secondItem="vjG-wV-CqE" secondAttribute="leading" constant="50" id="PQR-MT-ksi"/>
                             <constraint firstItem="ZaY-hq-sRf" firstAttribute="bottom" secondItem="vjG-wV-CqE" secondAttribute="bottom" constant="-50" id="PyR-Pp-Y6x">
                                 <variation key="heightClass=compact-widthClass=compact" constant="5"/>
@@ -188,7 +188,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Xgs-3g-FuH">
-                                <rect key="frame" x="196.66666666666663" y="447.66666666666669" width="37" height="37"/>
+                                <rect key="frame" x="196.66666666666666" y="447.66666666666669" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="don-h3-4KC" userLabel="MainView">
@@ -217,10 +217,10 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-sh-gPj" userLabel="SkinName">
-                                        <rect key="frame" x="8" y="381" width="414" height="74.666666666666686"/>
+                                        <rect key="frame" x="8" y="381" width="414" height="96"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOb-sx-FOv">
-                                                <rect key="frame" x="186" y="26.666666666666686" width="42" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOb-sx-FOv" customClass="AutoresizingLabel" customModule="Lore_of_Legends" customModuleProvider="target">
+                                                <rect key="frame" x="20.666666666666657" y="0.0" width="372.66666666666674" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -228,28 +228,28 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="MOb-sx-FOv" firstAttribute="centerX" secondItem="COZ-sh-gPj" secondAttribute="centerX" id="TMk-Cd-eeO"/>
-                                            <constraint firstItem="MOb-sx-FOv" firstAttribute="centerY" secondItem="COZ-sh-gPj" secondAttribute="centerY" id="xmX-2Q-tfn"/>
+                                            <constraint firstItem="MOb-sx-FOv" firstAttribute="centerX" secondItem="COZ-sh-gPj" secondAttribute="centerX" id="2G9-dA-vAC"/>
+                                            <constraint firstItem="MOb-sx-FOv" firstAttribute="height" secondItem="COZ-sh-gPj" secondAttribute="height" id="TGY-Bt-vXb"/>
+                                            <constraint firstItem="MOb-sx-FOv" firstAttribute="width" secondItem="COZ-sh-gPj" secondAttribute="width" multiplier="0.9" id="duD-Ah-eUb"/>
+                                            <constraint firstItem="MOb-sx-FOv" firstAttribute="centerY" secondItem="COZ-sh-gPj" secondAttribute="centerY" id="i0I-Rd-lsZ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwb-jo-6rd" userLabel="Lore">
-                                        <rect key="frame" x="8" y="455.66666666666663" width="414" height="282.33333333333337"/>
+                                        <rect key="frame" x="8" y="477" width="414" height="261"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S59-oW-BlV">
-                                                <rect key="frame" x="8" y="8" width="398" height="266.33333333333331"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <color key="textColor" systemColor="labelColor"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1n-BL-NpF" customClass="LoreTextView" customModule="Lore_of_Legends" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="398" height="245"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="S59-oW-BlV" secondAttribute="bottom" id="4DI-df-eO1"/>
-                                            <constraint firstItem="S59-oW-BlV" firstAttribute="top" secondItem="Uwb-jo-6rd" secondAttribute="topMargin" id="Pra-gA-ycl"/>
-                                            <constraint firstItem="S59-oW-BlV" firstAttribute="leading" secondItem="Uwb-jo-6rd" secondAttribute="leadingMargin" id="as6-UZ-W0O"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="S59-oW-BlV" secondAttribute="trailing" id="hMs-Lp-KrY"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="j1n-BL-NpF" secondAttribute="bottom" id="9Yw-eG-SJl"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="j1n-BL-NpF" secondAttribute="trailing" id="Er6-05-2lJ"/>
+                                            <constraint firstItem="j1n-BL-NpF" firstAttribute="top" secondItem="Uwb-jo-6rd" secondAttribute="topMargin" id="f9F-m4-sI5"/>
+                                            <constraint firstItem="j1n-BL-NpF" firstAttribute="leading" secondItem="Uwb-jo-6rd" secondAttribute="leadingMargin" id="gaL-qO-B2m"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -275,8 +275,8 @@
                             <constraint firstItem="Xgs-3g-FuH" firstAttribute="centerX" secondItem="9KZ-C5-0wW" secondAttribute="centerX" id="F8Q-dg-1c0"/>
                             <constraint firstItem="2Pl-CW-Wxa" firstAttribute="trailing" secondItem="don-h3-4KC" secondAttribute="trailing" id="Q6z-tn-ejr"/>
                             <constraint firstItem="don-h3-4KC" firstAttribute="leading" secondItem="2Pl-CW-Wxa" secondAttribute="leading" id="UhR-3U-Vem"/>
-                            <constraint firstItem="COZ-sh-gPj" firstAttribute="height" secondItem="2Pl-CW-Wxa" secondAttribute="height" multiplier="0.1" id="XDi-gd-PqD"/>
                             <constraint firstItem="2Pl-CW-Wxa" firstAttribute="bottom" secondItem="don-h3-4KC" secondAttribute="bottom" id="XtK-nj-wxQ"/>
+                            <constraint firstItem="Uwb-jo-6rd" firstAttribute="height" secondItem="2Pl-CW-Wxa" secondAttribute="height" multiplier="0.35" id="ZPP-tR-3UX"/>
                             <constraint firstItem="maY-5H-xRD" firstAttribute="height" secondItem="2Pl-CW-Wxa" secondAttribute="height" multiplier="0.5" id="i45-xy-tVb"/>
                             <constraint firstItem="don-h3-4KC" firstAttribute="top" secondItem="2Pl-CW-Wxa" secondAttribute="top" id="lJv-Gy-p6a"/>
                         </constraints>
@@ -284,7 +284,7 @@
                     <navigationItem key="navigationItem" id="he3-Vr-ojD"/>
                     <connections>
                         <outlet property="championNameLabel" destination="MOb-sx-FOv" id="Zcr-zB-kXd"/>
-                        <outlet property="loreTextView" destination="S59-oW-BlV" id="xf0-Oa-eEq"/>
+                        <outlet property="loreTextView" destination="j1n-BL-NpF" id="dKo-Go-gQa"/>
                         <outlet property="mainView" destination="don-h3-4KC" id="96s-Bj-2Ow"/>
                         <outlet property="skinsContainerView" destination="oDe-Dj-NUd" id="Zha-up-iia"/>
                         <outlet property="skinsLoadingIndicator" destination="Xgs-3g-FuH" id="fBU-If-bDi"/>
@@ -370,9 +370,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="123"/>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
