@@ -15,6 +15,7 @@ public class AutoresizingLabel: UILabel {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.1
         numberOfLines = 1
+        textAlignment = .center
         
         if let customFont = UIFont(name: "FrizQuadrataBold", size: 50) {
             font = customFont

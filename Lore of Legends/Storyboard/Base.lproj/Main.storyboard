@@ -39,20 +39,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language for lores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzi-mF-YZr" customClass="AutoresizingLabel" customModule="Lore_of_Legends" customModuleProvider="target">
-                                <rect key="frame" x="12" y="153" width="406" height="20"/>
+                                <rect key="frame" x="12" y="133" width="406" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK5-FQ-tgK">
-                                <rect key="frame" x="0.0" y="203" width="430" height="551.33333333333337"/>
+                                <rect key="frame" x="0.0" y="183" width="430" height="531.33333333333337"/>
                                 <connections>
                                     <outlet property="dataSource" destination="QhI-kb-aed" id="dVD-6q-SNS"/>
                                     <outlet property="delegate" destination="QhI-kb-aed" id="bKd-6b-GL7"/>
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-hq-sRf">
-                                <rect key="frame" x="50" y="724.33333333333337" width="330" height="74.666666666666629"/>
+                                <rect key="frame" x="50" y="764.33333333333337" width="330" height="74.666666666666629"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -76,10 +76,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Bzi-mF-YZr" firstAttribute="leadingMargin" secondItem="vjG-wV-CqE" secondAttribute="leading" constant="20" id="1bI-MN-QEw"/>
-                            <constraint firstItem="JK5-FQ-tgK" firstAttribute="bottom" secondItem="ZaY-hq-sRf" secondAttribute="top" constant="30" id="Jbr-uU-Isp"/>
                             <constraint firstItem="vjG-wV-CqE" firstAttribute="trailing" secondItem="Bzi-mF-YZr" secondAttribute="trailingMargin" constant="20" id="JrA-k1-9IE"/>
+                            <constraint firstItem="ZaY-hq-sRf" firstAttribute="top" secondItem="JK5-FQ-tgK" secondAttribute="bottom" constant="50" id="Ofs-qZ-WEO"/>
                             <constraint firstItem="ZaY-hq-sRf" firstAttribute="leading" secondItem="vjG-wV-CqE" secondAttribute="leading" constant="50" id="PQR-MT-ksi"/>
-                            <constraint firstItem="ZaY-hq-sRf" firstAttribute="bottom" secondItem="vjG-wV-CqE" secondAttribute="bottom" constant="-50" id="PyR-Pp-Y6x">
+                            <constraint firstItem="vjG-wV-CqE" firstAttribute="bottom" secondItem="ZaY-hq-sRf" secondAttribute="bottom" constant="10" id="PyR-Pp-Y6x">
                                 <variation key="heightClass=compact-widthClass=compact" constant="5"/>
                                 <variation key="heightClass=compact-widthClass=regular" constant="10"/>
                             </constraint>
@@ -87,7 +87,7 @@
                             <constraint firstItem="JK5-FQ-tgK" firstAttribute="leading" secondItem="vjG-wV-CqE" secondAttribute="leading" id="cRj-Jc-1wr"/>
                             <constraint firstItem="ZaY-hq-sRf" firstAttribute="height" secondItem="vjG-wV-CqE" secondAttribute="height" multiplier="0.1" id="m6u-63-2JL"/>
                             <constraint firstItem="vjG-wV-CqE" firstAttribute="trailing" secondItem="ZaY-hq-sRf" secondAttribute="trailing" constant="50" id="pez-qC-l8C"/>
-                            <constraint firstItem="Bzi-mF-YZr" firstAttribute="top" secondItem="vjG-wV-CqE" secondAttribute="top" constant="50" id="rfi-p0-ufm"/>
+                            <constraint firstItem="Bzi-mF-YZr" firstAttribute="top" secondItem="vjG-wV-CqE" secondAttribute="top" constant="30" id="rfi-p0-ufm"/>
                             <constraint firstItem="JK5-FQ-tgK" firstAttribute="trailing" secondItem="vjG-wV-CqE" secondAttribute="trailing" id="tjT-RQ-kCz"/>
                         </constraints>
                     </view>

@@ -30,8 +30,7 @@ extension SettingsViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let label = (view as? UILabel) ?? UILabel()
-        label.font = UIFont(name: "FrizQuadrataBold", size: 70)!
+        let label = (view as? AutoresizingLabel) ?? AutoresizingLabel()
         
         guard let languages = vm.languages.value else { return label }
         
