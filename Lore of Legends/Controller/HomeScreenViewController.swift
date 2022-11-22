@@ -264,7 +264,7 @@ class HomeScreenViewController: UIViewController {
         var fontSize: CGFloat!
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            fontSize = 50
+            fontSize = 40
         }
         else { fontSize = 25 }
         
