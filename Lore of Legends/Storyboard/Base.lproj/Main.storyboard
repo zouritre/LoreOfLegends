@@ -64,8 +64,11 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 </variation>
                                 <connections>
                                     <action selector="saveButton:" destination="QhI-kb-aed" eventType="touchUpInside" id="Gqr-xY-mXh"/>
