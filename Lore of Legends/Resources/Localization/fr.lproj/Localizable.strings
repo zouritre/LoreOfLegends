@@ -1,0 +1,42 @@
+/* RiotCdnApi class delegate is nil */
+"Couldn't communicate with API." = "Impossible de communiquer avec l'API";
+
+/* Bad URL for request */
+"Couldn't reach API" = "Impossible de joindre l'API";
+
+/* Core Data fetch failed */
+"Couldn't retrieve champions from database" = "Impossible de récupérer les champions depuis la base de données";
+
+/* Failed to read a configuration key */
+"Couldn't retrieve default configuration" = "Impossible de récupérer la configuration par défaut";
+
+/* Server response could not be decoded */
+"Data decoding failed." = "Le décodage des données à échoué";
+
+/* Champions download is running */
+"Downloading champions" = "Téléchargement des champions";
+
+/* An error ocurred */
+"Error" = "Erreur";
+
+/* Provide information about an event */
+"Information" = "Information";
+
+/* The URL generated is not valid */
+"Invalid URL for API access" = "L'URL pour accéder à l'API n'est pas valide";
+
+/* A new patch is available */
+"Patch (newVersion) is available! Restart the app to update." = "Le patch (newVersion) est disponible! Redémarrez l'app pour mettre à jour.";
+
+/* The League patch version for assets saved on this device */
+"Patch version" = "Version de patch";
+
+/* User selected a new language for lores display */
+"Please restart the app to apply the new language" = "Veuillez redémarrer l'application pour appliquer les changements";
+
+/* An update is available */
+"Update" = "Mise à jour";
+
+/* Language for Vietnam country */
+"VIETNAMESE" = "VIETNAMIEN";
+

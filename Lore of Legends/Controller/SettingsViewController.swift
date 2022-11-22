@@ -21,55 +21,72 @@ extension SettingsViewController: UIPickerViewDataSource {
 }
 
 extension SettingsViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let languages = vm.languages.value else {
-            print("languages is nil")
-            return "" }
+    
+    func pickerView(
+        _ pickerView: UIPickerView,
+        rowHeightForComponent component: Int
+    ) -> CGFloat {
+        return super.view.layer.bounds.size.height * 0.1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? AutoresizingLabel) ?? AutoresizingLabel()
         
-        return languages[row].identifier
+        guard let languages = vm.languages.value else { return label }
+        
+        if languages[row].identifier == "vn_VN" {
+            label.text = NSLocalizedString("VIETNAMESE", comment: "Language for Vietnam country")
+            
+            return label
+        }
+        
+        let localizedIdentifier = Locale.current.localizedString(forLanguageCode: languages[row].identifier)?.uppercased()
+        
+        label.text = localizedIdentifier
+        
+        return label
     }
 }
 
 class SettingsViewController: UIViewController {
     let vm = SettingsViewModel()
     var languagesSubscriber: AnyCancellable?
-    var languagesErrorSubscriber: AnyCancellable?
     
+    @IBOutlet weak var languageSelectionLabel: UILabel!
     @IBOutlet weak var languagePicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         
-        vm.getLanguages()
+        setupSubscribers()
+        
+        Task {
+            await vm.getSupportedLanguages()
+        }
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-        UserDefaults.standard.setValue(languagePicker.selectedRow(inComponent: 0), forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
+        guard let languages = vm.languages.value else { return }
+        
+        let selectedLanguageIndex = languagePicker.selectedRow(inComponent: 0)
+        // Save the new language selected by the user
+        UserDefaults.standard.setValue(languages[selectedLanguageIndex].identifier, forKey: UserDefaultKeys.userSelectedLanguage.rawValue)
+        // Forces redownload of champions data
         UserDefaults.standard.setValue(false, forKey: UserDefaultKeys.isAssetSavedLocally.rawValue)
         
-        alert(message: NSLocalizedString("Please restart the app to apply the new language", comment: "User selected a new language for lores display"))
+        alert(type: .Information, message: NSLocalizedString("Please restart the app to apply the new language", comment: "User selected a new language for lores display"))
     }
     
     private func setupSubscribers() {
-        languagesSubscriber = vm.languages.sink { [unowned self] _ in
-            print("received languages")
-            languagePicker.reloadAllComponents()
-        }
-        
-        languagesErrorSubscriber = vm.$requestError.sink { [unowned self] error in
-            print("received error")
-            guard let error else {
-                alert(message: NSLocalizedString("Unknown error", comment: "Error occured but can't be retrieved"))
-                
-                return
+        languagesSubscriber = vm.languages.sink { [unowned self] languages in
+            if languages != nil {
+                DispatchQueue.main.async { [unowned self] in
+                    languagePicker.reloadAllComponents()
+                }
             }
-            
-            alert(message: error.localizedDescription)
         }
     }
+    
     /*
     // MARK: - Navigation
 

@@ -5,46 +5,79 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="champion-icon" id="gTV-IL-0wX" customClass="ChampionIconCell" customModule="Lore_of_Legends" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="148" height="139"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="148" height="139"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-KW-CAN">
-                        <rect key="frame" x="0.0" y="47.000000000000007" width="148" height="73.666666666666686"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bq0-Ql-kAj">
-                        <rect key="frame" x="0.0" y="120.66666666666667" width="148" height="18.333333333333329"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iO6-cg-RJA">
+                        <rect key="frame" x="16" y="47" width="268" height="253"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="39r-m7-huM">
+                                <rect key="frame" x="0.0" y="0.0" width="268" height="253"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80H-5j-FEo" customClass="RoundedView" customModule="Lore_of_Legends" customModuleProvider="target">
+                                        <rect key="frame" x="40.333333333333329" y="0.0" width="187.33333333333337" height="187.66666666666666"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-KW-CAN">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.33333333333334" height="187.66666666666666"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="jgF-KW-CAN" firstAttribute="top" secondItem="80H-5j-FEo" secondAttribute="top" id="9du-2H-gsl"/>
+                                            <constraint firstAttribute="width" secondItem="80H-5j-FEo" secondAttribute="height" multiplier="1:1" id="OgK-Ys-FjW"/>
+                                            <constraint firstItem="jgF-KW-CAN" firstAttribute="leading" secondItem="80H-5j-FEo" secondAttribute="leading" id="RqY-Nn-1vu"/>
+                                            <constraint firstAttribute="bottom" secondItem="jgF-KW-CAN" secondAttribute="bottom" id="dce-NN-Ovt"/>
+                                            <constraint firstAttribute="trailing" secondItem="jgF-KW-CAN" secondAttribute="trailing" id="zpD-Vw-ygj"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="182-xi-sjn" customClass="AutoresizingLabel" customModule="Lore_of_Legends" customModuleProvider="target">
+                                        <rect key="frame" x="113.33333333333333" y="232.66666666666669" width="41.333333333333329" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="80H-5j-FEo" firstAttribute="width" secondItem="iO6-cg-RJA" secondAttribute="width" multiplier="0.7" id="0ln-Sw-k7o"/>
+                            <constraint firstAttribute="trailing" secondItem="39r-m7-huM" secondAttribute="trailing" id="3dj-id-E2j"/>
+                            <constraint firstItem="39r-m7-huM" firstAttribute="leading" secondItem="iO6-cg-RJA" secondAttribute="leading" id="E3w-dz-YqP"/>
+                            <constraint firstItem="39r-m7-huM" firstAttribute="top" secondItem="iO6-cg-RJA" secondAttribute="top" id="MZI-tC-pBJ"/>
+                            <constraint firstAttribute="bottom" secondItem="39r-m7-huM" secondAttribute="bottom" id="Uja-hB-5y9"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="bq0-Ql-kAj" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="DZP-Y2-RfP"/>
-                <constraint firstItem="jgF-KW-CAN" firstAttribute="height" secondItem="ZTg-uK-7eu" secondAttribute="height" multiplier="0.8" id="Hev-CR-8eF"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="jgF-KW-CAN" secondAttribute="top" id="JJb-gU-aJ4"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="bq0-Ql-kAj" secondAttribute="bottom" id="Ulr-g8-39G"/>
-                <constraint firstItem="bq0-Ql-kAj" firstAttribute="top" secondItem="jgF-KW-CAN" secondAttribute="bottom" id="W1R-67-qOJ"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="bq0-Ql-kAj" secondAttribute="trailing" id="XX5-hx-0No"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="jgF-KW-CAN" secondAttribute="trailing" id="bvv-Wp-0rS"/>
-                <constraint firstItem="jgF-KW-CAN" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="hoR-o8-6CQ"/>
+                <constraint firstItem="iO6-cg-RJA" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottomMargin" id="5YC-kD-ieE"/>
+                <constraint firstItem="iO6-cg-RJA" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailingMargin" id="755-iv-9Yu"/>
+                <constraint firstItem="iO6-cg-RJA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="TBu-hz-b92"/>
+                <constraint firstItem="iO6-cg-RJA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="X7V-DB-zex"/>
             </constraints>
-            <size key="customSize" width="277" height="239"/>
+            <size key="customSize" width="558" height="458"/>
             <connections>
                 <outlet property="champIcon" destination="jgF-KW-CAN" id="ufF-CW-xwF"/>
-                <outlet property="champName" destination="bq0-Ql-kAj" id="uQ3-94-Tto"/>
+                <outlet property="champName" destination="182-xi-sjn" id="zFs-Qr-deD"/>
             </connections>
-            <point key="canvasLocation" x="275.38461538461536" y="-0.35545023696682465"/>
+            <point key="canvasLocation" x="306.92307692307691" y="-25.947867298578199"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

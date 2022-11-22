@@ -1,0 +1,24 @@
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "4PE-FG-QjI"; */
+"4PE-FG-QjI.title" = "Item";
+
+/* Class = "UILabel"; text = "Language for lores"; ObjectID = "Bzi-mF-YZr"; */
+"Bzi-mF-YZr.text" = "Langue d'affichage du lore";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "mkg-xO-BHi"; */
+"mkg-xO-BHi.title" = "Item";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "MOb-sx-FOv"; */
+"MOb-sx-FOv.text" = "Label";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "S59-oW-BlV"; */
+"S59-oW-BlV.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "0 / 0"; ObjectID = "TDK-ZU-7bU"; */
+"TDK-ZU-7bU.text" = "0 / 0";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "ZaY-hq-sRf"; */
+"ZaY-hq-sRf.normalTitle" = "Sauvegarder";
+
+/* Class = "UINavigationItem"; title = "Lore of Legends"; ObjectID = "ZVU-3N-y0e"; */
+"ZVU-3N-y0e.title" = "Lore of Legends";
+

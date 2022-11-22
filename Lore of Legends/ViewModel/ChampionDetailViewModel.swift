@@ -11,18 +11,30 @@ import Combine
 class ChampionDetailViewModel {
     @Published var champion: Champion?
     
-    var model = ChampionDetail()
+    var viewmodel = ChampionDetail()
+    var championSubscriber: AnyCancellable?
     
-    init() {
-        self.championDataSub = self.model.championDataPublisher.sink(receiveValue: { champion in
-            print("Champ arrived: ", champion)
-            self.champion = champion
-        })
+    init(api: RiotCdnApiDelegate? = nil) {
+        if let api {
+            self.viewmodel = ChampionDetail(customApi: api)
+        }
+        
+        viewmodel.championPublisher.assign(to: &$champion)
     }
     
-    var championDataSub: AnyCancellable?
+    func setLore(for champion: Champion) async {
+        await viewmodel.setLore(for: champion)
+    }
     
-    func setSkinsForChampion(champion: Champion) {
-        model.delegate.setSkinImages(caller: model, champion: champion)
+    func setTitle(for champion: Champion) async {
+        await viewmodel.setTitle(for: champion)
+    }
+    
+    func setSkins(for champion: Champion) async {
+        await viewmodel.setSkins(for: champion)
+    }
+    
+    func setInfo(for champion: Champion) async {
+        await viewmodel.setInfo(for: champion)
     }
 }

@@ -9,8 +9,16 @@ import Foundation
 import Combine
 
 class HomeScreenViewModel {
-    var championsIcon: [Data]?
-    private var championsIconSubscriber: AnyCancellable?
+    @Published var champions: [Champion]?
+    @Published var error: Error?
+    @Published var totalNumberOfChampions: Int?
+    @Published var iconsDownloaded: Int?
+    @Published var newUpdate: String?
+    @Published var patchVersion: String?
+    
+    private var championsSubscriber: AnyCancellable?
+    private var totalNumberOfChampionsSubscriber: AnyCancellable?
+    private var iconsDownloadedSubscriber: AnyCancellable?
     var homescreen = HomeScreen()
     
     init(riotCdnapi: RiotCdnApiDelegate? = nil) {
@@ -18,11 +26,25 @@ class HomeScreenViewModel {
             homescreen = HomeScreen(riotCdnapi: riotCdnapi)
         }
         
-        championsIconSubscriber = homescreen.championsIconPublisher.sink { [unowned self] icons in
-         championsIcon = icons
-        }
+        championsSubscriber = homescreen.championsPublisher.sink(receiveCompletion: { [unowned self] completion in
+            switch completion {
+            case .finished: return
+            case .failure(let error): self.error = error
+            }
+        }, receiveValue: { [unowned self] champions in
+            self.champions = champions.sorted(by: { previousChampion, nextChampion in
+                previousChampion.name < nextChampion.name
+            })
+        })
+        
+        // Assign publishers values to published properties
+        homescreen.totalNumberOfChampionsPublisher.assign(to: &$totalNumberOfChampions)
+        homescreen.iconsDownloadedPublisher.assign(to: &$iconsDownloaded)
+        homescreen.newUpdatePublisher.assign(to: &$newUpdate)
+        homescreen.patchVersionPublisher.assign(to: &$patchVersion)
     }
-    func getChampionsIcon() {
-        homescreen.getChampionsIcon()
+    
+    func getChampions() async {
+        await homescreen.getChampions()
     }
 }

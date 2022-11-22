@@ -12,15 +12,15 @@ class ChampionIconCell: UICollectionViewCell {
     /// Champion object to wich this cell is associated
     var champion: Champion? {
         willSet {
-            guard let newValue else { return }
+            guard let newValue, let icon = newValue.icon else { return }
             
-            champIcon.image = UIImage(data: newValue.icon)
+            champIcon.image = UIImage(data: icon)
             champName.text = newValue.name
         }
     }
     
+    @IBOutlet weak var champName: AutoresizingLabel!
     @IBOutlet weak var champIcon: UIImageView!
-    @IBOutlet weak var champName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

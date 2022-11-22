@@ -18,40 +18,13 @@ final class SettingsTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testShouldReturnAllSupportedLanguages() async {
+    func testShouldReturnAllLanguagesSupportedByRiotCdn() async {
         let mockApi = RiotCdnApiMock()
-        let adapter = SettingsAdapter(api: mockApi)
-        let viewmodel = SettingsViewModel(adapter: adapter)
-        let expectation = expectation(description: "Wait for async task to finish")
-        let sub = viewmodel.settings.languagesPublisher.sink(receiveCompletion: { _ in }, receiveValue: { _ in
-            expectation.fulfill()
-        })
+        let viewmodel = SettingsViewModel(riotCdnApi: mockApi)
         
-        viewmodel.getLanguages()
+        await viewmodel.getSupportedLanguages()
         
-        await waitForExpectations(timeout: 1)
-        
-        XCTAssertNotNil(viewmodel.languages.value)
-        
-        sub.cancel()
-    }
-    
-    func testShouldReceiveErrorWhenAsyncTaskFails() async {
-        let mockApi = RiotCdnApiMock(throwing: true)
-        let adapter = SettingsAdapter(api: mockApi)
-        let viewmodel = SettingsViewModel(adapter: adapter)
-        let expectation = expectation(description: "Wait for async task to finish")
-        let sub = viewmodel.settings.languagesPublisher.sink(receiveCompletion: { _ in
-            expectation.fulfill()
-        }, receiveValue: { _ in })
-        
-        viewmodel.getLanguages()
-        
-        await waitForExpectations(timeout: 0.5)
-        
-        XCTAssertNotNil(viewmodel.requestError)
-        
-        sub.cancel()
+        XCTAssertNotNil(viewmodel.languages)
     }
 
 }

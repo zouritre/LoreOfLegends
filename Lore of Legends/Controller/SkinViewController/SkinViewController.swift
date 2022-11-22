@@ -7,28 +7,43 @@
 
 import UIKit
 
-class SkinViewController: UIViewController {
-    var skinImageData: Data?
+class SkinViewController: UIViewController, UIScrollViewDelegate {
+    var centeredSkinData: Data?
+    var splashSkinData: Data?
     var skinIndex: Int?
     var skinName: String?
+    var assetToDisplay: ChampionAssetType?
     
+    @IBOutlet weak var skinScrollView: UIScrollView!
     @IBOutlet weak var skinImageView: UIImageView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        skinScrollView.delegate = self
+        skinScrollView.minimumZoomScale = 1.0
+        skinScrollView.maximumZoomScale = 6.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let skinImageData else {
-            print("data is empty")
-            return
-        }
+        guard let assetToDisplay else { return }
         
-        skinImageView.image = UIImage(data: skinImageData)
+        switch assetToDisplay {
+        case .centered:
+            if let centeredSkinData { skinImageView.image = UIImage(data: centeredSkinData) }
+        case .splash:
+            if let splashSkinData { skinImageView.image = UIImage(data: splashSkinData) }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Reset zoom
+        skinScrollView.setZoomScale(1.0, animated: true)
     }
 
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return skinImageView
+    }
 
     /*
     // MARK: - Navigation

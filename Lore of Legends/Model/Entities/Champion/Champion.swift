@@ -9,22 +9,34 @@ import Foundation
 
 /// Store information about a given champion in League
 struct Champion: Codable {
+    // Champion internal name
+    var id: String
     /// Champion name
     var name: String
     /// Champion honorific name
-    var title: String
-    /// The skins images name for this champion according to Riot CDN
-    var imageName: String
+    var title: String?
     /// Champion icon as a data object
-    var icon: Data = Data()
+    var icon: Data?
     /// Array repsenting every skins of this champion
-    var skins: [ChampionAsset]
+    var skins: [ChampionAsset]?
     /// Lore of this champion
-    var lore: String
+    var lore: String?
     
     /// Set the given data object to the icon property of this class
     /// - Parameter data: Data object representing this champion icon
     mutating func setIcon(with data: Data) {
         self.icon = data
+    }
+    
+    mutating func setLore(with lore: String) {
+        self.lore = lore
+    }
+    
+    mutating func setTitle(with title: String) {
+        self.title = title
+    }
+    
+    mutating func setSkins(with assets: [ChampionAsset]) {
+        self.skins = assets
     }
 }
