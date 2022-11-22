@@ -19,7 +19,7 @@ public class AutoresizingLabel: UILabel {
         textAlignment = .center
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            fontSize = 50
+            fontSize = 40
         }
         else {
             fontSize = 20

@@ -77,7 +77,12 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(width: view.bounds.width*0.3, height: view.bounds.width*0.3)
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            return CGSize(width: view.bounds.width*0.15, height: view.bounds.width*0.15)
+        }
+        else {
+            return CGSize(width: view.bounds.width*0.3, height: view.bounds.width*0.3)
+        }
     }
     
     func collectionView(
@@ -208,11 +213,15 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hor: ", traitCollection.horizontalSizeClass.rawValue)
-        print("ver: ", traitCollection.verticalSizeClass.rawValue)
-        //        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         // Set font for navigation bar title
-        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: 25)!]
+        var fontSize: CGFloat!
+        
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            fontSize = 50
+        }
+        else { fontSize = 25 }
+        
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: fontSize)!]
         
         setupCollectionView()
         

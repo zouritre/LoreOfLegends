@@ -15,9 +15,11 @@ class ChampionIconCell: UICollectionViewCell {
             guard let newValue, let icon = newValue.icon else { return }
             
             champIcon.image = UIImage(data: icon)
+            champName.text = newValue.name
         }
     }
     
+    @IBOutlet weak var champName: AutoresizingLabel!
     @IBOutlet weak var champIcon: UIImageView!
     
     override func awakeFromNib() {
