@@ -213,18 +213,9 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set font for navigation bar title
-        var fontSize: CGFloat!
         
-        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            fontSize = 50
-        }
-        else { fontSize = 25 }
-        
-        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: fontSize)!]
-        
+        setupNavigationTitle()
         setupCollectionView()
-        
         setupSubscribers()
         
         Task {
@@ -266,6 +257,18 @@ class HomeScreenViewController: UIViewController {
     
     @IBAction func settingsButon(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "showSettings", sender: nil)
+    }
+    
+    private func setupNavigationTitle() {
+        // Set font for navigation bar title
+        var fontSize: CGFloat!
+        
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            fontSize = 50
+        }
+        else { fontSize = 25 }
+        
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: fontSize)!]
     }
     
     /// Register a Nib to the collection view
