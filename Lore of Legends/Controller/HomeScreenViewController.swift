@@ -65,7 +65,6 @@ extension HomeScreenViewController: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: didSelectItemAt) as? ChampionIconCell
         
         guard let cell, let champion = cell.champion else { return }
-        
         // Go to the champion detail screen
         performSegue(withIdentifier: "goToDetail", sender: champion)
     }
@@ -78,10 +77,10 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            return CGSize(width: view.bounds.width*0.15, height: view.bounds.width*0.15)
+            return CGSize(width: view.bounds.width*0.15, height: view.bounds.width*0.2)
         }
         else {
-            return CGSize(width: view.bounds.width*0.3, height: view.bounds.width*0.3)
+            return CGSize(width: view.bounds.width*0.3, height: view.bounds.width*0.4)
         }
     }
     
@@ -90,7 +89,7 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        10
+        0
     }
     
     func collectionView(
@@ -264,9 +263,9 @@ class HomeScreenViewController: UIViewController {
         var fontSize: CGFloat!
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            fontSize = 40
+            fontSize = 25
         }
-        else { fontSize = 25 }
+        else { fontSize = 20 }
         
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont(name: "FrizQuadrataBold", size: fontSize)!]
     }
