@@ -7,8 +7,9 @@
 
 import UIKit
 
-public class AutoresizingLabel: UILabel {
-    private var fontSize: CGFloat!
+class AutoresizingLabel: UILabel {
+    @IBInspectable var iPadFontSize: CGFloat = 40
+    @IBInspectable var defaultFontSize: CGFloat = 20
     
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -19,17 +20,14 @@ public class AutoresizingLabel: UILabel {
         textAlignment = .center
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            fontSize = 30
-        }
-        else {
-            fontSize = 20
+            defaultFontSize = iPadFontSize
         }
         
-        if let customFont = UIFont(name: "FrizQuadrataBold", size: fontSize) {
+        if let customFont = UIFont(name: "FrizQuadrataBold", size: defaultFontSize) {
             font = customFont
         }
         else {
-            font = .systemFont(ofSize: fontSize)
+            font = .systemFont(ofSize: defaultFontSize)
         }
     }
 }
