@@ -17,10 +17,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VXw-BC-myE">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EIe-sm-qVE">
                         <rect key="frame" x="0.0" y="849" width="430" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Bew-VB-O1r"/>
@@ -156,7 +158,7 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="4PE-FG-QjI">
+                        <barButtonItem title="Item" style="done" id="4PE-FG-QjI">
                             <connections>
                                 <action selector="leaguePatchUrl:" destination="BYZ-38-t0r" id="k5k-sT-vN4"/>
                             </connections>
