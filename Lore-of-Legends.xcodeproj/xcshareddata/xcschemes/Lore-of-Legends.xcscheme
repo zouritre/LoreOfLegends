@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Lore-of-Legends.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E9432E682931788600A00400"
+               BuildableName = "Lore-of-LegendsUITests.xctest"
+               BlueprintName = "Lore-of-LegendsUITests"
+               ReferencedContainer = "container:Lore-of-Legends.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -36,6 +50,16 @@
                BlueprintIdentifier = "E93B364628FC3590003BB0A3"
                BuildableName = "Lore-of-LegendsTests.xctest"
                BlueprintName = "Lore-of-LegendsTests"
+               ReferencedContainer = "container:Lore-of-Legends.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E9432E682931788600A00400"
+               BuildableName = "Lore-of-LegendsUITests.xctest"
+               BlueprintName = "Lore-of-LegendsUITests"
                ReferencedContainer = "container:Lore-of-Legends.xcodeproj">
             </BuildableReference>
          </TestableReference>

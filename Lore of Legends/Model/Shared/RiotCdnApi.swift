@@ -216,23 +216,23 @@ protocol RiotCdnApiDelegate: AnyObject {
 class RiotCdnApi {
     
     static let shared = RiotCdnApi()
-    
     var championFullJsonDecodable: ChampionFullJsonDecodable?
     
     /// Retrieve championFull.json file from Riot CDN and decodes it
     /// - Returns: Decoable of championFull.json
     private func getChampionsFullDataDecodable() async throws -> ChampionFullJsonDecodable {
+        // Locally store the decodable for reuse
+        if let championFullJsonDecodable {
+            return championFullJsonDecodable
+        }
+        
         let patchVersion = try await getLastestPatchVersion()
         let locale = getLocalizationForChampionsData()
         let jsonUrl = try getChampionsFullJsonUrl(for: patchVersion, and: locale)
         let data = try await getData(at: jsonUrl)
         let decodable = try decodeChampionFullJson(from: data)
-        
-        // Locally store the decodable for reuse
-        if championFullJsonDecodable == nil {
-            championFullJsonDecodable = decodable
-        }
-        
+        championFullJsonDecodable = decodable
+
         return decodable
     }
     
