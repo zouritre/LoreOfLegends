@@ -64,6 +64,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-hq-sRf">
                                 <rect key="frame" x="50" y="764.33333333333337" width="330" height="74.666666666666629"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SaveSettingsButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Save">
@@ -158,7 +159,7 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" style="done" id="4PE-FG-QjI">
+                        <barButtonItem title="Item" style="plain" id="4PE-FG-QjI">
                             <connections>
                                 <action selector="leaguePatchUrl:" destination="BYZ-38-t0r" id="k5k-sT-vN4"/>
                             </connections>
