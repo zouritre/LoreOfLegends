@@ -99,7 +99,12 @@ final class Lore_of_LegendsUITests: XCTestCase {
         searchField.tap()
         searchField.typeText("Belveth")
         
-        app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element.tap()
+        let belVethCell = app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element
+        belVethCell.tap()
+        
+        // Wait for champion detail page to load
+        let centeredSkinsContainer = app.scrollViews.element(boundBy: 0).children(matching: .other).element
+        XCTAssertTrue(centeredSkinsContainer.waitForExistence(timeout: 10))
         
         // Snapshot !
         snapshot("04BelVeth")
@@ -115,6 +120,10 @@ final class Lore_of_LegendsUITests: XCTestCase {
         let ksanteCell = app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element
         ksanteCell.tap()
         
+        // Wait for champion detail page to load
+        let centeredSkinsContainer = app.scrollViews.element(boundBy: 0).children(matching: .other).element
+        XCTAssertTrue(centeredSkinsContainer.waitForExistence(timeout: 10))
+        
         // Snapshot !
         snapshot("05KSante")
     }
@@ -128,15 +137,16 @@ final class Lore_of_LegendsUITests: XCTestCase {
         searchField.typeText("Janna")
         
         // Tap on Janna cell
-        let jannaCell = app.collectionViews.element(boundBy: 0).cells.containing(.staticText, identifier:"Janna").children(matching: .other).element
+        let jannaCell = app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element
         jannaCell.tap()
         
-        // Tap on Janna first centered skin
-        let jannaCenteredSkin01 = app.scrollViews.element(boundBy: 0).children(matching: .other).element
-        XCTAssertTrue(jannaCenteredSkin01.waitForExistence(timeout: 10))
-        jannaCenteredSkin01.tap()
+        // Wait for champion detail page to load
+        let centeredSkinsContainer = app.scrollViews.element(boundBy: 0).children(matching: .other).element
+        XCTAssertTrue(centeredSkinsContainer.waitForExistence(timeout: 10))
+        // Navigate to splash skins page view
+        centeredSkinsContainer.tap()
         
-        // Scroll to desired skin
+        // Scroll to desired splash skin
         let scrollView = app.scrollViews.element(boundBy: 0)
         scrollView.swipeLeft()
         scrollView.swipeLeft()
