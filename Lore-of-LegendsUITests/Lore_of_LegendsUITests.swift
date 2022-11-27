@@ -74,7 +74,40 @@ final class Lore_of_LegendsUITests: XCTestCase {
         // Return to homescreen
         backButton.tap()
     }
+    
+    func testDisplayLoreForBelVeth() {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Bel'Veth").children(matching: .other).element.tap()
+        
+        // Snapshot !
+        snapshot("04BelVethLore")
+        
+        app.navigationBars["Lore_of_Legends.ChampionDetailView"].buttons.element(boundBy: 0).tap()
+    }
 
+    func testDisplayLoreForKSante() {
+        
+        let searchBar = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField)
+        
+        searchBar.element.tap()
+        
+        let kKey = app/*@START_MENU_TOKEN@*/.keys["K"]/*[[".keyboards.keys[\"K\"]",".keys[\"K\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        // Press 'K' key on keyboard
+        kKey.tap()
+        
+        // Press 'S' key on keyboard
+        let sKey = app/*@START_MENU_TOKEN@*/.keys["s"]/*[[".keyboards.keys[\"s\"]",".keys[\"s\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        sKey.tap()
+        
+        let ksanteCell = app.collectionViews.cells.otherElements.containing(.staticText, identifier:"K'Sante").children(matching: .other).element
+        ksanteCell.tap()
+        
+        // Snapshot !
+        snapshot("05KSante")
+        
+        // Press back button
+        app.navigationBars["Lore_of_Legends.ChampionDetailView"].buttons.element(boundBy: 0).tap()
+    }
+    
 //    func testLaunchPerformance() throws {
 //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
 //            // This measures how long it takes to launch your application.
