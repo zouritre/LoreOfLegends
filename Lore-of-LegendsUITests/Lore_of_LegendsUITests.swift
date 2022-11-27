@@ -25,7 +25,7 @@ final class Lore_of_LegendsUITests: XCTestCase {
         app.launch()
         
         // Wait Homescreen to appear after downloading champions
-        navigationBar = app.navigationBars["Lore of Legends"].buttons.element(boundBy: 0)
+        navigationBar = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
         XCTAssertTrue(navigationBar.waitForExistence(timeout: 30))
     }
 
@@ -37,7 +37,7 @@ final class Lore_of_LegendsUITests: XCTestCase {
         snapshot("01LoginScreen")
     }
     
-    func testDisplayLanguageForLores() {
+    func testDisplayLanguageSettings() {
         let settingsButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
         // Navigate to settings
         settingsButton.tap()
@@ -45,6 +45,7 @@ final class Lore_of_LegendsUITests: XCTestCase {
         let languagePicker = app.pickerWheels.element(boundBy: 0)
         // Wait for async query to get languages
         XCTAssertTrue(languagePicker.waitForExistence(timeout: 10))
+        languagePicker.swipeUp()
         
         // Snapshot !
         snapshot("02LanguagePicker")
@@ -56,7 +57,6 @@ final class Lore_of_LegendsUITests: XCTestCase {
         patchNoteButton.tap()
         
         let backButton = app/*@START_MENU_TOKEN@*/.otherElements["URL"]/*[[".otherElements[\"BrowserView?IsPageLoaded=true&WebViewProcessID=54115\"]",".otherElements[\"TopBrowserBar\"]",".buttons[\"Adresse\"]",".otherElements[\"Adresse\"]",".otherElements[\"URL\"]",".buttons[\"URL\"]"],[[[-1,4],[-1,3],[-1,5,3],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,5,3],[-1,2,3],[-1,1,2]],[[-1,4],[-1,3],[-1,5,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/
-        
         // Wait webpage to load
         XCTAssertTrue(backButton.waitForExistence(timeout: 30))
         
@@ -71,7 +71,7 @@ final class Lore_of_LegendsUITests: XCTestCase {
         searchField.tap()
         searchField.typeText("Belveth")
         
-        app.collectionViews.element(boundBy: 0).cells.containing(.staticText, identifier:"Bel'Veth").children(matching: .other).element.tap()
+        app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element.tap()
         
         // Snapshot !
         snapshot("04BelVethLore")
@@ -82,9 +82,9 @@ final class Lore_of_LegendsUITests: XCTestCase {
         XCTAssertTrue(searchField.exists)
         
         searchField.tap()
-        searchField.typeText("Ksante")
+        searchField.typeText("Ksant")
         
-        let ksanteCell = app.collectionViews.element(boundBy: 0).cells.containing(.staticText, identifier:"K'Sante").children(matching: .other).element
+        let ksanteCell = app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element
         ksanteCell.tap()
         
         // Snapshot !
