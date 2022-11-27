@@ -86,6 +86,8 @@ final class Lore_of_LegendsUITests: XCTestCase {
         
         await waitForExpectations(timeout: 25)
         
+        cancellable.cancel()
+        
         DispatchQueue.main.sync {
             // Snapshot !
             snapshot("03PatchNotes")
