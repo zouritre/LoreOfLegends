@@ -14,7 +14,9 @@ final class Lore_of_LegendsUITests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-
+        
+        // Set device orientation to portrait
+        XCUIDevice.shared.orientation = .portrait
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
@@ -31,9 +33,19 @@ final class Lore_of_LegendsUITests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
     }
     
     func testArriveOnHomeScreen() {
+        // Get the collection view
+        let collectionView = app.collectionViews.element(boundBy: 0)
+        XCTAssertTrue(collectionView.waitForExistence(timeout: 5))
+        // Swipe up inside the collection view
+        collectionView.swipeUp()
+        collectionView.swipeUp()
+        collectionView.swipeUp()
+        
+        // Snapshot !
         snapshot("01LoginScreen")
     }
     
@@ -51,17 +63,33 @@ final class Lore_of_LegendsUITests: XCTestCase {
         snapshot("02LanguagePicker")
     }
     
-    func testDisplayPatchNotes() {
+    func testDisplayPatchNotes() async {
         let patchNoteButton = app.toolbars.element(boundBy: 0).buttons.element(boundBy: 0)
         // Navigate to patch note webview
-        patchNoteButton.tap()
+        DispatchQueue.main.sync {
+            patchNoteButton.tap()
+        }
         
-        let backButton = app/*@START_MENU_TOKEN@*/.otherElements["URL"]/*[[".otherElements[\"BrowserView?IsPageLoaded=true&WebViewProcessID=54115\"]",".otherElements[\"TopBrowserBar\"]",".buttons[\"Adresse\"]",".otherElements[\"Adresse\"]",".otherElements[\"URL\"]",".buttons[\"URL\"]"],[[[-1,4],[-1,3],[-1,5,3],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,5,3],[-1,2,3],[-1,1,2]],[[-1,4],[-1,3],[-1,5,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/
-        // Wait webpage to load
-        XCTAssertTrue(backButton.waitForExistence(timeout: 30))
+        let expectation = expectation(description: "Wait webpage to load")
+        // Prevent multiple calls to this expectation
+        expectation.assertForOverFulfill = false
+        // Wait 15 seconds for webpage to load
+        var countdown = 15
+        let cancellable = Timer.publish(every: 1, on: .main, in: .default).autoconnect().sink(receiveValue: { _ in
+            // Decrement countdown by 1 if above 0
+            countdown = countdown > 0 ? countdown - 1 : 0
+            print("timer: ", countdown)
+            if countdown == 0 {
+                expectation.fulfill()
+            }
+        })
         
-        // Snapshot !
-        snapshot("03PatchNotes")
+        await waitForExpectations(timeout: 25)
+        
+        DispatchQueue.main.sync {
+            // Snapshot !
+            snapshot("03PatchNotes")
+        }
     }
     
     func testDisplayLoreForBelVeth() {
@@ -74,7 +102,7 @@ final class Lore_of_LegendsUITests: XCTestCase {
         app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).children(matching: .other).element.tap()
         
         // Snapshot !
-        snapshot("04BelVethLore")
+        snapshot("04BelVeth")
     }
 
     func testDisplayLoreForKSante() {
