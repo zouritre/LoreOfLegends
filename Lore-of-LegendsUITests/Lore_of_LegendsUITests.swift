@@ -76,6 +76,19 @@ final class Lore_of_LegendsUITests: XCTestCase {
     }
     
     func testDisplayLoreForBelVeth() {
+        
+        let searchBar = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField)
+        
+        searchBar.element.tap()
+        
+        let bKey = app.keys["B"]
+        // Press 'K' key on keyboard
+        bKey.tap()
+        
+        // Press 'S' key on keyboard
+        let lKey = app.keys["l"]
+        lKey.tap()
+        
         app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Bel'Veth").children(matching: .other).element.tap()
         
         // Snapshot !
@@ -106,6 +119,39 @@ final class Lore_of_LegendsUITests: XCTestCase {
         
         // Press back button
         app.navigationBars["Lore_of_Legends.ChampionDetailView"].buttons.element(boundBy: 0).tap()
+    }
+    
+    func testDisplaySkinForJanna() {
+        
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField).element.tap()
+        
+        let jKey = app/*@START_MENU_TOKEN@*/.keys["J"]/*[[".keyboards.keys[\"J\"]",".keys[\"J\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        jKey.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Janna").children(matching: .other).element.tap()
+        
+        let jannaCenteredSkin01 = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .scrollView).element.children(matching: .other).element.children(matching: .other).element.children(matching: .scrollView).element
+        
+        XCTAssertTrue(jannaCenteredSkin01.waitForExistence(timeout: 10))
+        jannaCenteredSkin01.tap()
+        
+        let pageView = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        let scrollView = pageView.children(matching: .scrollView).element.children(matching: .other).element.children(matching: .other).element.children(matching: .scrollView).element
+        
+        // Scroll to desired skin
+        scrollView.swipeLeft()
+        scrollView.swipeLeft()
+        scrollView.swipeLeft()
+        scrollView.swipeLeft()
+        scrollView.swipeLeft()
+        scrollView.swipeLeft()
+        scrollView.swipeLeft()
+        
+        // Snapshot !
+        snapshot("06JannaSkin")
+        
+        // Navigate back to champion detail
+        let backButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
+        backButton.tap()
     }
     
 //    func testLaunchPerformance() throws {
