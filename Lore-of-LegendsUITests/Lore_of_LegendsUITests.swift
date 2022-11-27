@@ -37,25 +37,17 @@ final class Lore_of_LegendsUITests: XCTestCase {
         snapshot("01LoginScreen")
     }
     
-    func testChooseLanguageForLores() {
-        let settingsButton = app.navigationBars["Lore of Legends"].buttons.element(boundBy: 0)
+    func testDisplayLanguageForLores() {
+        let settingsButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
         // Navigate to settings
         settingsButton.tap()
         
         let languagePicker = app.pickerWheels.element(boundBy: 0)
         // Wait for async query to get languages
-        XCTAssertTrue(languagePicker.waitForExistence(timeout: 5))
+        XCTAssertTrue(languagePicker.waitForExistence(timeout: 10))
         
         // Snapshot !
         snapshot("02LanguagePicker")
-        
-        // Save settings button
-        let saveButton = app.buttons.matching(identifier: "SaveSettingsButton").element
-        saveButton.tap()
-        // Tap Ok button from alert
-        app.alerts.element(boundBy: 0).scrollViews.otherElements.buttons.element(boundBy: 0).tap()
-        // Tap back button from nav bar
-        app.navigationBars["Lore_of_Legends.SettingsView"].buttons.element(boundBy: 0).tap()
     }
     
     func testDisplayPatchNotes() {
@@ -66,78 +58,58 @@ final class Lore_of_LegendsUITests: XCTestCase {
         let backButton = app/*@START_MENU_TOKEN@*/.otherElements["URL"]/*[[".otherElements[\"BrowserView?IsPageLoaded=true&WebViewProcessID=54115\"]",".otherElements[\"TopBrowserBar\"]",".buttons[\"Adresse\"]",".otherElements[\"Adresse\"]",".otherElements[\"URL\"]",".buttons[\"URL\"]"],[[[-1,4],[-1,3],[-1,5,3],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,5,3],[-1,2,3],[-1,1,2]],[[-1,4],[-1,3],[-1,5,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/
         
         // Wait webpage to load
-        XCTAssertTrue(backButton.waitForExistence(timeout: 10))
+        XCTAssertTrue(backButton.waitForExistence(timeout: 30))
         
         // Snapshot !
         snapshot("03PatchNotes")
-        
-        // Return to homescreen
-        backButton.tap()
     }
     
     func testDisplayLoreForBelVeth() {
+        let searchField = app.searchFields.element(boundBy: 0)
+        XCTAssertTrue(searchField.exists)
         
-        let searchBar = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField)
+        searchField.tap()
+        searchField.typeText("Belveth")
         
-        searchBar.element.tap()
-        
-        let bKey = app.keys["B"]
-        // Press 'K' key on keyboard
-        bKey.tap()
-        
-        // Press 'S' key on keyboard
-        let lKey = app.keys["l"]
-        lKey.tap()
-        
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Bel'Veth").children(matching: .other).element.tap()
+        app.collectionViews.element(boundBy: 0).cells.containing(.staticText, identifier:"Bel'Veth").children(matching: .other).element.tap()
         
         // Snapshot !
         snapshot("04BelVethLore")
-        
-        app.navigationBars["Lore_of_Legends.ChampionDetailView"].buttons.element(boundBy: 0).tap()
     }
 
     func testDisplayLoreForKSante() {
+        let searchField = app.searchFields.element(boundBy: 0)
+        XCTAssertTrue(searchField.exists)
         
-        let searchBar = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField)
+        searchField.tap()
+        searchField.typeText("Ksante")
         
-        searchBar.element.tap()
-        
-        let kKey = app/*@START_MENU_TOKEN@*/.keys["K"]/*[[".keyboards.keys[\"K\"]",".keys[\"K\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        // Press 'K' key on keyboard
-        kKey.tap()
-        
-        // Press 'S' key on keyboard
-        let sKey = app/*@START_MENU_TOKEN@*/.keys["s"]/*[[".keyboards.keys[\"s\"]",".keys[\"s\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        sKey.tap()
-        
-        let ksanteCell = app.collectionViews.cells.otherElements.containing(.staticText, identifier:"K'Sante").children(matching: .other).element
+        let ksanteCell = app.collectionViews.element(boundBy: 0).cells.containing(.staticText, identifier:"K'Sante").children(matching: .other).element
         ksanteCell.tap()
         
         // Snapshot !
         snapshot("05KSante")
-        
-        // Press back button
-        app.navigationBars["Lore_of_Legends.ChampionDetailView"].buttons.element(boundBy: 0).tap()
     }
     
     func testDisplaySkinForJanna() {
+        let searchField = app.searchFields.element(boundBy: 0)
+        XCTAssertTrue(searchField.exists)
         
-        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField).element.tap()
+        // Type 'Janna' in search field
+        searchField.tap()
+        searchField.typeText("Janna")
         
-        let jKey = app/*@START_MENU_TOKEN@*/.keys["J"]/*[[".keyboards.keys[\"J\"]",".keys[\"J\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        jKey.tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Janna").children(matching: .other).element.tap()
+        // Tap on Janna cell
+        let jannaCell = app.collectionViews.element(boundBy: 0).cells.containing(.staticText, identifier:"Janna").children(matching: .other).element
+        jannaCell.tap()
         
-        let jannaCenteredSkin01 = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .scrollView).element.children(matching: .other).element.children(matching: .other).element.children(matching: .scrollView).element
-        
+        // Tap on Janna first centered skin
+        let jannaCenteredSkin01 = app.scrollViews.element(boundBy: 0).children(matching: .other).element
         XCTAssertTrue(jannaCenteredSkin01.waitForExistence(timeout: 10))
         jannaCenteredSkin01.tap()
         
-        let pageView = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
-        let scrollView = pageView.children(matching: .scrollView).element.children(matching: .other).element.children(matching: .other).element.children(matching: .scrollView).element
-        
         // Scroll to desired skin
+        let scrollView = app.scrollViews.element(boundBy: 0)
         scrollView.swipeLeft()
         scrollView.swipeLeft()
         scrollView.swipeLeft()
@@ -148,10 +120,6 @@ final class Lore_of_LegendsUITests: XCTestCase {
         
         // Snapshot !
         snapshot("06JannaSkin")
-        
-        // Navigate back to champion detail
-        let backButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
-        backButton.tap()
     }
     
 //    func testLaunchPerformance() throws {
